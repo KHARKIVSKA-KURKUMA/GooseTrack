@@ -1,4 +1,7 @@
-![GooseTrack](./public/goose.png) GooseTrack: Streamlined Productivity and Task
+<div style="text-align: center;">
+  <img src="./public/goose.png" alt="GooseTrack" />
+</div>
+ GooseTrack: Streamlined Productivity and Task
 Management
 
 Welcome to GooseTrack, your ultimate solution for efficient task management and
