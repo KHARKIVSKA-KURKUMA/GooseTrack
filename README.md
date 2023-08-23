@@ -1,4 +1,6 @@
-<div style="text-align: center;">
+<div style="text-align: center;  display: flex;
+  flex-direction: column;
+  align-items: center;">
   <img src="./public/goose.png" alt="GooseTrack" />
 </div>
  GooseTrack: Streamlined Productivity and Task
