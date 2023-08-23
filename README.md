@@ -1,10 +1,7 @@
-<div style="text-align: center;  display: flex;
-  flex-direction: column;
-  align-items: center;">
+<div style="text-align: center;
   <img src="./public/goose.png" alt="GooseTrack" />
 </div>
- GooseTrack: Streamlined Productivity and Task
-Management
+#GooseTrack: Streamlined Productivity and Task Management
 
 Welcome to GooseTrack, your ultimate solution for efficient task management and
 productivity enhancement. With its user-friendly interface and feature-packed
