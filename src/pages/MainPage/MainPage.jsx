@@ -1,6 +1,6 @@
-import AuthSection from 'components/MainPageComponents/AuthSection/AuthSection';
-import Description from 'components/MainPageComponents/Description/Description';
-import ReviewsSlider from 'components/MainPageComponents/ReviewsSlider/ReviewsSlider';
+import AuthSection from 'components/UnauthorizedUserComponents/MainPageComponents/AuthSection/AuthSection';
+import Description from 'components/UnauthorizedUserComponents/MainPageComponents/Description/Description';
+import ReviewsSlider from 'components/UnauthorizedUserComponents/MainPageComponents/ReviewsSlider/ReviewsSlider';
 
 const MainPage = () => {
   return (
