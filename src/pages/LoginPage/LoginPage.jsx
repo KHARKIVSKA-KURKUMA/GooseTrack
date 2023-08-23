@@ -1,5 +1,5 @@
-import AuthNavigate from 'components/UnauthorizedUserComponents/AuthNavigate/AuthNavigate';
-import LoginForm from 'components/UnauthorizedUserComponents/LoginPageComponents/LoginForm/LoginForm';
+import AuthNavigate from 'components/UnauthorizedUserComponents/AuthNavigate';
+import LoginForm from 'components/UnauthorizedUserComponents/LoginPageComponents/LoginForm';
 
 const LoginPage = () => {
   return (

@@ -1,5 +1,5 @@
-import AuthNavigate from 'components/UnauthorizedUserComponents/AuthNavigate/AuthNavigate';
-import RegisterForm from 'components/UnauthorizedUserComponents/RegisterPageComponents/RegisterForm/RegisterForm';
+import AuthNavigate from 'components/UnauthorizedUserComponents/AuthNavigate';
+import RegisterForm from 'components/UnauthorizedUserComponents/RegisterPageComponents/RegisterForm';
 
 const RegisterPage = () => {
   return (
