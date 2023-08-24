@@ -1,13 +1,16 @@
 {
   "files": {
     "main.css": "/GooseTrack/static/css/main.301db928.css",
-    "main.js": "/GooseTrack/static/js/main.b6b89bc3.js",
+    "main.js": "/GooseTrack/static/js/main.b790aa52.js",
+    "static/media/goose3x.png": "/GooseTrack/static/media/goose3x.195e8701a4c8b77a3e21.png",
+    "static/media/goose2x.png": "/GooseTrack/static/media/goose2x.1e0fce979b8978b99d17.png",
+    "static/media/goose1x.png": "/GooseTrack/static/media/goose1x.3af22614ecbf8d6c8b03.png",
     "index.html": "/GooseTrack/index.html",
     "main.301db928.css.map": "/GooseTrack/static/css/main.301db928.css.map",
-    "main.b6b89bc3.js.map": "/GooseTrack/static/js/main.b6b89bc3.js.map"
+    "main.b790aa52.js.map": "/GooseTrack/static/js/main.b790aa52.js.map"
   },
   "entrypoints": [
     "static/css/main.301db928.css",
-    "static/js/main.b6b89bc3.js"
+    "static/js/main.b790aa52.js"
   ]
 }
