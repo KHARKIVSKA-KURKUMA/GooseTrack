@@ -1,5 +1,12 @@
+import { CalendarTable, MonthCalendarHead } from './ChosenMonthItem';
+
 const ChosenMonth = () => {
-  return <div>ChosenMonth</div>;
+  return (
+    <>
+      <MonthCalendarHead />
+      <CalendarTable />
+    </>
+  );
 };
 
 export default ChosenMonth;

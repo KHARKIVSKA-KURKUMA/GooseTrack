@@ -6,6 +6,7 @@ import LoginPage from 'pages/LoginPage/LoginPage';
 import Layout from 'components/UnauthorizedUserComponents/Layout/Layout';
 import AccountPage from 'pages/AccountPage/AccountPage';
 import CalendarPage from 'pages/CalendarPage/CalendarPage';
+import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 
 export const App = () => {
   return (
@@ -18,6 +19,7 @@ export const App = () => {
           <Route path="login" element={<LoginPage />}></Route>
           <Route path="account" element={<AccountPage />}></Route>
           <Route path="calendar" element={<CalendarPage />}></Route>
+          <Route path="statistics" element={<StatisticsPage />}></Route>
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

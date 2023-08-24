@@ -1,5 +1,17 @@
+import {
+  DayCalendarHead,
+  TasksColumn,
+  TasksColumnsList,
+} from './ChosenDayItems';
+
 const ChosenDay = () => {
-  return <div>ChosenDay</div>;
+  return (
+    <>
+      <DayCalendarHead />
+      <TasksColumnsList />
+      <TasksColumn />
+    </>
+  );
 };
 
 export default ChosenDay;
