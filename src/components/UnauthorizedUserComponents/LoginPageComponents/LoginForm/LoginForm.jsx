@@ -1,7 +1,6 @@
-import { Field, Form, Formik } from 'formik';
+import {  Formik } from 'formik';
 import * as yup from 'yup';
-
-import { Container, StyledField, StyledForm, StyledFormTitle, ss } from './LoginForm.styled';
+import { Container, StyledBtn, StyledFiLogIn, StyledField, StyledForm, StyledFormTitle, StyledLabel, StyledTextBtn } from './LoginForm.styled';
 
 const initialValues = {
     email: '',
@@ -40,7 +39,6 @@ const LoginForm = () => {
     console.log(actions);
     actions.resetForm();
   }
-
   return (
     <Container>
       <StyledFormTitle>
@@ -51,20 +49,27 @@ const LoginForm = () => {
         onSubmit={handleSubmit}
       >
         <StyledForm autoComplete='off'>
-          <label htmlFor="email">
-            email
-          </label>
-          <StyledField placeholder="email" type="text" name='email'/>
-          <label htmlFor="email">
-            password
-          </label>
-          <StyledField placeholder="password" type="password" name='password' />
+          <StyledLabel htmlFor="email">
+            Email
+          </StyledLabel>
+          <StyledField placeholder="Enter email" type="text" name='email'/>
+          <StyledLabel htmlFor="email">
+            Password
+          </StyledLabel>
+          <StyledField placeholder="Enter password" type="password" name='password' />
           
-          <button type='submit'>Log in</button>
+          <StyledBtn type='submit'>
+            <StyledTextBtn>
+              Log in
+            </StyledTextBtn>
+            <StyledFiLogIn />
+          
+          </StyledBtn>
         </StyledForm>
       </Formik>
     </Container>
   );
 };
+
 
 export default LoginForm;
