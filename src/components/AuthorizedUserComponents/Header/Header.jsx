@@ -1,10 +1,5 @@
 import { Container } from './Header.styled';
-import {
-  AddFeedbackBtn,
-  AddFeedbackModal,
-  ThemeToggler,
-  UserInfo,
-} from './HeaderItems';
+import { AddFeedbackBtn, ThemeToggler, UserInfo } from './HeaderItems';
 
 const Header = () => {
   return (
@@ -12,7 +7,6 @@ const Header = () => {
       <AddFeedbackBtn />
       <ThemeToggler />
       <UserInfo />
-      <AddFeedbackModal />
     </Container>
   );
 };
