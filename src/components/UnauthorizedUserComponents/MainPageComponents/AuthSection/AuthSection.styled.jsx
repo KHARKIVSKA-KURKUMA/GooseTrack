@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-const Container = styled.div``;
+
+
+const Container = styled.div`
+  margin: 0 auto;
+  
+  `;
 
 const StyledHero = styled.header`
   position: relative;
@@ -17,14 +22,13 @@ const HeroTitle = styled.h1`
   color: white;
   margin: 0;
   margin-bottom: 32px;
-  font-family: 'Coolvetica';
+  font-family: 'Inter';
   font-size: 44px;
   line-height: 1.09;
   font-weight: 700;
   text-shadow: #00000009;
 
   @media (min-width: 768px) {
-    
   }
 `;
 
@@ -38,12 +42,13 @@ const StyledImg = styled.picture`
 `;
 
 const HeroTitleSpan = styled.span`
-  font-family: 'Coolvetica';
+  font-family: 'Inter';
   font-style: italic;
   font-size: 44px;
   line-height: 1.09;
   font-weight: 700;
   text-shadow: #00000009;
+  margin-right: 4px;
 
   @media (min-width: 768px) {
   }
@@ -55,7 +60,7 @@ const AuthBlock = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 16px;
 
   @media (min-width: 768px) {
     
@@ -64,7 +69,9 @@ const AuthBlock = styled.div`
 
 const LoginLink = styled(NavLink)`
   padding: 14px 32px;
+  margin: 0;
   border-radius: 16px;
+  font-family: 'Inter';
   font-weight: 600;
   font-size: 18px;
   line-height: 1.3;
@@ -76,7 +83,7 @@ const LoginLink = styled(NavLink)`
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
-  color:  #3e85f3;
+  color: #3e85f3;
   background-color: white;
 
   transform: scale(1);
@@ -88,14 +95,13 @@ const LoginLink = styled(NavLink)`
   &:focus {
     transform: scale(1.1);
   }
-
 `;
 
 const SignupLink = styled(NavLink)`
-  padding: 14px 32px;
-  border-radius: 16px;
+ 
+  font-family: 'Inter';
   font-weight: 600;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.3;
   letter-spacing: -0.02em;
   cursor: pointer;
@@ -106,7 +112,7 @@ const SignupLink = styled(NavLink)`
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
   color: #ffffff;
-  background-color:transparent;
+  background-color: transparent;
 
   transform: scale(1);
   transition-property: transform;
