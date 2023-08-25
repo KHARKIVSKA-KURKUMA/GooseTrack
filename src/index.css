@@ -1,3 +1,16 @@
+:root {
+  --primary-background-color: #ffffff;
+  --secondary-background-color: #f7f6f9;
+  --auth-background-color: #dcebf7;
+  --btn-background-color: #3e85f3;
+  --low-background-color: #72c2f8;
+  --medium-background-color: #f3b249;
+  --high-background-color: #ea3d65;
+  --title-color: #3e85f3;
+  --subtitle-color: #171820;
+  --descr-color: rgba(17, 17, 17, 0.9);
+}
+
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
