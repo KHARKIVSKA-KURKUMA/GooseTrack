@@ -70,6 +70,7 @@ const UserReview = styled.p`
 
 const Star = styled.img`
   margin-right: 10px;
+  display: inline;
 `;
 
 const ArrowWrapper = styled.div`
