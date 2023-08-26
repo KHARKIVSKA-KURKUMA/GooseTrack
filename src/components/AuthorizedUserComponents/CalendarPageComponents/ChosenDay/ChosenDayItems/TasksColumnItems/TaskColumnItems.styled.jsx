@@ -34,6 +34,7 @@ const HeadBarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  /* треба буде прибрати нижній марджин  */
   @media screen and (min-width: 768px) {
     margin-bottom: 28px;
   }

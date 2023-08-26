@@ -10,7 +10,7 @@ const ColumnHeadBar = () => {
     <HeadBarContainer>
       <HeadBarTitle>Title</HeadBarTitle>
       <HeadBarAddBtn>
-        <AiOutlinePlusCircle size={22} stroke-width="4" />
+        <AiOutlinePlusCircle size={22} strokeWidth="5" />
       </HeadBarAddBtn>
     </HeadBarContainer>
   );

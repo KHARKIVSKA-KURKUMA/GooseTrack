@@ -5,14 +5,15 @@ import tasks from '../../../../../../json-for-example/task.json';
 const ColumnTasksList = () => {
   return (
     <TaskColumnContainer>
-      {tasks.map(task => (
-        <TaskColumnCard
-          key={task.id}
-          description={task.description}
-          avatarUrl={task.avatarUrl}
-          priority={task.priority}
-        />
-      ))}
+      {tasks &&
+        tasks.map(task => (
+          <TaskColumnCard
+            key={task.id}
+            description={task.description}
+            avatarUrl={task.avatarUrl}
+            priority={task.priority}
+          />
+        ))}
     </TaskColumnContainer>
   );
 };
