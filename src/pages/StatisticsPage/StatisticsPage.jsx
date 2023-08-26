@@ -2,7 +2,7 @@ import MainLayout from 'components/AuthorizedUserComponents/MainLayout/MainLayou
 import PeriodPaginator from 'components/AuthorizedUserComponents/StatisticsPageComponents/PeriodPaginator';
 import StatisticsChart from 'components/AuthorizedUserComponents/StatisticsPageComponents/StatisticsChart';
 import PageLayout from '../../components/PageLayout/PageLayout';
-import { StatisticsContainer } from './StatisticsPage.styled';
+import { StatisticsContainer } from 'components/AuthorizedUserComponents/StatisticsPageComponents/StatisticsPage.styled';
 
 const StatisticsPage = () => {
   return (
