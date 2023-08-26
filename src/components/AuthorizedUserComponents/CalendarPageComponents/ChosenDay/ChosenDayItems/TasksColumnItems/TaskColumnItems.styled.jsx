@@ -7,7 +7,7 @@ const AddTaskButton = styled.button`
   gap: 8px;
   padding-top: 14px;
   padding-bottom: 14px;
-  width: 100%;
+  width: calc(100% - 9px);
   color: #111111;
   font-weight: 600;
   font-size: 14px;
