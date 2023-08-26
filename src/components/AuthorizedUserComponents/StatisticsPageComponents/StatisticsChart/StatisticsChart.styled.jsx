@@ -1,11 +1,21 @@
 import styled from 'styled-components';
 
-// const gradientColorByDay = '#FFDBD2';
-// const gradientColorByMonth = '#3E85F3';
+const ChartContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  padding: 45px 15px;
+  border: 1px solid #e3f3ff;
+  border-radius: 20px;
 
-// Щоб отримати градієнт для колонок статистики як на фото візьми це і розкоміть змінні :)
-// background: linear-gradient(0deg, ${gradientColorByMonth}, #ffffff);
+  @media screen and (min-width: 768px) {
+    padding: 35px;
+  }
 
-const Container = styled.div``;
+  @media screen and (min-width: 1440px) {
+    padding: 45px 40px;
+  }
+`;
 
-export { Container };
+export { ChartContainer };
