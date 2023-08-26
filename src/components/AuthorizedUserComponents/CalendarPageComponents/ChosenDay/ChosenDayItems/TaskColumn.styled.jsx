@@ -6,5 +6,9 @@ const ColumnContainer = styled.div`
   background-color: #ffffff;
   border: 1px solid #dce3e5;
   border-radius: 8px;
+  @media screen and (min-width: 768px) {
+    max-width: 344px;
+    padding: 18px 7px 28px 20px;
+  }
 `;
 export { ColumnContainer };
