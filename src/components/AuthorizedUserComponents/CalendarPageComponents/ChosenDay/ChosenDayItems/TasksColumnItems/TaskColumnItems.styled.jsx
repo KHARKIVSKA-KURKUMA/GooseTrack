@@ -31,6 +31,9 @@ const HeadBarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 28px;
+  }
 `;
 const HeadBarTitle = styled.p`
   font-weight: 700;
@@ -48,4 +51,65 @@ const HeadBarAddBtn = styled.button`
   background-color: transparent;
 `;
 /* -------------------------------------------------------------------------- */
-export { AddTaskButton, HeadBarTitle, HeadBarAddBtn, HeadBarContainer };
+/* ---------------------------- Task Column List ---------------------------- */
+const TaskColumnContainer = styled.ul`
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+`;
+/* -------------------------------------------------------------------------- */
+/* ---------------------------- Task Column Card ---------------------------- */
+const CardContainer = styled.li`
+  border: 1px solid #dce3e5;
+  border-radius: 8px;
+  padding: 14px 14px 18px 14px;
+  background-color: #f7f6f9;
+  margin-right: 9px;
+`;
+const BottomContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
+
+const Description = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 28px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+`;
+
+const Avatar = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.8px solid #3e85f3;
+  margin-right: 8px;
+`;
+
+const Priority = styled.p`
+  display: inline-flex;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-weight: 600;
+  color: #f7f6f9;
+  font-size: 10px;
+  line-height: 12px;
+`;
+/* -------------------------------------------------------------------------- */
+export {
+  AddTaskButton,
+  HeadBarTitle,
+  HeadBarAddBtn,
+  HeadBarContainer,
+  TaskColumnContainer,
+  Priority,
+  Avatar,
+  Description,
+  CardContainer,
+  BottomContainer,
+};

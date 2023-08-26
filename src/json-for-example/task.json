@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "description": "Brainstorm ideas for new content or products",
+    "avatarUrl": "https://www.svgrepo.com/show/5125/avatar.svg",
+    "priority": "High"
+  },
+  {
+    "id": 2,
+    "description": "Review and provide feedback on code pull request.",
+    "avatarUrl": "https://www.svgrepo.com/show/5125/avatar.svg",
+    "priority": "Medium"
+  },
+  {
+    "id": 3,
+    "description": "Update user documentation for new features.",
+    "avatarUrl": "https://www.svgrepo.com/show/7056/scooter.svg",
+    "priority": "Low"
+  },
+  {
+    "id": 4,
+    "description": "Complete Project Proposal before the deadline.",
+    "avatarUrl": "https://www.svgrepo.com/show/5125/avatar.svg",
+    "priority": "Low"
+  },
+  {
+    "id": 5,
+    "description": "Complete Project Proposal before the deadline.",
+    "avatarUrl": "https://www.svgrepo.com/show/5125/avatar.svg",
+    "priority": "Low"
+  }
+]
