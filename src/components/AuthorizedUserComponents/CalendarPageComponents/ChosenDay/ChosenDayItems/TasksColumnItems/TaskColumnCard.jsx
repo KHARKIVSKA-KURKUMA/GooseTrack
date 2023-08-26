@@ -1,4 +1,4 @@
-import TaskToolbar from './TaskToolbar';
+// import TaskToolbar from './TaskToolbar';
 import {
   Priority,
   Avatar,
@@ -13,7 +13,6 @@ const TaskColumnCard = data => {
     <CardContainer>
       <Description>{description}</Description>
       <BottomContainer>
-        {' '}
         <Avatar src={avatarUrl} alt="User Avatar" />
         <Priority style={{ backgroundColor: getPriorityColor(priority) }}>
           {priority}
