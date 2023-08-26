@@ -1,5 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, EffectCoverflow } from 'swiper/modules';
+import { FaStar } from 'react-icons/fa';
+import AddFeedbackModal from '../../../AuthorizedUserComponents/AddFeedbackModal/AddFeedbackModal'
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -8,8 +10,6 @@ import 'swiper/css/scrollbar';
 
 import arrowRight from '../../../../img/rightArrow.svg';
 import userAvatar from '../../../../img/ph_user.svg';
-import star from '../../../../img/star.svg';
-import yellowStar from '../../../../img/yellowStar.svg';
 
 import {
   Container,
@@ -61,6 +61,7 @@ const reviews = [
 const ReviewsSlider = () => {
   return (
     <Container>
+      <AddFeedbackModal/> 
       <Title>Reviews</Title>
       <Swiper
         modules={[Navigation, Autoplay, EffectCoverflow]}
@@ -68,7 +69,7 @@ const ReviewsSlider = () => {
         effect={'coverflow'}
         slidesPerView={1}
         spaceBetween={20}
-        autoHeight={true}
+        // autoHeight={true}
         centeredSlides={true}
         coverflowEffect={{
           rotate: 30,
@@ -97,11 +98,11 @@ const ReviewsSlider = () => {
         {reviews.map(review => {
           const starIcons = [];
           for (let i = 0; i < review.stars; i++) {
-            starIcons.push(<Star key={i} src={yellowStar} alt="star" />);
+            starIcons.push(<FaStar key={i} color={'#FFAC33'} style={{ marginRight: '10px' }} />);
           }
           for (let i = review.stars; i < 5; i++) {
             starIcons.push(
-              <Star key={i} src={star} alt="star" className="grey-star" />
+              <FaStar key={i} color={ '#CEC9C1'} style={{ marginRight: '10px' }}/>
             );
           }
 
