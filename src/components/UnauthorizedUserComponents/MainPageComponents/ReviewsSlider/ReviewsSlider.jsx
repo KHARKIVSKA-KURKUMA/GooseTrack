@@ -1,7 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, EffectCoverflow } from 'swiper/modules';
 import { FaStar } from 'react-icons/fa';
-import AddFeedbackModal from '../../../AuthorizedUserComponents/AddFeedbackModal/AddFeedbackModal'
+
+// import AddFeedbackBtn from '../../../AuthorizedUserComponents/Header/HeaderItems/AddFeedbackBtn';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -19,7 +20,6 @@ import {
   UserAvatar,
   UserName,
   UserReview,
-  Star,
   ArrowLeft,
   ArrowRight,
   ArrowWrapper,
@@ -61,7 +61,7 @@ const reviews = [
 const ReviewsSlider = () => {
   return (
     <Container>
-      <AddFeedbackModal/> 
+      {/* <AddFeedbackBtn /> */}
       <Title>Reviews</Title>
       <Swiper
         modules={[Navigation, Autoplay, EffectCoverflow]}
@@ -98,11 +98,21 @@ const ReviewsSlider = () => {
         {reviews.map(review => {
           const starIcons = [];
           for (let i = 0; i < review.stars; i++) {
-            starIcons.push(<FaStar key={i} color={'#FFAC33'} style={{ marginRight: '10px' }} />);
+            starIcons.push(
+              <FaStar
+                key={i}
+                color={'#FFAC33'}
+                style={{ marginRight: '10px' }}
+              />
+            );
           }
           for (let i = review.stars; i < 5; i++) {
             starIcons.push(
-              <FaStar key={i} color={ '#CEC9C1'} style={{ marginRight: '10px' }}/>
+              <FaStar
+                key={i}
+                color={'#CEC9C1'}
+                style={{ marginRight: '10px' }}
+              />
             );
           }
 

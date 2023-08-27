@@ -1,14 +1,15 @@
-import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { FaStar } from 'react-icons/fa';
 import { BiPencil } from 'react-icons/bi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { GrClose } from 'react-icons/gr';
-
+import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Overlay from 'components/GeneralComponents/Overlay/Overlay';
 import Modal from 'components/GeneralComponents/ModalWindow/ModalWindow';
 import ModalButton from 'components/GeneralComponents/ModalButton/ModalButton';
+
 import {
   StarWrapper,
   NameLabel,
@@ -19,12 +20,28 @@ import {
   IconWrapper,
   CircleIcon,
   TitleWrapper,
-  CloseModalButton
+  CloseModalButton,
 } from './AddFeedbackModal.styled';
 
-const AddFeedbackModal = () => {
+const feedbackModalRoot = document.querySelector('#feedback-modal-root')
+
+const AddFeedbackModal = ({ toggleModal }) => {
+  /// Close modal by pressing Escape ///
+  useEffect(() => {
+    const handleKeyDown = e => {
+      if (e.code === 'Escape') {
+        toggleModal();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [toggleModal]);
+
+  /// Validate Feedback form with YUP ///
   const feedbackValidationSchema = yup.object().shape({
-    rating: yup.number().min(1).required('Leave your rating'),
+    rating: yup.number().min(1).max(5).required('Leave your rating'),
     feedback: yup
       .string()
       .trim()
@@ -33,12 +50,14 @@ const AddFeedbackModal = () => {
       .required('Leave your feedback'),
   });
 
+  /// Formik function / main logic ///
   const formik = useFormik({
     initialValues: {
       rating: 5,
       feedback: '',
     },
     validationSchema: feedbackValidationSchema,
+
     onSubmit: (values, actions) => {
       console.log('Formik Rating:', formik.values.rating);
       console.log('Formik Feedback:', formik.values.feedback);
@@ -48,13 +67,13 @@ const AddFeedbackModal = () => {
 
   console.log(formik.errors);
 
-  return (
+  return createPortal(
     <Overlay>
       <Modal>
-        <CloseModalButton type='button'>
-            <GrClose size={24}/>
+        <CloseModalButton type="button" onClick={toggleModal}>
+          <GrClose size={20} />
         </CloseModalButton>
-      
+
         <form onSubmit={formik.handleSubmit}>
           <StarWrapper>
             <NameLabel>Rating</NameLabel>
@@ -119,11 +138,14 @@ const AddFeedbackModal = () => {
             <ModalButton textColor="#FFFFFF" backgroundColor="#3E85F3">
               Save/Edit
             </ModalButton>
-            <ModalButton>Cancel</ModalButton>
+            <ModalButton type="button" onClick={toggleModal}>
+              Cancel
+            </ModalButton>
           </div>
         </form>
       </Modal>
-    </Overlay>
+    </Overlay>,
+    feedbackModalRoot
   );
 };
 
