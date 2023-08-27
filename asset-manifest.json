@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/GooseTrack/static/css/main.b359b464.css",
-    "main.js": "/GooseTrack/static/js/main.6e7ae2ac.js",
+    "main.css": "/GooseTrack/static/css/main.09bd5b2e.css",
+    "main.js": "/GooseTrack/static/js/main.0ab098a8.js",
     "static/media/feature-calendar3x.png": "/GooseTrack/static/media/feature-calendar3x.d307bf27b215d9b1d70e.png",
     "static/media/feature-calendar2x.png": "/GooseTrack/static/media/feature-calendar2x.271b4ebdb082126ddab5.png",
     "static/media/feature-sidebar3x.png": "/GooseTrack/static/media/feature-sidebar3x.48ad406aea3d5d1a4725.png",
@@ -17,13 +17,16 @@
     "static/media/ph_user.svg": "/GooseTrack/static/media/ph_user.c07493995799656ce6d4fdd41ded112b.svg",
     "static/media/yellowStar.svg": "/GooseTrack/static/media/yellowStar.ab1705a102fded98297e760cb1b1e9a9.svg",
     "index.html": "/GooseTrack/index.html",
+    "static/media/taskToolbarPen.svg": "/GooseTrack/static/media/taskToolbarPen.e84c27baaef5455d31dae092bcff97cf.svg",
     "static/media/star.svg": "/GooseTrack/static/media/star.f361d3a98ddda3df413e95aacba98f0b.svg",
+    "static/media/taskToolbarArrow.svg": "/GooseTrack/static/media/taskToolbarArrow.6cdef27751b7a46f9e01f4b2504b3dc3.svg",
+    "static/media/taskToolbarTrash.svg": "/GooseTrack/static/media/taskToolbarTrash.583197800359d8de09b25bed1dcb8190.svg",
     "static/media/rightArrow.svg": "/GooseTrack/static/media/rightArrow.75d3f1a7c9d40920cac36be608c4ef43.svg",
-    "main.b359b464.css.map": "/GooseTrack/static/css/main.b359b464.css.map",
-    "main.6e7ae2ac.js.map": "/GooseTrack/static/js/main.6e7ae2ac.js.map"
+    "main.09bd5b2e.css.map": "/GooseTrack/static/css/main.09bd5b2e.css.map",
+    "main.0ab098a8.js.map": "/GooseTrack/static/js/main.0ab098a8.js.map"
   },
   "entrypoints": [
-    "static/css/main.b359b464.css",
-    "static/js/main.6e7ae2ac.js"
+    "static/css/main.09bd5b2e.css",
+    "static/js/main.0ab098a8.js"
   ]
 }
