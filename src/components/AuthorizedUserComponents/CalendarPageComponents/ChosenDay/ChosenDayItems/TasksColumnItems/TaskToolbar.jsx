@@ -46,10 +46,11 @@ const TaskToolbar = () => {
         onClose={handleClose}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
+          id: 'moveList',
         }}
       >
         {availableGroups.map(group => (
-          <MenuItem key={group} onClick={handleClose}>
+          <MenuItem id={'moveItem'} key={group} onClick={handleClose}>
             {group} <StyledArrow />
           </MenuItem>
         ))}

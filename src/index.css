@@ -53,14 +53,11 @@ img {
   height: auto;
 }
 
-.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper
-  .css-6hp17o-MuiList-root-MuiMenu-list {
+#moveList {
   border-radius: 8px;
   width: 150px;
 }
-
-.css-6hp17o-MuiList-root-MuiMenu-list
-  .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+#moveItem {
   padding: 10px 24px;
   display: flex;
   justify-content: space-between;
@@ -69,8 +66,6 @@ img {
   font-weight: 500;
   color: #343434;
 }
-
-.css-6hp17o-MuiList-root-MuiMenu-list
-  .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root:hover {
+#moveItem:hover {
   background-color: rgba(227, 243, 255, 5);
 }
