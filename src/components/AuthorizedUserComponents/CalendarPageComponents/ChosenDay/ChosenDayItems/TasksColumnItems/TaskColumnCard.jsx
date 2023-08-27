@@ -1,10 +1,11 @@
-// import TaskToolbar from './TaskToolbar';
+import TaskToolbar from './TaskToolbar';
 import {
   Priority,
   Avatar,
   Description,
   BottomContainer,
   CardContainer,
+  TaskMeta,
 } from './TaskColumnItems.styled';
 
 const TaskColumnCard = data => {
@@ -13,12 +14,14 @@ const TaskColumnCard = data => {
     <CardContainer>
       <Description>{description}</Description>
       <BottomContainer>
-        <Avatar src={avatarUrl} alt="User Avatar" />
-        <Priority style={{ backgroundColor: getPriorityColor(priority) }}>
-          {priority}
-        </Priority>
+        <TaskMeta>
+          <Avatar src={avatarUrl} alt="User Avatar" />
+          <Priority style={{ backgroundColor: getPriorityColor(priority) }}>
+            {priority}
+          </Priority>
+        </TaskMeta>
+        <TaskToolbar />
       </BottomContainer>
-      {/* <TaskToolbar /> */}
       {/* <TaskModal /> */}
     </CardContainer>
   );

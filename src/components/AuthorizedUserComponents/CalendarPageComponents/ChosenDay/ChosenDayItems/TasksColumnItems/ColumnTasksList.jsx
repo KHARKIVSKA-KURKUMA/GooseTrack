@@ -1,8 +1,7 @@
 import TaskColumnCard from './TaskColumnCard';
 import { TaskColumnContainer } from './TaskColumnItems.styled';
-import tasks from '../../../../../../json-for-example/task.json';
 
-const ColumnTasksList = () => {
+const ColumnTasksList = ({ tasks }) => {
   return (
     <TaskColumnContainer>
       {tasks &&

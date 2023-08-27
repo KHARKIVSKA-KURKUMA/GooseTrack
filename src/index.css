@@ -3,7 +3,7 @@
   --secondary-background-color: #f7f6f9;
   --auth-background-color: #dcebf7;
   --btn-background-color: #3e85f3;
-  --btn-hover-background-color: #2B78EF;
+  --btn-hover-background-color: #2b78ef;
   --low-background-color: #72c2f8;
   --medium-background-color: #f3b249;
   --high-background-color: #ea3d65;
@@ -51,4 +51,26 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper
+  .css-6hp17o-MuiList-root-MuiMenu-list {
+  border-radius: 8px;
+  width: 150px;
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list
+  .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  padding: 10px 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: #343434;
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list
+  .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root:hover {
+  background-color: rgba(227, 243, 255, 5);
 }

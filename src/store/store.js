@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import { persistStore } from 'redux-persist';
+import { persistStore } from 'redux-persist';
 import {
   FLUSH,
   REHYDRATE,
@@ -8,10 +8,10 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { tasksReducer } from './tasks/tasksSlice';
+import { persistedTaskReducer } from './tasks/tasksSlice';
 
 const reducer = {
-  tasks: tasksReducer,
+  tasks: persistedTaskReducer,
 };
 
 export const store = configureStore({
@@ -25,4 +25,4 @@ export const store = configureStore({
   ],
 });
 
-// export const persistor = persistStore(store);
+export const persistor = persistStore(store);

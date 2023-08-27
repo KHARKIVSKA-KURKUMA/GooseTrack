@@ -5,14 +5,17 @@ import 'modern-normalize/modern-normalize.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'index.css';
 import { BrowserRouter } from 'react-router-dom';
-import { store } from 'store/store';
+import { persistor, store } from 'store/store';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter basename="/GooseTrack">
-        <App />
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

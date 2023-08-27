@@ -6,6 +6,8 @@ import {
   handlePending,
   handleRejected,
 } from './handleFunction';
+import storage from 'redux-persist/lib/storage';
+import { persistReducer } from 'redux-persist';
 
 const tasksSlice = createSlice({
   name: 'tasks',
@@ -22,3 +24,11 @@ const tasksSlice = createSlice({
 });
 
 export const tasksReducer = tasksSlice.reducer;
+
+const persistConfig = {
+  key: 'tasks',
+  storage,
+  whitelist: ['tasks'],
+};
+
+export const persistedTaskReducer = persistReducer(persistConfig, tasksReducer);
