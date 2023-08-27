@@ -11,7 +11,7 @@ const Container = styled.div`
 const StyledHero = styled.header`
   position: relative;
 
-  background-color: #3e85f3;
+  background-color: var(--title-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,10 +19,9 @@ const StyledHero = styled.header`
   align-items: center;
 `;
 const HeroTitle = styled.h1`
-  color: white;
+  color: var(--primary-background-color);
   margin: 0;
   margin-bottom: 32px;
-  font-family: 'Inter';
   font-size: 44px;
   line-height: 1.09;
   font-weight: 700;
@@ -37,12 +36,11 @@ const StyledImg = styled.picture`
   display: block;
 
   @media (min-width: 768px) {
-   
+    width: 150px;
   }
 `;
 
 const HeroTitleSpan = styled.span`
-  font-family: 'Inter';
   font-style: italic;
   font-size: 44px;
   line-height: 1.09;
@@ -71,7 +69,6 @@ const LoginLink = styled(NavLink)`
   padding: 14px 32px;
   margin: 0;
   border-radius: 16px;
-  font-family: 'Inter';
   font-weight: 600;
   font-size: 18px;
   line-height: 1.3;
@@ -83,8 +80,8 @@ const LoginLink = styled(NavLink)`
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
-  color: #3e85f3;
-  background-color: white;
+  color: var(--title-color);
+  background-color: var(--primary-background-color);
 
   transform: scale(1);
   transition-property: transform;
@@ -98,8 +95,6 @@ const LoginLink = styled(NavLink)`
 `;
 
 const SignupLink = styled(NavLink)`
- 
-  font-family: 'Inter';
   font-weight: 600;
   font-size: 14px;
   line-height: 1.3;
@@ -111,7 +106,7 @@ const SignupLink = styled(NavLink)`
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
-  color: #ffffff;
+  color: var(--primary-background-color);
   background-color: transparent;
 
   transform: scale(1);
