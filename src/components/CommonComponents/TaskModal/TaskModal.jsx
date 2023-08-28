@@ -1,12 +1,45 @@
-import { Modal, TaskForm } from './TaskModalItems';
+import { GrClose } from 'react-icons/gr';
+import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import Overlay from 'components/GeneralComponents/Overlay/Overlay';
+import {CloseModalButton} from './TaskModal.styled';
 
-const TaskModal = () => {
-  return (
-    <>
+import { TaskForm, Modal } from './TaskModalItems';
+
+const taskModalRoot = document.querySelector('#task-modal-root');
+
+const TaskModal = ( {toggleModal}) => {
+
+  /// Close modal by pressing Escape ///
+  useEffect(() => {
+    const handleKeyDown = e => {
+      if (e.code === 'Escape') {
+        toggleModal();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [toggleModal]);
+
+/// Close modal by click on overlay ///
+const handleOverlay = e => {
+    if (e.currentTarget === e.target) {
+      toggleModal();
+    }
+  };
+
+  return createPortal(
+    <Overlay onClick={handleOverlay}>
       <Modal>
-        <TaskForm />
+        <CloseModalButton type="button" onClick={toggleModal}>
+          <GrClose size={20} />
+        </CloseModalButton>
+        <TaskForm toggleModal={toggleModal} />
       </Modal>
-    </>
+    </Overlay>,
+    taskModalRoot
   );
 };
 
