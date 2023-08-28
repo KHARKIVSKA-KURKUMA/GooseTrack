@@ -4,7 +4,6 @@ import AddFeedbackModal from '../../AddFeedbackModal/AddFeedbackModal';
 
 // import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
 
-
 const AddFeedbackBtn = () => {
   const [showModal, setShowModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);

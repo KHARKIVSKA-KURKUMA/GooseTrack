@@ -1,101 +1,178 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-// import TimePicker from 'react-time-picker';
-import React, {useState} from 'react';
+import React from 'react';
 import { BiPencil } from 'react-icons/bi';
-import ModalButton from 'components/GeneralComponents/ModalButton/ModalButton';
-import { Button } from 'components/PageNotFound/PageNotFound.styled';
-import { EditWrapper, Span, NameLabel, Textarea } from './TaskForm.styled';
-import 'react-time-picker/dist/TimePicker.css';
-import 'react-clock/dist/Clock.css';
+import { AiOutlinePlus } from 'react-icons/ai';
 
+import {
+  EditWrapper,
+  Span,
+  TitleWrapper,
+  NameLabel,
+  Textarea,
+  ModalButton,
+  ButtonWrapper,
+  CheckBoxLabel,
+  LowInput,
+  HighInput,
+  MediumInput,
+  CheckBoxWrapper,
+  TimeWrapper,
+  TimeBox,
+  TimeInput,
+  ErrorsMessage,
+} from './TaskForm.styled';
 
+const TaskForm = ({ toggleModal, status }) => {
 
+  /// Validate Feedback form with YUP ///
+  const taskFormValidationSchema = yup.object().shape({
+    task: yup
+      .string()
+      .trim()
+      .notOneOf([' '])
+      .min(1)
+      .max(250)
+      .required('Write down your task'),
+    startTime: yup.string().required('Choose a time'),
+    endTime: yup
+      .string()
+      .required('Choose a time')
+      .test(
+        'greater-than-start',
+        'End time must be greater than start time',
+        function (value) {
+          const startTime = this.resolve(yup.ref('startTime'));
 
-const TaskForm = ({ toggleModal, status }) => { 
+          const [startHour, startMinute] = startTime.split(':').map(Number);
+          const [endHour, endMinute] = value.split(':').map(Number);
 
-   /// Validate Feedback form with YUP ///
-  const taskFormValidationSchema = yup.object().shape({});
+          const totalStartMinutes = startHour * 60 + startMinute;
+          const totalEndMinutes = endHour * 60 + endMinute;
 
-    const formik = useFormik({
-      initialValues: {
-        selectedTime: '10:00'
-      },
-      validationSchema: taskFormValidationSchema,
-  // const [value, onChange] = useState('10:00');
-      onSubmit: (values, action) => {
-        console.log(values)
-        action.resetForm();
-      },
-    });
+          return totalEndMinutes > totalStartMinutes;
+        }
+      ),
+    priority: yup
+      .string()
+      .required('Select a priority')
+      .oneOf(['low', 'medium', 'high'], 'Invalid priority value'),
+  });
 
-    return (
-      <form onSubmit={formik.handleSubmit}>
-        <NameLabel>
-          Title
-          <Textarea
-            type="text"
-            name="task"
-            rows="5"
-            value={formik.values.task}
+  const formik = useFormik({
+    initialValues: {
+      task: '',
+      startTime: '09:00',
+      endTime: '12:00',
+      priority: 'low',
+    },
+
+    validationSchema: taskFormValidationSchema,
+
+    onSubmit: (values, action) => {
+      console.log(values);
+      action.resetForm();
+    },
+  });
+
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <TitleWrapper>
+        <NameLabel>Title</NameLabel>
+        <Textarea
+          type="text"
+          name="task"
+          rows="5"
+          value={formik.values.task}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          placeholder="Enter text"
+          hasError={!!formik.errors.task && !!formik.touched.task}
+        ></Textarea>
+      </TitleWrapper>
+      {formik.errors.task && formik.touched.task && (
+        <ErrorsMessage>{formik.errors.task}</ErrorsMessage>
+      )}
+
+      <TimeBox>
+        <TimeWrapper>
+          <NameLabel>Start</NameLabel>
+          <TimeInput
+            type="time"
+            name="startTime"
+            value={formik.values.startTime}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            placeholder="Enter text"
-            hasError={!!formik.errors.task && !!formik.touched.task}
-          ></Textarea>
-        </NameLabel>
+            hasError={!!formik.errors.startTime && !!formik.touched.startTime}
+          />
+        </TimeWrapper>
+        <TimeWrapper>
+          <NameLabel>End</NameLabel>
+          <TimeInput
+            type="time"
+            name="endTime"
+            value={formik.values.endTime}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            hasError={!!formik.errors.endTime && !!formik.touched.endTime}
+          />
+        </TimeWrapper>
+      </TimeBox>
+      {formik.errors.startTime && formik.touched.startTime && (
+        <ErrorsMessage>{formik.errors.startTime}</ErrorsMessage>
+      )}
+      {formik.errors.endTime && formik.touched.endTime && (
+        <ErrorsMessage>{formik.errors.endTime}</ErrorsMessage>
+      )}
 
-   <div>
-          <label>Selected Time:</label>
-          {/* <TimePicker size={100}
-            onChange={time => formik.setFieldValue('selectedTime', time)}
-            value={formik.values.selectedTime}
-            clearIcon={null}
-          /> */}
-        </div>
-        <div>
-          <label>Start</label>
+      <CheckBoxWrapper>
+        <CheckBoxLabel>
+          <LowInput
+            type="radio"
+            name="priority"
+            value="low"
+            checked={formik.values.priority === 'low'}
+            onChange={formik.handleChange}
+          />
+          <span>Low</span>
+        </CheckBoxLabel>
+        <CheckBoxLabel>
+          <MediumInput
+            type="radio"
+            name="priority"
+            value="medium"
+            checked={formik.values.priority === 'medium'}
+            onChange={formik.handleChange}
+          />
+          <span>Medium</span>
+        </CheckBoxLabel>
+        <CheckBoxLabel>
+          <HighInput
+            type="radio"
+            name="priority"
+            value="high"
+            checked={formik.values.priority === 'high'}
+            onChange={formik.handleChange}
+          />
+          <span>High</span>
+        </CheckBoxLabel>
+      </CheckBoxWrapper>
+      {formik.errors.priority && formik.touched.priority && (
+        <ErrorsMessage>{formik.errors.priority}</ErrorsMessage>
+      )}
 
-        </div>
-        <div>
-          <label>End</label>
-        
-  </div>
-        <ModalButton textColor="#FFFFFF" backgroundColor="#3E85F3">
+      <ButtonWrapper>
+        <ModalButton type="submit" textColor="#FFFFFF" backgroundColor="#3E85F3">
           <EditWrapper>
-            <BiPencil size={20} /> <Span>Edit</Span>
+            <BiPencil size={20} />   <AiOutlinePlus size={22}/><Span>Edit</Span>
           </EditWrapper>
         </ModalButton>
         <ModalButton type="button" onClick={toggleModal}>
-          <EditWrapper>
-            <BiPencil size={20} color={'transparent'} /> <Span>Cancel</Span>
-          </EditWrapper>
+          Cancel
         </ModalButton>
-      </form>
-    );
-  };
+      </ButtonWrapper>
+    </form>
+  );
+};
 
-
-
-
- 
 export default TaskForm;
-
-
-// import { Stack, TextField} from '@mui/material';
-// import {TimePicker } from '@mui/lab';
-
-//   const [startTime, setStartTime] = useState < Time | null > (null)
-//   console.log({ startTime });
-//   return (
-//     <Stack spacing={4} sx={{ width: '25px' }}>
-//       <TimePicker
-//         label='Start'
-//         renderInput={(params) => <TextField {...params} />}
-//         value={startTime}
-//         onChange={(newValue) => {
-//           setStartTime(newValue)
-//         }}
-//      />
-// </Stack>
-//   )

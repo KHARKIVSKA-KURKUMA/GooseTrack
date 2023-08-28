@@ -38,13 +38,10 @@ const FeedbackForm = ({ toggleModal }) => {
     validationSchema: feedbackValidationSchema,
 
     onSubmit: (values, actions) => {
-      console.log('Formik Rating:', formik.values.rating);
-      console.log('Formik Feedback:', formik.values.feedback);
+     console.log(values);
       actions.resetForm();
     },
   });
-    
-    console.log(formik.errors);
 
     return (
     <form onSubmit={formik.handleSubmit}>
@@ -53,8 +50,6 @@ const FeedbackForm = ({ toggleModal }) => {
             {[...Array(5)].map((star, i) => {
               const ratingValue = i + 1;
 
-              console.log('Rating V:', ratingValue);
-              console.log('Formik R:', formik.values.rating);
               return (
                 <label key={i}>
                   <InputStars
