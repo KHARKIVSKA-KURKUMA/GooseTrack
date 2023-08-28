@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/GooseTrack/static/css/main.2580a085.css",
-    "main.js": "/GooseTrack/static/js/main.591fbc8d.js",
+    "main.js": "/GooseTrack/static/js/main.57df02f4.js",
     "static/media/feature-calendar3x.png": "/GooseTrack/static/media/feature-calendar3x.d307bf27b215d9b1d70e.png",
     "static/media/feature-calendar2x.png": "/GooseTrack/static/media/feature-calendar2x.271b4ebdb082126ddab5.png",
     "static/media/feature-sidebar3x.png": "/GooseTrack/static/media/feature-sidebar3x.48ad406aea3d5d1a4725.png",
@@ -12,19 +12,22 @@
     "static/media/feature-sidebar1x.png": "/GooseTrack/static/media/feature-sidebar1x.7c6220d01c8de30ea0b1.png",
     "static/media/feature-all-in1x.png": "/GooseTrack/static/media/feature-all-in1x.0c6ae453400b8065298a.png",
     "static/media/goose3x.png": "/GooseTrack/static/media/goose3x.195e8701a4c8b77a3e21.png",
+    "static/media/registerGoose.png": "/GooseTrack/static/media/registerGoose.9b03a4223b72be57b9fd.png",
+    "static/media/loginGoose.png": "/GooseTrack/static/media/loginGoose.96907e1e39c5c080e766.png",
     "static/media/goose2x.png": "/GooseTrack/static/media/goose2x.1e0fce979b8978b99d17.png",
     "static/media/goose1x.png": "/GooseTrack/static/media/goose1x.3af22614ecbf8d6c8b03.png",
     "static/media/ph_user.svg": "/GooseTrack/static/media/ph_user.c07493995799656ce6d4fdd41ded112b.svg",
+    "static/media/msgGoose.svg": "/GooseTrack/static/media/msgGoose.ecb1b53a17bc0ecbf183895432d3f844.svg",
     "index.html": "/GooseTrack/index.html",
     "static/media/taskToolbarPen.svg": "/GooseTrack/static/media/taskToolbarPen.e84c27baaef5455d31dae092bcff97cf.svg",
     "static/media/taskToolbarArrow.svg": "/GooseTrack/static/media/taskToolbarArrow.6cdef27751b7a46f9e01f4b2504b3dc3.svg",
     "static/media/taskToolbarTrash.svg": "/GooseTrack/static/media/taskToolbarTrash.583197800359d8de09b25bed1dcb8190.svg",
     "static/media/rightArrow.svg": "/GooseTrack/static/media/rightArrow.75d3f1a7c9d40920cac36be608c4ef43.svg",
     "main.2580a085.css.map": "/GooseTrack/static/css/main.2580a085.css.map",
-    "main.591fbc8d.js.map": "/GooseTrack/static/js/main.591fbc8d.js.map"
+    "main.57df02f4.js.map": "/GooseTrack/static/js/main.57df02f4.js.map"
   },
   "entrypoints": [
     "static/css/main.2580a085.css",
-    "static/js/main.591fbc8d.js"
+    "static/js/main.57df02f4.js"
   ]
 }
