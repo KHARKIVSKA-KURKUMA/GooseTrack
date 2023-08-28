@@ -7,10 +7,12 @@ import Layout from 'components/UnauthorizedUserComponents/Layout/Layout';
 import AccountPage from 'pages/AccountPage/AccountPage';
 import CalendarPage from 'pages/CalendarPage/CalendarPage';
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 export const App = () => {
   return (
-    <>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <ToastContainer autoClose={1500} theme="colored" />
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -23,6 +25,6 @@ export const App = () => {
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </>
+    </LocalizationProvider>
   );
 };
