@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import {  NavLink } from "react-router-dom";
 
 const Container = styled.div`
-margin: 0 auto;
+display:flex;
+justify-content:center;
+align-items: center;
 margin-top: 18px;
 `;
 
@@ -16,7 +18,6 @@ const StyledNavLink = styled(NavLink)`
 	font-weight: 600;
 	line-height: 117%; /* 116.667% */
 	text-decoration-line: underline;
-	
 `
 
 

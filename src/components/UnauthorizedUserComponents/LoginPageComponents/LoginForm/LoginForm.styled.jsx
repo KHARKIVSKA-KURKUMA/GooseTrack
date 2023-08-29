@@ -1,7 +1,7 @@
-import { Field, Form } from 'formik';
+import { Field, Form, ErrorMessage } from 'formik';
 import styled from 'styled-components';
 import { FiLogIn } from 'react-icons/fi';
-
+import { BiErrorCircle } from "react-icons/bi";
 
 // :root {
 //   --primary-background-color: #ffffff;
@@ -23,11 +23,16 @@ background-color:var(--primary-background-color);
 margin: 0 auto;
 border-radius:8px;
 box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 5px, rgba(0, 0, 0, 0.2) 0px 4px 6px;
+
+@media(min-width:768px) {
+		width: 480px;
+	}
 `;
 
 const StyledForm = styled(Form)`
 	width: 100%;
 	padding-top:32px;
+	
 `;
 
 const StyledField = styled(Field)`
@@ -108,4 +113,10 @@ const StyledFiLogIn = styled(FiLogIn)`
 	height: 18px;
 `
 
-export { Container, StyledField, StyledForm, StyledFormTitle, StyledLabel, StyledBtn, StyledTextBtn,StyledFiLogIn };
+const StyledIconError = styled(BiErrorCircle)`
+	
+`;
+
+const StyledError = styled(ErrorMessage)
+
+export { Container, StyledField, StyledForm, StyledFormTitle, StyledLabel, StyledBtn, StyledTextBtn,StyledFiLogIn, StyledIconError, StyledError };

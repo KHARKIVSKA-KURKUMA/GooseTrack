@@ -1,29 +1,41 @@
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import { Button } from './AddFeedbackBtn.styled';
+import AddFeedbackModal from '../../AddFeedbackModal/AddFeedbackModal';
 
-const FeedbackButton = styled.button`
-  background-color: #3e85f3;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 15px;
-  margin-right: 20px;
-  cursor: pointer;
-`;
-const FeedbackTitle = styled.div`
-  color: #fff;
-  text-align: center;
-  font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 18px;
-`;
+// import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
 
 const AddFeedbackBtn = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  /// Toggle Modal Function ///
+  const toggleModal = () => {
+    console.log('Toggle modal called');
+    console.log('Show modal before:', showModal);
+    setShowModal(!showModal);
+   console.log('Show modal after:', showModal);
+  };
+
+/// Not to scroll page when modal open ///
+  useEffect(() => {
+    if (showModal) {
+      setIsModalOpen(true);
+      document.body.style.overflow = 'hidden';
+    } else {
+      setIsModalOpen(false);
+      document.body.style.overflow = 'auto';
+    }
+  }, [showModal]);
+
   return (
-    <FeedbackButton type="button">
-      <FeedbackTitle>Feedback</FeedbackTitle>
-    </FeedbackButton>
+    <>
+      <Button type="button" onClick={toggleModal}>
+        Feedback
+      </Button>
+      {isModalOpen && <AddFeedbackModal toggleModal={toggleModal} />}
+      {/* {isModalOpen && <TaskModal toggleModal={toggleModal} />} */}
+    </>
+
   );
 };
 

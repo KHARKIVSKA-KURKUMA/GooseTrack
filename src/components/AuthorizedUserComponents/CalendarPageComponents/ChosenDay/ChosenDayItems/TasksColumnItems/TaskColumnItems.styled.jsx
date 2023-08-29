@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as Arrow } from '../../../../../../img/taskToolbarArrow.svg';
 
 const AddTaskButton = styled.button`
   display: flex;
@@ -7,7 +8,7 @@ const AddTaskButton = styled.button`
   gap: 8px;
   padding-top: 14px;
   padding-bottom: 14px;
-  width: 100%;
+  width: calc(100% - 9px);
   color: #111111;
   font-weight: 600;
   font-size: 14px;
@@ -23,6 +24,9 @@ const AddTaskButton = styled.button`
     background-color: ${props => (props.disabled ? '#cccccc' : '#2b78ef')};
     color: ${props => (props.disabled ? '#111111' : '#ffffff')};
   }
+  @media screen and (min-width: 768px) {
+    margin-top: 32px;
+  }
 `;
 /* -------------------------------------------------------------------------- */
 /* -------------------------------- Head Bar -------------------------------- */
@@ -30,7 +34,10 @@ const HeadBarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: ${props => (props.isEmpty ? '0' : '24px')};
+  @media screen and (min-width: 768px) {
+    margin-bottom: ${props => (props.isEmpty ? '0' : '28px')};
+  }
 `;
 const HeadBarTitle = styled.p`
   font-weight: 700;
@@ -48,4 +55,102 @@ const HeadBarAddBtn = styled.button`
   background-color: transparent;
 `;
 /* -------------------------------------------------------------------------- */
-export { AddTaskButton, HeadBarTitle, HeadBarAddBtn, HeadBarContainer };
+/* ---------------------------- Task Column List ---------------------------- */
+const TaskColumnContainer = styled.ul`
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+`;
+/* -------------------------------------------------------------------------- */
+/* ---------------------------- Task Column Card ---------------------------- */
+const CardContainer = styled.li`
+  border: 1px solid #dce3e5;
+  border-radius: 8px;
+  padding: 14px 14px 18px 14px;
+  background-color: #f7f6f9;
+  margin-right: 9px;
+  position: relative;
+`;
+const BottomContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+`;
+const TaskMeta = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+`;
+
+const Description = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 28px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+`;
+
+const Avatar = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.8px solid #3e85f3;
+`;
+
+const Priority = styled.p`
+  display: inline-flex;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-weight: 600;
+  color: #f7f6f9;
+  font-size: 10px;
+  line-height: 12px;
+`;
+/* -------------------------------------------------------------------------- */
+/* ------------------------------- TaskToolbar ------------------------------ */
+const TaskToolbarContainer = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const TaskToolbarBtn = styled.button`
+  border: none;
+  background-color: transparent;
+  padding: 0;
+`;
+const GroupBtn = styled.button`
+  border: none;
+  background-color: transparent;
+  padding: 0;
+`;
+const GroupList = styled.ul`
+  width: 150px;
+`;
+const StyledArrow = styled(Arrow)`
+  g > path {
+    stroke: #343434;
+  }
+`;
+/* -------------------------------------------------------------------------- */
+export {
+  AddTaskButton,
+  HeadBarTitle,
+  HeadBarAddBtn,
+  HeadBarContainer,
+  TaskColumnContainer,
+  Priority,
+  Avatar,
+  Description,
+  CardContainer,
+  BottomContainer,
+  TaskMeta,
+  TaskToolbarContainer,
+  TaskToolbarBtn,
+  GroupBtn,
+  GroupList,
+  StyledArrow,
+};

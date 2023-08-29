@@ -1,10 +1,19 @@
 import TaskColumnCard from './TaskColumnCard';
+import { TaskColumnContainer } from './TaskColumnItems.styled';
 
-const ColumnTasksList = () => {
+const ColumnTasksList = ({ tasks }) => {
   return (
-    <>
-      <TaskColumnCard />
-    </>
+    <TaskColumnContainer>
+      {tasks &&
+        tasks.map(task => (
+          <TaskColumnCard
+            key={task.id}
+            description={task.description}
+            avatarUrl={task.avatarUrl}
+            priority={task.priority}
+          />
+        ))}
+    </TaskColumnContainer>
   );
 };
 
