@@ -5,18 +5,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { tasksSelector } from 'store/selectors';
 
-const TasksColumn = () => {
+const TasksColumn = ({ title }) => {
   const dispatch = useDispatch();
   const { tasks } = useSelector(tasksSelector);
   useEffect(() => {
     dispatch(getUserTasksThunk());
   }, [dispatch]);
   return (
-    <ColumnContainer>
-      <ColumnHeadBar />
-      <ColumnTasksList tasks={tasks} />
-      <AddTaskBtn />
-    </ColumnContainer>
+    <li>
+      <ColumnContainer>
+        <ColumnHeadBar title={title} />
+        <ColumnTasksList tasks={tasks} />
+        <AddTaskBtn />
+      </ColumnContainer>
+    </li>
   );
 };
 

@@ -9,6 +9,7 @@ import CalendarPage from 'pages/CalendarPage/CalendarPage';
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import ChosenDay from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenDay/ChosenDay';
 
 export const App = () => {
   return (
@@ -21,6 +22,7 @@ export const App = () => {
           <Route path="login" element={<LoginPage />}></Route>
           <Route path="account" element={<AccountPage />}></Route>
           <Route path="calendar" element={<CalendarPage />}></Route>
+          <Route path="calendar/day/:currentDay" element={<ChosenDay />} />
           <Route path="statistics" element={<StatisticsPage />}></Route>
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
