@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-
   Wrapper,
   Wrap,
   Button,
@@ -13,7 +12,6 @@ import {
   Box,
   AccountForm,
   Name,
-
 } from './UserForm.styled';
 import { toast } from 'react-toastify';
 import avatar from 'img/avatar.png';
@@ -28,16 +26,22 @@ let month = date.getMonth() + 1;
 let year = date.getFullYear();
 let currentDate = `${day}-0${month}-${year}`;
 const UserForm = () => {
-  const [name, setName] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [skype, setSkype] = useState('');
+  // const [name, setName] = useState('');
+  // const [birthday, setBirthday] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [phone, setPhone] = useState('');
+  // const [skype, setSkype] = useState('');
+  // видали коли використаєш сети, це щоб не падав деплой
+  const name = '';
+  const birthday = '';
+  const email = '';
+  const phone = '';
+  const skype = '';
 
   const [fileImage, setFileImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(avatar);
   const [isFormChanged, setIsFormChanged] = useState(false);
-console.log(isFormChanged)
+  console.log(isFormChanged);
   const handleImageChange = e => {
     const selectedFile = e.target.files[0];
     setIsFormChanged(true);
@@ -59,12 +63,10 @@ console.log(isFormChanged)
 
     try {
       toast.success('Profile is successfully updated');
-      
     } catch {
       toast.error('Something went wrong. Try again!');
     }
   };
- 
 
   return (
     <Formik
@@ -78,7 +80,7 @@ console.log(isFormChanged)
       validationSchema={userSchema}
       onSubmit={handleSubmit}
     >
-      {({isSubmitting,  dirty, touched, errors }) => (
+      {({ isSubmitting, dirty, touched, errors }) => (
         <AccountForm>
           <Box
             position="relative"
@@ -99,7 +101,8 @@ console.log(isFormChanged)
             <Sticker htmlFor="add-image">
               <AddIcon />
             </Sticker>
-          </Box><Name>Name</Name>
+          </Box>
+          <Name>Name</Name>
           <Title>User</Title>
           <Wrap>
             <Wrapper>
@@ -114,7 +117,7 @@ console.log(isFormChanged)
                 title="Birthday"
                 type="text"
                 name="birthday"
-                placeholder={currentDate }
+                placeholder={currentDate}
                 touched={touched.birthday}
                 errors={errors.birthday}
               />
