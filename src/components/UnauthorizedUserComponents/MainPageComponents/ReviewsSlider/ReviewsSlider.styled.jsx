@@ -1,6 +1,20 @@
 import styled from 'styled-components';
 
-const Container = styled.section``;
+const Container = styled.div`
+  margin: 0 auto;
+  padding-inline: 20px;
+  padding-bottom: 64px;
+
+  @media (min-width: 768px) {
+    padding-inline: 32px;
+  }
+
+  @media (min-width: 1440px) {
+    max-width: 1440px;
+    padding-inline: 128px;
+    padding-bottom: 100px;
+  }
+`;
 
 const Title = styled.h2`
   text-align: center;

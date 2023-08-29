@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 // import routes from ' ';
 import { FiLogIn } from 'react-icons/fi';
 
-
 import {
   Container,
   StyledHero,
@@ -49,10 +48,10 @@ const AuthSection = ({ isHomePage }) => {
           G<HeroTitleSpan>oo</HeroTitleSpan>seTrack
         </HeroTitle>
         <AuthBlock>
-          <LoginLink>
+          <LoginLink to="/login">
             Login <FiLogIn style={{ marginLeft: 6, width: 18, height: 18 }} />
           </LoginLink>
-          <SignupLink>Sign up</SignupLink>
+          <SignupLink to="/register">Sign up</SignupLink>
         </AuthBlock>
       </StyledHero>
     </Container>
