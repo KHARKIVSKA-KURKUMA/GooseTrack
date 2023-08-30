@@ -7,6 +7,7 @@ const CalendarToolbar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [dateFormat, setDateFormat] = useState('d MMM yyyy'); // Додайте цей стейт
 
+  console.log(dateFormat);
   const handleChangeType = type => {
     setSelectedPeriodType(type);
     setDateFormat(type === 'month' ? 'MMM yyyy' : 'd MMM yyyy'); // Змінюємо формат дати
@@ -34,7 +35,6 @@ const CalendarToolbar = () => {
     </div>
   );
 };
-
 
 export default CalendarToolbar;
 
