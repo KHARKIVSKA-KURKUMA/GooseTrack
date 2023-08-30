@@ -9,8 +9,10 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { persistedTaskReducer } from './tasks/tasksSlice';
+import { feedbackReducer } from './feedback/feedbackSlice';
 
 const reducer = {
+  feedback: feedbackReducer,
   tasks: persistedTaskReducer,
 };
 
