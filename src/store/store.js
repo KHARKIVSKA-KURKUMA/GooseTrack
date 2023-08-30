@@ -8,12 +8,12 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { persistedTaskReducer } from './tasks/tasksSlice';
+import { tasksReducer } from './tasks/tasksSlice';
 import { feedbackReducer } from './feedback/feedbackSlice';
 
 const reducer = {
   feedback: feedbackReducer,
-  tasks: persistedTaskReducer,
+  tasks: tasksReducer,
 };
 
 export const store = configureStore({
