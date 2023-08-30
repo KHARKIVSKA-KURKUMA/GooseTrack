@@ -1,40 +1,48 @@
-// import PropTypes from 'prop-types';
-
-// import { format } from 'date-fns';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { Item, List, Button } from './PeriodTypeSelect.styled';
 
-const PeriodTypeSelect = ({ today, onChangeType }) => {
-  // const formattedToday = format(new Date(today), 'yyyy-MM-dd');
+const PeriodTypeSelect = ({ today, onChangeType, onChangeDate }) => {
+  const [activeButton, setActiveButton] = useState('day'); // Початкова активна кнопка
+
+  const handleButtonClick = type => {
+    setActiveButton(type);
+    onChangeType(type);
+
+    const currentDate = new Date();
+    const newDate =
+      type === 'month'
+        ? new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
+        : currentDate;
+    onChangeDate(newDate);
+  };
 
   return (
     <List>
       <Item>
-        <Button className="month">Month</Button>
-        {/* <StyledNavLink
-          className="month"
-          to={`/calendar/month/${formattedToday}`}
-          onClick={() => onChangeType('month')}
+        <Button
+          className={activeButton === 'month' ? 'active' : ''}
+          onClick={() => handleButtonClick('month')}
         >
-          {'Month'}
-        </StyledNavLink> */}
+          Month
+        </Button>
       </Item>
       <Item>
-        <Button className="day active">Day</Button>
-        {/* <StyledNavLink
-          className="day"
-          to={`/calendar/day/${formattedToday}`}
-          onClick={() => onChangeType('day')}
+        <Button
+          className={activeButton === 'day' ? 'active' : ''}
+          onClick={() => handleButtonClick('day')}
         >
-          {'Day'}
-        </StyledNavLink> */}
+          Day
+        </Button>
       </Item>
     </List>
   );
 };
 
-export default PeriodTypeSelect;
+PeriodTypeSelect.propTypes = {
+  today: PropTypes.string.isRequired,
+  onChangeType: PropTypes.func.isRequired,
+  onChangeDate: PropTypes.func.isRequired,
+};
 
-// PeriodTypeSelect.propTypes = {
-//   today: PropTypes.string.isRequired,
-//   onChangeType: PropTypes.func.isRequired,
-// };
+export default PeriodTypeSelect;
