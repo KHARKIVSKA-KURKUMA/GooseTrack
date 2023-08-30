@@ -15,8 +15,8 @@ import {
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {  selectorIsLogin, selectorToken } from 'store/auth/authSelectors';
-import { login, logout } from 'store/auth/authOperations';
-import { useEffect } from 'react';
+import { login } from 'store/auth/authOperations';
+// import { useEffect } from 'react';
 
 const initialValues = {
   email: '',
@@ -57,14 +57,7 @@ const LoginForm = () => {
            'Password is a required field'
       ),
   });
-/* eslint-disable */
-  useEffect(() => {
-    // console.log(auth);
-    if (!token.accessToken) {
-      dispatch(logout());
-    } 
-}, [])
-/* eslint-disable */
+
   const handleSubmit =  (values, actions) => {
 
     console.log(values);

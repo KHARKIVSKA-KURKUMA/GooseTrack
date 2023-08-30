@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import * as yup from 'yup';
 
 // import { Container } from './RegisterForm.styled';
@@ -30,6 +30,11 @@ const RegisterForm = () => {
   const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
 
   const validationSchema = yup.object().shape({
+    name: yup
+      .string()
+      .required(
+         'Name is a required field'
+      ),
     email: yup
       .string()
       .email(
@@ -68,15 +73,17 @@ const RegisterForm = () => {
         <StyledForm autoComplete="off">
           <StyledLabel htmlFor="name">Name</StyledLabel>
           <StyledField placeholder="Enter your" type="text" name="name" />
+          <ErrorMessage name='name'/>
           <StyledLabel htmlFor="email">Email</StyledLabel>
           <StyledField placeholder="Enter email" type="text" name="email" />
+          <ErrorMessage name='email'/>
           <StyledLabel htmlFor="password">Password</StyledLabel>
           <StyledField
             placeholder="Enter password"
             type="password"
             name="password"
           />
-
+          <ErrorMessage name='password'/>
           <StyledBtn type="submit">
             <StyledTextBtn>Sign Up</StyledTextBtn>
             <StyledFiLogIn />
