@@ -11,7 +11,11 @@ import {
 import { persistedTaskReducer } from './tasks/tasksSlice';
 import { persistedAuthReducer } from './auth/authSlice';
 
+import { feedbackReducer } from './feedback/feedbackSlice';
+
+
 const reducer = {
+  feedback: feedbackReducer,
   tasks: persistedTaskReducer,
   auth: persistedAuthReducer
 };

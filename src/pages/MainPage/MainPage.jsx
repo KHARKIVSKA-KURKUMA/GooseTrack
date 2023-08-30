@@ -5,8 +5,9 @@ import PageLayout from '../../components/PageLayout/PageLayout'
 
 const MainPage = () => {
   return (
+     
     <PageLayout>
-      <AuthSection />
+     <AuthSection />
       <Description />
       <ReviewsSlider />
     </PageLayout>

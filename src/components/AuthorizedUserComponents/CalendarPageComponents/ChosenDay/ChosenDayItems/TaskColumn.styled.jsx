@@ -11,4 +11,18 @@ const ColumnContainer = styled.div`
     padding: 18px 7px 28px 20px;
   }
 `;
-export { ColumnContainer };
+const TaskColumnList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  @media screen and (min-width: 1440px) {
+    gap: 27px;
+    overflow-x: hidden;
+  }
+`;
+export { ColumnContainer, TaskColumnList };

@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, EffectCoverflow } from 'swiper/modules';
 import { FaStar } from 'react-icons/fa';
 
-import AddFeedbackBtn from '../../../AuthorizedUserComponents/Header/HeaderItems/AddFeedbackBtn';
+// import AddFeedbackBtn from '../../../AuthorizedUserComponents/Header/HeaderItems/AddFeedbackBtn';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -61,7 +61,7 @@ const reviews = [
 const ReviewsSlider = () => {
   return (
     <Container>
-      <AddFeedbackBtn />
+      {/* <AddFeedbackBtn /> */}
       <Title>Reviews</Title>
       <Swiper
         modules={[Navigation, Autoplay, EffectCoverflow]}
