@@ -15,12 +15,19 @@ import {
 } from './../../LoginPageComponents/LoginForm/LoginForm.styled';
 import { NavLink } from 'react-router-dom';
 
+import { useDispatch } from 'react-redux';
+import { register } from 'store/auth/authOperations';
+
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+
   const initialValues = {
     name: '',
     email: '',
     password: '',
   };
+
+  const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
 
   const validationSchema = yup.object().shape({
     email: yup
@@ -45,12 +52,11 @@ const RegisterForm = () => {
            'Password is a required field'
       ),
   });
-  const handleSubmit = (values, actions) => {
-    
-    console.log(values);
-    console.log(actions);
+  const handleSubmit = async (values, actions) => {
+    // console.log(values);
+    // console.log(actions);
 
-
+    dispatch(register(values))
     actions.resetForm();
   };
 
@@ -61,7 +67,7 @@ const RegisterForm = () => {
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
         <StyledForm autoComplete="off">
           <StyledLabel htmlFor="name">Name</StyledLabel>
-          <StyledField placeholder="Enter your" type="email" name="name" />
+          <StyledField placeholder="Enter your" type="text" name="name" />
           <StyledLabel htmlFor="email">Email</StyledLabel>
           <StyledField placeholder="Enter email" type="text" name="email" />
           <StyledLabel htmlFor="password">Password</StyledLabel>
@@ -75,6 +81,7 @@ const RegisterForm = () => {
             <StyledTextBtn>Sign Up</StyledTextBtn>
             <StyledFiLogIn />
           </StyledBtn>
+          <a href={`${REACT_APP_API_URL}/auth/google`}>Login with Google</a>
         </StyledForm>
       </Formik>
     </Container>
