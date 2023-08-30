@@ -13,12 +13,27 @@ import {
   StyledTextBtn,
 } from './LoginForm.styled';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {  selectorIsLogin, selectorToken } from 'store/auth/authSelectors';
+import { login, logout } from 'store/auth/authOperations';
+import { useEffect } from 'react';
 
 const initialValues = {
   email: '',
   password: '',
 };
+
+
+
+const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
+
 const LoginForm = () => {
+  const dispatch = useDispatch();
+
+  const auth = useSelector(selectorIsLogin);
+  const token = useSelector(selectorToken)
+// const emailRegexp = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/";
+
   const validationSchema = yup.object().shape({
     email: yup
       .string()
@@ -42,12 +57,22 @@ const LoginForm = () => {
            'Password is a required field'
       ),
   });
+/* eslint-disable */
+  useEffect(() => {
+    // console.log(auth);
+    if (!token.accessToken) {
+      dispatch(logout());
+    } 
+}, [])
+/* eslint-disable */
+  const handleSubmit =  (values, actions) => {
 
-  const handleSubmit = (values, actions) => {
-    
     console.log(values);
     console.log(actions);
-    actions.resetForm();
+    console.log('auth>>>>', auth);
+    console.log(token)
+    // actions.resetForm();
+    dispatch(login(values));
   };
   return (
     <Container>
@@ -70,6 +95,7 @@ const LoginForm = () => {
             <StyledTextBtn>Log in</StyledTextBtn>
             <StyledFiLogIn />
           </StyledBtn>
+          <a href={`${REACT_APP_API_URL}/auth/google`}>Login with Google</a>
         </StyledForm>
       </Formik>
     </Container>

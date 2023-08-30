@@ -9,9 +9,11 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { persistedTaskReducer } from './tasks/tasksSlice';
+import { persistedAuthReducer } from './auth/authSlice';
 
 const reducer = {
   tasks: persistedTaskReducer,
+  auth: persistedAuthReducer
 };
 
 export const store = configureStore({
