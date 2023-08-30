@@ -21,10 +21,14 @@ import {
   LogoutSVG,
 } from '../SideBar/SideBarItems/SvgSideBar';
 import BurgerMenu from '../SideBar/SideBarItems/BurgerMenu/BurgerMenu';
+// import { useDispatch } from 'react-redux';
+// import { logout } from 'store/auth/authOperations';
 
 const Sidebar = () => {
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // const dispatch = useDispatch();
 
   const toggleBurgerMenu = () => {
     setShowBurgerMenu(!showBurgerMenu);
@@ -72,7 +76,10 @@ const Sidebar = () => {
           <span style={{ marginLeft: '10px' }}>Statistics</span>
         </NavLinkStyled>
       </Nav>
-      <LogoutBtn type="button">
+      <LogoutBtn onClick={() => {
+        // dispatch(logout())
+        console.log('click')
+      }} type="button">
         <LogoutTitle>Log out</LogoutTitle>
        <LogoutSVG/>
       </LogoutBtn>

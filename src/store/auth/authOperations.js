@@ -44,6 +44,7 @@ export const logout = createAsyncThunk(
       const result = await api.logout();
       return result;
     } catch ({ response }) {
+      console.log(response)
       const { status, data } = response;
       const error = {
         status,
@@ -59,7 +60,7 @@ export const current = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      const result = await api.getCurrent(auth.token);
+      const result = await api.getCurrent(auth.token.accessToken);
       return result;
     } catch ({ response }) {
       const { status, data } = response;
