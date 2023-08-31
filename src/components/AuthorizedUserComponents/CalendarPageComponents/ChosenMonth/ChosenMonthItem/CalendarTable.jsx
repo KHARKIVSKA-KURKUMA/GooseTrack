@@ -124,7 +124,11 @@ const CalendarTable = ({ selectedDate }) => {
     return calendar;
   };
 
-  return <CalendarNumberWrapper>{generateCalendar()}</CalendarNumberWrapper>;
+  return (
+    <table style={{ borderCollapse: 'collapse' }}>
+      <CalendarNumberWrapper>{generateCalendar()}</CalendarNumberWrapper>
+    </table>
+  );
 };
 
 export default CalendarTable;
