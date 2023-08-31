@@ -1,4 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector} from 'react-redux';
+import { selectUser } from 'store/user/selectors';
+import { Formik } from 'formik';
+import { UserFild } from '../UserFild';
+import { toast } from 'react-toastify';
+import { userSchema } from '../schemas/userSchema';
+import { fetchCurrentUser, updateUser } from 'store/user/operations';
 import {
   Wrapper,
   Wrap,
@@ -13,12 +20,13 @@ import {
   AccountForm,
   Name,
 } from './UserForm.styled';
-import { toast } from 'react-toastify';
+
 import avatar from 'img/avatar.png';
-import { Formik } from 'formik';
-import { userSchema } from '../schemas/userSchema';
-import { UserFild } from '../UserFild';
-// const currentDate = dayjs(new Date()).format('YYYY/MM/DD');
+
+
+
+
+
 const date = new Date();
 
 let day = date.getDate();
@@ -26,25 +34,25 @@ let month = date.getMonth() + 1;
 let year = date.getFullYear();
 let currentDate = `${day}-0${month}-${year}`;
 const UserForm = () => {
-  // const [name, setName] = useState('');
-  // const [birthday, setBirthday] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [phone, setPhone] = useState('');
-  // const [skype, setSkype] = useState('');
-  // видали коли використаєш сети, це щоб не падав деплой
-  const name = '';
-  const birthday = '';
-  const email = '';
-  const phone = '';
-  const skype = '';
+  const dispatch = useDispatch();
+  const userInfo = useSelector(selectUser);
+  useEffect(() => {
+    const getUserInfo = async () => {
+      console.log("hello")
+      await dispatch(fetchCurrentUser());
+    
+    };
 
-  const [fileImage, setFileImage] = useState(null);
+    getUserInfo();
+  }, [dispatch]);
+
+  // const [fileImage, setFileImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(avatar);
-  const [isFormChanged, setIsFormChanged] = useState(false);
-  console.log(isFormChanged);
+  // const [isFormChanged, setIsFormChanged] = useState(false);
+  // console.log(isFormChanged);
   const handleImageChange = e => {
     const selectedFile = e.target.files[0];
-    setIsFormChanged(true);
+    // setIsFormChanged(true);
     if (!selectedFile) {
       return;
     }
@@ -52,19 +60,35 @@ const UserForm = () => {
     const imageUrl = URL.createObjectURL(selectedFile);
 
     setImagePreview(imageUrl);
-    setFileImage(selectedFile);
+    // setFileImage(selectedFile);
   };
 
+  
+
+  const { name, birthday, email, phone, skype} = userInfo;
+  console.log(userInfo.name)
   const handleSubmit = async values => {
-    setIsFormChanged(false);
+    
     const formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('email', values.email);
+    if (values.phone) {
+      formData.append('phone', values.phone);
+    }
+    if (values.skype) {
+      formData.append('skype', values.skype);
+    }
+    formData.append('birthday', values.birthday);
 
-    formData.append('image', fileImage);
-
+    // if (values.avatarURL) {
+    //   formData.append('avatar', avatarURL);
+    // }
     try {
-      toast.success('Profile is successfully updated');
+      await dispatch(updateUser(formData));
+      await dispatch(updateUser(values));
+      toast.success('Profile data changed successfully');
     } catch {
-      toast.error('Something went wrong. Try again!');
+      toast.error('Something went wrong... Try again!');
     }
   };
 
@@ -80,7 +104,7 @@ const UserForm = () => {
       validationSchema={userSchema}
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting, dirty, touched, errors }) => (
+      {({values, isSubmitting, dirty, touched, errors }) => (
         <AccountForm>
           <Box
             position="relative"
@@ -102,7 +126,7 @@ const UserForm = () => {
               <AddIcon />
             </Sticker>
           </Box>
-          <Name>Name</Name>
+          <Name>{values.name}</Name>
           <Title>User</Title>
           <Wrap>
             <Wrapper>
