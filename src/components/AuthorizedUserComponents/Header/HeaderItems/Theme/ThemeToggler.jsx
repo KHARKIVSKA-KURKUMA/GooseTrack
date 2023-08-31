@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { RiSunLine, RiMoonLine } from 'react-icons/ri';
 
 const ToggleButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   background: transparent;
   border: none;
@@ -10,7 +13,7 @@ const ToggleButton = styled.button`
   width: 26px;
   height: 26px;
   padding: 0;
-  margin-right: 20px;
+  margin-left: 24px;
 `;
 
 const ThemeToggler = ({ theme, toggleTheme }) => {

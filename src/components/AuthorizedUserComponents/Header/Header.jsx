@@ -1,10 +1,16 @@
-import { Container, HeaderTitle } from './Header.styled';
+import React from 'react';
+import { Container, HeaderTitleContainer, HeaderTitle } from './Header.styled';
 import { AddFeedbackBtn, ThemeToggler, UserInfo } from './HeaderItems';
 import { useLocation } from 'react-router-dom';
+import BurgerToggleContainer from '../SideBar/SideBarItems/BurgerMenu/BurgerToggleContainer';
 
-
-const Header = ({ theme, toggleTheme }) => {
-    const location = useLocation();
+const Header = ({
+  theme,
+  toggleTheme,
+  showBurgerMenu,
+  handleBurgerToggleClick,
+}) => {
+  const location = useLocation();
 
   let pageTitle = 'User Profile';
 
@@ -15,11 +21,17 @@ const Header = ({ theme, toggleTheme }) => {
   } else if (location.pathname === '/statistics') {
     pageTitle = 'Statistics';
   }
-   const userName = 'Oleksandr';
+  const userName = 'Goose';
   const hasAvatar = false;
   return (
     <Container>
-      <HeaderTitle>{pageTitle}</HeaderTitle>
+      <HeaderTitleContainer>
+        <HeaderTitle>{pageTitle}</HeaderTitle>
+      </HeaderTitleContainer>
+      <BurgerToggleContainer
+        showBurgerMenu={showBurgerMenu}
+        setShowBurgerMenu={handleBurgerToggleClick}
+      />
       <AddFeedbackBtn />
       <ThemeToggler theme={theme} toggleTheme={toggleTheme} />
       <UserInfo userName={userName} avatarUrl={hasAvatar} />
