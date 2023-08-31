@@ -68,7 +68,7 @@ const IconWrapper = styled.div`
 
 const TitleWrapper = styled.div`
   display: flex;
-  align-items: center;
+   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 8px;
 `;
@@ -85,6 +85,16 @@ const CircleIcon = styled.div`
   justify-content: center;
 `;
 
+const IconButton = styled.div`
+border:none`;
+
+const NotificationButton = styled.button`
+margin-right: 15px;
+border: none;
+border-radius:40px;
+color: #343434`;
+
+
 export {
   StarWrapper,
   NameLabel,
@@ -95,4 +105,6 @@ export {
   IconWrapper,
   CircleIcon,
   TitleWrapper,
+  IconButton, 
+  NotificationButton
 };

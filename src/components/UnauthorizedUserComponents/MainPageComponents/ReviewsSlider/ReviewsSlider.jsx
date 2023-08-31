@@ -3,11 +3,13 @@ import { Navigation, Autoplay, EffectCoverflow } from 'swiper/modules';
 import { FaStar } from 'react-icons/fa';
 import 'swiper/css';
 import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
+import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 import arrowRight from '../../../../img/rightArrow.svg';
 import userAvatar from '../../../../img/ph_user.svg';
+
+// import { AddFeedbackBtn } from 'components/AuthorizedUserComponents/Header/HeaderItems';
 
 import {
   Container,
@@ -21,46 +23,54 @@ import {
   ArrowRight,
   ArrowWrapper,
 } from './ReviewsSlider.styled';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { feedbackSelector } from 'store/selectors';
 import { useEffect } from 'react';
 import { getAllFeedbacks } from 'store/feedback/feedbackThunks';
 
-const reviews = [
-  {
-    id: 'id-1',
-    name: 'Rosie Simpson',
-    userAvatar: userAvatar,
-    stars: 2,
-    review: 'GooseTrack is impressive.',
-  },
-  {
-    id: 'id-2',
-    name: 'Hermione Kline',
-    userAvatar: userAvatar,
-    stars: 0,
-    review:
-      'GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended.',
-  },
-  {
-    id: 'id-3',
-    name: 'Eden Clements',
-    userAvatar: userAvatar,
-    stars: 5,
-    review:
-      'The calendar view and filter options make it easy to stay organized and focused. Highly recommended.',
-  },
-  {
-    id: 'id-4',
-    name: 'Annie Copeland',
-    userAvatar: userAvatar,
-    stars: 4,
-    review: 'Highly recommended.',
-  },
-];
+// const reviews = [
+//   {
+//     _id: 'id-1',
+//     avatarUrl: userAvatar,
+//     rating: 2,
+//     text: 'GooseTrack is impressive.',
+//     owner: {
+//       name: 'Rosie Simpson',
+//     },
+//   },
+//   {
+//     _id: 'id-2',
+//     avatarUrl: userAvatar,
+//     rating: 0,
+//     text: 'GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended.',
+//     owner: {
+//       name: 'Hermione Kline',
+//     },
+//   },
+//   {
+//     _id: 'id-3',
+//     avatarUrl: userAvatar,
+//     rating: 5,
+//     text: 'The calendar view and filter options make it easy to stay organized and focused. Highly recommended.',
+//     owner: {
+//       name: 'Eden Clements',
+//     },
+//   },
+//   {
+//     _id: 'id-4',
+//     avatarUrl: userAvatar,
+//     rating: 4,
+//     text: 'Highly recommended.',
+//     owner: {
+//       name: 'Annie Copeland',
+//     },
+//   },
+// ];
 
 const ReviewsSlider = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getAllFeedbacks());
   }, [dispatch]);
@@ -68,9 +78,19 @@ const ReviewsSlider = () => {
   const data = useSelector(feedbackSelector);
   console.log('feedback :>> ', data.feedback);
 
+const reviews = data.feedback || [];
+
+  console.log('reviews :>> ', reviews);
+  
+const names = reviews.map(item => item.owner ? item.owner.name : null);
+
+console.log(names);
+
+
   return (
     <Container>
-      {/* <AddFeedbackBtn /> */}
+      {reviews.length > 0 ? (<>
+
       <Title>Reviews</Title>
       <Swiper
         modules={[Navigation, Autoplay, EffectCoverflow]}
@@ -106,7 +126,7 @@ const ReviewsSlider = () => {
       >
         {reviews.map(review => {
           const starIcons = [];
-          for (let i = 0; i < review.stars; i++) {
+          for (let i = 0; i < review.rating; i++) {
             starIcons.push(
               <FaStar
                 key={i}
@@ -115,7 +135,7 @@ const ReviewsSlider = () => {
               />
             );
           }
-          for (let i = review.stars; i < 5; i++) {
+          for (let i = review.rating; i < 5; i++) {
             starIcons.push(
               <FaStar
                 key={i}
@@ -126,16 +146,18 @@ const ReviewsSlider = () => {
           }
 
           return (
-            <SwiperSlide key={review.id}>
+            <SwiperSlide key={review._id}>
               <ReviewWrapper>
                 <UserWrapper>
-                  <UserAvatar src={review.userAvatar} alt="UserAvatar" />
+                  { review.avatarUrl>0? (<UserAvatar src={review.avatarUrl} alt="UserAvatar" />) :
+                    <UserAvatar src={userAvatar} alt="UserAvatar" />
+                  }
                   <div>
-                    <UserName>{review.name}</UserName>
+                    { (review.owner===null || review.owner.length === 0) ? ('USER'):(<UserName>{review.owner.name}</UserName>)}
                     <div>{starIcons}</div>
                   </div>
                 </UserWrapper>
-                <UserReview>{review.review}</UserReview>
+                <UserReview>{review.text}</UserReview>
               </ReviewWrapper>
             </SwiperSlide>
           );
@@ -149,6 +171,8 @@ const ReviewsSlider = () => {
           <img src={arrowRight} alt="arrowRight" />
         </ArrowRight>
       </ArrowWrapper>
+      </>) : (<div>Loading reviews...</div>)}
+      
     </Container>
   );
 };
