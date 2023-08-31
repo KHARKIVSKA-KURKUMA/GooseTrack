@@ -7,7 +7,6 @@ import {
   StyledArrow,
   MenuStyled,
 } from './TaskColumnItems.styled';
-import Menu from '@mui/material/Menu/Menu';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
 import { useState } from 'react';
 
