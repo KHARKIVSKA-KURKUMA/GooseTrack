@@ -14,9 +14,11 @@ import {
   StyledTextBtn,
 } from './LoginForm.styled';
 import { NavLink } from 'react-router-dom';
+/* eslint-disable */
 import { useDispatch, useSelector } from 'react-redux';
-import {  selectorIsLogin, selectorToken } from 'store/auth/authSelectors';
-import { login } from 'store/auth/authOperations';
+import {  selectAccessToken, selectorIsLogin, selectorToken } from 'store/auth/authSelectors';
+import { login, refreshUser, setAuthHeader } from 'store/auth/authOperations';
+import { useEffect } from 'react';
 // import { useEffect } from 'react';
 
 const initialValues = {
@@ -31,8 +33,11 @@ const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
 const LoginForm = () => {
   const dispatch = useDispatch();
 
-  const auth = useSelector(selectorIsLogin);
-  const token = useSelector(selectorToken)
+  // const token = useSelector(selectAccessToken);
+  // setAuthHeader(token);
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [token, dispatch]);
 // const emailRegexp = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/";
 
   const validationSchema = yup.object().shape({
@@ -61,12 +66,8 @@ const LoginForm = () => {
 
   const handleSubmit =  (values, actions) => {
 
-    console.log(values);
-    console.log(actions);
-    console.log('auth>>>>', auth);
-    console.log(token)
-    // actions.resetForm();
     dispatch(login(values));
+        // actions.resetForm();
   };
   return (
     <Container>
