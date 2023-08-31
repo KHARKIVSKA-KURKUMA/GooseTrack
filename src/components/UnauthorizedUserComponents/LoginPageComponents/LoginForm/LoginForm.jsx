@@ -13,6 +13,7 @@ import {
   StyledTextBtn,
 } from './LoginForm.styled';
 import { NavLink } from 'react-router-dom';
+/* eslint-disable */
 import { useDispatch, useSelector } from 'react-redux';
 import {  selectAccessToken, selectorIsLogin, selectorToken } from 'store/auth/authSelectors';
 import { login, refreshUser, setAuthHeader } from 'store/auth/authOperations';
