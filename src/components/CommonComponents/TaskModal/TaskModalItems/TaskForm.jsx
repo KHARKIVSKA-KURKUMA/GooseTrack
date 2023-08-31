@@ -3,9 +3,9 @@ import * as yup from 'yup';
 import React, { useEffect } from 'react';
 import { BiPencil } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-// import { editTask, addTask } from 'store/tasks/tasksThunks';
+import { editTask, addTask } from 'store/tasks/tasksThunks';
 
 import {
   EditWrapper,
@@ -26,8 +26,8 @@ import {
   ErrorsMessage,
 } from './TaskForm.styled';
 
-const TaskForm = ({ toggleModal, category, taskToEdit, data }) => {
-  // const dispatch = useDispatch();
+const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
+  const dispatch = useDispatch();
 
   /// Validate Feedback form with YUP ///
   const taskFormValidationSchema = yup.object().shape({
@@ -61,8 +61,8 @@ const TaskForm = ({ toggleModal, category, taskToEdit, data }) => {
       .string()
       .required('Select a priority')
       .oneOf(['low', 'medium', 'high'], 'Invalid priority value'),
-    // data: yup.date().required(),
-    // category: yup.string().oneOf(['to-do', 'in progress', 'done'], 'Invalid priority value').required('Select a category'),
+    date: yup.date().required(),
+    category: yup.string().oneOf(['to-do', 'in progress', 'done'], 'Invalid priority value').required('Select a category'),
   });
 
   const formik = useFormik({
@@ -71,18 +71,19 @@ const TaskForm = ({ toggleModal, category, taskToEdit, data }) => {
       start: '09:00',
       end: '09:30',
       priority: 'low',
-      // data: '2023-08-11',
-      // category: 'to-do',
+      date: '2023-08-11',
+      category: 'to-do',
     },
     validationSchema: taskFormValidationSchema,
 
     onSubmit: (values, action) => {
       console.log(values);
       if (taskToEdit && taskToEdit.length > 0) {
-        // dispatch(editTask(values));
+        dispatch(editTask(values));
         toast.success('Task updated successfully');
       } else {
-        // dispatch(addTask(values));
+        dispatch(addTask(values));
+        console.log(values)
         toast.success('Task created successfully');
       }
       action.resetForm();
@@ -97,7 +98,7 @@ const TaskForm = ({ toggleModal, category, taskToEdit, data }) => {
         start: taskToEdit.start,
         end: taskToEdit.end,
         priority: taskToEdit.priority,
-        data: taskToEdit.data,
+        date: taskToEdit.date,
         category: taskToEdit.category,
       });
     }

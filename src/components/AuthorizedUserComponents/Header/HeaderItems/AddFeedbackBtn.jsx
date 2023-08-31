@@ -27,7 +27,6 @@ const AddFeedbackBtn = () => {
         Feedback
       </Button>
       {isModalOpen && <AddFeedbackModal toggleModal={toggleModal} />}
-      {/* {isModalOpen && <TaskModal toggleModal={toggleModal} />} */}
     </>
   );
 };
