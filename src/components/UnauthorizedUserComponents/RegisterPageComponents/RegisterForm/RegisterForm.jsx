@@ -1,5 +1,6 @@
 import { ErrorMessage, Formik } from 'formik';
 import * as yup from 'yup';
+import { FcHome } from 'react-icons/fc';
 
 // import { Container } from './RegisterForm.styled';
 
@@ -67,9 +68,15 @@ const RegisterForm = () => {
 
   return (
     <Container>
-      <NavLink to='/'>HOMELINK</NavLink>
+      <NavLink to="/">
+        <FcHome style={{ marginTop: 0, marginBottom: 4, width: 20, height: 20 }} />
+      </NavLink>
       <StyledFormTitle>Sign Up</StyledFormTitle>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
         <StyledForm autoComplete="off">
           <StyledLabel htmlFor="name">Name</StyledLabel>
           <StyledField placeholder="Enter your" type="text" name="name" />
