@@ -119,7 +119,8 @@ const NoteText = styled.span`
 const CalendarTable = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const daysOfWeek = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  const daysOfWeek = ['M', 'TU', 'W', 'TH', 'F', 'SA', 'SU'];
+  // я змінила ключі подумай що можна зробити дві T i S бути не може, дякую
 
   const notes = [
     { date: new Date(2023, 7, 1), text: 'Заметка для 1 августа' },
@@ -246,12 +247,12 @@ const CalendarTable = () => {
       <CalendarTableWrapper>
         <CalendarDaysWrapper>
           <CalendarDayWrapper>
-              {daysOfWeek.map(day => (
-                <th key={day}>{day}</th>
-              ))}
-            </CalendarDayWrapper>
+            {daysOfWeek.map(day => (
+              <th key={day}>{day}</th>
+            ))}
+          </CalendarDayWrapper>
         </CalendarDaysWrapper>
-          <CalendarNumberWrapper>{generateCalendar()}</CalendarNumberWrapper>
+        <CalendarNumberWrapper>{generateCalendar()}</CalendarNumberWrapper>
       </CalendarTableWrapper>
     </CalendarWrapper>
   );
