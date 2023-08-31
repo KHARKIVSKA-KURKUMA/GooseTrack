@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import { CalendarNumberWrapper, CalendarRow, CalendarCell, GridContainer, DateNumber, NoteContainer, NoteText } from '../ChosenMonth.styled';
 
 const getRandomColor = () => {
   const r = Math.floor(Math.random() * 256);
@@ -25,102 +24,9 @@ const getDarkerColor = () => {
   return darkerColor;
 };
 
-const CalendarWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
+const CalendarTable = ({selectedDate}) => {
 
-const CalendarDateWrapper = styled.span`
-  background-color: #3e85f3;
-  color: #fff;
-`;
-
-const CalendarTableWrapper = styled.table`
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 335px;
-`;
-
-const CalendarDaysWrapper = styled.thead`
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 335px;
-`;
-
-const CalendarDayWrapper = styled.tr`
-  font-size: 16px;
-  font-weight: 600;
-`;
-
-const CalendarNumberWrapper = styled.tbody`
-  background-color: #fff;
-  border-collapse: collapse;
-`;
-
-const CalendarRow = styled.tr`
-  height: 94px;
-`;
-
-const CalendarCell = styled.td`
-  width: 48px;
-  text-align: center;
-  vertical-align: middle;
-  border: 2px solid rgb(220, 227, 229, 50%);
-  position: relative;
-`;
-
-const GridContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-
-const DateNumber = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 20px;
-  height: 22px;
-  font-size: 12px;
-  font-weight: bold;
-  position: absolute;
-  top: 4px;
-  right: 4px;
-
-  color: ${props => (props.isCurrent ? '#fff' : 'inherit')};
-  background-color: ${props => (props.isCurrent ? '#007bff' : 'inherit')};
-  border-radius: ${props => (props.isCurrent ? '50%' : 'inherit')};
-`;
-
-const NoteContainer = styled.div`
-  margin-top: 14px;
-  padding: 3px;
-  border-radius: 4px;
-  font-size: 11px;
-  max-width: 44px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const NoteText = styled.span`
-  display: inline-block;
-  max-width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-`;
-
-const CalendarTable = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const daysOfWeek = ['M', 'TU', 'W', 'TH', 'F', 'SA', 'SU'];
-  // я змінила ключі подумай що можна зробити дві T i S бути не може, дякую
+  const selectedDateNow = selectedDate;
 
   const notes = [
     { date: new Date(2023, 7, 1), text: 'Заметка для 1 августа' },
@@ -150,8 +56,8 @@ const CalendarTable = () => {
       .filter(note => {
         return (
           note.date.getDate() === day &&
-          note.date.getMonth() === selectedDate.getMonth() &&
-          note.date.getFullYear() === selectedDate.getFullYear()
+          note.date.getMonth() === selectedDateNow.getMonth() &&
+          note.date.getFullYear() === selectedDateNow.getFullYear()
         );
       })
       .map((note, index) => (
@@ -212,49 +118,7 @@ const CalendarTable = () => {
   };
 
   return (
-    <CalendarWrapper>
-      <div>
-        <CalendarDateWrapper>{`${selectedDate.toLocaleString('default', {
-          month: 'long',
-        })} ${selectedDate.getFullYear()}`}</CalendarDateWrapper>
-        <button
-          onClick={() =>
-            setSelectedDate(
-              new Date(
-                selectedDate.getFullYear(),
-                selectedDate.getMonth() - 1,
-                1
-              )
-            )
-          }
-        >
-          ❮
-        </button>
-        <button
-          onClick={() =>
-            setSelectedDate(
-              new Date(
-                selectedDate.getFullYear(),
-                selectedDate.getMonth() + 1,
-                1
-              )
-            )
-          }
-        >
-          ❯
-        </button>
-      </div>
-      <CalendarTableWrapper>
-        <CalendarDaysWrapper>
-          <CalendarDayWrapper>
-            {daysOfWeek.map(day => (
-              <th key={day}>{day}</th>
-            ))}
-          </CalendarDayWrapper>
-        </CalendarDaysWrapper>
         <CalendarNumberWrapper>{generateCalendar()}</CalendarNumberWrapper>
-      </CalendarTableWrapper>
-    </CalendarWrapper>
   );
 };
 
