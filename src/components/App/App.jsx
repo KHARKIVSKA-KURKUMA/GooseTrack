@@ -11,10 +11,12 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import Restricted from 'components/Routes/Restricted';
 import Private from 'components/Routes/Private';
+import { GlobalStyle } from './GlobalStyles';
 
 export const App = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <GlobalStyle />
       <ToastContainer autoClose={1500} theme="colored" />
       <Routes>
         <Route path="/" element={<Layout />}>
