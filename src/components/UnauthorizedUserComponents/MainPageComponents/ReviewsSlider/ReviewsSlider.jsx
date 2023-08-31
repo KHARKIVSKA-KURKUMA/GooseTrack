@@ -1,12 +1,9 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, EffectCoverflow } from 'swiper/modules';
 import { FaStar } from 'react-icons/fa';
-
-// import AddFeedbackBtn from '../../../AuthorizedUserComponents/Header/HeaderItems/AddFeedbackBtn';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+// import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 import arrowRight from '../../../../img/rightArrow.svg';
@@ -24,6 +21,10 @@ import {
   ArrowRight,
   ArrowWrapper,
 } from './ReviewsSlider.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { feedbackSelector } from 'store/selectors';
+import { useEffect } from 'react';
+import { getAllFeedbacks } from 'store/feedback/feedbackThunks';
 
 const reviews = [
   {
@@ -59,6 +60,14 @@ const reviews = [
 ];
 
 const ReviewsSlider = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllFeedbacks());
+  }, [dispatch]);
+
+  const data = useSelector(feedbackSelector);
+  console.log('feedback :>> ', data.feedback);
+
   return (
     <Container>
       {/* <AddFeedbackBtn /> */}

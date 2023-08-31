@@ -7,16 +7,16 @@ import AddFeedbackModal from '../../AddFeedbackModal/AddFeedbackModal';
 const AddFeedbackBtn = () => {
   const [showModal, setShowModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   /// Toggle Modal Function ///
   const toggleModal = () => {
     console.log('Toggle modal called');
+
     console.log('Show modal before:', showModal);
     setShowModal(!showModal);
-   console.log('Show modal after:', showModal);
+    console.log('Show modal after:', showModal);
   };
 
-/// Not to scroll page when modal open ///
+  /// Not to scroll page when modal open ///
   useEffect(() => {
     if (showModal) {
       setIsModalOpen(true);
@@ -35,7 +35,6 @@ const AddFeedbackBtn = () => {
       {isModalOpen && <AddFeedbackModal toggleModal={toggleModal} />}
       {/* {isModalOpen && <TaskModal toggleModal={toggleModal} />} */}
     </>
-
   );
 };
 

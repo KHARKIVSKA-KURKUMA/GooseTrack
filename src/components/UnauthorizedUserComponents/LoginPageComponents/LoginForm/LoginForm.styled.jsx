@@ -70,8 +70,9 @@ const StyledLabel = styled.label`
 `
 
 const StyledFormTitle = styled.h2`
-	font-size:18px;
-	margin: 0;
+  font-size: 18px;
+  margin: 0;
+  color: var(--title-color);
 `;
 
 const StyledBtn = styled.button`

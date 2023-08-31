@@ -9,19 +9,38 @@ import CalendarPage from 'pages/CalendarPage/CalendarPage';
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import Restricted from 'components/Routes/Restricted';
+import Private from 'components/Routes/Private';
+import { GlobalStyle } from './GlobalStyles';
 
 export const App = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <GlobalStyle />
       <ToastContainer autoClose={1500} theme="colored" />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
-          <Route path="register" element={<RegisterPage />}></Route>
-          <Route path="login" element={<LoginPage />}></Route>
-          <Route path="account" element={<AccountPage />}></Route>
-          <Route path="calendar" element={<CalendarPage />}></Route>
-          <Route path="statistics" element={<StatisticsPage />}></Route>
+          <Route
+            path="register"
+            element={<Restricted component={RegisterPage} to="/calendar" />}
+          ></Route>
+          <Route
+            path="login"
+            element={<Restricted component={LoginPage} to="/calendar" />}
+          ></Route>
+          <Route
+            path="account"
+            element={<Private component={AccountPage} to="/" />}
+          ></Route>
+          <Route
+            path="calendar"
+            element={<Private component={CalendarPage} to="/" />}
+          ></Route>
+          <Route
+            path="statistics"
+            element={<Private component={StatisticsPage} to="/" />}
+          ></Route>
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
