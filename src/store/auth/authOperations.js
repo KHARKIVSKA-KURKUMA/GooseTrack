@@ -9,11 +9,13 @@ export const register = createAsyncThunk(
       const result = await api.register(data);
       return result;
     } catch ({ response }) {
+      console.log(response)
       const { status, data } = response;
       const error = {
         status,
         message: data.message,
       };
+      
       return rejectWithValue(error);
     }
   }
@@ -42,6 +44,7 @@ export const logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const result = await api.logout();
+      console.log('logout>>>>', result)
       return result;
     } catch ({ response }) {
       console.log(response);

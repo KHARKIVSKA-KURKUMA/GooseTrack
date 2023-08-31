@@ -1,7 +1,7 @@
 import { ErrorMessage, Formik } from 'formik';
 import * as yup from 'yup';
 import { FcHome } from 'react-icons/fc';
-
+import { toast, ToastContainer } from 'react-toastify';
 
 import {
   Container,
@@ -16,7 +16,7 @@ import {
 import { NavLink } from 'react-router-dom';
 /* eslint-disable */
 import { useDispatch, useSelector } from 'react-redux';
-import {  selectAccessToken, selectorIsLogin, selectorToken } from 'store/auth/authSelectors';
+import {  selectAccessToken, selectorError, selectorIsLogin, selectorToken } from 'store/auth/authSelectors';
 import { login, refreshUser, setAuthHeader } from 'store/auth/authOperations';
 import { useEffect } from 'react';
 // import { useEffect } from 'react';
@@ -31,6 +31,7 @@ const initialValues = {
 const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
 
 const LoginForm = () => {
+  const errorMsg = useSelector(selectorError);
   const dispatch = useDispatch();
 
   // const token = useSelector(selectAccessToken);
@@ -65,8 +66,14 @@ const LoginForm = () => {
   });
 
   const handleSubmit =  (values, actions) => {
+    if (!errorMsg?.message) {
+      dispatch(login(values));
+    }
 
-    dispatch(login(values));
+    console.log(errorMsg.message);
+    toast.warn(`${errorMsg.message}`, {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
         // actions.resetForm();
   };
   return (
@@ -101,6 +108,7 @@ const LoginForm = () => {
           <a href={`${REACT_APP_API_URL}/auth/google`}>Login with Google</a>
         </StyledForm>
       </Formik>
+      <ToastContainer />
     </Container>
   );
 };
