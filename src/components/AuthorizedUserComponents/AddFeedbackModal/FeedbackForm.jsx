@@ -5,8 +5,13 @@ import { BiPencil } from 'react-icons/bi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteReview, getAllFeedbacks,addReview, editReview } from 'store/feedback/feedbackThunks';
+import { useDispatch } from 'react-redux';
+import {
+  deleteReview,
+  getAllFeedbacks,
+  addReview,
+  editReview,
+} from 'store/feedback/feedbackThunks';
 import ModalButton from 'components/GeneralComponents/ModalButton/ModalButton';
 // import { reviewsSelector } from 'store/selectors';
 
@@ -42,8 +47,8 @@ const FeedbackForm = ({ toggleModal }) => {
       .required('Leave your feedback'),
   });
 
-       /// Delete review function ///
-   const handleDeleteReview = () => {
+  /// Delete review function ///
+  const handleDeleteReview = () => {
     const confirmToastId = toast.warning('Delete review?', {
       autoClose: false,
       position: toast.POSITION.TOP_CENTER,
@@ -52,17 +57,22 @@ const FeedbackForm = ({ toggleModal }) => {
       pauseOnHover: false,
       closeButton: (
         <>
-        <NotificationButton onClick={() => handleDeleteConfirmation(true)}>Yes</NotificationButton>
-        <NotificationButton onClick={() => handleDeleteConfirmation(false)}>No</NotificationButton> </>
+          <NotificationButton onClick={() => handleDeleteConfirmation(true)}>
+            Yes
+          </NotificationButton>
+          <NotificationButton onClick={() => handleDeleteConfirmation(false)}>
+            No
+          </NotificationButton>{' '}
+        </>
       ),
     });
 
-    const handleDeleteConfirmation = async (confirmed) => {
+    const handleDeleteConfirmation = async confirmed => {
       if (confirmed) {
         dispatch(deleteReview());
         toast.dismiss(confirmToastId);
         toast.info('Review deleted');
-           toggleModal();
+        toggleModal();
       } else {
         toast.dismiss(confirmToastId);
       }
@@ -81,7 +91,6 @@ const FeedbackForm = ({ toggleModal }) => {
       if (isEditing) {
         dispatch(editReview(values)) &&
           toast.success('Review updated successfully');
-        
       } else {
         dispatch(addReview(values)) &&
           toast.success('Review created successfully');
@@ -92,7 +101,6 @@ const FeedbackForm = ({ toggleModal }) => {
     },
   });
 
-
   useEffect(() => {
     dispatch(getAllFeedbacks());
     if (review && review.length > 0) {
@@ -101,7 +109,7 @@ const FeedbackForm = ({ toggleModal }) => {
         text: review[0].text,
       });
     }
-  }, [dispatch, review]);
+  }, [dispatch, review, formik]);
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -137,7 +145,7 @@ const FeedbackForm = ({ toggleModal }) => {
         <TitleWrapper>
           <NameLabel>Review</NameLabel>
           {/* {review && review.length > 0 && */}
-            <IconWrapper>
+          <IconWrapper>
             <IconButton type="button" onClick={() => setIsEditing(true)}>
               <CircleIcon backgroundColor="#E3F3FF">
                 <BiPencil size={20} color={'#3E85F3'} />
@@ -149,7 +157,6 @@ const FeedbackForm = ({ toggleModal }) => {
               </CircleIcon>
             </IconButton>
           </IconWrapper>
-         
         </TitleWrapper>
 
         <InputFeedback
@@ -199,4 +206,3 @@ const FeedbackForm = ({ toggleModal }) => {
 };
 
 export default FeedbackForm;
-

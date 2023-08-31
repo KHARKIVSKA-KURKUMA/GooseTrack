@@ -3,9 +3,9 @@ import * as yup from 'yup';
 import React, { useEffect } from 'react';
 import { BiPencil } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { editTask, addTask } from 'store/tasks/tasksThunks';
+// import { editTask, addTask } from 'store/tasks/tasksThunks';
 
 import {
   EditWrapper,
@@ -27,7 +27,7 @@ import {
 } from './TaskForm.styled';
 
 const TaskForm = ({ toggleModal, category, taskToEdit, data }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   /// Validate Feedback form with YUP ///
   const taskFormValidationSchema = yup.object().shape({
@@ -76,7 +76,7 @@ const TaskForm = ({ toggleModal, category, taskToEdit, data }) => {
     },
     validationSchema: taskFormValidationSchema,
 
-   onSubmit: (values, action) => {
+    onSubmit: (values, action) => {
       console.log(values);
       if (taskToEdit && taskToEdit.length > 0) {
         // dispatch(editTask(values));
@@ -85,8 +85,8 @@ const TaskForm = ({ toggleModal, category, taskToEdit, data }) => {
         // dispatch(addTask(values));
         toast.success('Task created successfully');
       }
-     action.resetForm();
-     toggleModal();
+      action.resetForm();
+      toggleModal();
     },
   });
 
