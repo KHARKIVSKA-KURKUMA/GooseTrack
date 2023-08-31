@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import instance from 'store/auth/helpers/instance';
+import instance from 'helpers/instance';
 
 export const getAllFeedbacks = createAsyncThunk(
   'feedback/getAllFeedbacks',

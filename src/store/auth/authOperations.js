@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import * as api from './helpers/instance';
+import * as api from '../../helpers/instance';
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -24,7 +24,7 @@ export const login = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.login(data);
-      console.log('result>>>> ',result)
+      console.log('result>>>> ', result);
       return result;
     } catch ({ response }) {
       const { status, data } = response;
@@ -44,7 +44,7 @@ export const logout = createAsyncThunk(
       const result = await api.logout();
       return result;
     } catch ({ response }) {
-      console.log(response)
+      console.log(response);
       const { status, data } = response;
       const error = {
         status,
@@ -134,7 +134,7 @@ export const current = createAsyncThunk(
 //   async (email, thunkAPI) => {
 //     try {
 //       const { data } = await axios.post('/api/auth/verify', { email });
-      
+
 //       return data;
 //     } catch (error) {
 //       return thunkAPI.rejectWithValue(error.message);
