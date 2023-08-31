@@ -1,4 +1,12 @@
-import { CalendarNumberWrapper, CalendarRow, CalendarCell, GridContainer, DateNumber, NoteContainer, NoteText } from '../ChosenMonth.styled';
+import {
+  CalendarNumberWrapper,
+  CalendarRow,
+  CalendarCell,
+  GridContainer,
+  DateNumber,
+  NoteContainer,
+  NoteText,
+} from '../ChosenMonth.styled';
 
 const getRandomColor = () => {
   const r = Math.floor(Math.random() * 256);
@@ -24,8 +32,7 @@ const getDarkerColor = () => {
   return darkerColor;
 };
 
-const CalendarTable = ({selectedDate}) => {
-
+const CalendarTable = ({ selectedDate }) => {
   const selectedDateNow = selectedDate;
 
   const notes = [
@@ -117,9 +124,7 @@ const CalendarTable = ({selectedDate}) => {
     return calendar;
   };
 
-  return (
-        <CalendarNumberWrapper>{generateCalendar()}</CalendarNumberWrapper>
-  );
+  return <CalendarNumberWrapper>{generateCalendar()}</CalendarNumberWrapper>;
 };
 
 export default CalendarTable;

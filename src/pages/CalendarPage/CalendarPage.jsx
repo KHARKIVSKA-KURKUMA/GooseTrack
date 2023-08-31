@@ -6,7 +6,6 @@ import PageLayout from '../../components/PageLayout/PageLayout';
 import React, { useState } from 'react';
 
 const CalendarPage = () => {
-
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
@@ -14,7 +13,7 @@ const CalendarPage = () => {
       <MainLayout />
       <CalendarToolbar />
 
-         {/* потім треба прибрати */}
+      {/* потім треба прибрати */}
       <div>
         <span>{`${selectedDate.toLocaleString('default', {
           month: 'long',
@@ -47,7 +46,7 @@ const CalendarPage = () => {
         </button>
       </div>
 
-      <ChosenMonth />
+      <ChosenMonth selectedDate={selectedDate} />
       <ChosenDay />
     </PageLayout>
   );
