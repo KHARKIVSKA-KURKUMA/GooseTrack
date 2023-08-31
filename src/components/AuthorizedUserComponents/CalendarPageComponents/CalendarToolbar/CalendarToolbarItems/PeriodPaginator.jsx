@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import { format, addMonths, subMonths } from 'date-fns';
+import DatePicker from 'react-datepicker';
+import { addMonths, subMonths } from 'date-fns';
+
+// import { useLocation } from 'react-router-dom';
+
+import "react-datepicker/dist/react-datepicker.css";
 import {
   PeriodPaginatorContainer,
   ButtonsContainer,
-  CalendarButton,
-  SwitcherContainer,
+   SwitcherContainer,
   SwitcherPart,
+ 
 } from './PeriodPaginator.styled';
 
 const PeriodPaginator = ({ selectedPeriodType, onDateChange }) => {
   const [activeSwitcher, setActiveSwitcher] = useState(0);
-  
-  const dateFormat = selectedPeriodType === 'month' ? 'MMM yyyy' : 'd MMM yyyy';
+
+// const dateFormat = selectedPeriodType === 'month' ? 'MMM yyyy' : 'd MMM yyyy';
 
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -37,7 +42,16 @@ const PeriodPaginator = ({ selectedPeriodType, onDateChange }) => {
   return (
     <PeriodPaginatorContainer>
       <ButtonsContainer>
-        <CalendarButton>{format(selectedDate, dateFormat)}</CalendarButton>
+        <DatePicker
+          selected={selectedDate} // Використовуємо значення selectedDate
+          onChange={date => {
+            setSelectedDate(date); // Змінюємо значення selectedDate при виборі дати
+            onDateChange(date); // Викликаємо обробник зміни дати
+          }}
+          dateFormat={
+            selectedPeriodType === 'month' ? 'MMMM yyyy' : 'd MMM yyyy'
+          }
+        />
         <SwitcherContainer>
           <SwitcherPart
             active={activeSwitcher === 0}

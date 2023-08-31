@@ -1,5 +1,6 @@
 import { ErrorMessage, Formik } from 'formik';
 import * as yup from 'yup';
+import { FcHome } from 'react-icons/fc';
 
 
 import {
@@ -51,15 +52,23 @@ const LoginForm = () => {
   };
   return (
     <Container>
-      <NavLink to='/'>HOMELINK</NavLink>
+      <NavLink to="/">
+        <FcHome
+          style={{ marginTop: 0, marginBottom: 4, width: 20, height: 20 }}
+        />
+      </NavLink>
       <StyledFormTitle>Log In</StyledFormTitle>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
         <StyledForm autoComplete="off">
           <StyledLabel htmlFor="email">Email</StyledLabel>
           <StyledField placeholder="Enter email" type="text" name="email" />
-          <ErrorMessage name='email'/>
+          <ErrorMessage name="email" />
           <StyledLabel htmlFor="password">Password</StyledLabel>
-          <ErrorMessage name='password'/>
+          <ErrorMessage name="password" />
           <StyledField
             placeholder="Enter password"
             type="password"
