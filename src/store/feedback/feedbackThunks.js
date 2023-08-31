@@ -1,13 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-axios.defaults.baseURL = 'https://goosetrack-tj84.onrender.com';
+import instance from 'store/auth/helpers/instance';
 
 export const getAllFeedbacks = createAsyncThunk(
   'feedback/getAllFeedbacks',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/reviews`);
+      const { data } = await instance.get(`/api/reviews`);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
