@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-// import routes from ' ';
 import { FiLogIn } from 'react-icons/fi';
 
 import {
@@ -56,10 +54,6 @@ const AuthSection = ({ isHomePage }) => {
       </StyledHero>
     </Container>
   );
-};
-
-AuthSection.propTypes = {
-  isHomePage: PropTypes.bool,
 };
 
 export default AuthSection;
