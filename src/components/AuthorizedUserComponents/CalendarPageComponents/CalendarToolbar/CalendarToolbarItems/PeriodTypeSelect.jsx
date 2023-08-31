@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Item, List, Button } from './PeriodTypeSelect.styled';
 
 const PeriodTypeSelect = ({ today, onChangeType, onChangeDate }) => {
@@ -37,12 +36,6 @@ const PeriodTypeSelect = ({ today, onChangeType, onChangeDate }) => {
       </Item>
     </List>
   );
-};
-
-PeriodTypeSelect.propTypes = {
-  today: PropTypes.string.isRequired,
-  onChangeType: PropTypes.func.isRequired,
-  onChangeDate: PropTypes.func.isRequired,
 };
 
 export default PeriodTypeSelect;
