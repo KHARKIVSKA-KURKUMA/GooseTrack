@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 
 const PeriodPaginatorContainer = styled.div`
+  .react-datepicker {
+    background-color: aqua;
+  }
+  #datePickerInput {
+    background-color: blue;
+  }
+  .react-datepicker__header {
+    background-color: chocolate;
+  }
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: space-between;
@@ -29,7 +38,7 @@ const CalendarButton = styled.button`
   height: 30px;
   border: 0;
   border-radius: 8px;
-  color: var(--primary-background-color );
+  color: var(--primary-background-color);
   background-color: var(--title-color);
   font-size: 14px;
   font-weight: 500;
@@ -83,7 +92,6 @@ const SwitcherPart = styled.div`
   position: relative;
 
   &:hover {
-   
   }
 
   @media screen and (min-width: 768px) {
@@ -91,13 +99,10 @@ const SwitcherPart = styled.div`
   }
 `;
 
-
-
 export {
   PeriodPaginatorContainer,
   ButtonsContainer,
   CalendarButton,
   SwitcherContainer,
   SwitcherPart,
-  
 };

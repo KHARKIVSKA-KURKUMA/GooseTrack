@@ -20,7 +20,10 @@ export const App = () => {
       <ToastContainer autoClose={1500} theme="colored" />
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<MainPage />} />
+          <Route
+            index
+            element={<Restricted component={MainPage} to="/calendar" />}
+          />
           <Route
             path="register"
             element={<Restricted component={RegisterPage} to="/calendar" />}
