@@ -9,8 +9,6 @@ import 'swiper/css/scrollbar';
 import arrowRight from '../../../../img/rightArrow.svg';
 import userAvatar from '../../../../img/ph_user.svg';
 
-// import { AddFeedbackBtn } from 'components/AuthorizedUserComponents/Header/HeaderItems';
-
 import {
   Container,
   Title,
@@ -78,101 +76,102 @@ const ReviewsSlider = () => {
   const data = useSelector(feedbackSelector);
   console.log('feedback :>> ', data.feedback);
 
-const reviews = data.feedback || [];
-
-  console.log('reviews :>> ', reviews);
-  
-const names = reviews.map(item => item.owner ? item.owner.name : null);
-
-console.log(names);
-
+  const reviews = data.feedback || [];
 
   return (
     <Container>
-      {reviews.length > 0 ? (<>
+      {reviews.length > 0 ? (
+        <>
+          <Title>Reviews</Title>
+          <Swiper
+            modules={[Navigation, Autoplay, EffectCoverflow]}
+            grabCursor={true}
+            effect={'coverflow'}
+            slidesPerView={1}
+            spaceBetween={20}
+            // autoHeight={true}
+            centeredSlides={true}
+            coverflowEffect={{
+              rotate: 30,
+              stretch: 0,
+              depth: 50,
+              modifier: 1,
+              slideShadows: false,
+            }}
+            loop={true}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: false,
+              waitForTransition: false,
+            }}
+            navigation={{
+              prevEl: '#custom-prev-button',
+              nextEl: '#custom-next-button',
+            }}
+            breakpoints={{
+              1440: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+              },
+            }}
+          >
+            {reviews.map(review => {
+              const starIcons = [];
+              for (let i = 0; i < review.rating; i++) {
+                starIcons.push(
+                  <FaStar
+                    key={i}
+                    color={'#FFAC33'}
+                    style={{ marginRight: '10px' }}
+                  />
+                );
+              }
+              for (let i = review.rating; i < 5; i++) {
+                starIcons.push(
+                  <FaStar
+                    key={i}
+                    color={'#CEC9C1'}
+                    style={{ marginRight: '10px' }}
+                  />
+                );
+              }
 
-      <Title>Reviews</Title>
-      <Swiper
-        modules={[Navigation, Autoplay, EffectCoverflow]}
-        grabCursor={true}
-        effect={'coverflow'}
-        slidesPerView={1}
-        spaceBetween={20}
-        // autoHeight={true}
-        centeredSlides={true}
-        coverflowEffect={{
-          rotate: 30,
-          stretch: 0,
-          depth: 50,
-          modifier: 1,
-          slideShadows: false,
-        }}
-        loop={true}
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false,
-          waitForTransition: false,
-        }}
-        navigation={{
-          prevEl: '#custom-prev-button',
-          nextEl: '#custom-next-button',
-        }}
-        breakpoints={{
-          1440: {
-            slidesPerView: 2,
-            spaceBetween: 24,
-          },
-        }}
-      >
-        {reviews.map(review => {
-          const starIcons = [];
-          for (let i = 0; i < review.rating; i++) {
-            starIcons.push(
-              <FaStar
-                key={i}
-                color={'#FFAC33'}
-                style={{ marginRight: '10px' }}
-              />
-            );
-          }
-          for (let i = review.rating; i < 5; i++) {
-            starIcons.push(
-              <FaStar
-                key={i}
-                color={'#CEC9C1'}
-                style={{ marginRight: '10px' }}
-              />
-            );
-          }
-
-          return (
-            <SwiperSlide key={review._id}>
-              <ReviewWrapper>
-                <UserWrapper>
-                  { review.avatarUrl>0? (<UserAvatar src={review.avatarUrl} alt="UserAvatar" />) :
-                    <UserAvatar src={userAvatar} alt="UserAvatar" />
-                  }
-                  <div>
-                    { (review.owner===null || review.owner.length === 0) ? ('USER'):(<UserName>{review.owner.name}</UserName>)}
-                    <div>{starIcons}</div>
-                  </div>
-                </UserWrapper>
-                <UserReview>{review.text}</UserReview>
-              </ReviewWrapper>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-      <ArrowWrapper>
-        <ArrowLeft id="custom-prev-button">
-          <img src={arrowRight} alt="arrowLeft" />
-        </ArrowLeft>
-        <ArrowRight id="custom-next-button">
-          <img src={arrowRight} alt="arrowRight" />
-        </ArrowRight>
-      </ArrowWrapper>
-      </>) : (<div>Loading reviews...</div>)}
-      
+              return (
+                <SwiperSlide key={review._id}>
+                  <ReviewWrapper>
+                    <UserWrapper>
+                      {review.avatarUrl > 0 ? (
+                        <UserAvatar src={review.avatarUrl} alt="UserAvatar" />
+                      ) : (
+                        <UserAvatar src={userAvatar} alt="UserAvatar" />
+                      )}
+                      <div>
+                        {review.owner === null || review.owner.length === 0 ? (
+                          'USER'
+                        ) : (
+                          <UserName>{review.owner.name}</UserName>
+                        )}
+                        <div>{starIcons}</div>
+                      </div>
+                    </UserWrapper>
+                    <UserReview>{review.text}</UserReview>
+                  </ReviewWrapper>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+          <ArrowWrapper>
+            <ArrowLeft id="custom-prev-button">
+              <img src={arrowRight} alt="arrowLeft" />
+            </ArrowLeft>
+            <ArrowRight id="custom-next-button">
+              <img src={arrowRight} alt="arrowRight" />
+            </ArrowRight>
+          </ArrowWrapper>
+        </>
+      ) : (
+        <div>Loading reviews...</div>
+      )}
     </Container>
   );
 };
