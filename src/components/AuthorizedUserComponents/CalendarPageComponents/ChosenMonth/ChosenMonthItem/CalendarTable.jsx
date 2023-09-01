@@ -1,4 +1,5 @@
 import {
+  CalendarTableWrapper,
   CalendarNumberWrapper,
   CalendarRow,
   CalendarCell,
@@ -7,6 +8,7 @@ import {
   NoteContainer,
   NoteText,
 } from '../ChosenMonth.styled';
+import PropTypes from 'prop-types';
 
 const getRandomColor = () => {
   const r = Math.floor(Math.random() * 256);
@@ -125,10 +127,14 @@ const CalendarTable = ({ selectedDate }) => {
   };
 
   return (
-    <table style={{ borderCollapse: 'collapse' }}>
+    <CalendarTableWrapper style={{ borderCollapse: 'collapse' }}>
       <CalendarNumberWrapper>{generateCalendar()}</CalendarNumberWrapper>
-    </table>
+    </CalendarTableWrapper>
   );
+};
+
+CalendarTable.protoType = {
+  selectedDate: PropTypes.node.isRequired,
 };
 
 export default CalendarTable;

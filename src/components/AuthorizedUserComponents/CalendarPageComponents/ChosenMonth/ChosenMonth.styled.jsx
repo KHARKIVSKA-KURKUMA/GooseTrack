@@ -7,7 +7,7 @@ const CalendarWrapper = styled.div`
   align-items: center;
 `;
 
-const CalendarDaysWrapper = styled.div`
+const CalendarDaysWrapper = styled.ul`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -18,6 +18,7 @@ const CalendarDaysWrapper = styled.div`
   border: 1px solid rgb(220, 227, 229, 50%);
   border-radius: 8px;
   margin-bottom: 15px;
+  background-color: var(--primary-background-color);
 
   @media screen and (min-width: 768px) {
     width: 704px;
@@ -31,14 +32,18 @@ const CalendarDaysWrapper = styled.div`
   }
 `;
 
-const CalendarDayWrapper = styled.ul`
+const CalendarDayWrapper = styled.li`
   font-size: 16px;
   font-weight: 600;
-  color: ${props => (props.isSunday ? '#3E85F3' : 'inherit')};
+  color: ${props => (props.isSunday ? 'var(--title-color)' : 'inherit')};
+`;
+
+const CalendarTableWrapper = styled.table`
+  border-collapse: collapse;
 `;
 
 const CalendarNumberWrapper = styled.tbody`
-  background-color: #fff;
+  background-color: var(--primary-background-color);
   width: 335px;
 
   @media screen and (min-width: 768px) {
@@ -97,7 +102,7 @@ const DateNumber = styled.div`
   top: 4px;
   right: 4px;
 
-  color: ${props => (props.isCurrent ? '#fff' : 'inherit')};
+  color: ${props => (props.isCurrent ? 'var(--primary-background-color)' : 'inherit')};
   background-color: ${props => (props.isCurrent ? '#007bff' : 'inherit')};
   border-radius: ${props => (props.isCurrent ? '8px' : 'inherit')};
 
@@ -146,6 +151,7 @@ export {
   CalendarWrapper,
   CalendarDaysWrapper,
   CalendarDayWrapper,
+  CalendarTableWrapper,
   CalendarNumberWrapper,
   CalendarRow,
   CalendarCell,
