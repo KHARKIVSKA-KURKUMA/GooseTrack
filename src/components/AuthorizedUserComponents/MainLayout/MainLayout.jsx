@@ -15,17 +15,29 @@ const GlobalStyles = createGlobalStyle`
 
 const MainLayout = () => {
   const [theme, setTheme] = useState('light');
+  const [showBurgerMenu, setShowBurgerMenu] = useState(false);
 
   const toggleTheme = () => {
     setTheme(prevTheme => (prevTheme === 'dark' ? 'light' : 'dark'));
+  };
+  const handleBurgerToggleClick = () => {
+    setShowBurgerMenu(prevShowBurgerMenu => !prevShowBurgerMenu);
   };
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
       <div className="App">
-        <Header theme={theme} toggleTheme={toggleTheme} />
-        <SideBar />
+        <Header
+          theme={theme}
+          toggleTheme={toggleTheme}
+          showBurgerMenu={showBurgerMenu}
+          handleBurgerToggleClick={handleBurgerToggleClick}
+        />
+        <SideBar
+          showBurgerMenu={showBurgerMenu}
+          handleSidebarClick={() => setShowBurgerMenu(false)}
+        />
       </div>
     </ThemeProvider>
   );

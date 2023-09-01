@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import goose1x from '../../../img/desktop/goose1x.png';
 import goose2x from '../../../img/desktop/goose1x.png';
 import goose3x from '../../../img/desktop/goose1x.png';
@@ -12,39 +12,24 @@ import {
   NavTitle,
   LogoTitle,
   StyledText,
-  BurgerToggle,
+  CloseButtonContainer,
 } from './SideBar.styled';
 import {
   MyAccountSVG,
   CalendarSVG,
-  StatisticsSVG, 
+  StatisticsSVG,
   LogoutSVG,
+  CloseIconSVG,
 } from '../SideBar/SideBarItems/SvgSideBar';
 import BurgerMenu from '../SideBar/SideBarItems/BurgerMenu/BurgerMenu';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { useDispatch } from 'react-redux';
 import { logout } from 'store/auth/authOperations';
 
-const Sidebar = () => {
-  const [showBurgerMenu, setShowBurgerMenu] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+const Sidebar = ({ showBurgerMenu, handleSidebarClick }) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   const dispatch = useDispatch();
-
-  const toggleBurgerMenu = () => {
-    setShowBurgerMenu(!showBurgerMenu);
-  };
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   return (
     <SidebarContainer showBurgerMenu={showBurgerMenu}>
@@ -76,19 +61,27 @@ const Sidebar = () => {
           <span style={{ marginLeft: '10px' }}>Statistics</span>
         </NavLinkStyled>
       </Nav>
-      <LogoutBtn onClick={() => {
-        dispatch(logout())
-        console.log('click')
-      }} type="button">
+      <LogoutBtn
+        onClick={() => {
+          dispatch(logout());
+          console.log('click');
+        }}
+        type="button"
+      >
         <LogoutTitle>Log out</LogoutTitle>
-       <LogoutSVG/>
+        <LogoutSVG />
       </LogoutBtn>
-       {windowWidth < 768 && <BurgerToggle onClick={toggleBurgerMenu}>
-        <div />
-        <div />
-        <div />
-      </BurgerToggle>}   
       {showBurgerMenu && <BurgerMenu />}
+      {isMobile && (
+        <CloseButtonContainer onClick={handleSidebarClick}>
+          <CloseIconSVG
+            onClick={handleSidebarClick}
+            style={{
+              cursor: 'pointer',
+            }}
+          />
+        </CloseButtonContainer>
+      )}
     </SidebarContainer>
   );
 };

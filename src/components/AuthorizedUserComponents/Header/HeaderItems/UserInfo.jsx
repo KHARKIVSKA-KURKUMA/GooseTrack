@@ -17,6 +17,10 @@ const InitialsAvatar = styled.div`
   align-items: center;
   font-size: 18px;
   font-weight: bold;
+  @media (max-width: 768px){
+      width: 30px;
+  height: 30px;
+  }
 `;
 
 const UserName = styled.div`
