@@ -4,7 +4,6 @@ const StatisticsContainer = styled.div`
   width: 335px;
   height: 684px;
   padding: 30px 15px 0px;
-  border: 1px solid #9664e2; // !!!!!!!!!!!!! потім цей бордер необхідно прибрати !!!!!!!!!!!!!!!!!
   border-radius: 16px;
 
   @media screen and (min-width: 768px) {
