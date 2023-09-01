@@ -5,8 +5,8 @@ import {
   TaskToolbarContainer,
   TaskToolbarBtn,
   StyledArrow,
+  MenuStyled,
 } from './TaskColumnItems.styled';
-import Menu from '@mui/material/Menu/Menu';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
 import { useState } from 'react';
 
@@ -39,7 +39,7 @@ const TaskToolbar = () => {
       <TaskToolbarBtn onClick={handleClick}>
         <Arrow />
       </TaskToolbarBtn>
-      <Menu
+      <MenuStyled
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
@@ -54,7 +54,7 @@ const TaskToolbar = () => {
             {group} <StyledArrow />
           </MenuItem>
         ))}
-      </Menu>
+      </MenuStyled>
       <TaskToolbarBtn onClick={handleEditTask}>
         <Pen />
       </TaskToolbarBtn>

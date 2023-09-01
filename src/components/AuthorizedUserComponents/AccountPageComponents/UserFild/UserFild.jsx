@@ -43,7 +43,7 @@ export const UserFild = ({
         {touched && errors && <ErrorIcon />}
         {touched && !errors && <CorrectIcon />}
       </IconStatusWrap>
-      {touched && !errors && <CorrectTag>This is an CORRECT name</CorrectTag>}
+      {touched && !errors && <CorrectTag>This is an CORRECT {name}</CorrectTag>}
       <MessageError name={name} component="p" />
     </Label>
   );

@@ -5,7 +5,6 @@ const ToolbarWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
   @media screen and (min-width: 768px) {
     margin-bottom: 32px;
     flex-direction: row;

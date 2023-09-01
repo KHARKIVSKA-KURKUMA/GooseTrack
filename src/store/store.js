@@ -9,18 +9,18 @@ import {
   REGISTER,
 } from 'redux-persist';
 
+import { userReducer } from './user/userSlice';
 import { persistedAuthReducer } from './auth/authSlice';
-
 import { tasksReducer } from './tasks/tasksSlice';
-
 import { feedbackReducer } from './feedback/feedbackSlice';
-
+import { statisticsReducer } from './statistics/statisticsSlice';
 
 const reducer = {
   feedback: feedbackReducer,
   auth: persistedAuthReducer,
   tasks: tasksReducer,
-
+  user: userReducer,
+  statistics: statisticsReducer,
 };
 
 export const store = configureStore({

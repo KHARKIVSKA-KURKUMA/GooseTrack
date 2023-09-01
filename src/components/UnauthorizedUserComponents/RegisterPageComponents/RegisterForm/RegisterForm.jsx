@@ -1,5 +1,8 @@
 import { ErrorMessage, Formik } from 'formik';
+import { toast, ToastContainer } from 'react-toastify';
+import { FcHome } from 'react-icons/fc';
 import * as yup from 'yup';
+import { NavLink } from 'react-router-dom';
 
 // import { Container } from './RegisterForm.styled';
 
@@ -13,14 +16,15 @@ import {
   StyledLabel,
   StyledTextBtn,
 } from './../../LoginPageComponents/LoginForm/LoginForm.styled';
-import { NavLink } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { register } from 'store/auth/authOperations';
+import { selectorError } from 'store/auth/authSelectors';
 
 const RegisterForm = () => {
+  
   const dispatch = useDispatch();
-
+  const errorMsg = useSelector(selectorError);
   const initialValues = {
     name: '',
     email: '',
@@ -61,15 +65,28 @@ const RegisterForm = () => {
     // console.log(values);
     // console.log(actions);
 
-    dispatch(register(values))
-    actions.resetForm();
+    
+    if (!errorMsg?.message) {
+      await dispatch(register(values))
+    }
+    console.log(errorMsg.message);
+    toast.warn(`${errorMsg.message}`, {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
+    // actions.resetForm();
   };
 
   return (
     <Container>
-      <NavLink to='/'>HOMELINK</NavLink>
+      <NavLink to="/">
+        <FcHome style={{ marginTop: 0, marginBottom: 4, width: 20, height: 20 }} />
+      </NavLink>
       <StyledFormTitle>Sign Up</StyledFormTitle>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
         <StyledForm autoComplete="off">
           <StyledLabel htmlFor="name">Name</StyledLabel>
           <StyledField placeholder="Enter your" type="text" name="name" />
@@ -91,6 +108,7 @@ const RegisterForm = () => {
           <a href={`${REACT_APP_API_URL}/auth/google`}>Login with Google</a>
         </StyledForm>
       </Formik>
+      <ToastContainer />
     </Container>
   );
 };

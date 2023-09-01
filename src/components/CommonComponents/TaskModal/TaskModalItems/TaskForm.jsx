@@ -1,8 +1,11 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BiPencil } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { editTask, addTask } from 'store/tasks/tasksThunks';
 
 import {
   EditWrapper,
@@ -23,28 +26,29 @@ import {
   ErrorsMessage,
 } from './TaskForm.styled';
 
-const TaskForm = ({ toggleModal, status }) => {
+const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
+  const dispatch = useDispatch();
 
   /// Validate Feedback form with YUP ///
   const taskFormValidationSchema = yup.object().shape({
-    task: yup
+    title: yup
       .string()
       .trim()
       .notOneOf([' '])
       .min(1)
       .max(250)
       .required('Write down your task'),
-    startTime: yup.string().required('Choose a time'),
-    endTime: yup
+    start: yup.string().required('Choose a time'),
+    end: yup
       .string()
       .required('Choose a time')
       .test(
         'greater-than-start',
         'End time must be greater than start time',
         function (value) {
-          const startTime = this.resolve(yup.ref('startTime'));
+          const start = this.resolve(yup.ref('start'));
 
-          const [startHour, startMinute] = startTime.split(':').map(Number);
+          const [startHour, startMinute] = start.split(':').map(Number);
           const [endHour, endMinute] = value.split(':').map(Number);
 
           const totalStartMinutes = startHour * 60 + startMinute;
@@ -57,23 +61,48 @@ const TaskForm = ({ toggleModal, status }) => {
       .string()
       .required('Select a priority')
       .oneOf(['low', 'medium', 'high'], 'Invalid priority value'),
+    date: yup.date().required(),
+    category: yup.string().oneOf(['to-do', 'in progress', 'done'], 'Invalid priority value').required('Select a category'),
   });
 
   const formik = useFormik({
     initialValues: {
-      task: '',
-      startTime: '09:00',
-      endTime: '12:00',
+      title: '',
+      start: '09:00',
+      end: '09:30',
       priority: 'low',
+      date: '2023-08-11',
+      category: 'to-do',
     },
-
     validationSchema: taskFormValidationSchema,
 
     onSubmit: (values, action) => {
       console.log(values);
+      if (taskToEdit && taskToEdit.length > 0) {
+        dispatch(editTask(values));
+        toast.success('Task updated successfully');
+      } else {
+        dispatch(addTask(values));
+        console.log(values)
+        toast.success('Task created successfully');
+      }
       action.resetForm();
+      toggleModal();
     },
   });
+
+  useEffect(() => {
+    if (taskToEdit && taskToEdit.length > 0) {
+      formik.setValues({
+        title: taskToEdit.title,
+        start: taskToEdit.start,
+        end: taskToEdit.end,
+        priority: taskToEdit.priority,
+        date: taskToEdit.date,
+        category: taskToEdit.category,
+      });
+    }
+  }, [taskToEdit, formik]);
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -81,17 +110,17 @@ const TaskForm = ({ toggleModal, status }) => {
         <NameLabel>Title</NameLabel>
         <Textarea
           type="text"
-          name="task"
+          name="title"
           rows="5"
-          value={formik.values.task}
+          value={formik.values.title}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="Enter text"
-          hasError={!!formik.errors.task && !!formik.touched.task}
+          hasError={!!formik.errors.title && !!formik.touched.title}
         ></Textarea>
       </TitleWrapper>
-      {formik.errors.task && formik.touched.task && (
-        <ErrorsMessage>{formik.errors.task}</ErrorsMessage>
+      {formik.errors.title && formik.touched.title && (
+        <ErrorsMessage>{formik.errors.title}</ErrorsMessage>
       )}
 
       <TimeBox>
@@ -99,30 +128,30 @@ const TaskForm = ({ toggleModal, status }) => {
           <NameLabel>Start</NameLabel>
           <TimeInput
             type="time"
-            name="startTime"
-            value={formik.values.startTime}
+            name="start"
+            value={formik.values.start}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            hasError={!!formik.errors.startTime && !!formik.touched.startTime}
+            hasError={!!formik.errors.start && !!formik.touched.start}
           />
         </TimeWrapper>
         <TimeWrapper>
           <NameLabel>End</NameLabel>
           <TimeInput
             type="time"
-            name="endTime"
-            value={formik.values.endTime}
+            name="end"
+            value={formik.values.end}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            hasError={!!formik.errors.endTime && !!formik.touched.endTime}
+            hasError={!!formik.errors.end && !!formik.touched.end}
           />
         </TimeWrapper>
       </TimeBox>
-      {formik.errors.startTime && formik.touched.startTime && (
-        <ErrorsMessage>{formik.errors.startTime}</ErrorsMessage>
+      {formik.errors.start && formik.touched.start && (
+        <ErrorsMessage>{formik.errors.start}</ErrorsMessage>
       )}
-      {formik.errors.endTime && formik.touched.endTime && (
-        <ErrorsMessage>{formik.errors.endTime}</ErrorsMessage>
+      {formik.errors.end && formik.touched.end && (
+        <ErrorsMessage>{formik.errors.end}</ErrorsMessage>
       )}
 
       <CheckBoxWrapper>
@@ -162,9 +191,18 @@ const TaskForm = ({ toggleModal, status }) => {
       )}
 
       <ButtonWrapper>
-        <ModalButton type="submit" textColor="#FFFFFF" backgroundColor="#3E85F3">
+        <ModalButton
+          type="submit"
+          textColor="#FFFFFF"
+          backgroundColor="#3E85F3"
+        >
           <EditWrapper>
-            <BiPencil size={20} />   <AiOutlinePlus size={22}/><Span>Edit</Span>
+            {taskToEdit && taskToEdit.length > 0 ? (
+              <BiPencil size={20} />
+            ) : (
+              <AiOutlinePlus size={22} />
+            )}
+            <Span>{taskToEdit && taskToEdit.length > 0 ? 'Edit' : 'Add'}</Span>
           </EditWrapper>
         </ModalButton>
         <ModalButton type="button" onClick={toggleModal}>
@@ -176,3 +214,23 @@ const TaskForm = ({ toggleModal, status }) => {
 };
 
 export default TaskForm;
+
+// const categories = ['to-do', 'in-progress', 'done'];
+//  const getCategory = (category) => {
+//     switch (category) {
+//       case 'to-do':
+//         return 'To do';
+//       case 'To do':
+//         return 'to-do';
+//       case 'In progress':
+//         return 'in-progress';
+//       case 'in-progress':
+//         return 'In progress';
+//       case 'Done':
+//         return 'done';
+//       case 'done':
+//         return 'Done';
+//       default:
+//         break;
+//     }
+//   };

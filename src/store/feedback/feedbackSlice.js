@@ -16,6 +16,7 @@ const feedbackSlice = createSlice({
         state.feedback = payload;
         console.log('payload :>> ', payload);
         console.log(state.feedback);
+
       })
       .addMatcher(isAnyOf(getAllFeedbacks.pending), handlePending)
       .addMatcher(isAnyOf(getAllFeedbacks.fulfilled), handleFulfilled)

@@ -23,13 +23,14 @@ import {
 } from '../SideBar/SideBarItems/SvgSideBar';
 import BurgerMenu from '../SideBar/SideBarItems/BurgerMenu/BurgerMenu';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useDispatch } from 'react-redux';
+import { logout } from 'store/auth/authOperations';
 
-// import { useDispatch } from 'react-redux';
-// import { logout } from 'store/auth/authOperations';
-
-// const dispatch = useDispatch();
 const Sidebar = ({ showBurgerMenu, handleSidebarClick }) => {
   const isMobile = useMediaQuery('(max-width: 768px)');
+
+  const dispatch = useDispatch();
+
   return (
     <SidebarContainer showBurgerMenu={showBurgerMenu}>
       <Logo>
@@ -62,7 +63,7 @@ const Sidebar = ({ showBurgerMenu, handleSidebarClick }) => {
       </Nav>
       <LogoutBtn
         onClick={() => {
-          // dispatch(logout())
+          dispatch(logout());
           console.log('click');
         }}
         type="button"

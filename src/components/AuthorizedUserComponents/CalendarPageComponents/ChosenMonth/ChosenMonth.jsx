@@ -1,11 +1,12 @@
 import { CalendarTable, MonthCalendarHead } from './ChosenMonthItem';
+import { CalendarWrapper } from './ChosenMonth.styled';
 
-const ChosenMonth = () => {
+const ChosenMonth = ({selectedDate}) => {
   return (
-    <>
+    <CalendarWrapper>
       <MonthCalendarHead />
-      <CalendarTable />
-    </>
+      <CalendarTable selectedDate={ selectedDate } />
+    </CalendarWrapper>
   );
 };
 

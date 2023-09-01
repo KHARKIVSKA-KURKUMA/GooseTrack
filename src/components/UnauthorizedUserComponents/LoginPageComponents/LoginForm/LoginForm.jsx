@@ -1,6 +1,7 @@
 import { ErrorMessage, Formik } from 'formik';
 import * as yup from 'yup';
-
+import { FcHome } from 'react-icons/fc';
+import { toast, ToastContainer } from 'react-toastify';
 
 import {
   Container,
@@ -13,9 +14,11 @@ import {
   StyledTextBtn,
 } from './LoginForm.styled';
 import { NavLink } from 'react-router-dom';
+/* eslint-disable */
 import { useDispatch, useSelector } from 'react-redux';
-import {  selectorIsLogin, selectorToken } from 'store/auth/authSelectors';
-import { login } from 'store/auth/authOperations';
+import {  selectAccessToken, selectorError, selectorIsLogin, selectorToken } from 'store/auth/authSelectors';
+import { login, refreshUser, setAuthHeader } from 'store/auth/authOperations';
+import { useEffect } from 'react';
 // import { useEffect } from 'react';
 
 const initialValues = {
@@ -28,10 +31,14 @@ const initialValues = {
 const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
 
 const LoginForm = () => {
+  const errorMsg = useSelector(selectorError);
   const dispatch = useDispatch();
 
-  const auth = useSelector(selectorIsLogin);
-  const token = useSelector(selectorToken)
+  // const token = useSelector(selectAccessToken);
+  // setAuthHeader(token);
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [token, dispatch]);
 // const emailRegexp = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/";
 
   const validationSchema = yup.object().shape({
@@ -59,25 +66,35 @@ const LoginForm = () => {
   });
 
   const handleSubmit =  (values, actions) => {
+    if (!errorMsg?.message) {
+      dispatch(login(values));
+    }
 
-    console.log(values);
-    console.log(actions);
-    console.log('auth>>>>', auth);
-    console.log(token)
-    // actions.resetForm();
-    dispatch(login(values));
+    console.log(errorMsg.message);
+    toast.warn(`${errorMsg.message}`, {
+      position: toast.POSITION.BOTTOM_LEFT
+    });
+        // actions.resetForm();
   };
   return (
     <Container>
-      <NavLink to='/'>HOMELINK</NavLink>
+      <NavLink to="/">
+        <FcHome
+          style={{ marginTop: 0, marginBottom: 4, width: 20, height: 20 }}
+        />
+      </NavLink>
       <StyledFormTitle>Log In</StyledFormTitle>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
         <StyledForm autoComplete="off">
           <StyledLabel htmlFor="email">Email</StyledLabel>
           <StyledField placeholder="Enter email" type="text" name="email" />
-          <ErrorMessage name='email'/>
+          <ErrorMessage name="email" />
           <StyledLabel htmlFor="password">Password</StyledLabel>
-          <ErrorMessage name='password'/>
+          <ErrorMessage name="password" />
           <StyledField
             placeholder="Enter password"
             type="password"
@@ -91,6 +108,7 @@ const LoginForm = () => {
           <a href={`${REACT_APP_API_URL}/auth/google`}>Login with Google</a>
         </StyledForm>
       </Formik>
+      <ToastContainer />
     </Container>
   );
 };

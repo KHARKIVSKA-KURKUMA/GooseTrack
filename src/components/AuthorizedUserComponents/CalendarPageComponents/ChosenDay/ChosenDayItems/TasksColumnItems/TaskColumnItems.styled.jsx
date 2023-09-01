@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as Arrow } from '../../../../../../img/taskToolbarArrow.svg';
+import Menu from '@mui/material/Menu/Menu';
 
 const AddTaskButton = styled.button`
   display: flex;
@@ -112,6 +113,25 @@ const Priority = styled.p`
 `;
 /* -------------------------------------------------------------------------- */
 /* ------------------------------- TaskToolbar ------------------------------ */
+const MenuStyled = styled(Menu)`
+  #moveList {
+    border-radius: 8px;
+    width: 150px;
+    padding: 0;
+  }
+  #moveItem {
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #343434;
+  }
+  #moveItem:hover {
+    background-color: rgba(227, 243, 255, 5);
+  }
+`;
 const TaskToolbarContainer = styled.div`
   display: flex;
   gap: 10px;
@@ -153,4 +173,5 @@ export {
   GroupBtn,
   GroupList,
   StyledArrow,
+  MenuStyled,
 };
