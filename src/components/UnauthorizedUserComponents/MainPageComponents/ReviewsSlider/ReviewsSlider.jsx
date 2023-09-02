@@ -78,6 +78,13 @@ const ReviewsSlider = () => {
 
   const reviews = data.feedback || [];
 
+  console.log(
+    'rewiews.map(review=>{}) :>> ',
+    reviews.map(review => {
+      console.log('review.owner :>> ', review.owner);
+    })
+  );
+
   return (
     <Container>
       {reviews.length > 0 ? (
@@ -146,7 +153,7 @@ const ReviewsSlider = () => {
                         <UserAvatar src={userAvatar} alt="UserAvatar" />
                       )}
                       <div>
-                        {review.owner === null || review.owner.length === 0 ? (
+                        {review.owner === null || review.owner === undefined ? (
                           'USER'
                         ) : (
                           <UserName>{review.owner.name}</UserName>
