@@ -17,8 +17,9 @@ import { NavLink } from 'react-router-dom';
 /* eslint-disable */
 import { useDispatch, useSelector } from 'react-redux';
 import {  selectAccessToken, selectorError, selectorIsLogin, selectorToken } from 'store/auth/authSelectors';
-import { login, refreshUser, setAuthHeader } from 'store/auth/authOperations';
-import { useEffect } from 'react';
+import { login } from 'store/auth/authOperations';
+import { useEffect, useState } from 'react';
+import VisibleButton from 'components/UnauthorizedUserComponents/VisibleButton/VisibleButton';
 // import { useEffect } from 'react';
 
 const initialValues = {
@@ -28,9 +29,10 @@ const initialValues = {
 
 
 
-const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
+// const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
 
 const LoginForm = () => {
+  const [visiblePassword, setVisiblePassword] = useState(false)
   const errorMsg = useSelector(selectorError);
   const dispatch = useDispatch();
 
@@ -66,8 +68,9 @@ const LoginForm = () => {
   });
 
   const handleSubmit =  (values, actions) => {
+    dispatch(login(values));
     if (!errorMsg?.message) {
-      dispatch(login(values));
+      return
     }
 
     console.log(errorMsg.message);
@@ -76,6 +79,12 @@ const LoginForm = () => {
     });
         // actions.resetForm();
   };
+
+
+  const hendleVisible = () => {
+    setVisiblePassword(prev => !prev)
+  }
+
   return (
     <Container>
       <NavLink to="/">
@@ -94,19 +103,20 @@ const LoginForm = () => {
           <StyledField placeholder="Enter email" type="text" name="email" />
           <ErrorMessage name="email" />
           <StyledLabel htmlFor="password">Password</StyledLabel>
-          <ErrorMessage name="password" />
           <StyledField
             placeholder="Enter password"
-            type="password"
+            type={visiblePassword ? 'text':'password'}
             name="password"
           />
-
+          <ErrorMessage name="password" />
+          {/* <VisibleButton hendleVisible={hendleVisible} isVisible={visiblePassword} /> */}
           <StyledBtn type="submit">
             <StyledTextBtn>Log in</StyledTextBtn>
             <StyledFiLogIn />
           </StyledBtn>
-          <a href={`${REACT_APP_API_URL}/auth/google`}>Login with Google</a>
+          {/* <a href={`${REACT_APP_API_URL}/auth/google`}>Login with Google</a> */}
         </StyledForm>
+        <VisibleButton/>
       </Formik>
       <ToastContainer />
     </Container>

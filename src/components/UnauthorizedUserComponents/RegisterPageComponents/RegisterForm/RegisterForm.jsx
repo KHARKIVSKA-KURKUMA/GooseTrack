@@ -20,6 +20,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from 'store/auth/authOperations';
 import { selectorError } from 'store/auth/authSelectors';
+import VisibleButton from 'components/UnauthorizedUserComponents/VisibleButton/VisibleButton';
 
 const RegisterForm = () => {
   
@@ -31,7 +32,7 @@ const RegisterForm = () => {
     password: '',
   };
 
-  const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
+  // const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
 
   const validationSchema = yup.object().shape({
     name: yup
@@ -65,9 +66,10 @@ const RegisterForm = () => {
     // console.log(values);
     // console.log(actions);
 
+    await dispatch(register(values))
     
     if (!errorMsg?.message) {
-      await dispatch(register(values))
+    return
     }
     console.log(errorMsg.message);
     toast.warn(`${errorMsg.message}`, {
@@ -75,6 +77,8 @@ const RegisterForm = () => {
     });
     // actions.resetForm();
   };
+
+  
 
   return (
     <Container>
@@ -100,12 +104,13 @@ const RegisterForm = () => {
             type="password"
             name="password"
           />
+          <VisibleButton />
           <ErrorMessage name='password'/>
           <StyledBtn type="submit">
             <StyledTextBtn>Sign Up</StyledTextBtn>
             <StyledFiLogIn />
           </StyledBtn>
-          <a href={`${REACT_APP_API_URL}/auth/google`}>Login with Google</a>
+          {/* <a href={`${REACT_APP_API_URL}/auth/google`}>Login with Google</a> */}
         </StyledForm>
       </Formik>
       <ToastContainer />
