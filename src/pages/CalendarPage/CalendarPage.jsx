@@ -47,7 +47,7 @@ const CalendarPage = () => {
       </div>
 
       <ChosenMonth selectedDate={selectedDate} />
-      <ChosenDay />
+      {/* <ChosenDay /> */}
     </PageLayout>
   );
 };
