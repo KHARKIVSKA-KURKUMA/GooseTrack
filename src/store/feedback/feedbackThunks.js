@@ -17,7 +17,7 @@ export const addReview = createAsyncThunk(
   'reviews/addReview',
   async ({ rating, text }, thunkAPI) => {
     try {
-      const { data } = await instance.post('/reviews', {
+      const { data } = await instance.post('api/reviews', {
         rating,
         text,
       });
@@ -32,7 +32,7 @@ export const deleteReview = createAsyncThunk(
   'reviews/deleteReview',
   async (review, thunkAPI) => {
     try {
-      const { data } = await instance.delete(`/review/${review.id}`);
+      const { data } = await instance.delete(`api/review/${review.id}`);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -44,7 +44,7 @@ export const editReview = createAsyncThunk(
   'review/editReview',
   async (review, thunkAPI) => {
     try {
-      const { data } = await instance.patch(`/review/${review.id}`, review);
+      const { data } = await instance.patch(`api/review/${review.id}`, review);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
