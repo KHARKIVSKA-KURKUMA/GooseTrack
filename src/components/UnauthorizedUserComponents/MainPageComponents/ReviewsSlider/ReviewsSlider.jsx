@@ -78,13 +78,6 @@ const ReviewsSlider = () => {
 
   const reviews = data.feedback || [];
 
-  console.log(
-    'rewiews.map(review=>{}) :>> ',
-    reviews.map(review => {
-      console.log('review.owner :>> ', review.owner);
-    })
-  );
-
   return (
     <Container>
       {reviews.length > 0 ? (
