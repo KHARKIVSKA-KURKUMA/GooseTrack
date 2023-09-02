@@ -99,6 +99,19 @@ export const NavLinkStyled = styled(NavLink)`
       stroke: #007bff;
     }
   }
+  &.active {
+    color: #007bff;
+    background-color: #e3f3ff;
+    &:last-child {
+      path {
+        fill: #007bff;
+        stroke: none;
+      }
+    }
+    & path {
+      stroke: #007bff;
+    }
+  }
   @media (min-width: 768px) {
     padding: 18px 0 18px 20px;
     gap: 10px;
