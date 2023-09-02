@@ -1,7 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
-import { register, login, logout, current } from './authOperations';
+import {
+  register,
+  login,
+  logout,
+  current,
+} from './authOperations';
 
 // // import { register, login, logout, current } from './helpers/instance';
 
@@ -11,6 +16,7 @@ const initialState = {
   token: {accessToken:'', refreshToken:''},
   loading: false,
   error: null,
+  verify: false
 };
 
 // const authSlice = createSlice({
@@ -53,15 +59,17 @@ const authSlice = createSlice({
     [register.fulfilled]: (store, { payload }) => {
       store.loading = false;
       store.user = payload.user;
-      store.token = {
-        accessToken: payload.accessToken,
-        refreshToken: payload.refreshToken,
-      };
-      store.isLogin = true;
+      // store.token = {
+      //   accessToken: payload.accessToken,
+      //   refreshToken: payload.refreshToken,
+      // };
+      // store.isLogin = false;
+      store.error = null;
     },
     [register.rejected]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
+      console.log(payload);
     },
     [login.pending]: store => {
       store.loading = true;
@@ -72,6 +80,7 @@ const authSlice = createSlice({
       store.user = payload.user;
       store.token = payload.token;
       store.isLogin = true;
+      store.error = null;
     },
     [login.rejected]: (store, { payload }) => {
       store.loading = false;
@@ -84,8 +93,9 @@ const authSlice = createSlice({
     [logout.fulfilled]: store => {
       store.loading = false;
       store.user = {};
-      store.token = '';
+      store.token = null;
       store.isLogin = false;
+      store.error = null;
     },
     [logout.rejected]: (store, { payload }) => {
       store.loading = false;
@@ -101,6 +111,7 @@ const authSlice = createSlice({
       store.token = payload.token;
       // stor.user = payload;
       store.isLogin = true;
+      store.error = null;
     },
     [current.rejected]: (store, { payload }) => {
       store.loading = false;
