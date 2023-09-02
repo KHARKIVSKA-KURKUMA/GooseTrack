@@ -15,11 +15,27 @@ const ToggleButton = styled.button`
   padding: 0;
   margin-left: 24px;
 `;
+const Sun = styled(RiSunLine)`
+  width: 24px;
+  height: 24px;
+  @media (min-width: 768px) {
+    width: 32px;
+    height: 32px;
+  }
+`;
+const Moon = styled(RiMoonLine)`
+  width: 24px;
+  height: 24px;
+  @media (min-width: 768px) {
+    width: 32px;
+    height: 32px;
+  }
+`;
 
 const ThemeToggler = ({ theme, toggleTheme }) => {
   return (
     <ToggleButton type="button" onClick={toggleTheme}>
-      {theme === 'dark' ? <RiSunLine /> : <RiMoonLine />}
+      {theme === 'dark' ? <Sun /> : <Moon />}
     </ToggleButton>
   );
 };

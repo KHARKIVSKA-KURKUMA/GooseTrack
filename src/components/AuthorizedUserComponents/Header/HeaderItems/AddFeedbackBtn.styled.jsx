@@ -5,15 +5,14 @@ const Button = styled.button`
   padding-bottom: 8px;
   padding-left: 20px;
   padding-right: 20px;
-  border:none;
-  border-radius:14px;
+  border: none;
+  border-radius: 10px;
   font-family: Inter;
   font-size: 12px;
   line-height: 1.33;
   font-weight: 600;
   color: #ffffff;
   background-color: #3e85f3;
-
   @media (min-width: 768px) {
     padding-top: 12px;
     padding-bottom: 12px;
