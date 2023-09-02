@@ -1,7 +1,7 @@
 import { ErrorMessage, Formik } from 'formik';
 import * as yup from 'yup';
 import { FcHome } from 'react-icons/fc';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import {
   Container,
@@ -16,9 +16,14 @@ import {
 import { NavLink } from 'react-router-dom';
 /* eslint-disable */
 import { useDispatch, useSelector } from 'react-redux';
-import {  selectAccessToken, selectorError, selectorIsLogin, selectorToken } from 'store/auth/authSelectors';
+import {
+  selectAccessToken,
+  selectorError,
+  selectorIsLogin,
+  selectorToken,
+} from 'store/auth/authSelectors';
 import { login } from 'store/auth/authOperations';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import VisibleButton from 'components/UnauthorizedUserComponents/VisibleButton/VisibleButton';
 // import { useEffect } from 'react';
 
@@ -27,12 +32,10 @@ const initialValues = {
   password: '',
 };
 
-
-
 // const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
 
 const LoginForm = () => {
-  const [visiblePassword, setVisiblePassword] = useState(false)
+  const [visiblePassword, setVisiblePassword] = useState(false);
   const errorMsg = useSelector(selectorError);
   const dispatch = useDispatch();
 
@@ -41,49 +44,36 @@ const LoginForm = () => {
   // useEffect(() => {
   //   dispatch(refreshUser());
   // }, [token, dispatch]);
-// const emailRegexp = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/";
+  // const emailRegexp = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/";
 
   const validationSchema = yup.object().shape({
     email: yup
       .string()
-      .email(
-         'Email must be valid email'
-        )
-      .required(
-         'Email is a required field'
-      ),
+      .email('Email must be valid email')
+      .required('Email is a required field'),
     password: yup
       .string()
-      .min(
-        8,
-         'Password must be at least 8 characters'
-      )
-      .max(
-        16,
-           'Password must be at most 16 characters'
-      )
-      .required(
-           'Password is a required field'
-      ),
+      .min(8, 'Password must be at least 8 characters')
+      .max(16, 'Password must be at most 16 characters')
+      .required('Password is a required field'),
   });
 
-  const handleSubmit =  (values, actions) => {
+  const handleSubmit = (values, actions) => {
     dispatch(login(values));
     if (!errorMsg?.message) {
-      return
+      return;
     }
 
     console.log(errorMsg.message);
     toast.warn(`${errorMsg.message}`, {
-      position: toast.POSITION.BOTTOM_LEFT
+      position: toast.POSITION.BOTTOM_LEFT,
     });
-        // actions.resetForm();
+    // actions.resetForm();
   };
 
-
   const hendleVisible = () => {
-    setVisiblePassword(prev => !prev)
-  }
+    setVisiblePassword(prev => !prev);
+  };
 
   return (
     <Container>
@@ -105,20 +95,19 @@ const LoginForm = () => {
           <StyledLabel htmlFor="password">Password</StyledLabel>
           <StyledField
             placeholder="Enter password"
-            type={visiblePassword ? 'text':'password'}
+            type={visiblePassword ? 'text' : 'password'}
             name="password"
           />
           <ErrorMessage name="password" />
           {/* <VisibleButton hendleVisible={hendleVisible} isVisible={visiblePassword} /> */}
+          <VisibleButton />
           <StyledBtn type="submit">
             <StyledTextBtn>Log in</StyledTextBtn>
             <StyledFiLogIn />
           </StyledBtn>
           {/* <a href={`${REACT_APP_API_URL}/auth/google`}>Login with Google</a> */}
         </StyledForm>
-        <VisibleButton/>
       </Formik>
-      <ToastContainer />
     </Container>
   );
 };
