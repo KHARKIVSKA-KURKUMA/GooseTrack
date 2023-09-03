@@ -25,6 +25,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useDispatch } from 'react-redux';
 import { logout } from 'store/auth/authOperations';
 
+
 const Sidebar = ({ showBurgerMenu, handleSidebarClick }) => {
   const isMobile = useMediaQuery('(min-width: 1440px)');
   const dispatch = useDispatch();

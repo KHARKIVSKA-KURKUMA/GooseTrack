@@ -14,6 +14,7 @@ import { persistedAuthReducer } from './auth/authSlice';
 import { tasksReducer } from './tasks/tasksSlice';
 import { feedbackReducer } from './feedback/feedbackSlice';
 import { statisticsReducer } from './statistics/statisticsSlice';
+import { themeReducer } from '../components/AuthorizedUserComponents/Header/HeaderItems/Theme/themeSlice';
 
 const reducer = {
   feedback: feedbackReducer,
@@ -21,6 +22,7 @@ const reducer = {
   tasks: tasksReducer,
   user: userReducer,
   statistics: statisticsReducer,
+  theme: themeReducer,
 };
 
 export const store = configureStore({

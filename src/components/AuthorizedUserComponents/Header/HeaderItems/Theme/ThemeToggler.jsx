@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { RiSunLine, RiMoonLine } from 'react-icons/ri';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleTheme } from './themeSlice';
 
 const ToggleButton = styled.button`
   display: flex;
@@ -32,12 +34,18 @@ const Moon = styled(RiMoonLine)`
   }
 `;
 
-const ThemeToggler = ({ theme, toggleTheme }) => {
+const ThemeToggler = () => {
+  const theme = useSelector(state => state.theme); 
+  const dispatch = useDispatch();
+
+  const handleThemeToggle = () => {
+    dispatch(toggleTheme());
+  };
+
   return (
-    <ToggleButton type="button" onClick={toggleTheme}>
+    <ToggleButton type="button" onClick={handleThemeToggle}>
       {theme === 'dark' ? <Sun /> : <Moon />}
     </ToggleButton>
   );
 };
-
 export default ThemeToggler;
