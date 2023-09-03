@@ -1,18 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addUserData } from './userSlice';
-import axios from 'axios';
 import instance from 'helpers/instance';
-
-const patch = axios.create({
-  baseURL: `https://goosetrack-tj84.onrender.com`,
-});
-
-const setAuthHeader = token => {
-  if (token) {
-    return (patch.defaults.headers.common.authorization = `Bearer ${token}`);
-  }
-  patch.defaults.headers.common.authorization = '';
-};
 
 export const fetchCurrentUser = createAsyncThunk(
   'getCurrentUser',
