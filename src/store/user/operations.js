@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addUserData } from './userSlice';
 import axios from 'axios';
+
 const patch = axios.create({
   baseURL: `https://goosetrack-tj84.onrender.com`
 });
-
 
 const setAuthHeader = token => {
   if (token) {
@@ -17,9 +17,11 @@ const setAuthHeader = token => {
 export const fetchCurrentUser = createAsyncThunk(
   'getCurrentUser',
   async (_, thunkAPI) => {
-    // const accessToken = localStorage.getItem('accessToken');
+
+    const accessToken = localStorage.getItem('accessToken');
+    console.log(accessToken)
     try {
-      setAuthHeader("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZjEwMDdmOGYwNmI3OGJkNDIwN2MzZiIsImlhdCI6MTY5MzUxNzMzNiwiZXhwIjoxNjk0MTIyMTM2fQ.TzJ5vt6VQj3fK5BkFJPK4ioFU-IXSsoLo1NZwzPZsE4");
+      setAuthHeader(accessToken);
       const response = await patch.get('/auth/current');
       await thunkAPI.dispatch(addUserData(response.data));
     } catch (error) {
