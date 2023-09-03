@@ -61,6 +61,7 @@ export const login = async data => {
   setToken(result.accessToken);
   // console.log('acessTOKEN>>>>>>', result.accessToken);
   localStorage.setItem('refreshToken', result.refreshToken);
+  localStorage.setItem('accessToken', result.accessToken);
 
   return result;
 };

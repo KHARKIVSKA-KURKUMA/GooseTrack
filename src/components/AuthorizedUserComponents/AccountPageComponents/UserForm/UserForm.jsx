@@ -22,6 +22,7 @@ import {
 } from './UserForm.styled';
 
 import avatar from 'img/avatar.png';
+import { selectorTok } from 'store/auth/authSelectors';
 
 
 
@@ -38,7 +39,7 @@ let currentDate = `${day}-0${month}-${year}`;
 const UserForm = () => {
 
 
-  const [imagePreview, setImagePreview] = useState(avatar);
+  const [imagePreview, setImagePreview] = useState( null);
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
@@ -52,7 +53,7 @@ const UserForm = () => {
   }, [dispatch]);
 
   
-
+  
 
   const handleImageChange = async e => {
     const selectedFile = e.target.files[0];
@@ -105,7 +106,8 @@ if(!isLoading){
         email,
         phone,
         skype,
-        avatarURL
+        avatarURL,
+     
       }}
       validationSchema={userSchema}
       onSubmit={handleSubmit}
@@ -118,8 +120,7 @@ if(!isLoading){
             m="0 auto"
             width="max-content"
           >
-            <WrapImg>
-              <Img src={avatarURL || imagePreview} alt="Avatar Preview" />
+            <WrapImg> {imagePreview ?(<Img src={imagePreview} alt="Avatar Preview" />) : (<Img src={avatarURL} alt="Avatar" />)}
             </WrapImg>
 
             <InputImg
