@@ -1,31 +1,25 @@
-import { ErrorMessage, Formik } from 'formik';
+import {  Formik } from 'formik';
 import * as yup from 'yup';
 import { FcHome } from 'react-icons/fc';
-import { toast } from 'react-toastify';
 
 import {
   Container,
   StyledBtn,
   StyledFiLogIn,
-  StyledField,
   StyledForm,
   StyledFormTitle,
-  StyledLabel,
   StyledTextBtn,
 } from './LoginForm.styled';
 import { NavLink } from 'react-router-dom';
 /* eslint-disable */
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  selectAccessToken,
   selectorError,
-  selectorIsLogin,
-  selectorToken,
 } from 'store/auth/authSelectors';
 import { login } from 'store/auth/authOperations';
 import { useState } from 'react';
-import VisibleButton from 'components/UnauthorizedUserComponents/VisibleButton/VisibleButton';
-// import { useEffect } from 'react';
+import { AuthField } from '../AuthField/AuthField';
+
 
 const initialValues = {
   email: '',
@@ -35,16 +29,9 @@ const initialValues = {
 // const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
 
 const LoginForm = () => {
-  const [visiblePassword, setVisiblePassword] = useState(false);
+  
   const errorMsg = useSelector(selectorError);
   const dispatch = useDispatch();
-
-  // const token = useSelector(selectAccessToken);
-  // setAuthHeader(token);
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [token, dispatch]);
-  // const emailRegexp = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/";
 
   const validationSchema = yup.object().shape({
     email: yup
@@ -58,21 +45,11 @@ const LoginForm = () => {
       .required('Password is a required field'),
   });
 
-  const handleSubmit = (values, actions) => {
-    dispatch(login(values));
+  const handleSubmit = async (values, actions) => {
+    await dispatch(login(values));
     if (!errorMsg?.message) {
       return;
     }
-
-    console.log(errorMsg.message);
-    toast.warn(`${errorMsg.message}`, {
-      position: toast.POSITION.BOTTOM_LEFT,
-    });
-    // actions.resetForm();
-  };
-
-  const hendleVisible = () => {
-    setVisiblePassword(prev => !prev);
   };
 
   return (
@@ -88,25 +65,30 @@ const LoginForm = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        <StyledForm autoComplete="off">
-          <StyledLabel htmlFor="email">Email</StyledLabel>
-          <StyledField placeholder="Enter email" type="text" name="email" />
-          <ErrorMessage name="email" />
-          <StyledLabel htmlFor="password">Password</StyledLabel>
-          <StyledField
-            placeholder="Enter password"
-            type={visiblePassword ? 'text' : 'password'}
-            name="password"
-          />
-          <ErrorMessage name="password" />
-          {/* <VisibleButton hendleVisible={hendleVisible} isVisible={visiblePassword} /> */}
-          <VisibleButton />
-          <StyledBtn type="submit">
-            <StyledTextBtn>Log in</StyledTextBtn>
-            <StyledFiLogIn />
-          </StyledBtn>
-          {/* <a href={`${REACT_APP_API_URL}/auth/google`}>Login with Google</a> */}
-        </StyledForm>
+        {({ values, dirty, touched, errors }) => (
+          <StyledForm autoComplete="off">
+            <AuthField
+              title="Email"
+              type="email"
+              name="email"
+              touched={touched.email}
+              errors={errors.email}
+              placeholder="Enter email"
+            />
+            <AuthField
+              title="Password"
+              type="password"
+              name="password"
+              touched={touched.password}
+              errors={errors.password}
+              placeholder="Enter password"
+            />
+            <StyledBtn type="submit">
+              <StyledTextBtn>Log in</StyledTextBtn>
+              <StyledFiLogIn />
+            </StyledBtn>
+          </StyledForm>
+        )}
       </Formik>
     </Container>
   );

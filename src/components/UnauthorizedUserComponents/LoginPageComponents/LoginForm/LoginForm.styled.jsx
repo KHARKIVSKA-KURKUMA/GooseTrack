@@ -32,7 +32,7 @@ box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 5px, rgba(0, 0, 0, 0.2) 0px 4px 6px;
 const StyledForm = styled(Form)`
 	width: 100%;
 	padding-top:32px;
-	
+	position:relative;
 `;
 
 const StyledField = styled(Field)`
@@ -46,7 +46,6 @@ const StyledField = styled(Field)`
 	border: 1px solid rgba(220, 227, 229, 0.60);
 	background: var(--primary-background-color);
 	line-height: 128%;
-	margin-top: 8px;
 	&::placeholder{
 		color:#DCE3E5
 	}
@@ -57,6 +56,7 @@ const StyledField = styled(Field)`
 `;
 
 const StyledLabel = styled.label`
+	position:relative;
 	display:block;
 	color: #111;
 	font-family: Inter;
@@ -92,9 +92,9 @@ const StyledBtn = styled.button`
 	color: #fff;
 
 	margin-top: 32px;
-
+	transition: background-color 0.3s; 	
 	&:hover, &:focus {
-		background: var(--btn-hover-background-color);
+		background-color: var(--btn-hover-background-color);
 	}
 	
 `
@@ -118,6 +118,12 @@ const StyledIconError = styled(BiErrorCircle)`
 	
 `;
 
-const StyledError = styled(ErrorMessage)
+const StyledError = styled.span`
+	position:fixed;
+`
+
+const StyledBlockInput = styled.div`
+position:relative;
+`
 
 export { Container, StyledField, StyledForm, StyledFormTitle, StyledLabel, StyledBtn, StyledTextBtn,StyledFiLogIn, StyledIconError, StyledError };

@@ -1,29 +1,36 @@
-import { ErrorMessage, Formik } from 'formik';
-import { toast, ToastContainer } from 'react-toastify';
+import {  Formik } from 'formik';
+import { toast } from 'react-toastify';
 import { FcHome } from 'react-icons/fc';
 import * as yup from 'yup';
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 
+import RegisterSuccessModal from '../RegisterSuccessModal/RegisterSuccessModal'
 // import { Container } from './RegisterForm.styled';
 
 import {
   Container,
   StyledBtn,
   StyledFiLogIn,
-  StyledField,
   StyledForm,
   StyledFormTitle,
-  StyledLabel,
   StyledTextBtn,
 } from './../../LoginPageComponents/LoginForm/LoginForm.styled';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from 'store/auth/authOperations';
 import { selectorError } from 'store/auth/authSelectors';
-import VisibleButton from 'components/UnauthorizedUserComponents/VisibleButton/VisibleButton';
+import { AuthField } from 'components/UnauthorizedUserComponents/LoginPageComponents/AuthField/AuthField';
 
 const RegisterForm = () => {
+
+  const [isModalRegister, setIsModalRegister] = useState(false)
   
+
+  const toggleModalRegister = () => {
+    setIsModalRegister((prev)=> !prev)
+  }
+
   const dispatch = useDispatch();
   const errorMsg = useSelector(selectorError);
   const initialValues = {
@@ -63,25 +70,23 @@ const RegisterForm = () => {
       ),
   });
   const handleSubmit = async (values, actions) => {
-    // console.log(values);
-    // console.log(actions);
+ 
 
-    await dispatch(register(values))
-    
-    if (!errorMsg?.message) {
+    await dispatch(register(values));
+    const error = await errorMsg.message
+    if (!error) {
+      setIsModalRegister(!isModalRegister)
+      toast.success('okay')
     return
     }
-    console.log(errorMsg.message);
-    toast.warn(`${errorMsg.message}`, {
-      position: toast.POSITION.BOTTOM_LEFT
-    });
-    // actions.resetForm();
+    
+    actions.resetForm();
   };
 
-  
 
   return (
     <Container>
+     
       <NavLink to="/">
         <FcHome style={{ marginTop: 0, marginBottom: 4, width: 20, height: 20 }} />
       </NavLink>
@@ -91,29 +96,45 @@ const RegisterForm = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        <StyledForm autoComplete="off">
-          <StyledLabel htmlFor="name">Name</StyledLabel>
-          <StyledField placeholder="Enter your" type="text" name="name" />
-          <ErrorMessage name='name'/>
-          <StyledLabel htmlFor="email">Email</StyledLabel>
-          <StyledField placeholder="Enter email" type="text" name="email" />
-          <ErrorMessage name='email'/>
-          <StyledLabel htmlFor="password">Password</StyledLabel>
-          <StyledField
-            placeholder="Enter password"
-            type="password"
-            name="password"
+        {({ values, dirty, touched, errors }) => (
+          <StyledForm autoComplete="off">
+          <AuthField
+                title="Name"
+                type="text"
+                name="name"
+                touched={touched.name}
+              errors={errors.name}
+              placeholder={'Enter your name'}
           />
-          <VisibleButton />
-          <ErrorMessage name='password'/>
-          <StyledBtn type="submit">
+          <AuthField
+                title="Email"
+                type="email"
+                name="email"
+                touched={touched.email}
+                errors={errors.email}
+                placeholder="Enter email"
+          />
+          <AuthField
+                title="Password"
+                type="password"
+                name="password"
+                touched={touched.password}
+                errors={errors.password}
+                placeholder="Enter password"
+          />
+
+         
+         
+          <StyledBtn disabled={!dirty} type="submit">
             <StyledTextBtn>Sign Up</StyledTextBtn>
             <StyledFiLogIn />
           </StyledBtn>
-          {/* <a href={`${REACT_APP_API_URL}/auth/google`}>Login with Google</a> */}
+         
         </StyledForm>
+        )}
       </Formik>
-      <ToastContainer />
+      
+      <RegisterSuccessModal isModalRegister={isModalRegister} toggleModalRegister={ toggleModalRegister } />
     </Container>
   );
 };

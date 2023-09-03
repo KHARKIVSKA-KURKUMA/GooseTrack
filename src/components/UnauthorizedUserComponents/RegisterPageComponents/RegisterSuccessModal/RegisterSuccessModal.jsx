@@ -1,59 +1,44 @@
-import React, { useEffect } from 'react';
-import { createPortal } from 'react-dom';
-import { CloseIcon } from 'components/Modal/Modal.styled';
-import Icons from 'images/sprite.svg';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import { ModalWindowStyled } from './RegisterSuccessModal.styled';
 
-import { ResendModalOverlay, ResendEmailWrapper, Title, Text, ResendButton } from './RegisterSuccessModal.styled';
-
-const modalRoot = document.getElementById('modal-root');
-
-const RegistrationModal = ({ children, onCloseModal}) => {
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-
-    const onKeyDown = e => {
-      if (e.code === 'Escape') {
-        onCloseModal();
-      }
-    };
-
-    window.addEventListener('keydown', onKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', onKeyDown);
-      document.body.style.overflow = 'auto';
-    };
-  }, [onCloseModal]);
-
-  const handleOverlayClick = ({ currentTarget, target }) => {
-    if (currentTarget !== target) {
-      return;
-    }
-    onCloseModal();
-  };
-
-  return createPortal(
-    <ResendModalOverlay
-      onClick={handleOverlayClick}
-    >
-      <ResendEmailWrapper>
-        <CloseIcon onClick={() => onCloseModal()}>
-          <use href={`${Icons}#icon-close`}></use>
-        </CloseIcon>
-        {children}
-      </ResendEmailWrapper>
-    </ResendModalOverlay>,
-    modalRoot
-  );
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'var(--primary-background-color)',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
 };
 
-const RegistrationSuccessModal = ({ onResendEmail, onCloseModal, email }) => {
-  return (
-    <RegistrationModal onCloseModal={onCloseModal}>
-      <Title>Registration Successful</Title>
-      <Text>Verification sent to your e-mail</Text>
-    </RegistrationModal>
-  );
-};
+ const RegisterSuccessModal =({isModalRegister, toggleModalRegister}) => {
+  
 
-export default RegistrationSuccessModal;
+  return (isModalRegister && <ModalWindowStyled>
+      
+      <Modal
+        open={isModalRegister}
+        onClose={toggleModalRegister}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Зайдіть на пошту і верефікуйтесь
+          </Typography>
+        </Box>
+      </Modal>
+    </ModalWindowStyled>
+    
+  );
+}
+
+export default RegisterSuccessModal;
