@@ -22,17 +22,8 @@ export const register = createAsyncThunk(
         }
       );
       return result;
-    } catch ({ response }) {
-      console.log(response);
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      toast.warn(error.message, {
-        position: toast.POSITION.BOTTOM_LEFT,
-      });
-      return rejectWithValue(error);
+    } catch (error) {
+      return rejectWithValue({ status: error.status, message: error.message });
     }
   }
 );
@@ -42,17 +33,10 @@ export const login = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.login(data);
+
       return result;
-    } catch ({ response }) {
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      toast.warn(error.message, {
-        position: toast.POSITION.BOTTOM_LEFT,
-      });
-      return rejectWithValue(error);
+    } catch (error) {
+      return rejectWithValue({ status: error.status, message: error.message });
     }
   }
 );
@@ -62,16 +46,9 @@ export const logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const result = await api.logout();
-      console.log('logout>>>>', result);
-      return result;
-    } catch ({ response }) {
-      console.log(response);
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      return rejectWithValue(error);
+      return result.data;
+    } catch (error) {
+      return rejectWithValue({ status: error.status, message: error.message });
     }
   }
 );
@@ -83,14 +60,8 @@ export const current = createAsyncThunk(
       const { auth } = getState();
       const result = await api.getCurrent(auth.token.accessToken);
       return result;
-    } catch ({ response }) {
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      return rejectWithValue(error);
+    } catch (error) {
+      return rejectWithValue({ status: error.status, message: error.message });
     }
   }
 );
-
