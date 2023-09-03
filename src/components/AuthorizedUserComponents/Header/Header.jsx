@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, HeaderTitleContainer, HeaderTitle } from './Header.styled';
 import { AddFeedbackBtn, ThemeToggler, UserInfo } from './HeaderItems';
 import { useLocation } from 'react-router-dom';
@@ -11,9 +10,7 @@ const Header = ({
   handleBurgerToggleClick,
 }) => {
   const location = useLocation();
-
   let pageTitle = 'User Profile';
-
   if (location.pathname === '/calendar') {
     pageTitle = 'Calendar';
   } else if (location.pathname === '/account') {

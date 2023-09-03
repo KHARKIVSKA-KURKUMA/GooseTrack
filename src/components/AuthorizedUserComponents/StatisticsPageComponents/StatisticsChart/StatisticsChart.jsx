@@ -1,11 +1,48 @@
 import { useEffect, useState } from 'react';
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { ChartContainer } from './StatisticsChart.styled';
+import {
+  calculatePercentages,
+  calculateTaskStatusCount,
+} from './statisticsHelpers';
 
-const data = [
-  { name: 'To Do', ByDay: 50, ByMonth: 50 },
-  { name: 'In Progress', ByDay: 100, ByMonth: 24 },
-  { name: 'Done', ByDay: 35, ByMonth: 24 },
+const tasks = [
+  {
+    category: 'done',
+    amount: 1,
+    data: [
+      {
+        _id: '64eb8bf4ec3cfd1d22c535f6',
+        title: 'My task 1',
+        start: '09:05',
+        end: '09:15',
+        priority: 'medium',
+        date: '2023-06-09',
+        category: 'done',
+        owner: '64eb8bf4ec3cfd1d22c59fb1',
+        createdAt: '2023-08-27T17:46:28.321Z',
+        updatedAt: '2023-08-30T16:07:28.466Z',
+      },
+    ],
+  },
+  {
+    category: 'in-progress',
+    amount: 2,
+    data: [
+      {
+        _id: '64eb8bf4ec3cfd1d22c535f6',
+        title: 'My task 1',
+        start: '09:05',
+        end: '09:15',
+        priority: 'medium',
+        date: '2023-06-09',
+        category: 'in-progress',
+        owner: '64eb8bf4ec3cfd1d22c59fb1',
+        createdAt: '2023-08-27T17:46:28.321Z',
+        updatedAt: '2023-08-30T16:07:28.466Z',
+      },
+    ],
+  },
 ];
 
 const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
@@ -26,13 +63,33 @@ const StatisticsChart = () => {
   const [chartWidth, setChartWidth] = useState(0);
   const [chartHeight, setChartHeight] = useState(0);
   const [chartBarSize, setChartBarSize] = useState(0);
+  const [taskStatusCountDay, taskStatusCountMonth] =
+    calculateTaskStatusCount(tasks);
+  const ByDay = calculatePercentages(taskStatusCountDay);
+  const ByMonth = calculatePercentages(taskStatusCountMonth);
+  const data = [
+    {
+      name: 'To Do',
+      ByDay: ByDay.todoPercentage,
+      ByMonth: ByMonth.todoPercentage,
+    },
+    {
+      name: 'In Progress',
+      ByDay: ByDay.inprogressPercentage,
+      ByMonth: ByMonth.inprogressPercentage,
+    },
+    {
+      name: 'Done',
+      ByDay: ByDay.donePercentage,
+      ByMonth: ByMonth.donePercentage,
+    },
+  ];
 
   useEffect(() => {
     const handleResize = () => {
       let newSize = 279;
       let newHeight = 328;
       let newBarSize = 22;
-
       if (window.innerWidth >= 1440) {
         newSize = 780;
         newHeight = 351;
@@ -42,16 +99,13 @@ const StatisticsChart = () => {
         newHeight = 328;
         newBarSize = 22;
       }
-
       setChartWidth(newSize);
       setChartHeight(newHeight);
       setChartBarSize(newBarSize);
     };
 
     window.addEventListener('resize', handleResize);
-
     handleResize();
-
     return () => {
       window.removeEventListener('resize', handleResize);
     };

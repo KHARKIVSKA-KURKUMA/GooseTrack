@@ -1,4 +1,3 @@
-import React from 'react';
 import goose1x from '../../../img/desktop/goose1x.png';
 import goose2x from '../../../img/desktop/goose1x.png';
 import goose3x from '../../../img/desktop/goose1x.png';
@@ -13,13 +12,13 @@ import {
   LogoTitle,
   StyledText,
   CloseButtonContainer,
+  CloseIcon,
 } from './SideBar.styled';
 import {
   MyAccountSVG,
   CalendarSVG,
   StatisticsSVG,
   LogoutSVG,
-  CloseIconSVG,
 } from '../SideBar/SideBarItems/SvgSideBar';
 import BurgerMenu from '../SideBar/SideBarItems/BurgerMenu/BurgerMenu';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -27,8 +26,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from 'store/auth/authOperations';
 
 const Sidebar = ({ showBurgerMenu, handleSidebarClick }) => {
-  const isMobile = useMediaQuery('(max-width: 768px)');
-
+  const isMobile = useMediaQuery('(min-width: 1440px)');
   const dispatch = useDispatch();
 
   return (
@@ -40,7 +38,6 @@ const Sidebar = ({ showBurgerMenu, handleSidebarClick }) => {
           alt="My App Logo"
           width="71"
           height="68"
-          style={{ maxWidth: 'none', maxHeight: 'none' }}
         />
         <LogoTitle>
           G<StyledText>oo</StyledText>seTrack
@@ -50,21 +47,20 @@ const Sidebar = ({ showBurgerMenu, handleSidebarClick }) => {
       <Nav>
         <NavLinkStyled to="/account">
           <MyAccountSVG />
-          <span style={{ marginLeft: '10px' }}>MyAccount</span>
+          <span>My account</span>
         </NavLinkStyled>
         <NavLinkStyled to="/calendar">
           <CalendarSVG />
-          <span style={{ marginLeft: '10px' }}>Calendar</span>
+          <span>Calendar</span>
         </NavLinkStyled>
         <NavLinkStyled to="/statistics">
           <StatisticsSVG />
-          <span style={{ marginLeft: '10px' }}>Statistics</span>
+          <span>Statistics</span>
         </NavLinkStyled>
       </Nav>
       <LogoutBtn
         onClick={() => {
           dispatch(logout());
-          console.log('click');
         }}
         type="button"
       >
@@ -72,14 +68,9 @@ const Sidebar = ({ showBurgerMenu, handleSidebarClick }) => {
         <LogoutSVG />
       </LogoutBtn>
       {showBurgerMenu && <BurgerMenu />}
-      {isMobile && (
+      {!isMobile && (
         <CloseButtonContainer onClick={handleSidebarClick}>
-          <CloseIconSVG
-            onClick={handleSidebarClick}
-            style={{
-              cursor: 'pointer',
-            }}
-          />
+          <CloseIcon />
         </CloseButtonContainer>
       )}
     </SidebarContainer>

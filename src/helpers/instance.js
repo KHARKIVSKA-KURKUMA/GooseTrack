@@ -15,6 +15,7 @@ const setToken = token => {
     return (instance.defaults.headers.common.authorization = `Bearer ${token}`);
   }
   instance.defaults.headers.common.authorization = '';
+  localStorage.setItem('refreshToken', '');
 };
 /*
 instance.interceptors.request.use(config => {
@@ -27,7 +28,11 @@ instance.interceptors.request.use(config => {
 instance.interceptors.response.use(
   response => response,
   async error => {
-    if (error.response.status === 401) {
+    if (
+      error.response.status === 401 &&
+      error.response.data.message === 'Not authorized'
+    ) {
+      console.log(error.response);
       // const auth = JSON.parse(localStorage.getItem('auth'));
       // const { token: refreshToken } = auth;
       const refreshToken = localStorage.getItem('refreshToken');
@@ -76,5 +81,7 @@ export const getCurrent = async token => {
     throw error;
   }
 };
+
+
 
 export default instance;

@@ -1,49 +1,77 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { ReactComponent as Close } from '../../../../src/img/close.svg';
 
 export const SidebarContainer = styled.div`
-  width: 289px;
+  display: ${({ showBurgerMenu }) => (showBurgerMenu ? 'flex' : 'none')};
+  flex-direction: column;
+  width: 225px;
   background: ${({ theme }) => theme.sidebarBackground};
   height: 100vh;
-  transform: translateY(-116px);
-  padding-top: 20px;
+  top: 0;
+  left: 0;
+  padding: 24px 20px;
+  position: fixed;
   z-index: 9999;
-
-  @media (max-width: 768px) {
-    display: ${({ showBurgerMenu }) => (showBurgerMenu ? 'flex' : 'none')};
-    transform: translateY(-33px);
-    flex-direction: column;
-    position: fixed;
+  @media (min-width: 768px) {
+    padding: 24px 32px;
     width: 289px;
-    height: 100vh;
-    top: 0;
-    left: 0;
+  }
+  @media (min-width: 1440px) {
+    padding: 32px 43px 24px 24px;
+  }
+`;
+export const CloseIcon = styled(Close)`
+  width: 24px;
+  height: 24px;
+  @media (min-width: 768px) {
+    width: 34px;
+    height: 34px;
   }
 `;
 export const CloseButtonContainer = styled.div`
   position: absolute;
-  top: 58px;
-  right: 32px;
+  right: 20px;
+  padding: 1px 0;
   z-index: 9999;
+  top: 28px;
+  @media (min-width: 768px) {
+    padding: 0;
+    right: 32px;
+    top: 36px;
+  }
 `;
 
 export const Logo = styled.div`
   display: flex;
   align-items: center;
-  padding: 16px;
   font-size: 24px;
-  font-weight: bold;
-  @media (max-width: 768px) {
-    width: 60px;
-    height: 58px;
-    padding: 50px 40px 50px 20px;
+  font-weight: 700;
+  img {
+    max-width: 36px;
+    max-height: 35px;
+  }
+  @media (min-width: 768px) {
+    img {
+      max-width: 60px;
+      max-height: 58px;
+    }
+  }
+  @media (min-width: 1440px) {
+    img {
+      max-width: 71px;
+      max-height: 68px;
+    }
   }
 `;
 
 export const Nav = styled.nav`
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  gap: 18px;
+  @media (min-width: 768px) {
+    gap: 16px;
+  }
 `;
 
 export const NavLinkStyled = styled(NavLink)`
@@ -51,15 +79,43 @@ export const NavLinkStyled = styled(NavLink)`
   align-items: center;
   color: ${({ theme }) => theme.textSidebar};
   text-decoration: none;
-  padding: 8px 5px;
+  font-family: Inter;
+  font-size: 14px;
+  gap: 8px;
+  font-weight: 600;
   transition: color 0.2s;
-  margin-left: 8px;
-
+  padding: 10px 0 10px 14px;
+  border-radius: 8px;
   &:hover {
     color: #007bff;
     background-color: #e3f3ff;
-    border-radius: 8px;
-    padding-left: 5px ;
+    &:last-child {
+      path {
+        fill: #007bff;
+        stroke: none;
+      }
+    }
+    & path {
+      stroke: #007bff;
+    }
+  }
+  &.active {
+    color: #007bff;
+    background-color: #e3f3ff;
+    &:last-child {
+      path {
+        fill: #007bff;
+        stroke: none;
+      }
+    }
+    & path {
+      stroke: #007bff;
+    }
+  }
+  @media (min-width: 768px) {
+    padding: 18px 0 18px 20px;
+    gap: 10px;
+    font-size: 16px;
   }
 `;
 
@@ -69,64 +125,65 @@ export const LogoutBtn = styled.button`
   background-color: #3e85f3;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 14px 28px;
   border-radius: 15px;
-  margin-top: 350px;
-  margin-bottom: 24px;
-  margin-right: 124px;
-  margin-left: 24px;
-  cursor: pointer;
-  margin-left: 24px;
-  @media (max-width: 768px) {
-    margin-top: 460px;
-    margin-bottom: 24px;
-    margin-right: 116px;
-    margin-left: 32px;
+  position: absolute;
+  bottom: 24px;
+  @media (min-width: 768px) {
   }
 `;
 
 export const LogoutTitle = styled.div`
   color: #fff;
   font-family: Inter;
-  font-size: 18px;
-  font-style: normal;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 24px;
+  line-height: 18px;
+  letter-spacing: -2%;
   margin-right: 11px;
 `;
 
 export const NavTitle = styled.h2`
   color: ${({ theme }) => theme.textSidebar};
   font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
+  font-size: 12px;
   font-weight: 600;
-  line-height: normal;
-  margin-left: 24px;
+  margin-top: 64px;
+  margin-bottom: 24px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+    margin-top: 50px;
+    margin-bottom: 32px;
+  }
+  @media (min-width: 1440px) {
+    margin: 32px 0;
+  }
 `;
 export const LogoTitle = styled.h2`
   color: #3e85f3;
   font-family: Inter;
-  font-size: 24px;
-  font-style: normal;
   font-weight: 700;
   line-height: 24px;
+  font-size: 16px;
   margin-left: 10px;
-  @media (max-width: 768px) {
-    font-size: 16px;
+  @media (min-width: 768px) {
+    margin-left: 6px;
+  }
+  @media (min-width: 1440px) {
+    font-size: 24px;
   }
 `;
 
 export const StyledText = styled.span`
   color: #3e85f3;
   font-family: Inter;
-  font-size: 24px;
+  font-size: 16px;
   font-style: italic;
   font-weight: 700;
   line-height: 24px;
   margin-right: 1px;
   margin-left: -2px;
-  @media (max-width: 768px) {
-    font-size: 16px;
+  @media (min-width: 1440px) {
+    font-size: 24px;
   }
 `;
