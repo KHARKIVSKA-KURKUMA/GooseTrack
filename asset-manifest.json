@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/GooseTrack/static/css/main.4eb97b86.css",
-    "main.js": "/GooseTrack/static/js/main.c4e77286.js",
+    "main.js": "/GooseTrack/static/js/main.0f3c640b.js",
     "static/media/feature-calendar3x.png": "/GooseTrack/static/media/feature-calendar3x.d307bf27b215d9b1d70e.png",
     "static/media/feature-calendar2x.png": "/GooseTrack/static/media/feature-calendar2x.271b4ebdb082126ddab5.png",
     "static/media/feature-sidebar3x.png": "/GooseTrack/static/media/feature-sidebar3x.48ad406aea3d5d1a4725.png",
@@ -9,10 +9,13 @@
     "static/media/feature-sidebar2x.png": "/GooseTrack/static/media/feature-sidebar2x.8e10065f318541b2d805.png",
     "static/media/feature-calendar1x.png": "/GooseTrack/static/media/feature-calendar1x.e28d4ecd0d09d8ab6c5e.png",
     "static/media/feature-all-in2x.png": "/GooseTrack/static/media/feature-all-in2x.2f661b91ac5da7bca33b.png",
+    "static/media/gooseError2x.png": "/GooseTrack/static/media/gooseError2x.77bdacde4f8b6039494a.png",
     "static/media/feature-sidebar1x.png": "/GooseTrack/static/media/feature-sidebar1x.7c6220d01c8de30ea0b1.png",
     "static/media/feature-all-in1x.png": "/GooseTrack/static/media/feature-all-in1x.0c6ae453400b8065298a.png",
     "static/media/goose3x.png": "/GooseTrack/static/media/goose3x.195e8701a4c8b77a3e21.png",
+    "static/media/gooseError3x.png": "/GooseTrack/static/media/gooseError3x.01e7ef9533f3606aa327.png",
     "static/media/registerGoose.png": "/GooseTrack/static/media/registerGoose.9b03a4223b72be57b9fd.png",
+    "static/media/gooseError1x.png": "/GooseTrack/static/media/gooseError1x.282a6b013274e43d2686.png",
     "static/media/loginGoose.png": "/GooseTrack/static/media/loginGoose.96907e1e39c5c080e766.png",
     "static/media/goose2x.png": "/GooseTrack/static/media/goose2x.1e0fce979b8978b99d17.png",
     "static/media/goose1x.png": "/GooseTrack/static/media/goose1x.3af22614ecbf8d6c8b03.png",
@@ -28,10 +31,10 @@
     "static/media/close.svg": "/GooseTrack/static/media/close.2fc579d8fb808014964ce85b8689713c.svg",
     "static/media/rightArrow.svg": "/GooseTrack/static/media/rightArrow.75d3f1a7c9d40920cac36be608c4ef43.svg",
     "main.4eb97b86.css.map": "/GooseTrack/static/css/main.4eb97b86.css.map",
-    "main.c4e77286.js.map": "/GooseTrack/static/js/main.c4e77286.js.map"
+    "main.0f3c640b.js.map": "/GooseTrack/static/js/main.0f3c640b.js.map"
   },
   "entrypoints": [
     "static/css/main.4eb97b86.css",
-    "static/js/main.c4e77286.js"
+    "static/js/main.0f3c640b.js"
   ]
 }
