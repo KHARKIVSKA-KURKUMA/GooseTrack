@@ -12,9 +12,8 @@ const CalendarPage = () => {
     <PageLayout>
       <MainLayout />
       <CalendarToolbar selected={selectedDate} setSelected={setSelectedDate} />
-      
+
       <ChosenMonth selectedDate={selectedDate} />
-      <ChosenDay />
     </PageLayout>
   );
 };
