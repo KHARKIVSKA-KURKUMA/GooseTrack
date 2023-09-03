@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import { PeriodPaginator, PeriodTypeSelect } from './CalendarToolbarItems';
 import { ToolbarWrapper } from './CalendarToolbar.styled';
 
-const CalendarToolbar = () => {
+const CalendarToolbar = ({ selected, setSelected }) => {
+  
   const [selectedPeriodType, setSelectedPeriodType] = useState('day');
-  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const selectedDate = selected;
+  const setSelectedDate = setSelected;
+
+
   const [dateFormat, setDateFormat] = useState('d MMM yyyy'); // Додайте цей стейт
 
   console.log(dateFormat);
