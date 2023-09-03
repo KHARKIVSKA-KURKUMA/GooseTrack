@@ -20,16 +20,12 @@ import {
   AccountForm,
   Name,
 } from './UserForm.styled';
+import getCurrentDate from 'helpers/currentDay';
 
-// import avatar from 'img/avatar.png';
-// import { selectorTok } from 'store/auth/authSelectors';
 
-const date = new Date();
 
-let day = date.getDate();
-let month = date.getMonth() + 1;
-let year = date.getFullYear();
-let currentDate = `${day}-0${month}-${year}`;
+
+const currentDate = getCurrentDate()
 
 const UserForm = () => {
   const [imagePreview, setImagePreview] = useState(null);
@@ -46,6 +42,7 @@ const UserForm = () => {
   }, [dispatch]);
 
   const handleImageChange = async e => {
+   
     const selectedFile = e.target.files[0];
     if (!selectedFile) {
       return;
@@ -53,9 +50,11 @@ const UserForm = () => {
     const imageUrl = URL.createObjectURL(selectedFile);
     const formData = new FormData();
     formData.append('avatar', selectedFile);
-
+    setIsLoading(true);
     await dispatch(updateUser(formData));
     setImagePreview(imageUrl);
+    await dispatch(fetchCurrentUser());
+    setIsLoading(false);
   };
 
   const { name, birthday, email, phone, skype, avatarURL } = userInfo;
