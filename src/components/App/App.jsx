@@ -1,5 +1,5 @@
 import { ToastContainer } from 'react-toastify';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import MainPage from 'pages/MainPage/MainPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
@@ -12,6 +12,7 @@ import Private from 'components/Routes/Private';
 import { GlobalStyle } from './GlobalStyles';
 import ChosenDay from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenDay/ChosenDay';
 import ChosenMonth from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenMonth/ChosenMonth';
+import PageNotFound from 'components/PageNotFound/PageNotFound';
 
 export const App = () => {
   return (
@@ -53,7 +54,7 @@ export const App = () => {
             element={<Private component={StatisticsPage} to="/" />}
           ></Route>
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );
