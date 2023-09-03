@@ -33,40 +33,43 @@ let day = date.getDate();
 let month = date.getMonth() + 1;
 let year = date.getFullYear();
 let currentDate = `${day}-0${month}-${year}`;
+
+
 const UserForm = () => {
+
+
+  const [imagePreview, setImagePreview] = useState(avatar);
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
   useEffect(() => {
     const getUserInfo = async () => {
-      console.log("hello")
       await dispatch(fetchCurrentUser());
-    
+      setIsLoading(false);
     };
 
     getUserInfo();
   }, [dispatch]);
 
-  // const [fileImage, setFileImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(avatar);
-  // const [isFormChanged, setIsFormChanged] = useState(false);
-  // console.log(isFormChanged);
-  const handleImageChange = e => {
+  
+
+
+  const handleImageChange = async e => {
     const selectedFile = e.target.files[0];
-    // setIsFormChanged(true);
     if (!selectedFile) {
       return;
     }
-
     const imageUrl = URL.createObjectURL(selectedFile);
-
+        const formData = new FormData()
+        formData.append("avatar", selectedFile)
+   
+    await dispatch(updateUser(formData));
     setImagePreview(imageUrl);
-    // setFileImage(selectedFile);
   };
 
   
 
-  const { name, birthday, email, phone, skype} = userInfo;
-  console.log(userInfo.name)
+  const { name, birthday, email, phone, skype, avatarURL} = userInfo;
   const handleSubmit = async values => {
     
     const formData = new FormData();
@@ -79,18 +82,20 @@ const UserForm = () => {
       formData.append('skype', values.skype);
     }
     formData.append('birthday', values.birthday);
-
-    // if (values.avatarURL) {
-    //   formData.append('avatar', avatarURL);
-    // }
-    try {
+    try { 
+      setIsLoading(true);
       await dispatch(updateUser(formData));
       await dispatch(updateUser(values));
+      await dispatch(fetchCurrentUser());
       toast.success('Profile data changed successfully');
+
+      setIsLoading(false);
     } catch {
       toast.error('Something went wrong... Try again!');
     }
   };
+if(!isLoading){
+
 
   return (
     <Formik
@@ -100,11 +105,12 @@ const UserForm = () => {
         email,
         phone,
         skype,
+        avatarURL
       }}
       validationSchema={userSchema}
       onSubmit={handleSubmit}
     >
-      {({values, isSubmitting, dirty, touched, errors }) => (
+      {({values, dirty, touched, errors  }) => (
         <AccountForm>
           <Box
             position="relative"
@@ -113,7 +119,7 @@ const UserForm = () => {
             width="max-content"
           >
             <WrapImg>
-              <Img src={imagePreview} alt="Avatar Preview" />
+              <Img src={avatarURL || imagePreview} alt="Avatar Preview" />
             </WrapImg>
 
             <InputImg
@@ -126,7 +132,7 @@ const UserForm = () => {
               <AddIcon />
             </Sticker>
           </Box>
-          <Name>{values.name}</Name>
+          <Name>{name}</Name>
           <Title>User</Title>
           <Wrap>
             <Wrapper>
@@ -136,6 +142,7 @@ const UserForm = () => {
                 name="name"
                 touched={touched.name}
                 errors={errors.name}
+                values={values.name}
               />
               <UserFild
                 title="Birthday"
@@ -144,6 +151,7 @@ const UserForm = () => {
                 placeholder={currentDate}
                 touched={touched.birthday}
                 errors={errors.birthday}
+                values={values.birthday}
               />
 
               <UserFild
@@ -152,6 +160,7 @@ const UserForm = () => {
                 name="email"
                 touched={touched.email}
                 errors={errors.email}
+                values={values.email}
               />
             </Wrapper>
 
@@ -163,6 +172,7 @@ const UserForm = () => {
                 placeholder="Add phone number"
                 touched={touched.phone}
                 errors={errors.phone}
+                values={values.phone}
               />
               <UserFild
                 title="Skype"
@@ -171,16 +181,17 @@ const UserForm = () => {
                 placeholder="Add a skype nickname"
                 touched={touched.skype}
                 errors={errors.skype}
+                values={values.skype}
               />
             </Wrapper>
           </Wrap>
-          <Button type="submit" disabled={!dirty}>
+          <Button type="submit" disabled={ !dirty } >
             Save changes
           </Button>
         </AccountForm>
       )}
     </Formik>
-  );
+  );}
 };
 
 export default UserForm;

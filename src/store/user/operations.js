@@ -19,7 +19,7 @@ export const fetchCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     // const accessToken = localStorage.getItem('accessToken');
     try {
-      setAuthHeader("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWY1MjYyNTQ4ZTRiNTdjM2UxMTY0MyIsImlhdCI6MTY5MzQyNzc3NCwiZXhwIjoxNjk0MDMyNTc0fQ.MqEqqICHN324ut5PUH58NX7zAR0OAnup6kwmK47iD_w");
+      setAuthHeader("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZjEwMDdmOGYwNmI3OGJkNDIwN2MzZiIsImlhdCI6MTY5MzUxNzMzNiwiZXhwIjoxNjk0MTIyMTM2fQ.TzJ5vt6VQj3fK5BkFJPK4ioFU-IXSsoLo1NZwzPZsE4");
       const response = await patch.get('/auth/current');
       await thunkAPI.dispatch(addUserData(response.data));
     } catch (error) {
