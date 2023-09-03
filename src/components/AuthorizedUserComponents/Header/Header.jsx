@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from 'store/user/selectors';
 import { fetchCurrentUser } from 'store/user/operations';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 const Header = ({
   theme,
@@ -22,10 +23,12 @@ const Header = ({
   } else if (location.pathname === '/statistics') {
     pageTitle = 'Statistics';
   }
-  const dispatch = useDispatch()
-  dispatch(fetchCurrentUser());
-  const user = useSelector(selectUser)
-  const {name, avatarURL} = user
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+  const user = useSelector(selectUser);
+  const { name, avatarURL } = user;
   // const hasAvatar = false;
   return (
     <Container>
