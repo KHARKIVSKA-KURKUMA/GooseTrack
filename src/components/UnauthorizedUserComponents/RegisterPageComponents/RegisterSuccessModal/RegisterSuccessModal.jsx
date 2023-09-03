@@ -3,11 +3,16 @@ import { createPortal } from 'react-dom';
 import { CloseIcon } from 'components/Modal/Modal.styled';
 import Icons from 'images/sprite.svg';
 
-import { ResendModalOverlay, ResendEmailWrapper, Title, Text, ResendButton } from './RegisterSuccessModal.styled';
+import {
+  ResendModalOverlay,
+  ResendEmailWrapper,
+  Title,
+  Text,
+} from './RegisterSuccessModal.styled';
 
 const modalRoot = document.getElementById('modal-root');
 
-const RegistrationModal = ({ children, onCloseModal}) => {
+const RegistrationModal = ({ children, onCloseModal }) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
@@ -33,9 +38,7 @@ const RegistrationModal = ({ children, onCloseModal}) => {
   };
 
   return createPortal(
-    <ResendModalOverlay
-      onClick={handleOverlayClick}
-    >
+    <ResendModalOverlay onClick={handleOverlayClick}>
       <ResendEmailWrapper>
         <CloseIcon onClick={() => onCloseModal()}>
           <use href={`${Icons}#icon-close`}></use>

@@ -17,7 +17,7 @@ export const App = () => {
   return (
     <>
       <GlobalStyle />
-      <ToastContainer autoClose={1500} theme="colored" />
+      <ToastContainer autoClose={1000} theme="colored" />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
