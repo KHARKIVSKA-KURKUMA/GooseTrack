@@ -5,7 +5,8 @@ const PeriodPaginatorContainer = styled.div`
     background-color: var(--title-color);
     font-family: 'Inter';
     padding: 18px;
-    }
+    border-radius: 16px;
+  }
 
   .react-datepicker__input-container {
     padding: 8px, 12px, 8px, 12px;
@@ -93,11 +94,10 @@ const PeriodPaginatorContainer = styled.div`
   .react-datepicker__day,
   .react-datepicker__time-name {
     color: var(--primary-background-color);
-    font-family: "Inter";
+    font-family: 'Inter';
     width: 1.7rem;
     line-height: 1.2rem;
-    font-size: 18
-    px;
+    font-size: 18 px;
     margin: 10px 10px;
   }
   .react-datepicker__day:hover,
