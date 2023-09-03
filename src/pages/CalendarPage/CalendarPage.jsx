@@ -1,5 +1,5 @@
 import CalendarToolbar from 'components/AuthorizedUserComponents/CalendarPageComponents/CalendarToolbar';
-// import ChosenDay from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenDay';
+import ChosenDay from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenDay';
 import ChosenMonth from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenMonth';
 import MainLayout from 'components/AuthorizedUserComponents/MainLayout/MainLayout';
 import PageLayout from '../../components/PageLayout/PageLayout';
@@ -11,43 +11,10 @@ const CalendarPage = () => {
   return (
     <PageLayout>
       <MainLayout />
-      <CalendarToolbar />
-
-      {/* потім треба прибрати */}
-      <div>
-        <span>{`${selectedDate.toLocaleString('default', {
-          month: 'long',
-        })} ${selectedDate.getFullYear()}`}</span>
-        <button
-          onClick={() =>
-            setSelectedDate(
-              new Date(
-                selectedDate.getFullYear(),
-                selectedDate.getMonth() - 1,
-                1
-              )
-            )
-          }
-        >
-          ❮
-        </button>
-        <button
-          onClick={() =>
-            setSelectedDate(
-              new Date(
-                selectedDate.getFullYear(),
-                selectedDate.getMonth() + 1,
-                1
-              )
-            )
-          }
-        >
-          ❯
-        </button>
-      </div>
-
+      <CalendarToolbar selected={selectedDate} setSelected={setSelectedDate} />
+      
       <ChosenMonth selectedDate={selectedDate} />
-      {/* <ChosenDay /> */}
+      <ChosenDay />
     </PageLayout>
   );
 };
