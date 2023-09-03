@@ -62,7 +62,10 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
       .required('Select a priority')
       .oneOf(['low', 'medium', 'high'], 'Invalid priority value'),
     date: yup.date().required(),
-    category: yup.string().oneOf(['to-do', 'in progress', 'done'], 'Invalid priority value').required('Select a category'),
+    category: yup
+      .string()
+      .oneOf(['to-do', 'in progress', 'done'], 'Invalid priority value')
+      .required('Select a category'),
   });
 
   const formik = useFormik({
@@ -76,15 +79,23 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
     },
     validationSchema: taskFormValidationSchema,
 
-    onSubmit: (values, action) => {
+    onSubmit:(values, action) => {
       console.log(values);
       if (taskToEdit && taskToEdit.length > 0) {
-        dispatch(editTask(values));
-        toast.success('Task updated successfully');
+        const response = dispatch(editTask(values));
+        if (response.status >= 200 && response.status < 300) {
+          toast.success('Task updated successfully');
+        } else {
+          toast.error('Oops, something went wrong...');
+        }
       } else {
-        dispatch(addTask(values));
-        console.log(values)
-        toast.success('Task created successfully');
+        const response = dispatch(addTask(values));
+        if (response.status >= 200 && response.status < 300) {
+          toast.success('Task created successfully');
+        } else {
+          toast.error('Oops, something went wrong...');
+        }
+        console.log(values);
       }
       action.resetForm();
       toggleModal();

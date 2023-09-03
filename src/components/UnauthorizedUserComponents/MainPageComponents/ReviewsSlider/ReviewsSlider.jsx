@@ -147,7 +147,7 @@ const ReviewsSlider = () => {
                       )}
                       <div>
                         {review.owner === null || review.owner.length === 0 ? (
-                          'USER'
+                          <UserName>USER</UserName>
                         ) : (
                           <UserName>{review.owner.name}</UserName>
                         )}

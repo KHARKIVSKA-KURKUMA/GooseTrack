@@ -8,14 +8,42 @@ import {
   MenuStyled,
 } from './TaskColumnItems.styled';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { deleteTask } from 'store/tasks/tasksThunks';
+import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
-const TaskToolbar = () => {
+const TaskToolbar = ({ task, date, title }) => {
+  
   const [anchorEl, setAnchorEl] = useState(null);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+  //  const [isModalOpen, setIsModalOpen] = useState(false);
+
   /* -------------------------------------------------------------------------- */
-  const groups = ['To do', 'In progress', 'Done'];
-  const currentGroup = 'To do';
+
+  const [showModal, setShowModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  /// Toggle Modal Function ///
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
+  /// Not to scroll page when modal open ///
+  useEffect(() => {
+    if (showModal) {
+      setIsModalOpen(true);
+      document.body.style.overflow = 'hidden';
+    } else {
+      setIsModalOpen(false);
+      document.body.style.overflow = 'auto';
+    }
+  }, [showModal]);
+
+  const dispatch = useDispatch();
+  /* -------------------------------------------------------------------------- */
+  const groups = ['to-do', 'in progress', 'done'];
+  const currentGroup = 'to-do';
 
   const open = Boolean(anchorEl);
   const handleClick = event => {
@@ -29,10 +57,19 @@ const TaskToolbar = () => {
 
   const handleDeleteTask = () => {
     console.log('click delete');
+    const response = dispatch(deleteTask(task._id));
+    if (response.status >= 200 && response.status < 300) {
+      toast.success('Task deleted successfully');
+    } else {
+      toast.error('Oops, something went wrong...');
+    }
   };
-  const handleEditTask = () => {
-    console.log('click edit');
-  };
+
+  // const handleEditTask = () => {
+  //   console.log('click edit');
+  // };
+
+  console.log(title);
 
   return (
     <TaskToolbarContainer>
@@ -55,12 +92,20 @@ const TaskToolbar = () => {
           </MenuItem>
         ))}
       </MenuStyled>
-      <TaskToolbarBtn onClick={handleEditTask}>
+      <TaskToolbarBtn onClick={toggleModal}>
         <Pen />
       </TaskToolbarBtn>
       <TaskToolbarBtn onClick={handleDeleteTask}>
         <Trash />
       </TaskToolbarBtn>
+      {isModalOpen && (
+        <TaskModal
+          toggleModal={toggleModal}
+          taskToEdit={task}
+          date={date}
+          category={title}
+        />
+      )}
     </TaskToolbarContainer>
   );
 };
