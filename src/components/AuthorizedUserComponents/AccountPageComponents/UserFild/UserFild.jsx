@@ -15,6 +15,7 @@ export const UserFild = ({
   type,
   name,
   placeholder = null,
+  values,
 }) => {
   return (
     <Label
@@ -43,7 +44,7 @@ export const UserFild = ({
         {touched && errors && <ErrorIcon />}
         {touched && !errors && <CorrectIcon />}
       </IconStatusWrap>
-      {touched && !errors && <CorrectTag>This is an CORRECT {name}</CorrectTag>}
+      {touched && !errors && values.length>0 && <CorrectTag>This is an CORRECT {name}</CorrectTag>}
       <MessageError name={name} component="p" />
     </Label>
   );

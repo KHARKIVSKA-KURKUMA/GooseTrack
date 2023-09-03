@@ -6,7 +6,7 @@ const TasksColumn = ({ tasks, title }) => {
     <li>
       <ColumnContainer>
         <ColumnHeadBar title={title} />
-        <ColumnTasksList tasks={tasks} />
+        <ColumnTasksList tasks={tasks} title={title}/>
         <AddTaskBtn />
       </ColumnContainer>
     </li>

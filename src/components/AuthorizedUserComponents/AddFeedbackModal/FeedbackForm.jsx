@@ -4,16 +4,20 @@ import { FaStar } from 'react-icons/fa';
 import { BiPencil } from 'react-icons/bi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
-import React, { useEffect, useState } from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   deleteReview,
-  getAllFeedbacks,
   addReview,
   editReview,
 } from 'store/feedback/feedbackThunks';
 import ModalButton from 'components/GeneralComponents/ModalButton/ModalButton';
-// import { reviewsSelector } from 'store/selectors';
+import { feedbackSelector } from 'store/selectors';
 
 import {
   StarWrapper,
@@ -26,15 +30,16 @@ import {
   CircleIcon,
   TitleWrapper,
   IconButton,
-  NotificationButton,
 } from './FeedbackForm.styled';
 
 const FeedbackForm = ({ toggleModal }) => {
-  const dispatch = useDispatch();
-  // const  review  = useSelector(reviewsSelector);
-  const review = null;
+  const data = useSelector(feedbackSelector);
+  const reviews = data.feedback || [];
 
-  const [isEditing, setIsEditing] = useState(null);
+  const dispatch = useDispatch();
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [open, setOpen] = useState(false);
 
   /// Validate Feedback form with YUP ///
   const feedbackValidationSchema = yup.object().shape({
@@ -47,69 +52,60 @@ const FeedbackForm = ({ toggleModal }) => {
       .required('Leave your feedback'),
   });
 
-  /// Delete review function ///
-  const handleDeleteReview = () => {
-    const confirmToastId = toast.warning('Delete review?', {
-      autoClose: false,
-      position: toast.POSITION.TOP_CENTER,
-      closeOnClick: false,
-      draggable: false,
-      pauseOnHover: false,
-      closeButton: (
-        <>
-          <NotificationButton onClick={() => handleDeleteConfirmation(true)}>
-            Yes
-          </NotificationButton>
-          <NotificationButton onClick={() => handleDeleteConfirmation(false)}>
-            No
-          </NotificationButton>{' '}
-        </>
-      ),
-    });
+  const initialValues = {
+    rating: reviews.length > 0 ? reviews[0].rating : 5,
+    text: reviews.length > 0 ? reviews[0].text : '',
+  };
 
-    const handleDeleteConfirmation = async confirmed => {
-      if (confirmed) {
-        dispatch(deleteReview());
-        toast.dismiss(confirmToastId);
-        toast.info('Review deleted');
-        toggleModal();
-      } else {
-        toast.dismiss(confirmToastId);
-      }
-    };
+  /// Delete review function ///
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleCloseYes = actions => {
+    dispatch(deleteReview({ _id: reviews[0]._id }));
+    toast.info('Review deleted');
+    setOpen(false);
+    toggleModal();
   };
 
   /// Formik function / main logic ///
   const formik = useFormik({
-    initialValues: {
-      rating: 5,
-      text: '',
-    },
+    initialValues,
     validationSchema: feedbackValidationSchema,
 
-    onSubmit: (values, actions) => {
-      if (isEditing) {
-        dispatch(editReview(values)) &&
+    onSubmit: async values => {
+      try {
+        if (isEditing && reviews.length > 0) {
+          await dispatch(editReview({ ...values, _id: reviews[0]._id }));
           toast.success('Review updated successfully');
-      } else {
-        dispatch(addReview(values)) &&
+          // if (response.status >= 200 && response.status < 300) {
+          //   toast.success('Review updated successfully');
+          // }
+          // else {
+          //   toast.error('Oops, something went wrong...');
+          // }
+        } else {
+          console.log('added review');
+          await dispatch(addReview(values));
           toast.success('Review created successfully');
+          // if (response.status >= 200 && response.status < 300) {
+          //   toast.success('Review created successfully');
+          // }
+          // else {
+          //   toast.error('Oops, something went wrong...');
+          // }
+        }
+        toggleModal();
+      } catch (error) {
+        toast.error('Oops, something went wrong...');
       }
-      console.log(values);
-      actions.resetForm();
-      toggleModal();
     },
   });
-
-  useEffect(() => {
-    dispatch(getAllFeedbacks());
-    if (review && review.length > 0) {
-      formik.setValues({
-        rating: review[0].rating,
-        text: review[0].text,
-      });
-    }
-  }, [dispatch, review, formik]);
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -144,19 +140,20 @@ const FeedbackForm = ({ toggleModal }) => {
       <FeedbackWrapper>
         <TitleWrapper>
           <NameLabel>Review</NameLabel>
-          {/* {review && review.length > 0 && */}
-          <IconWrapper>
-            <IconButton type="button" onClick={() => setIsEditing(true)}>
-              <CircleIcon backgroundColor="#E3F3FF">
-                <BiPencil size={20} color={'#3E85F3'} />
-              </CircleIcon>
-            </IconButton>
-            <IconButton type="button" onClick={handleDeleteReview}>
-              <CircleIcon backgroundColor="rgba(234, 61, 101, 0.2)">
-                <RiDeleteBinLine size={20} color={'#EA3D65'} />
-              </CircleIcon>
-            </IconButton>
-          </IconWrapper>
+          {reviews && reviews.length > 0 && (
+            <IconWrapper>
+              <IconButton type="button" onClick={() => setIsEditing(true)}>
+                <CircleIcon backgroundColor="#E3F3FF">
+                  <BiPencil size={20} color={'#3E85F3'} />
+                </CircleIcon>
+              </IconButton>
+              <IconButton type="button" onClick={handleClickOpen}>
+                <CircleIcon backgroundColor="rgba(234, 61, 101, 0.2)">
+                  <RiDeleteBinLine size={20} color={'#EA3D65'} />
+                </CircleIcon>
+              </IconButton>
+            </IconWrapper>
+          )}
         </TitleWrapper>
 
         <InputFeedback
@@ -173,7 +170,7 @@ const FeedbackForm = ({ toggleModal }) => {
           <ErrorsMessage>{formik.errors.text}</ErrorsMessage>
         )}
       </FeedbackWrapper>
-      {(!review || review.length === 0) && (
+      {(!reviews || reviews.length === 0) && (
         <div>
           <ModalButton
             type="submit"
@@ -187,7 +184,7 @@ const FeedbackForm = ({ toggleModal }) => {
           </ModalButton>
         </div>
       )}
-      {review && review.length > 0 && isEditing && (
+      {reviews && reviews.length > 0 && isEditing && (
         <div>
           <ModalButton
             type="submit"
@@ -201,6 +198,20 @@ const FeedbackForm = ({ toggleModal }) => {
           </ModalButton>
         </div>
       )}
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{'Delete review?'}</DialogTitle>
+        <DialogActions>
+          <Button onClick={handleCloseYes}>Yes</Button>
+          <Button onClick={handleClose} autoFocus>
+            No
+          </Button>
+        </DialogActions>
+      </Dialog>
     </form>
   );
 };

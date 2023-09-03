@@ -11,4 +11,3 @@ export const ModalWindowStyled = styled.div`
   box-shadow: 24;
   padding: 4;
 `
-

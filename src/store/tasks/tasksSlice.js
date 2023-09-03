@@ -5,6 +5,7 @@ import {
   addTask,
   deleteTask,
   editTask,
+  getTasksByMonthThunk,
 } from './tasksThunks';
 import {
   handleFulfilled,
@@ -18,6 +19,9 @@ const tasksSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getUserTasksThunk.fulfilled, (state, { payload }) => {
+        state.tasks = payload;
+      })
+      .addCase(getTasksByMonthThunk.fulfilled, (state, { payload }) => {
         state.tasks = payload;
       })
       .addCase(addTask.fulfilled, (state, { payload }) => {
@@ -39,7 +43,8 @@ const tasksSlice = createSlice({
           getUserTasksThunk.pending,
           addTask.pending,
           deleteTask.pending,
-          editTask.pending
+          editTask.pending,
+          getTasksByMonthThunk.pending
         ),
         handlePending
       )
@@ -48,7 +53,8 @@ const tasksSlice = createSlice({
           getUserTasksThunk.fulfilled,
           addTask.fulfilled,
           deleteTask.fulfilled,
-          editTask.fulfilled
+          editTask.fulfilled,
+          getTasksByMonthThunk.fulfilled
         ),
         handleFulfilled
       )
@@ -57,7 +63,8 @@ const tasksSlice = createSlice({
           getUserTasksThunk.rejected,
           addTask.rejected,
           deleteTask.rejected,
-          editTask.rejected
+          editTask.rejected,
+          getTasksByMonthThunk.rejected
         ),
         handleRejected
       );

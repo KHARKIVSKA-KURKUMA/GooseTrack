@@ -28,7 +28,6 @@ const AddTaskBtn = () => {
   const isButtonDisabled = false;
   return (
     <>
-      {' '}
       <AddTaskButton disabled={isButtonDisabled} onClick={toggleModal}>
         <AiOutlinePlus size="24px" />
         Add task

@@ -88,12 +88,6 @@ const CircleIcon = styled.div`
 const IconButton = styled.div`
 border:none`;
 
-const NotificationButton = styled.button`
-margin-right: 15px;
-border: none;
-border-radius:40px;
-color: #343434`;
-
 
 export {
   StarWrapper,
@@ -106,5 +100,4 @@ export {
   CircleIcon,
   TitleWrapper,
   IconButton, 
-  NotificationButton
 };

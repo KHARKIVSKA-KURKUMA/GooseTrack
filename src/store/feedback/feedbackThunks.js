@@ -13,11 +13,23 @@ export const getAllFeedbacks = createAsyncThunk(
   }
 );
 
+export const getByOwner = createAsyncThunk(
+  'feedback/getByOwner',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.get(`/api/reviews/own`);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const addReview = createAsyncThunk(
-  'reviews/addReview',
+  'feedback/addReview',
   async ({ rating, text }, thunkAPI) => {
     try {
-      const { data } = await instance.post('api/reviews', {
+      const { data } = await instance.post(`/api/reviews`, {
         rating,
         text,
       });
@@ -29,10 +41,10 @@ export const addReview = createAsyncThunk(
 );
 
 export const deleteReview = createAsyncThunk(
-  'reviews/deleteReview',
-  async (review, thunkAPI) => {
+  'feedback/deleteReview',
+  async ({ _id }, thunkAPI) => {
     try {
-      const { data } = await instance.delete(`api/review/${review.id}`);
+      const { data } = await instance.delete(`/api/reviews/${_id}`);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -41,10 +53,16 @@ export const deleteReview = createAsyncThunk(
 );
 
 export const editReview = createAsyncThunk(
-  'review/editReview',
-  async (review, thunkAPI) => {
+  'feedback/editReview',
+  async ({ rating, text, _id }, thunkAPI) => {
     try {
-      const { data } = await instance.patch(`api/review/${review.id}`, review);
+
+      console.log(rating, text, _id);
+      const { data } = await instance.patch(`/api/reviews/${_id}`, {
+        rating,
+        text,
+      });
+
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

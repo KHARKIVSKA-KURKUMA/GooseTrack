@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import {
   CalendarTableWrapper,
   CalendarNumberWrapper,
@@ -8,7 +9,7 @@ import {
   NoteContainer,
   NoteText,
 } from '../ChosenMonth.styled';
-import PropTypes from 'prop-types';
+import { selectedDateSelector } from 'store/selectors';
 
 const getRandomColor = () => {
   const r = Math.floor(Math.random() * 256);
@@ -34,7 +35,9 @@ const getDarkerColor = () => {
   return darkerColor;
 };
 
-const CalendarTable = ({ selectedDate }) => {
+const CalendarTable = () => {
+  const selectedDateUnFormat = useSelector(selectedDateSelector);
+  const selectedDate = new Date(selectedDateUnFormat);
   const selectedDateNow = selectedDate;
 
   const notes = [
@@ -131,10 +134,6 @@ const CalendarTable = ({ selectedDate }) => {
       <CalendarNumberWrapper>{generateCalendar()}</CalendarNumberWrapper>
     </CalendarTableWrapper>
   );
-};
-
-CalendarTable.protoType = {
-  selectedDate: PropTypes.node.isRequired,
 };
 
 export default CalendarTable;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
-import { addMonths, subMonths } from 'date-fns';
+import { addMonths, subMonths, addDays, subDays } from 'date-fns';
 
 // import { useLocation } from 'react-router-dom';
 
@@ -19,23 +19,17 @@ const PeriodPaginator = ({ selectedPeriodType, onDateChange }) => {
 
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleSwitcherClick = direction => {
-    if (selectedPeriodType === 'month') {
-      setSelectedDate(
-        direction === 'previous'
-          ? subMonths(selectedDate, 1)
-          : addMonths(selectedDate, 1)
-      );
-    } else {
-      const newDate = new Date(selectedDate);
-      newDate.setDate(
-        direction === 'previous'
-          ? selectedDate.getDate() - 1
-          : selectedDate.getDate() + 1
-      );
-      setSelectedDate(newDate);
-    }
-    onDateChange(selectedDate);
+  const handleSwitcherClick = (direction) => {
+    const newDate = selectedPeriodType === 'month'
+      ? (direction === 'previous'
+        ? subMonths(selectedDate, 1)
+        : addMonths(selectedDate, 1))
+      : (direction === 'previous'
+        ? subDays(selectedDate, 1)
+        : addDays(selectedDate, 1));
+
+    setSelectedDate(newDate);
+    onDateChange(newDate);
   };
 
   return (
