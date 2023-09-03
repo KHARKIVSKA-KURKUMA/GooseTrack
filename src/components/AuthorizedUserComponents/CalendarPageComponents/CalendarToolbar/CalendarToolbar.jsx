@@ -2,39 +2,37 @@ import React, { useState } from 'react';
 import { PeriodPaginator, PeriodTypeSelect } from './CalendarToolbarItems';
 import { ToolbarWrapper } from './CalendarToolbar.styled';
 
-const CalendarToolbar = ({ selected, setSelected }) => {
-  
-  const [selectedPeriodType, setSelectedPeriodType] = useState('day');
+const CalendarToolbar = () => {
+  // const [selectedPeriodType, setSelectedPeriodType] = useState('day');
 
-  const selectedDate = selected;
-  const setSelectedDate = setSelected;
+  // const selectedDate = selected;
+  // const setSelectedDate = setSelected;
 
+  // const [dateFormat, setDateFormat] = useState('d MMM yyyy'); // Додайте цей стейт
 
-  const [dateFormat, setDateFormat] = useState('d MMM yyyy'); // Додайте цей стейт
+  // console.log(dateFormat);
+  // const handleChangeType = type => {
+  //   setSelectedPeriodType(type);
+  //   setDateFormat(type === 'month' ? 'MMM yyyy' : 'd MMM yyyy'); // Змінюємо формат дати
+  // };
 
-  console.log(dateFormat);
-  const handleChangeType = type => {
-    setSelectedPeriodType(type);
-    setDateFormat(type === 'month' ? 'MMM yyyy' : 'd MMM yyyy'); // Змінюємо формат дати
-  };
+  // const handleChangeDate = newDate => {
+  //   setSelectedDate(newDate);
+  // };
 
-  const handleChangeDate = newDate => {
-    setSelectedDate(newDate);
-  };
-
-  const formattedToday = selectedDate.toISOString();
+  // const formattedToday = selectedDate.toISOString();
 
   return (
     <div>
       <ToolbarWrapper>
         <PeriodPaginator
-          selectedPeriodType={selectedPeriodType}
-          onDateChange={handleChangeDate}
+        // selectedPeriodType={selectedPeriodType}
+        // onDateChange={handleChangeDate}
         />
         <PeriodTypeSelect
-          today={formattedToday}
-          onChangeType={handleChangeType}
-          onChangeDate={handleChangeDate}
+        // today={formattedToday}
+        // onChangeType={handleChangeType}
+        // onChangeDate={handleChangeDate}
         />
       </ToolbarWrapper>
     </div>

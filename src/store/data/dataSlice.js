@@ -1,10 +1,14 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import getCurrentDate from 'helpers/currentDay';
 import { logout } from 'store/auth/authOperations';
 
-const dateSlice = createSlice({
+const initialState = {
+  currentDate: getCurrentDate(),
+};
+
+export const dateSlice = createSlice({
   name: 'date',
-  initialState: { currentDate: getCurrentDate() },
+  initialState,
   reducers: {
     setDates: (state, { payload }) => {
       state.currentDate = payload;
@@ -12,7 +16,13 @@ const dateSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addMatcher(
-      isAnyOf(logout.pending, logout.fulfilled, logout.rejected),
+      action => {
+        return (
+          action.type === logout.pending.type ||
+          action.type === logout.fulfilled.type ||
+          action.type === logout.rejected.type
+        );
+      },
       state => {
         state.currentDate = getCurrentDate();
       }
