@@ -2,6 +2,10 @@ import { Container, HeaderTitleContainer, HeaderTitle } from './Header.styled';
 import { AddFeedbackBtn, ThemeToggler, UserInfo } from './HeaderItems';
 import { useLocation } from 'react-router-dom';
 import BurgerToggleContainer from '../SideBar/SideBarItems/BurgerMenu/BurgerToggleContainer';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'store/user/selectors';
+import { fetchCurrentUser } from 'store/user/operations';
+import { useDispatch } from 'react-redux';
 
 const Header = ({
   theme,
@@ -18,8 +22,11 @@ const Header = ({
   } else if (location.pathname === '/statistics') {
     pageTitle = 'Statistics';
   }
-  const userName = 'Goose';
-  const hasAvatar = false;
+  const dispatch = useDispatch()
+  dispatch(fetchCurrentUser());
+  const user = useSelector(selectUser)
+  const {name, avatarURL} = user
+  // const hasAvatar = false;
   return (
     <Container>
       <HeaderTitleContainer>
@@ -31,7 +38,7 @@ const Header = ({
       />
       <AddFeedbackBtn />
       <ThemeToggler theme={theme} toggleTheme={toggleTheme} />
-      <UserInfo userName={userName} avatarUrl={hasAvatar} />
+      <UserInfo userName={name} avatarUrl={avatarURL} />
     </Container>
   );
 };
