@@ -8,7 +8,7 @@ import {
   TaskMeta,
 } from './TaskColumnItems.styled';
 
-const TaskColumnCard = data => {
+const TaskColumnCard = (data, title) => {
   const { description, avatarUrl, priority } = data;
   return (
     <CardContainer>
@@ -20,7 +20,7 @@ const TaskColumnCard = data => {
             {priority}
           </Priority>
         </TaskMeta>
-        <TaskToolbar />
+        <TaskToolbar title={title}/>
       </BottomContainer>
       {/* <TaskModal /> */}
     </CardContainer>

@@ -1,9 +1,9 @@
 import TaskColumnCard from './TaskColumnCard';
 import { TaskColumnContainer } from './TaskColumnItems.styled';
 
-const ColumnTasksList = ({ tasks }) => {
+const ColumnTasksList = ({ tasks,title }) => {
   return (
-    <TaskColumnContainer>
+    <TaskColumnContainer title={title}>
       {tasks &&
         tasks.map(task => (
           <TaskColumnCard
