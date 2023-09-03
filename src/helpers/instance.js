@@ -11,7 +11,7 @@ const instance = axios.create({
 const setToken = token => {
   if (token) {
     instance.defaults.headers.common.authorization = `Bearer ${token}`;
-    console.log(instance.defaults.headers.common);
+    // console.log(instance.defaults.headers.common);
     return (instance.defaults.headers.common.authorization = `Bearer ${token}`);
   }
   instance.defaults.headers.common.authorization = '';
@@ -32,14 +32,14 @@ instance.interceptors.response.use(
       error.response.status === 401 &&
       error.response.data.message === 'Not authorized'
     ) {
-      console.log(error.response);
+      // console.log(error.response);
       // const auth = JSON.parse(localStorage.getItem('auth'));
       // const { token: refreshToken } = auth;
       const refreshToken = localStorage.getItem('refreshToken');
       try {
         const { data } = await instance.post('/auth/refresh', { refreshToken });
         setToken(data.accessToken);
-        console.log(data.accessToken);
+        // console.log(data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
         // error.config.headers.common.authorization = `Bearer ${data.accessToken}`;
         return instance(error.config);
@@ -59,7 +59,7 @@ export const register = async data => {
 export const login = async data => {
   const { data: result } = await instance.post('/auth/login', data);
   setToken(result.accessToken);
-  console.log('acessTOKEN>>>>>>', result.accessToken);
+  // console.log('acessTOKEN>>>>>>', result.accessToken);
   localStorage.setItem('refreshToken', result.refreshToken);
 
   return result;
@@ -81,7 +81,5 @@ export const getCurrent = async token => {
     throw error;
   }
 };
-
-
 
 export default instance;

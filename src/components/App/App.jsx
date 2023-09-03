@@ -7,15 +7,15 @@ import Layout from 'components/UnauthorizedUserComponents/Layout/Layout';
 import AccountPage from 'pages/AccountPage/AccountPage';
 import CalendarPage from 'pages/CalendarPage/CalendarPage';
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import Restricted from 'components/Routes/Restricted';
 import Private from 'components/Routes/Private';
 import { GlobalStyle } from './GlobalStyles';
+import ChosenDay from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenDay/ChosenDay';
+import ChosenMonth from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenMonth/ChosenMonth';
 
 export const App = () => {
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <>
       <GlobalStyle />
       <ToastContainer autoClose={1500} theme="colored" />
       <Routes>
@@ -41,12 +41,20 @@ export const App = () => {
             element={<Private component={CalendarPage} to="/" />}
           ></Route>
           <Route
+            path="calendar/month/:currentDate"
+            element={<Private component={ChosenMonth} to="/" />}
+          ></Route>
+          <Route
+            path="calendar/day/:currentDate"
+            element={<Private component={ChosenDay} to="/" />}
+          ></Route>
+          <Route
             path="statistics"
             element={<Private component={StatisticsPage} to="/" />}
           ></Route>
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </LocalizationProvider>
+    </>
   );
 };
