@@ -40,12 +40,10 @@ const UserForm = () => {
 
   const [imagePreview, setImagePreview] = useState(avatar);
   const [isLoading, setIsLoading] = useState(true);
-  // const [fileImage, setFileImage] = useState(null);
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
   useEffect(() => {
     const getUserInfo = async () => {
-      // console.log("hello")
       await dispatch(fetchCurrentUser());
       setIsLoading(false);
     };
@@ -58,25 +56,21 @@ const UserForm = () => {
 
   const handleImageChange = async e => {
     const selectedFile = e.target.files[0];
-    // console.log(selectedFile)
     if (!selectedFile) {
       return;
     }
     const imageUrl = URL.createObjectURL(selectedFile);
         const formData = new FormData()
-        formData.append("avatarURL", imageUrl)
+        formData.append("avatar", selectedFile)
    
     await dispatch(updateUser(formData));
     setImagePreview(imageUrl);
-   
-    // setFileImage(selectedFile);
   };
 
   
 
-  const { name, birthday, email, phone, skype} = userInfo;
-  // console.log(userInfo.name)
-  const handleSubmit = async (values, {resetForm}) => {
+  const { name, birthday, email, phone, skype, avatarURL} = userInfo;
+  const handleSubmit = async values => {
     
     const formData = new FormData();
     formData.append('name', values.name);
@@ -88,10 +82,6 @@ const UserForm = () => {
       formData.append('skype', values.skype);
     }
     formData.append('birthday', values.birthday);
-
-    // if (values.avatarURL) {
-    //   formData.append('avatar', avatarURL);
-    // }
     try { 
       setIsLoading(true);
       await dispatch(updateUser(formData));
@@ -115,11 +105,12 @@ if(!isLoading){
         email,
         phone,
         skype,
+        avatarURL
       }}
       validationSchema={userSchema}
       onSubmit={handleSubmit}
     >
-      {({values, isSubmitting, dirty, touched, errors  }) => (
+      {({values, dirty, touched, errors  }) => (
         <AccountForm>
           <Box
             position="relative"
@@ -128,7 +119,7 @@ if(!isLoading){
             width="max-content"
           >
             <WrapImg>
-              <Img src={imagePreview} alt="Avatar Preview" />
+              <Img src={avatarURL || imagePreview} alt="Avatar Preview" />
             </WrapImg>
 
             <InputImg
@@ -141,7 +132,7 @@ if(!isLoading){
               <AddIcon />
             </Sticker>
           </Box>
-          <Name>{values.name}</Name>
+          <Name>{name}</Name>
           <Title>User</Title>
           <Wrap>
             <Wrapper>
