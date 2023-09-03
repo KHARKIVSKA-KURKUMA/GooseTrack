@@ -85,12 +85,12 @@ const UserForm = () => {
     return (
       <Formik
         initialValues={{
-          name,
-          birthday,
-          email,
-          phone,
-          skype,
-          avatarURL,
+          name: name ||"" ,
+          birthday: birthday || "",
+          email: email || "",
+          phone: phone || "",
+          skype: skype || "",
+          avatarURL: avatarURL || "",
         }}
         validationSchema={userSchema}
         onSubmit={handleSubmit}
