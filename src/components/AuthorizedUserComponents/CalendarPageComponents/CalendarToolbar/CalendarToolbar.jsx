@@ -1,38 +1,51 @@
-// import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PeriodPaginator, PeriodTypeSelect } from './CalendarToolbarItems';
 import { ToolbarWrapper } from './CalendarToolbar.styled';
+// import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 
 const CalendarToolbar = () => {
-  // const [selectedPeriodType, setSelectedPeriodType] = useState('day');
+  const [selectedPeriodType, setSelectedPeriodType] = useState('day');
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [dateFormat, setDateFormat] = useState('d MMM yyyy'); // Додайте цей стейт
 
-  // const selectedDate = selected;
-  // const setSelectedDate = setSelected;
+  const location = useLocation();
 
-  // const [dateFormat, setDateFormat] = useState('d MMM yyyy'); // Додайте цей стейт
+  const pathname = location.pathname.slice(0, -11);
 
-  // console.log(dateFormat);
-  // const handleChangeType = type => {
-  //   setSelectedPeriodType(type);
-  //   setDateFormat(type === 'month' ? 'MMM yyyy' : 'd MMM yyyy'); // Змінюємо формат дати
-  // };
+  useEffect(() => {
+    if (pathname.endsWith('/calendar/day')) {
+      setSelectedPeriodType('day');
+      return;
+    }
+    setSelectedPeriodType('month');
+  }, [pathname]);
 
-  // const handleChangeDate = newDate => {
-  //   setSelectedDate(newDate);
-  // };
+  console.log(dateFormat);
 
-  // const formattedToday = selectedDate.toISOString();
+  const handleChangeType = type => {
+    setSelectedPeriodType(type);
+    setDateFormat(type === 'month' ? 'MMM yyyy' : 'd MMM yyyy'); // Змінюємо формат дати
+  };
+
+  const handleChangeDate = newDate => {
+    setSelectedDate(newDate);
+  };
+
+  const formattedToday = selectedDate.toISOString();
 
   return (
     <div>
       <ToolbarWrapper>
         <PeriodPaginator
-        // selectedPeriodType={selectedPeriodType}
-        // onDateChange={handleChangeDate}
+          selectedPeriodType={selectedPeriodType}
+          onDateChange={handleChangeDate}
+          date={formattedToday}
         />
         <PeriodTypeSelect
-        // today={formattedToday}
-        // onChangeType={handleChangeType}
-        // onChangeDate={handleChangeDate}
+          today={formattedToday}
+          onChangeType={handleChangeType}
+          onChangeDate={handleChangeDate}
         />
       </ToolbarWrapper>
     </div>

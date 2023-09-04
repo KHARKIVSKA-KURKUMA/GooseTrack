@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Item, List, Button } from './PeriodTypeSelect.styled';
+import { Item, List, StyledNavLink } from './PeriodTypeSelect.styled';
 
 const PeriodTypeSelect = ({ today, onChangeType, onChangeDate }) => {
   const [activeButton, setActiveButton] = useState('day'); // Початкова активна кнопка
@@ -19,20 +19,18 @@ const PeriodTypeSelect = ({ today, onChangeType, onChangeDate }) => {
   return (
     <List>
       <Item>
-        <Button
-          className={activeButton === 'month' ? 'active' : ''}
-          onClick={() => handleButtonClick('month')}
-        >
+        <StyledNavLink className={activeButton === 'month' ? 'active' : ''}>
           Month
-        </Button>
+        </StyledNavLink>
       </Item>
       <Item>
-        <Button
+        <StyledNavLink
           className={activeButton === 'day' ? 'active' : ''}
           onClick={() => handleButtonClick('day')}
+          to={`/calendar/day/${today}`}
         >
           Day
-        </Button>
+        </StyledNavLink>
       </Item>
     </List>
   );
