@@ -27,6 +27,15 @@ const Container = styled.div`
   @media (min-width: 768px) {
     width: 480px;
   }
+  /* @media (min-width: 375px) {
+    width: 480px;
+  } */
+  @media (max-width:768px) {
+    width: 335px;
+  }
+  @media (max-width:375px) {
+    width: 100%;
+  }
 `;
 
 const StyledForm = styled(Form)`
