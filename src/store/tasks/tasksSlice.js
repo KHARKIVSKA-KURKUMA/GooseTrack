@@ -22,7 +22,6 @@ const tasksSlice = createSlice({
         state.tasks = payload;
       })
       .addCase(getTasksByMonthThunk.fulfilled, (state, { payload }) => {
-        console.log('payload :>> ', payload);
         state.tasks = payload;
       })
       .addCase(addTask.fulfilled, (state, { payload }) => {

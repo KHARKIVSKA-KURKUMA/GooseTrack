@@ -4,7 +4,7 @@ import { ToolbarWrapper } from './CalendarToolbar.styled';
 import { useLocation } from 'react-router-dom';
 import { format, parse } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectedDateSelector, tasksSelector } from 'store/selectors';
+import { selectedDateSelector } from 'store/selectors';
 import { getTasksByMonthThunk } from 'store/tasks/tasksThunks';
 
 const CalendarToolbar = () => {
@@ -37,8 +37,6 @@ const CalendarToolbar = () => {
     );
   }, [dispatch, normalizedDate]);
 
-  const { tasks } = useSelector(tasksSelector);
-  console.log('tasks :>> ', tasks);
   return (
     <div>
       <ToolbarWrapper>

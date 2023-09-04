@@ -20,7 +20,7 @@ const TaskColumnCard = (data, title) => {
             {priority}
           </Priority>
         </TaskMeta>
-        <TaskToolbar title={title}/>
+        <TaskToolbar task={data} title={title} />
       </BottomContainer>
       {/* <TaskModal /> */}
     </CardContainer>
@@ -28,9 +28,9 @@ const TaskColumnCard = (data, title) => {
 };
 
 const getPriorityColor = priority => {
-  if (priority === 'High') return '#EA3D65';
-  if (priority === 'Medium') return '#F3B249';
-  if (priority === 'Low') return '#72C2F8';
+  if (priority === 'high') return '#EA3D65';
+  if (priority === 'medium') return '#F3B249';
+  if (priority === 'low') return '#72C2F8';
 };
 
 export default TaskColumnCard;
