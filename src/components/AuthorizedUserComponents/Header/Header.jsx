@@ -7,15 +7,9 @@ import { selectUser } from 'store/user/selectors';
 import { fetchCurrentUser } from 'store/user/operations';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { lightTheme, darkTheme } from '../Header/HeaderItems/Theme/theme';
-import { toggleTheme } from '../Header/HeaderItems/Theme/themeSlice';
+import { darkTheme, lightTheme } from './HeaderItems/Theme/theme';
 
-const Header = ({
-  theme,
-  toggleTheme,
-  showBurgerMenu,
-  handleBurgerToggleClick,
-}) => {
+const Header = ({ toggleTheme, showBurgerMenu, handleBurgerToggleClick }) => {
   const location = useLocation();
   let pageTitle = 'User Profile';
   if (location.pathname === '/calendar') {
@@ -33,6 +27,7 @@ const Header = ({
   const { name, avatarURL } = user;
 
   const theme = useSelector(state => state.theme);
+  console.log(theme);
   const lightThemeText = lightTheme.text;
   const darkThemeText = darkTheme.text;
 
@@ -48,7 +43,7 @@ const Header = ({
         setShowBurgerMenu={handleBurgerToggleClick}
       />
       <AddFeedbackBtn />
-      <ThemeToggler theme={theme}  toggleTheme={toggleThemeHandler} />
+      <ThemeToggler theme={theme} toggleTheme={toggleTheme} />
       <UserInfo userName={name} avatarUrl={avatarURL} />
     </Container>
   );
