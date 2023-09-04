@@ -35,10 +35,14 @@ export const CloseButtonContainer = styled.div`
   padding: 1px 0;
   z-index: 9999;
   top: 28px;
+     svg path {
+    stroke: ${({ theme }) => theme.text};    
+  }
   @media (min-width: 768px) {
     padding: 0;
     right: 32px;
     top: 36px;
+  
   }
 `;
 
@@ -193,8 +197,8 @@ export const StyledText = styled.span`
   font-style: italic;
   font-weight: 700;
   line-height: 24px;
-  margin-right: 1px;
-  margin-left: 1px;
+  margin-right: 2px;
+  margin-left: -1px;
   @media (min-width: 1440px) {
     font-size: 24px;
   }
