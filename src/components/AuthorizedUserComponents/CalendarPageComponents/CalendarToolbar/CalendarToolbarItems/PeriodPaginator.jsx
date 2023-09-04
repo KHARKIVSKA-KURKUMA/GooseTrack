@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-// import DatePicker from 'react-datepicker';
 import { useDispatch, useSelector } from 'react-redux';
-<<<<<<< Updated upstream
-import { addMonths, subMonths } from 'date-fns';
-=======
 import { addMonths, subMonths, format } from 'date-fns';
->>>>>>> Stashed changes
+
 import { setDates } from '../../../../../store/data/dataSlice';
 
 import 'react-datepicker/dist/react-datepicker.css';
