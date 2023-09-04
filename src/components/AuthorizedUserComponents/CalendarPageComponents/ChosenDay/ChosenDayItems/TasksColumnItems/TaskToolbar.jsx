@@ -14,8 +14,24 @@ import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
-const TaskToolbar = ({ task, date, title }) => {
-  
+const TaskToolbar = () => {
+  const task = {
+    category: 'to-do',
+    createdAt: '2023-09-04T06:19:58.359Z',
+    date: '2023-09-04',
+    end: '09:30',
+    owner: '64f57625b3b81b1fbd56fd95',
+    priority: 'high',
+    start: '09:00',
+    title: 'task1',
+    updatedAt: '2023-09-04T06:19:58.359Z',
+    _id: '64f5c66614b0742f27fb60a6',
+  };
+
+  console.log(task._id);
+  console.log(task);
+
+
   const [anchorEl, setAnchorEl] = useState(null);
   //  const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -65,12 +81,6 @@ const TaskToolbar = ({ task, date, title }) => {
     }
   };
 
-  // const handleEditTask = () => {
-  //   console.log('click edit');
-  // };
-
-  console.log(title);
-
   return (
     <TaskToolbarContainer>
       <TaskToolbarBtn onClick={handleClick}>
@@ -98,14 +108,7 @@ const TaskToolbar = ({ task, date, title }) => {
       <TaskToolbarBtn onClick={handleDeleteTask}>
         <Trash />
       </TaskToolbarBtn>
-      {isModalOpen && (
-        <TaskModal
-          toggleModal={toggleModal}
-          taskToEdit={task}
-          date={date}
-          category={title}
-        />
-      )}
+      {isModalOpen && <TaskModal toggleModal={toggleModal} taskToEdit={task} date={task.date} category={task.category} />}
     </TaskToolbarContainer>
   );
 };
