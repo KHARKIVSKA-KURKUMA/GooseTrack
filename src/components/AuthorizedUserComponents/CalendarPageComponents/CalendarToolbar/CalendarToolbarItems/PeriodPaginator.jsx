@@ -22,31 +22,26 @@ const PeriodPaginator = ({ selectedPeriodType, date, onDateChange }) => {
 
   const [selectedDate, setSelectedDate] = useState(currentDate);
 
+  console.log('selectedDate :>> ', selectedDate);
   const dispatch = useDispatch();
 
   const handleSwitcherClick = direction => {
-    let newDate;
+    let newData;
 
     if (selectedPeriodType === 'month') {
-      newDate =
+      newData =
         direction === 'previous'
           ? subMonths(currentDate, 1)
           : addMonths(currentDate, 1);
     } else {
-      newDate =
+      newData =
         direction === 'previous'
-          ? new Date(
-              dateObject.getFullYear(),
-              dateObject.getMonth(),
-              dateObject.getDate() - 1
-            )
-          : new Date(
-              dateObject.getFullYear(),
-              dateObject.getMonth(),
-              dateObject.getDate() + 1
-            );
+          ? new Date(dateObject - 1)
+          : new Date(dateObject + 1);
     }
 
+    const newDate = format(newData, 'yyyy-MM-dd');
+    console.log('newDate :>> ', newDate);
     dispatch(setDates(newDate));
 
     setSelectedDate(newDate);
