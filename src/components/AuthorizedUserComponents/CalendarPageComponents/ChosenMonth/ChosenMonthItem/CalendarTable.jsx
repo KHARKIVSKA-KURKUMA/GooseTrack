@@ -9,7 +9,7 @@ import {
   NoteContainer,
   NoteText,
 } from '../ChosenMonth.styled';
-import { selectedDateSelector } from 'store/selectors';
+import { selectedDateSelector, tasksSelector } from 'store/selectors';
 
 const getRandomColor = () => {
   const r = Math.floor(Math.random() * 256);
@@ -38,12 +38,33 @@ const getDarkerColor = () => {
 const CalendarTable = () => {
   const selectedDateUnFormat = useSelector(selectedDateSelector);
   const selectedDate = new Date(selectedDateUnFormat);
-  const selectedDateNow = selectedDate;
 
-  const notes = [
-    { date: new Date(2023, 7, 1), text: 'Заметка для 1 августа' },
-    { date: new Date(2023, 7, 30), text: 'Заметка для 5 августа' },
-  ];
+  const { tasks } = useSelector(tasksSelector);
+  /* -------------------------------------------------------------------------- */
+  const notesArr = tasks.map(task => {
+    const data = task.data;
+    const note = data.map(task => {
+      const date = new Date(task.date);
+      const priority = task.priority;
+      const title = task.title;
+      return { date, title, priority };
+    });
+    return note;
+  });
+
+  const uniqueTasks = {};
+
+  const filteredNotesArr = notesArr.map(note => {
+    return note.filter(task => {
+      const dateStr = task.date.toISOString();
+      if (!uniqueTasks[dateStr]) {
+        uniqueTasks[dateStr] = true;
+        return true;
+      }
+      return false;
+    });
+  });
+  const notes = filteredNotesArr.flat();
 
   const daysInMonth = date => {
     const year = date.getFullYear();
@@ -52,7 +73,8 @@ const CalendarTable = () => {
   };
 
   const isCurrentDate = (day, month, year) => {
-    const currentDate = new Date();
+    const currentDate = selectedDate;
+    // const currentDate = new Date();
     return (
       day === currentDate.getDate() &&
       month === currentDate.getMonth() &&
@@ -68,8 +90,8 @@ const CalendarTable = () => {
       .filter(note => {
         return (
           note.date.getDate() === day &&
-          note.date.getMonth() === selectedDateNow.getMonth() &&
-          note.date.getFullYear() === selectedDateNow.getFullYear()
+          note.date.getMonth() === selectedDate.getMonth() &&
+          note.date.getFullYear() === selectedDate.getFullYear()
         );
       })
       .map((note, index) => (
@@ -77,7 +99,7 @@ const CalendarTable = () => {
           key={index}
           style={{ backgroundColor, color: textColor }}
         >
-          <NoteText>{note.text}</NoteText>
+          <NoteText>{note.title}</NoteText>
         </NoteContainer>
       ));
 
@@ -109,6 +131,7 @@ const CalendarTable = () => {
             selectedDate.getMonth(),
             selectedDate.getFullYear()
           );
+
           week.push(
             <CalendarCell key={j} className={isCurrent ? 'current-day' : ''}>
               <GridContainer>

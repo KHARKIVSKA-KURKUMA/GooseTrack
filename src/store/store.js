@@ -15,8 +15,7 @@ import { tasksReducer } from './tasks/tasksSlice';
 import { feedbackReducer } from './feedback/feedbackSlice';
 import { statisticsReducer } from './statistics/statisticsSlice';
 import { themeReducer } from '../components/AuthorizedUserComponents/Header/HeaderItems/Theme/themeSlice';
-import { dateReducer } from './data/dataSlice';
-
+import { dateReducer } from './date/dateSlice';
 
 const reducer = {
   feedback: feedbackReducer,

@@ -1,83 +1,99 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMonths, subMonths, format } from 'date-fns';
+import { format, sub, add, parse } from 'date-fns';
+import DatePicker from 'react-datepicker';
 
-import { setDates } from '../../../../../store/data/dataSlice';
+import { setDates } from '../../../../../store/date/dateSlice';
 
-import 'react-datepicker/dist/react-datepicker.css';
 import {
   PeriodPaginatorContainer,
   ButtonsContainer,
   SwitcherContainer,
   SwitcherPart,
 } from './PeriodPaginator.styled';
+import { selectedDateSelector } from 'store/selectors';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const PeriodPaginator = ({ selectedPeriodType, date, onDateChange }) => {
+const PeriodPaginator = ({ type }) => {
   const [activeSwitcher, setActiveSwitcher] = useState(0);
+  const params = useParams();
 
-  const currentDate = useSelector(state => state.date.currentDate);
-
-  const dateObject = new Date(currentDate); // об'єкт дати із рядка
-  console.log(dateObject);
-
-  const [selectedDate, setSelectedDate] = useState(currentDate);
-
-  console.log('selectedDate :>> ', selectedDate);
   const dispatch = useDispatch();
 
-  const handleSwitcherClick = direction => {
-    let newData;
+  const navigate = useNavigate();
 
-    if (selectedPeriodType === 'month') {
-      newData =
-        direction === 'previous'
-          ? subMonths(currentDate, 1)
-          : addMonths(currentDate, 1);
-    } else {
-      newData =
-        direction === 'previous'
-          ? new Date(dateObject - 1)
-          : new Date(dateObject + 1);
+  const normalizedDate = useSelector(selectedDateSelector);
+
+  useEffect(() => {
+    if (params.currentDay) {
+      if (normalizedDate !== params.currentDay) {
+        dispatch(setDates(params.currentDay));
+      }
     }
+  }, [dispatch, normalizedDate, params.currentDay]);
 
-    const newDate = format(newData, 'yyyy-MM-dd');
-    console.log('newDate :>> ', newDate);
-    dispatch(setDates(newDate));
+  const date = parse(normalizedDate, 'yyyy-MM-dd', Date.now());
+  const selectedDay = date;
 
-    setSelectedDate(newDate);
-    onDateChange(format(newDate, 'yyyy-MM-dd')); // передаєм форматовану дату для оновлення рядка
+  const onChangeDate = e => {
+    if (e.currentTarget.name === 'next') {
+      setActiveSwitcher(1);
+      if (type === 'day') {
+        const newDate = add(date, { days: 1 });
+        const formattedNewDate = format(newDate, 'yyyy-MM-dd');
+        dispatch(setDates(formattedNewDate));
+        navigate(`${type}/${formattedNewDate}`);
+        return;
+      }
+      const newDate = add(date, { months: 1 });
+      const formattedNewDate = format(newDate, 'yyyy-MM-dd');
+      dispatch(setDates(formattedNewDate));
+      navigate(`${type}/${formattedNewDate}`);
+      return;
+    }
+    if (type === 'day') {
+      const newDate = sub(date, { days: 1 });
+      const formattedNewDate = format(newDate, 'yyyy-MM-dd');
+      dispatch(setDates(formattedNewDate));
+      navigate(`${type}/${formattedNewDate}`);
+      return;
+    }
+    const newDate = sub(date, { months: 1 });
+    const formattedNewDate = format(newDate, 'yyyy-MM-dd');
+    setActiveSwitcher(0);
+    dispatch(setDates(formattedNewDate));
+    navigate(`${type}/${formattedNewDate}`);
+    return;
+  };
+  const handleChange = date => {
+    const formattedNewDate = format(date, 'yyyy-MM-dd');
+    dispatch(setDates(formattedNewDate));
+    navigate(`${type}/${formattedNewDate}`);
   };
 
   return (
     <PeriodPaginatorContainer>
       <ButtonsContainer>
-        {/* <DatePicker
+        <DatePicker
           id="datePickerInput"
-          selected={selectedDate}
-          onChange={date => {
-            setSelectedDate(date);
-            onDateChange(date);
-          }}
-          dateFormat={
-            selectedPeriodType === 'month' ? 'MMMM yyyy' : 'd MMM yyyy'
-          }
-        /> */}
+          selected={selectedDay}
+          onChange={date => handleChange(date)}
+          dateFormat={type === 'month' ? 'MMMM yyyy' : 'd MMM yyyy'}
+        />
         <SwitcherContainer>
           <SwitcherPart
             active={activeSwitcher === 0}
-            onClick={() => {
-              setActiveSwitcher(0);
-              handleSwitcherClick('previous');
-            }}
+            type="button"
+            name="prev"
+            onClick={onChangeDate}
           >
             ❮
           </SwitcherPart>
           <SwitcherPart
             active={activeSwitcher === 1}
-            onClick={() => {
-              setActiveSwitcher(1);
-              handleSwitcherClick('next');
-            }}
+            type="button"
+            name="next"
+            onClick={onChangeDate}
           >
             ❯
           </SwitcherPart>

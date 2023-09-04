@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'modern-normalize/modern-normalize.css';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import 'index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { persistor, store } from 'store/store';

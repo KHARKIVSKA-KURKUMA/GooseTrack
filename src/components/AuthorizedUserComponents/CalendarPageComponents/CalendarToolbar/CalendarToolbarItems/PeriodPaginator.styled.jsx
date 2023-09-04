@@ -215,7 +215,7 @@ const SwitcherContainer = styled.div`
   }
 `;
 
-const SwitcherPart = styled.div`
+const SwitcherPart = styled.button`
   flex: 1;
   text-align: center;
   transition: transform 0.3s, color 0.3s;

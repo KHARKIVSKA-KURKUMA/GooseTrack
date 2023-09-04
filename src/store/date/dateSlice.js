@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import getCurrentDate from 'helpers/currentDay';
+import { format } from 'date-fns';
 import { logout } from 'store/auth/authOperations';
 
 const initialState = {
-  currentDate: getCurrentDate(),
+  currentDate: format(Date.now(), 'yyyy-MM-dd'),
 };
 
 export const dateSlice = createSlice({
@@ -24,7 +24,7 @@ export const dateSlice = createSlice({
         );
       },
       state => {
-        state.currentDate = getCurrentDate();
+        state.currentDate = format(Date.now(), 'yyyy-MM-dd');
       }
     );
   },
