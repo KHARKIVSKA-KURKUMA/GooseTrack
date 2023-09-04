@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { updateUser } from './operations';
+import { fetchCurrentUser, updateUser } from './operations';
 
 const updateUserState = (state, action) => {
   for (let key in state) {
@@ -16,6 +16,8 @@ const initialState = {
   phone: '',
   skype: '',
   avatarURL: '',
+  isLoading: false,
+  isFulfilled: false,
 };
 
 const userSlice = createSlice({
@@ -31,9 +33,27 @@ const userSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(updateUser.fulfilled, (state, action) => {
-      updateUserState(state, action.payload);
-    });
+    builder
+      .addCase(updateUser.fulfilled, (state, action) => {
+        updateUserState(state, action.payload);
+      })
+      .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
+        state.name = payload.name;
+        state.email = payload.email;
+        state.birthday = payload.birthday;
+        state.phone = payload.phone;
+        state.skype = payload.skype;
+        state.avatarURL = payload.avatarURL;
+        state.isLoading = false;
+        state.isFulfilled = true;
+      })
+      .addCase(fetchCurrentUser.pending, (state, { payload }) => {
+        state.isLoading = true;
+        state.isFulfilled = false;
+      })
+      .addCase(fetchCurrentUser.rejected, (state, { payload }) => {
+        state.isLoading = true;
+      });
   },
 });
 

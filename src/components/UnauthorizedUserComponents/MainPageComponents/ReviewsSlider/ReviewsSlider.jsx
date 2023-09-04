@@ -23,7 +23,7 @@ import {
 } from './ReviewsSlider.styled';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { feedbackSelector } from 'store/selectors';
+import { feedbackIsLoadingSelector, feedbackSelector } from 'store/selectors';
 import { useEffect } from 'react';
 import { getAllFeedbacks } from 'store/feedback/feedbackThunks';
 
@@ -35,7 +35,8 @@ const ReviewsSlider = () => {
   }, [dispatch]);
 
   const data = useSelector(feedbackSelector);
-
+  const isLoading = useSelector(feedbackIsLoadingSelector);
+  console.log('isLoading :>> ', isLoading);
   const reviews = data.feedback || [];
 
   return (

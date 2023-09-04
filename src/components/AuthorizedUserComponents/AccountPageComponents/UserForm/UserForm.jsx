@@ -22,27 +22,18 @@ import {
 } from './UserForm.styled';
 import getCurrentDate from 'helpers/currentDay';
 
-
-
-
-const currentDate = getCurrentDate()
+const currentDate = getCurrentDate();
 
 const UserForm = () => {
   const [imagePreview, setImagePreview] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const isFulfilled = useSelector(state => state.user.isFulfilled);
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
   useEffect(() => {
-    const getUserInfo = async () => {
-      await dispatch(fetchCurrentUser());
-      setIsLoading(false);
-    };
-
-    getUserInfo();
+    dispatch(fetchCurrentUser());
   }, [dispatch]);
 
   const handleImageChange = async e => {
-   
     const selectedFile = e.target.files[0];
     if (!selectedFile) {
       return;
@@ -50,11 +41,9 @@ const UserForm = () => {
     const imageUrl = URL.createObjectURL(selectedFile);
     const formData = new FormData();
     formData.append('avatar', selectedFile);
-    setIsLoading(true);
     await dispatch(updateUser(formData));
     setImagePreview(imageUrl);
     await dispatch(fetchCurrentUser());
-    setIsLoading(false);
   };
 
   const { name, birthday, email, phone, skype, avatarURL } = userInfo;
@@ -70,27 +59,25 @@ const UserForm = () => {
     }
     formData.append('birthday', values.birthday);
     try {
-      setIsLoading(true);
       await dispatch(updateUser(formData));
       await dispatch(updateUser(values));
       await dispatch(fetchCurrentUser());
       toast.success('Profile data changed successfully');
-
-      setIsLoading(false);
     } catch {
       toast.error('Something went wrong... Try again!');
     }
   };
-  if (!isLoading) {
+  if (isFulfilled) {
+    console.log('name :>> ', name);
     return (
       <Formik
         initialValues={{
-          name: name ||"" ,
-          birthday: birthday || "",
-          email: email || "",
-          phone: phone || "",
-          skype: skype || "",
-          avatarURL: avatarURL || "",
+          name: name || '',
+          birthday: birthday || '',
+          email: email || '',
+          phone: phone || '',
+          skype: skype || '',
+          avatarURL: avatarURL || '',
         }}
         validationSchema={userSchema}
         onSubmit={handleSubmit}
