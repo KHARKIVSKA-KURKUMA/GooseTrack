@@ -2,7 +2,7 @@
   "name": "goose-track",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://KHARKIVSKA-KURKUMA.github.io/",
+  "homepage": "https://KHARKIVSKA-KURKUMA.github.io/GooseTrack/",
   "dependencies": {
     "@mui/material": "^5.14.6",
     "@mui/x-date-pickers": "^6.12.0",
