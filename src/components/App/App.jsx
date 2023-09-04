@@ -10,8 +10,8 @@ import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 import Restricted from 'components/Routes/Restricted';
 import Private from 'components/Routes/Private';
 import { GlobalStyle } from './GlobalStyles';
-import ChosenDay from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenDay/ChosenDay';
-import ChosenMonth from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenMonth/ChosenMonth';
+// import ChosenDay from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenDay/ChosenDay';
+// import ChosenMonth from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenMonth/ChosenMonth';
 import PageNotFound from 'components/PageNotFound/PageNotFound';
 
 export const App = () => {
