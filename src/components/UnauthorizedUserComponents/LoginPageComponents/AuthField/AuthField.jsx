@@ -1,24 +1,22 @@
 import {
-  Input,
   MessageError,
-  Label,
   IconStatusWrap,
   ErrorIcon,
   CorrectIcon,
   CorrectTag,
-} from 'components/AuthorizedUserComponents/AccountPageComponents/UserForm/UserForm.styled';
+} from 'components/UnauthorizedUserComponents/LoginPageComponents/AuthField/AuthField.styled';
+import { StyledField, StyledLabel } from '../LoginForm/LoginForm.styled';
 
-export const UserFild = ({
+export const AuthField = ({
   touched,
   errors,
   title,
   type,
   name,
   placeholder = null,
-  values,
 }) => {
   return (
-    <Label
+    <StyledLabel
       style={{
         color:
           (touched && errors && '#E74A3B') || (touched && !errors && '#3CBC81'),
@@ -28,7 +26,7 @@ export const UserFild = ({
     >
       {title}{' '}
       <IconStatusWrap>
-        <Input
+        <StyledField
           type={type}
           name={name}
           placeholder={placeholder}
@@ -44,8 +42,8 @@ export const UserFild = ({
         {touched && errors && <ErrorIcon />}
         {touched && !errors && <CorrectIcon />}
       </IconStatusWrap>
-      {touched && !errors && values.length>0 && <CorrectTag>This is an CORRECT {name}</CorrectTag>}
+      {touched && !errors && <CorrectTag>This is an CORRECT {name}</CorrectTag>}
       <MessageError name={name} component="p" />
-    </Label>
+    </StyledLabel>
   );
 };

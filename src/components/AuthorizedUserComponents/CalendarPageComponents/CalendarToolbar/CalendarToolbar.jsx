@@ -1,35 +1,38 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { PeriodPaginator, PeriodTypeSelect } from './CalendarToolbarItems';
 import { ToolbarWrapper } from './CalendarToolbar.styled';
 
 const CalendarToolbar = () => {
-  const [selectedPeriodType, setSelectedPeriodType] = useState('day');
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [dateFormat, setDateFormat] = useState('d MMM yyyy'); // Додайте цей стейт
+  // const [selectedPeriodType, setSelectedPeriodType] = useState('day');
 
-  console.log(dateFormat);
-  const handleChangeType = type => {
-    setSelectedPeriodType(type);
-    setDateFormat(type === 'month' ? 'MMM yyyy' : 'd MMM yyyy'); // Змінюємо формат дати
-  };
+  // const selectedDate = selected;
+  // const setSelectedDate = setSelected;
 
-  const handleChangeDate = newDate => {
-    setSelectedDate(newDate);
-  };
+  // const [dateFormat, setDateFormat] = useState('d MMM yyyy'); // Додайте цей стейт
 
-  const formattedToday = selectedDate.toISOString();
+  // console.log(dateFormat);
+  // const handleChangeType = type => {
+  //   setSelectedPeriodType(type);
+  //   setDateFormat(type === 'month' ? 'MMM yyyy' : 'd MMM yyyy'); // Змінюємо формат дати
+  // };
+
+  // const handleChangeDate = newDate => {
+  //   setSelectedDate(newDate);
+  // };
+
+  // const formattedToday = selectedDate.toISOString();
 
   return (
     <div>
       <ToolbarWrapper>
         <PeriodPaginator
-          selectedPeriodType={selectedPeriodType}
-          onDateChange={handleChangeDate}
+        // selectedPeriodType={selectedPeriodType}
+        // onDateChange={handleChangeDate}
         />
         <PeriodTypeSelect
-          today={formattedToday}
-          onChangeType={handleChangeType}
-          onChangeDate={handleChangeDate}
+        // today={formattedToday}
+        // onChangeType={handleChangeType}
+        // onChangeDate={handleChangeDate}
         />
       </ToolbarWrapper>
     </div>

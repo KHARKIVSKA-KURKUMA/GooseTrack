@@ -146,8 +146,9 @@ const ReviewsSlider = () => {
                         <UserAvatar src={userAvatar} alt="UserAvatar" />
                       )}
                       <div>
-                        {review.owner === null || review.owner.length === 0 ? (
-                          'USER'
+
+                        {review.owner === null || review.owner.length === 0 || review.owner === undefined ? (
+                          <UserName>USER</UserName>
                         ) : (
                           <UserName>{review.owner.name}</UserName>
                         )}

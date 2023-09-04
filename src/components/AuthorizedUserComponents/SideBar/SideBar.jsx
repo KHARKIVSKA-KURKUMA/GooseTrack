@@ -22,12 +22,14 @@ import {
 } from '../SideBar/SideBarItems/SvgSideBar';
 import BurgerMenu from '../SideBar/SideBarItems/BurgerMenu/BurgerMenu';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from 'store/auth/authOperations';
+import { selectedDateSelector } from 'store/selectors';
 
 
 const Sidebar = ({ showBurgerMenu, handleSidebarClick }) => {
   const isMobile = useMediaQuery('(min-width: 1440px)');
+  const currentDay = useSelector(selectedDateSelector);
   const dispatch = useDispatch();
 
   return (
@@ -50,7 +52,7 @@ const Sidebar = ({ showBurgerMenu, handleSidebarClick }) => {
           <MyAccountSVG />
           <span>My account</span>
         </NavLinkStyled>
-        <NavLinkStyled to="/calendar">
+        <NavLinkStyled to={`/calendar/month/${currentDay}`}>
           <CalendarSVG />
           <span>Calendar</span>
         </NavLinkStyled>

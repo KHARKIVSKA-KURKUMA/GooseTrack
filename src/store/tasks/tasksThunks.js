@@ -12,12 +12,12 @@ export const getUserTasksThunk = createAsyncThunk(
     }
   }
 );
-export const getUserTasksByDateThunk = createAsyncThunk(
-  'tasks/getByDate',
+export const getTasksByMonthThunk = createAsyncThunk(
+  'tasks/getByMonth',
   async (res, { rejectWithValue }) => {
     try {
       const { data } = await instance.get(
-        `api/tasks?year=${res.year}&month=${res.month}&day=${res.day}`
+        `api/tasks?year=${res.year}&month=${res.month}`
       );
       return data;
     } catch (error) {
