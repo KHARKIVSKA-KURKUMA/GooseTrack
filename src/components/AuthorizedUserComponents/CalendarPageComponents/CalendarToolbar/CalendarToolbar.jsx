@@ -11,7 +11,7 @@ const CalendarToolbar = () => {
   const location = useLocation();
 
   const [type, setType] = useState('month');
-  const [dateObject, setDateObject] = useState(new Date());
+  // const [dateObject, setDateObject] = useState(new Date());
 
   const pathname = location.pathname.slice(0, -11);
 
