@@ -86,11 +86,16 @@ export const NavLinkStyled = styled(NavLink)`
   transition: color 0.2s;
   padding: 10px 0 10px 14px;
   border-radius: 8px;
- 
 
+  &:last-child {
+    path {
+      fill: ${({ theme }) => theme.textSidebar};
+      stroke: none;
+    }
+  }
   svg path {
     stroke: ${({ theme }) => theme.textSidebar};
-    fill: none; 
+    fill: none;
   }
 
   &:hover {
