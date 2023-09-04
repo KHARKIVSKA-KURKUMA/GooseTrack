@@ -11,7 +11,7 @@ import { BiErrorCircle } from 'react-icons/bi';
 //   --low-background-color: #72c2f8;
 //   --medium-background-color: #f3b249;
 //   --high-background-color: #ea3d65;
-//   --title-color: #3e85f3;
+  // --title-color: #3e85f3;
 //   --subtitle-color: #171820;
 //   --descr-color: rgba(17, 17, 17, 0.9);
 // }
@@ -92,7 +92,6 @@ const StyledBtn = styled.button`
   justify-content: center;
   padding: 14px 0;
   column-gap: 11px;
-  cursor: pointer;
   /* height: 46px; */
   width: 100%;
   border: none;
@@ -100,12 +99,18 @@ const StyledBtn = styled.button`
   border-radius: 16px;
   box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   color: #fff;
-
+  
   margin-top: 32px;
   transition: background-color 0.3s;
-  &:hover,
-  &:focus {
-    background-color: var(--btn-hover-background-color);
+  &:disabled{
+    background-color:gray;
+  }
+  &:not(:disabled){
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      background-color: var(--btn-hover-background-color);
+    }
   }
 `;
 const StyledTextBtn = styled.span`

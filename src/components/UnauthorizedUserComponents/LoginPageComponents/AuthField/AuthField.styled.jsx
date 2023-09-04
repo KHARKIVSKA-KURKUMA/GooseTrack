@@ -65,4 +65,10 @@ export const StyledVisibleButton = styled.button`
 
   cursor: pointer;
 
+  &:hover,
+  &:focus {
+
+    color: var(--title-color);
+  }
+
 `
