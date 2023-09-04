@@ -1,38 +1,30 @@
-import { useState } from 'react';
-import { Item, List, Button } from './PeriodTypeSelect.styled';
+import { useSelector } from 'react-redux';
 
-const PeriodTypeSelect = ({ today, onChangeType, onChangeDate }) => {
-  const [activeButton, setActiveButton] = useState('day'); // Початкова активна кнопка
+import { Item, List, StyledNavLink } from './PeriodTypeSelect.styled';
 
-  const handleButtonClick = type => {
-    setActiveButton(type);
-    onChangeType(type);
-
-    const currentDate = new Date();
-    const newDate =
-      type === 'month'
-        ? new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
-        : currentDate;
-    onChangeDate(newDate);
-  };
+const PeriodTypeSelect = ({ onChangeType }) => {
+  const currentDate = useSelector(state => state.date.currentDate);
+  console.log('currentDate :>> ', currentDate);
 
   return (
     <List>
       <Item>
-        <Button
-          className={activeButton === 'month' ? 'active' : ''}
-          onClick={() => handleButtonClick('month')}
+        <StyledNavLink
+          className="month"
+          to={`/calendar/month/${currentDate}`}
+          onClick={() => onChangeType('month')}
         >
           Month
-        </Button>
+        </StyledNavLink>
       </Item>
       <Item>
-        <Button
-          className={activeButton === 'day' ? 'active' : ''}
-          onClick={() => handleButtonClick('day')}
+        <StyledNavLink
+          className="day"
+          to={`/calendar/day/${currentDate}`}
+          onClick={() => onChangeType('day')}
         >
           Day
-        </Button>
+        </StyledNavLink>
       </Item>
     </List>
   );

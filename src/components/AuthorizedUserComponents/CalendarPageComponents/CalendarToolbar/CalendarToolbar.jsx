@@ -1,89 +1,46 @@
-// import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PeriodPaginator, PeriodTypeSelect } from './CalendarToolbarItems';
 import { ToolbarWrapper } from './CalendarToolbar.styled';
 
+import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
 const CalendarToolbar = () => {
-  // const [selectedPeriodType, setSelectedPeriodType] = useState('day');
+  // Extract the 'date' parameter from the URL using useParams
+  const { date } = useParams();
+  const location = useLocation();
 
-  // const selectedDate = selected;
-  // const setSelectedDate = setSelected;
+  const [type, setType] = useState('month');
+  const [dateObject, setDateObject] = useState(new Date());
 
-  // const [dateFormat, setDateFormat] = useState('d MMM yyyy'); // Додайте цей стейт
+  const pathname = location.pathname.slice(0, -11);
 
-  // console.log(dateFormat);
-  // const handleChangeType = type => {
-  //   setSelectedPeriodType(type);
-  //   setDateFormat(type === 'month' ? 'MMM yyyy' : 'd MMM yyyy'); // Змінюємо формат дати
-  // };
+  useEffect(() => {
+    if (pathname.endsWith('/calendar/day')) {
+      setType('day');
+    } else {
+      setType('month');
+    }
+  }, [pathname]);
 
-  // const handleChangeDate = newDate => {
-  //   setSelectedDate(newDate);
-  // };
-
-  // const formattedToday = selectedDate.toISOString();
+  // Function to set the date
+  const handleDateChange = newDate => {
+    // You can perform any necessary logic here
+    console.log('New date:', newDate);
+  };
 
   return (
     <div>
       <ToolbarWrapper>
         <PeriodPaginator
-        // selectedPeriodType={selectedPeriodType}
-        // onDateChange={handleChangeDate}
+          type={type}
+          date={date}
+          onDateChange={handleDateChange}
         />
-        <PeriodTypeSelect
-        // today={formattedToday}
-        // onChangeType={handleChangeType}
-        // onChangeDate={handleChangeDate}
-        />
+        <PeriodTypeSelect today={date} onChangeType={setType} />
       </ToolbarWrapper>
     </div>
   );
 };
 
 export default CalendarToolbar;
-
-// import PropTypes from 'prop-types';
-
-// import { useState, useEffect } from 'react';
-// import { useLocation } from 'react-router-dom';
-
-// import { PeriodPaginator, PeriodTypeSelect } from './CalendarToolbarItems';
-// import { ToolbarWrapper } from './CalendarToolbar.styled';
-
-// const CalendarToolbar = ({ today, prevHandler, nextHandler }) => {
-
-//   const handleChangeDate = newDate => {
-//     setSelectedDate(newDate);
-//   };
-
-// const [type, setType] = useState('month');
-
-// const location = useLocation();
-
-// const pathname = location.pathname.slice(0, -11);
-
-// useEffect(() => {
-//   if (pathname.endsWith('/calendar/day')) {
-//     setType('day');
-//     return;
-//   }
-//   setType('month');
-// }, [pathname]);
-
-//  const handleChangeType = type => {
-//    // Обробка зміни типу періоду
-//  };
-
-//   return (
-//     <ToolbarWrapper>
-//       <PeriodPaginator />
-//       <PeriodTypeSelect today={today} onChangeType={handleChangeType} onChangeDate={handleChangeDate} />
-//     </ToolbarWrapper>
-//   );
-// };
-
-// export default CalendarToolbar;
-
-// PeriodTypeSelect.propTypes = {
-//   today: PropTypes.string.isRequired,
-//   onChangeType: PropTypes.func.isRequired,
-// };
