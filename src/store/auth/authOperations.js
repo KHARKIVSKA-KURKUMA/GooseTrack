@@ -62,8 +62,8 @@ export const logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const result = await api.logout();
-      console.log('logout>>>>', result);
-      return result;
+      
+      return result.data;
     } catch ({ response }) {
       console.log(response);
       const { status, data } = response;
