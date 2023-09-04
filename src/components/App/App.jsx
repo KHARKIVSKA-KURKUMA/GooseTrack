@@ -1,5 +1,5 @@
 import { ToastContainer } from 'react-toastify';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import MainPage from 'pages/MainPage/MainPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
@@ -7,17 +7,18 @@ import Layout from 'components/UnauthorizedUserComponents/Layout/Layout';
 import AccountPage from 'pages/AccountPage/AccountPage';
 import CalendarPage from 'pages/CalendarPage/CalendarPage';
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import Restricted from 'components/Routes/Restricted';
 import Private from 'components/Routes/Private';
 import { GlobalStyle } from './GlobalStyles';
+import ChosenDay from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenDay/ChosenDay';
+import ChosenMonth from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenMonth/ChosenMonth';
+import PageNotFound from 'components/PageNotFound/PageNotFound';
 
 export const App = () => {
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <>
       <GlobalStyle />
-      <ToastContainer autoClose={1500} theme="colored" />
+      <ToastContainer autoClose={1000} theme="colored" />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
@@ -39,14 +40,24 @@ export const App = () => {
           <Route
             path="calendar"
             element={<Private component={CalendarPage} to="/" />}
-          ></Route>
+          >
+            <Route
+              path="month/:currentDate"
+              element={<Private component={ChosenMonth} to="/" />}
+            ></Route>
+            <Route
+              path="day/:currentDate"
+              element={<Private component={ChosenDay} to="/" />}
+            ></Route>
+          </Route>
+
           <Route
             path="statistics"
             element={<Private component={StatisticsPage} to="/" />}
           ></Route>
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
-    </LocalizationProvider>
+    </>
   );
 };

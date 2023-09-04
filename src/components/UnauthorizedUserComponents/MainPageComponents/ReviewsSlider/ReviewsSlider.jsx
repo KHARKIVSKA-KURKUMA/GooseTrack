@@ -23,48 +23,9 @@ import {
 } from './ReviewsSlider.styled';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { feedbackSelector } from 'store/selectors';
+import { feedbackIsLoadingSelector, feedbackSelector } from 'store/selectors';
 import { useEffect } from 'react';
 import { getAllFeedbacks } from 'store/feedback/feedbackThunks';
-
-// const reviews = [
-//   {
-//     _id: 'id-1',
-//     avatarUrl: userAvatar,
-//     rating: 2,
-//     text: 'GooseTrack is impressive.',
-//     owner: {
-//       name: 'Rosie Simpson',
-//     },
-//   },
-//   {
-//     _id: 'id-2',
-//     avatarUrl: userAvatar,
-//     rating: 0,
-//     text: 'GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended.',
-//     owner: {
-//       name: 'Hermione Kline',
-//     },
-//   },
-//   {
-//     _id: 'id-3',
-//     avatarUrl: userAvatar,
-//     rating: 5,
-//     text: 'The calendar view and filter options make it easy to stay organized and focused. Highly recommended.',
-//     owner: {
-//       name: 'Eden Clements',
-//     },
-//   },
-//   {
-//     _id: 'id-4',
-//     avatarUrl: userAvatar,
-//     rating: 4,
-//     text: 'Highly recommended.',
-//     owner: {
-//       name: 'Annie Copeland',
-//     },
-//   },
-// ];
 
 const ReviewsSlider = () => {
   const dispatch = useDispatch();
@@ -74,8 +35,8 @@ const ReviewsSlider = () => {
   }, [dispatch]);
 
   const data = useSelector(feedbackSelector);
-  console.log('feedback :>> ', data.feedback);
-
+  const isLoading = useSelector(feedbackIsLoadingSelector);
+  console.log('isLoading :>> ', isLoading);
   const reviews = data.feedback || [];
 
   return (
@@ -89,7 +50,6 @@ const ReviewsSlider = () => {
             effect={'coverflow'}
             slidesPerView={1}
             spaceBetween={20}
-            // autoHeight={true}
             centeredSlides={true}
             coverflowEffect={{
               rotate: 30,
@@ -140,14 +100,24 @@ const ReviewsSlider = () => {
                 <SwiperSlide key={review._id}>
                   <ReviewWrapper>
                     <UserWrapper>
-                      {review.avatarUrl > 0 ? (
-                        <UserAvatar src={review.avatarUrl} alt="UserAvatar" />
-                      ) : (
+                      {review.owner === null ||
+                      review.owner === undefined ||
+                      review.owner.length === 0 ||
+                      review.owner.avatarURL === null ||
+                      review.owner.avatarURL === undefined ||
+                      review.owner.avatarURL.length === 0 ? (
                         <UserAvatar src={userAvatar} alt="UserAvatar" />
+                      ) : (
+                        <UserAvatar
+                          src={review.owner.avatarURL}
+                          alt="UserAvatar"
+                        />
                       )}
                       <div>
-                        {review.owner === null || review.owner === undefined ? (
-                          'USER'
+                        {review.owner === null ||
+                        review.owner.length === 0 ||
+                        review.owner === undefined ? (
+                          <UserName>USER</UserName>
                         ) : (
                           <UserName>{review.owner.name}</UserName>
                         )}

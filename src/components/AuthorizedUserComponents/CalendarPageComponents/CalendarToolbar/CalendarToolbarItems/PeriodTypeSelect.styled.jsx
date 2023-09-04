@@ -41,12 +41,6 @@ export const StyledNavLink = styled(NavLink)`
 
   transition: background 100ms linear, color 100ms linear;
 
-  /* &:hover,
-  &:focus {
-    background: ${({ theme }) => theme.colors.darkBlue};
-    color: ${({ theme }) => theme.colors.textMonthDayBtn};
-  } */
-
   @media screen and (min-width: 768px) {
     &.day {
       padding: 8px 26px;

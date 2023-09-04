@@ -26,7 +26,7 @@ import {
   ErrorsMessage,
 } from './TaskForm.styled';
 
-const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
+const TaskFormForEdit = ({ toggleModal, taskToEdit}) => {
   const dispatch = useDispatch();
 
   /// Validate Feedback form with YUP ///
@@ -70,39 +70,38 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
 
   const formik = useFormik({
     initialValues: {
-      title: '',
-      start: '09:00',
-      end: '09:30',
-      priority: 'low',
-      date: date,
-      category: category,
+      title: taskToEdit.title,
+      start: taskToEdit.start,
+      end: taskToEdit.end,
+      priority: taskToEdit.priority,
+      date: taskToEdit.date,
+      category: taskToEdit.category,
     },
     validationSchema: taskFormValidationSchema,
 
     onSubmit:(values, action) => {
       console.log(values);
-      if (taskToEdit && taskToEdit.length > 0) {
-        dispatch(editTask(values));
-        toast.success('Task updated successfully')
-        // if (response.status >= 200 && response.status < 300) {
-        //   toast.success('Task updated successfully');
-        // } else {
-        //   toast.error('Oops, something went wrong...');
-        // }
+        if (taskToEdit && Object.keys(taskToEdit).length > 0) {
+            const response = dispatch(editTask({...values, _id: taskToEdit._id}));
+        if (response.status >= 200 && response.status < 300) {
+          toast.success('Task updated successfully');
+        } else {
+          toast.error('Oops, something went wrong...');
+        }
       } else {
-        dispatch(addTask(values));
-        toast.success('Task created successfully');
-        // if (response.status >= 200 && response.status < 300) {
-        //   toast.success('Task created successfully');
-        // } else {
-        //   toast.error('Oops, something went wrong...');
-        // }
+        const response = dispatch(addTask(values));
+        if (response.status >= 200 && response.status < 300) {
+          toast.success('Task created successfully');
+        } else {
+          toast.error('Oops, something went wrong...');
+        }
         console.log(values);
       }
       action.resetForm();
       toggleModal();
     },
   });
+
 
 
   return (
@@ -214,4 +213,4 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
   );
 };
 
-export default TaskForm;
+export default TaskFormForEdit;

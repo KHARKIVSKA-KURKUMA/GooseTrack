@@ -8,14 +8,58 @@ import {
   MenuStyled,
 } from './TaskColumnItems.styled';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { deleteTask } from 'store/tasks/tasksThunks';
+import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const TaskToolbar = () => {
+  const task = {
+    category: 'to-do',
+    createdAt: '2023-09-04T06:19:58.359Z',
+    date: '2023-09-04',
+    end: '09:30',
+    owner: '64f57625b3b81b1fbd56fd95',
+    priority: 'high',
+    start: '09:00',
+    title: 'task1',
+    updatedAt: '2023-09-04T06:19:58.359Z',
+    _id: '64f5c66614b0742f27fb60a6',
+  };
+
+  console.log(task._id);
+  console.log(task);
+
+
   const [anchorEl, setAnchorEl] = useState(null);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+  //  const [isModalOpen, setIsModalOpen] = useState(false);
+
   /* -------------------------------------------------------------------------- */
-  const groups = ['To do', 'In progress', 'Done'];
-  const currentGroup = 'To do';
+
+  const [showModal, setShowModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  /// Toggle Modal Function ///
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
+  /// Not to scroll page when modal open ///
+  useEffect(() => {
+    if (showModal) {
+      setIsModalOpen(true);
+      document.body.style.overflow = 'hidden';
+    } else {
+      setIsModalOpen(false);
+      document.body.style.overflow = 'auto';
+    }
+  }, [showModal]);
+
+  const dispatch = useDispatch();
+  /* -------------------------------------------------------------------------- */
+  const groups = ['to-do', 'in progress', 'done'];
+  const currentGroup = 'to-do';
 
   const open = Boolean(anchorEl);
   const handleClick = event => {
@@ -29,9 +73,12 @@ const TaskToolbar = () => {
 
   const handleDeleteTask = () => {
     console.log('click delete');
-  };
-  const handleEditTask = () => {
-    console.log('click edit');
+    const response = dispatch(deleteTask(task._id));
+    if (response.status >= 200 && response.status < 300) {
+      toast.success('Task deleted successfully');
+    } else {
+      toast.error('Oops, something went wrong...');
+    }
   };
 
   return (
@@ -55,12 +102,13 @@ const TaskToolbar = () => {
           </MenuItem>
         ))}
       </MenuStyled>
-      <TaskToolbarBtn onClick={handleEditTask}>
+      <TaskToolbarBtn onClick={toggleModal}>
         <Pen />
       </TaskToolbarBtn>
       <TaskToolbarBtn onClick={handleDeleteTask}>
         <Trash />
       </TaskToolbarBtn>
+      {isModalOpen && <TaskModal toggleModal={toggleModal} taskToEdit={task} date={task.date} category={task.category} />}
     </TaskToolbarContainer>
   );
 };

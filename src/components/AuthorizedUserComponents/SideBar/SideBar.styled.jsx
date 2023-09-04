@@ -86,6 +86,18 @@ export const NavLinkStyled = styled(NavLink)`
   transition: color 0.2s;
   padding: 10px 0 10px 14px;
   border-radius: 8px;
+
+  &:last-child {
+    path {
+      fill: ${({ theme }) => theme.textSidebar};
+      stroke: none;
+    }
+  }
+  svg path {
+    stroke: ${({ theme }) => theme.textSidebar};
+    fill: none;
+  }
+
   &:hover {
     color: #007bff;
     background-color: #e3f3ff;
@@ -182,7 +194,7 @@ export const StyledText = styled.span`
   font-weight: 700;
   line-height: 24px;
   margin-right: 1px;
-  margin-left: -2px;
+  margin-left: 1px;
   @media (min-width: 1440px) {
     font-size: 24px;
   }

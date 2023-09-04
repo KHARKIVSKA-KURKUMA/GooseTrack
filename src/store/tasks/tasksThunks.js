@@ -12,12 +12,12 @@ export const getUserTasksThunk = createAsyncThunk(
     }
   }
 );
-export const getUserTasksByDateThunk = createAsyncThunk(
-  'tasks/getByDate',
+export const getTasksByMonthThunk = createAsyncThunk(
+  'tasks/getByMonth',
   async (res, { rejectWithValue }) => {
     try {
       const { data } = await instance.get(
-        `api/tasks?year=${res.year}&month=${res.month}&day=${res.day}`
+        `api/tasks?year=${res.year}&month=${res.month}`
       );
       return data;
     } catch (error) {
@@ -47,9 +47,9 @@ export const addTask = createAsyncThunk(
 
 export const deleteTask = createAsyncThunk(
   'tasks/deleteTask',
-  async (task, thunkAPI) => {
+  async (taskId, thunkAPI) => {
     try {
-      const { data } = await instance.delete(`/tasks/${task._id}`);
+      const { data } = await instance.delete(`api/tasks/${taskId}`);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -59,9 +59,9 @@ export const deleteTask = createAsyncThunk(
 
 export const editTask = createAsyncThunk(
   'tasks/editTask',
-  async (task, thunkAPI) => {
+  async ({ title, start, end, priority, date, category, _id }, thunkAPI) => {
     try {
-      const { data } = await instance.patch(`/tasks/${task._id}`, task);
+      const { data } = await instance.patch(`api/tasks/${_id}`, {title, start, end, priority, date, category});
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
