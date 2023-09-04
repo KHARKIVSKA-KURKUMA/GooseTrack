@@ -7,6 +7,8 @@ import { selectUser } from 'store/user/selectors';
 import { fetchCurrentUser } from 'store/user/operations';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { lightTheme, darkTheme } from '../Header/HeaderItems/Theme/theme';
+import { toggleTheme } from '../Header/HeaderItems/Theme/themeSlice';
 
 const Header = ({
   theme,
@@ -29,18 +31,24 @@ const Header = ({
   }, [dispatch]);
   const user = useSelector(selectUser);
   const { name, avatarURL } = user;
-  // const hasAvatar = false;
+
+  const theme = useSelector(state => state.theme);
+  const lightThemeText = lightTheme.text;
+  const darkThemeText = darkTheme.text;
+
+  const pageTitleColor = theme === 'light' ? lightThemeText : darkThemeText;
+
   return (
     <Container>
       <HeaderTitleContainer>
-        <HeaderTitle>{pageTitle}</HeaderTitle>
+        <HeaderTitle style={{ color: pageTitleColor }}>{pageTitle}</HeaderTitle>
       </HeaderTitleContainer>
       <BurgerToggleContainer
         showBurgerMenu={showBurgerMenu}
         setShowBurgerMenu={handleBurgerToggleClick}
       />
       <AddFeedbackBtn />
-      <ThemeToggler theme={theme} toggleTheme={toggleTheme} />
+      <ThemeToggler theme={theme}  toggleTheme={toggleThemeHandler} />
       <UserInfo userName={name} avatarUrl={avatarURL} />
     </Container>
   );

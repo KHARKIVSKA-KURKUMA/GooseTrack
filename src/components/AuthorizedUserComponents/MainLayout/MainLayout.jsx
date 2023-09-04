@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
 import Header from '../Header/Header';
 import SideBar from '../SideBar/SideBar';
 import { lightTheme, darkTheme } from '../Header/HeaderItems/Theme/theme';
+import { toggleTheme } from '../Header/HeaderItems/Theme/themeSlice';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 const GlobalStyles = createGlobalStyle`
@@ -15,15 +17,15 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const MainLayout = () => {
-  const [theme, setTheme] = useState('light');
+  const theme = useSelector(state => state.theme);
+  const dispatch = useDispatch();
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
   const isDesktop = useMediaQuery('(min-width: 1440px)');
-  const toggleTheme = () => {
-    setTheme(prevTheme => (prevTheme === 'dark' ? 'light' : 'dark'));
+
+  const toggleThemeHandler = () => {
+    dispatch(toggleTheme());
   };
-  const handleBurgerToggleClick = () => {
-    setShowBurgerMenu(prevShowBurgerMenu => !prevShowBurgerMenu);
-  };
+
   useEffect(() => {
     if (isDesktop) {
       setShowBurgerMenu(true);
@@ -36,9 +38,9 @@ const MainLayout = () => {
       <div className="App">
         <Header
           theme={theme}
-          toggleTheme={toggleTheme}
+          toggleTheme={toggleThemeHandler}
           showBurgerMenu={showBurgerMenu}
-          handleBurgerToggleClick={handleBurgerToggleClick}
+          handleBurgerToggleClick={() => setShowBurgerMenu(!showBurgerMenu)}
         />
         <SideBar
           showBurgerMenu={showBurgerMenu}
