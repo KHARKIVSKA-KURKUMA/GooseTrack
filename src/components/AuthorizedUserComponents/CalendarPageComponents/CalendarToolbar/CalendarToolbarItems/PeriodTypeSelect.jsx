@@ -1,33 +1,39 @@
+<<<<<<< Updated upstream
 import { useState } from 'react';
+=======
+import { useSelector } from 'react-redux';
+>>>>>>> Stashed changes
 import { Item, List, StyledNavLink } from './PeriodTypeSelect.styled';
 
-const PeriodTypeSelect = ({ today, onChangeType, onChangeDate }) => {
-  const [activeButton, setActiveButton] = useState('day'); // Початкова активна кнопка
-
-  const handleButtonClick = type => {
-    setActiveButton(type);
-    onChangeType(type);
-
-    const currentDate = new Date();
-    const newDate =
-      type === 'month'
-        ? new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
-        : currentDate;
-    onChangeDate(newDate);
-  };
+const PeriodTypeSelect = ({ onChangeType }) => {
+  const currentDate = useSelector(state => state.date.currentDate);
 
   return (
     <List>
       <Item>
+<<<<<<< Updated upstream
         <StyledNavLink className={activeButton === 'month' ? 'active' : ''}>
+=======
+        <StyledNavLink
+          className="month"
+          to={`/calendar/month/${currentDate}`}
+          onClick={() => onChangeType('month')}
+        >
+>>>>>>> Stashed changes
           Month
         </StyledNavLink>
       </Item>
       <Item>
         <StyledNavLink
+<<<<<<< Updated upstream
           className={activeButton === 'day' ? 'active' : ''}
           onClick={() => handleButtonClick('day')}
           to={`/calendar/day/${today}`}
+=======
+          className="day"
+          to={`/calendar/day/${currentDate}`}
+          onClick={() => onChangeType('day')}
+>>>>>>> Stashed changes
         >
           Day
         </StyledNavLink>

@@ -22,7 +22,8 @@ export const StyledNavLink = styled(NavLink)`
   padding: 8px 0;
 
   color: var(--title-color);
-  background: #cae8ff;
+
+  background: #e3f3ff;
 
   text-align: center;
 
