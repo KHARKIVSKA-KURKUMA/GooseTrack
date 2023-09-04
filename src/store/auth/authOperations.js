@@ -22,10 +22,17 @@ export const register = createAsyncThunk(
         }
       );
       return result;
-    } catch (error) {
-      console.log(error.response.data.message)
-      toast.warn(error.response.data.message);
-      return rejectWithValue({ status: error.status, message: error.message });
+    } catch ({ response }) {
+      console.log(response);
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      toast.warn(error.message, {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+      return rejectWithValue(error);
     }
   }
 );
@@ -35,22 +42,17 @@ export const login = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.login(data);
-
       return result;
-    } catch (error) {
-      console.log(error.response.data.message);
-      if (error.response.data.message === 'User not found') {
-        toast.warn('Go to email and click verify');
-        return rejectWithValue({
-          status: error.status,
-          message: error.message,
-        });
-      } 
-        toast.warn(error.response.data.message);
-        return rejectWithValue({
-          status: error.status,
-          message: error.message,
-        });
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      toast.warn(error.message, {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+      return rejectWithValue(error);
     }
   }
 );
@@ -60,9 +62,16 @@ export const logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const result = await api.logout();
+      
       return result.data;
-    } catch (error) {
-      return rejectWithValue({ status: error.status, message: error.message });
+    } catch ({ response }) {
+      console.log(response);
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
     }
   }
 );
@@ -74,8 +83,13 @@ export const current = createAsyncThunk(
       const { auth } = getState();
       const result = await api.getCurrent(auth.token.accessToken);
       return result;
-    } catch (error) {
-      return rejectWithValue({ status: error.status, message: error.message });
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
     }
   }
 );
