@@ -32,7 +32,7 @@ const AddTaskBtn = () => {
         <AiOutlinePlus size="24px" />
         Add task
       </AddTaskButton>
-      {isModalOpen && <TaskModal toggleModal={toggleModal} />}
+      {isModalOpen && <TaskModal toggleModal={toggleModal} date={'2023-09-04'} category={'done'} />}
     </>
   );
 };

@@ -10,6 +10,6 @@ position: fixed;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.35);
-    z-index: 1200;`;
+    z-index: 12000;`;
 
 export { ModalOverlay };
