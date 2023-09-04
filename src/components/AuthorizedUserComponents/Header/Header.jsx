@@ -12,7 +12,7 @@ import { darkTheme, lightTheme } from './HeaderItems/Theme/theme';
 const Header = ({ toggleTheme, showBurgerMenu, handleBurgerToggleClick }) => {
   const location = useLocation();
   let pageTitle = 'User Profile';
-  if (location.pathname === '/calendar') {
+  if (location.pathname.includes('calendar')) {
     pageTitle = 'Calendar';
   } else if (location.pathname === '/account') {
     pageTitle = 'User Profile';

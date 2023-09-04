@@ -26,7 +26,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from 'store/auth/authOperations';
 import { selectedDateSelector } from 'store/selectors';
 
-
 const Sidebar = ({ showBurgerMenu, handleSidebarClick }) => {
   const isMobile = useMediaQuery('(min-width: 1440px)');
   const currentDay = useSelector(selectedDateSelector);
