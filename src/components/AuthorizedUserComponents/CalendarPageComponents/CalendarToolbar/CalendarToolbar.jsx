@@ -26,6 +26,8 @@ const CalendarToolbar = () => {
   const formattedYear = format(date, 'yyyy');
   const formattedMonth = format(date, 'MM');
 
+  /* eslint-disable react-hooks/exhaustive-deps */
+
   useEffect(() => {
     dispatch(
       getTasksByMonthThunk({
