@@ -8,7 +8,7 @@ import {
 
 const tasks = [
   {
-    category: 'done',
+    category: 'todo',
     amount: 1,
     data: [
       {
@@ -17,8 +17,8 @@ const tasks = [
         start: '09:05',
         end: '09:15',
         priority: 'medium',
-        date: '2023-06-09',
-        category: 'done',
+        date: '2023-09-01',
+        category: 'to-do',
         owner: '64eb8bf4ec3cfd1d22c59fb1',
         createdAt: '2023-08-27T17:46:28.321Z',
         updatedAt: '2023-08-30T16:07:28.466Z',
@@ -35,7 +35,19 @@ const tasks = [
         start: '09:05',
         end: '09:15',
         priority: 'medium',
-        date: '2023-06-09',
+        date: '2023-09-01',
+        category: 'in-progress',
+        owner: '64eb8bf4ec3cfd1d22c59fb1',
+        createdAt: '2023-08-27T17:46:28.321Z',
+        updatedAt: '2023-08-30T16:07:28.466Z',
+      },
+      {
+        _id: '64eb8bf4ec3cfd1d22c535f6',
+        title: 'My task 2',
+        start: '09:05',
+        end: '09:15',
+        priority: 'medium',
+        date: '2023-09-02',
         category: 'in-progress',
         owner: '64eb8bf4ec3cfd1d22c59fb1',
         createdAt: '2023-08-27T17:46:28.321Z',
@@ -43,7 +55,67 @@ const tasks = [
       },
     ],
   },
+  {
+    category: 'done',
+    amount: 3,
+    data: [
+      {
+        _id: '64eb8bf4ec3cfd1d22c535f6',
+        title: 'My task 1',
+        start: '09:05',
+        end: '09:15',
+        priority: 'medium',
+        date: '2023-09-01',
+        category: 'done',
+        owner: '64eb8bf4ec3cfd1d22c59fb1',
+        createdAt: '2023-08-27T17:46:28.321Z',
+        updatedAt: '2023-08-30T16:07:28.466Z',
+      },
+      {
+        _id: '64eb8bf4ec3cfd1d22c535f6',
+        title: 'My task 1',
+        start: '09:05',
+        end: '09:15',
+        priority: 'medium',
+        date: '2023-09-02',
+        category: 'done',
+        owner: '64eb8bf4ec3cfd1d22c59fb1',
+        createdAt: '2023-08-27T17:46:28.321Z',
+        updatedAt: '2023-08-30T16:07:28.466Z',
+      },
+      {
+        _id: '64eb8bf4ec3cfd1d22c535f6',
+        title: 'My task 1',
+        start: '09:05',
+        end: '09:15',
+        priority: 'medium',
+        date: '2023-09-03',
+        category: 'done',
+        owner: '64eb8bf4ec3cfd1d22c59fb1',
+        createdAt: '2023-08-27T17:46:28.321Z',
+        updatedAt: '2023-08-30T16:07:28.466Z',
+      },
+    ],
+  },
 ];
+
+const targetDate = '2023-09-02'; // Эту дату надо брать текущую или из запроса юзера!!!!! Это пока только для примера!!!
+
+const tasksByDay = tasks.reduce((result, category) => {
+  const filteredCategoryTasks = category.data.filter(
+    task => task.date === targetDate
+  );
+
+  if (filteredCategoryTasks.length > 0) {
+    result.push({
+      category: category.category,
+      amount: tasks.length,
+      tasks: filteredCategoryTasks,
+    });
+  }
+
+  return result;
+}, []);
 
 const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
   return (
@@ -63,8 +135,8 @@ const StatisticsChart = () => {
   const [chartWidth, setChartWidth] = useState(0);
   const [chartHeight, setChartHeight] = useState(0);
   const [chartBarSize, setChartBarSize] = useState(0);
-  const [taskStatusCountDay, taskStatusCountMonth] =
-    calculateTaskStatusCount(tasks);
+  const [taskStatusCountDay] = calculateTaskStatusCount(tasksByDay);
+  const [taskStatusCountMonth] = calculateTaskStatusCount(tasks);
   const ByDay = calculatePercentages(taskStatusCountDay);
   const ByMonth = calculatePercentages(taskStatusCountMonth);
   const data = [
