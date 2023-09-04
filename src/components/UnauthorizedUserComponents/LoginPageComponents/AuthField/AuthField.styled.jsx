@@ -48,3 +48,21 @@ export const MessageError = styled(ErrorMessage)`
   position:absolute;
   bottom: -15px;
 `;
+
+export const StyledVisibleButton = styled.button`
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+ 
+  padding: 0;
+  border: none;
+  font-size: 18px;
+  color: inherit;
+  background-color: transparent;
+
+  cursor: pointer;
+
+`

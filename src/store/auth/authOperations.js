@@ -23,6 +23,8 @@ export const register = createAsyncThunk(
       );
       return result;
     } catch (error) {
+      console.log(error.response.data.message)
+      toast.warn(error.response.data.message);
       return rejectWithValue({ status: error.status, message: error.message });
     }
   }
@@ -36,7 +38,19 @@ export const login = createAsyncThunk(
 
       return result;
     } catch (error) {
-      return rejectWithValue({ status: error.status, message: error.message });
+      console.log(error.response.data.message);
+      if (error.response.data.message === 'User not found') {
+        toast.warn('Go to email and click verify');
+        return rejectWithValue({
+          status: error.status,
+          message: error.message,
+        });
+      } 
+        toast.warn(error.response.data.message);
+        return rejectWithValue({
+          status: error.status,
+          message: error.message,
+        });
     }
   }
 );

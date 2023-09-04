@@ -74,9 +74,9 @@ const RegisterForm = () => {
 
     await dispatch(register(values));
     const error = await errorMsg.message
-    if (!error) {
+    if (!error.message) {
       setIsModalRegister(!isModalRegister)
-      toast.success('okay')
+      // toast.success('okay')
     return
     }
     
@@ -134,7 +134,7 @@ const RegisterForm = () => {
         )}
       </Formik>
       
-      <RegisterSuccessModal isModalRegister={isModalRegister} toggleModalRegister={ toggleModalRegister } />
+      {/* <RegisterSuccessModal isModalRegister={isModalRegister} toggleModalRegister={ toggleModalRegister } /> */}
     </Container>
   );
 };
