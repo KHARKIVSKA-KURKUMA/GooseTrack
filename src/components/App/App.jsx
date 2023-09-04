@@ -41,14 +41,14 @@ export const App = () => {
             path="calendar"
             element={<Private component={CalendarPage} to="/" />}
           >
-            <Route
+            {/* <Route
               path="month/:currentDate"
               element={<Private component={ChosenMonth} to="/" />}
             ></Route>
             <Route
               path="day/:currentDate"
               element={<Private component={ChosenDay} to="/" />}
-            ></Route>
+            ></Route> */}
           </Route>
 
           <Route
