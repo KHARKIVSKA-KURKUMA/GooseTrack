@@ -140,7 +140,10 @@ const CalendarTable = props => {
   };
 
   return (
-    <CalendarTableWrapper style={{ borderCollapse: 'collapse' }}>
+    <CalendarTableWrapper
+      onClick={e => console.log(e.currentTarget)}
+      style={{ borderCollapse: 'collapse' }}
+    >
       <CalendarNumberWrapper>{generateCalendar()}</CalendarNumberWrapper>
     </CalendarTableWrapper>
   );
