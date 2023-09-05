@@ -1,3 +1,5 @@
+import TaskToolbar from './TaskToolbar';
+
 import {
   Avatar,
   BottomContainer,
@@ -6,7 +8,6 @@ import {
   Priority,
   TaskMeta,
 } from './TaskColumnCardStyle';
-import TaskToolbar from './TaskToolbar';
 // import {
 //   Priority,
 //   Avatar,
