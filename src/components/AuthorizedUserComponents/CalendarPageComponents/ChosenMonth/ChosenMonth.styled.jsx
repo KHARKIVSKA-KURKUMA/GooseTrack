@@ -1,10 +1,15 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const CalendarWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 0 15px 0;
+
+  @media screen and (min-width: 768px) {
+    margin: 0 32px 0px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin: 0 32px 0px 323px;
+  }
 `;
 
 const CalendarDaysWrapper = styled.ul`
@@ -12,22 +17,25 @@ const CalendarDaysWrapper = styled.ul`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 15px;
   width: 335px;
+  width: 100%;
   height: 50px;
+  margin-bottom: 15px;
+  padding: 0 15px;
   border: 1px solid rgb(220, 227, 229, 50%);
   border-radius: 8px;
-  margin-bottom: 15px;
   background-color: var(--primary-background-color);
 
   @media screen and (min-width: 768px) {
-    width: 704px;
+    min-width: 704px;
+    width: 100%;
     padding: 0 35px;
     margin-bottom: 18px;
   }
 
   @media screen and (min-width: 1440px) {
-    width: 1087px;
+    min-width: 1087px;
+    width: 100%;
     padding: 0 60px;
   }
 `;
@@ -38,24 +46,20 @@ const CalendarDayWrapper = styled.li`
   color: ${props => (props.isSunday ? 'var(--title-color)' : 'inherit')};
 `;
 
-const CalendarTableWrapper = styled.table`
-  border-collapse: collapse;
+const CalendarTableWrapper = styled.div`
+  width: 100%;
 `;
 
-const CalendarNumberWrapper = styled.tbody`
+const CalendarNumberWrapper = styled.div`
   background-color: var(--primary-background-color);
-  width: 335px;
-
-  @media screen and (min-width: 768px) {
-    width: 704px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 1087px;
-  }
+  border-radius: 8px;
+  overflow: hidden;
 `;
 
-const CalendarRow = styled.tr`
+const CalendarRow = styled.div`
+  display: flex;
+  justify-content: center;
+
   height: 94px;
 
   @media screen and (min-width: 768px) {
@@ -67,19 +71,21 @@ const CalendarRow = styled.tr`
   }
 `;
 
-const CalendarCell = styled.td`
+const CalendarCell = styled(Link)`
   width: 48px;
+  width: 100%;
   text-align: center;
   vertical-align: middle;
   border: 1px solid rgb(220, 227, 229, 50%);
   position: relative;
+  color: inherit;
 
   @media screen and (min-width: 768px) {
-    width: 100.5px;
+    min-width: 100.5px;
   }
 
   @media screen and (min-width: 1440px) {
-    width: 155px;
+    min-width: 155px;
   }
 `;
 

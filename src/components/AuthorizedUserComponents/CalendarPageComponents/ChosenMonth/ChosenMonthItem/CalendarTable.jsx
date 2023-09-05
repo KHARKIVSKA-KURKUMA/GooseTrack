@@ -134,7 +134,7 @@ const CalendarTable = props => {
           );
 
           week.push(
-            <CalendarCell key={j} className={isCurrent ? 'current-day' : ''}>
+            <CalendarCell key={j} className={isCurrent ? 'current-day' : ''} to={`/calendar/day/${selectedDate.getFullYear()}-${selectedDate.getMonth() + 1}-${day}`}>
               <GridContainer>
                 <DateNumber isCurrent={isCurrent}>{day}</DateNumber>
                 {renderNotes(day) && (
@@ -156,7 +156,6 @@ const CalendarTable = props => {
   return (
     <CalendarTableWrapper
       onClick={e => console.log(e.currentTarget)}
-      style={{ borderCollapse: 'collapse' }}
     >
       <CalendarNumberWrapper>{generateCalendar()}</CalendarNumberWrapper>
     </CalendarTableWrapper>
