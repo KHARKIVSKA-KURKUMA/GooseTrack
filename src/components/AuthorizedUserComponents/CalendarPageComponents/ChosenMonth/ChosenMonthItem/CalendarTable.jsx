@@ -138,11 +138,13 @@ const CalendarTable = props => {
               key={j}
               className={isCurrent ? 'current-day' : ''}
               to={`/calendar/day/${selectedDate.getFullYear()}-${
-                selectedDate.getMonth() + 1
+                selectedDate.getMonth() < 9
+                  ? '0' + (selectedDate.getMonth() + 1)
+                  : selectedDate.getMonth() + 1
               }-${day < 10 ? '0' + day : day}`}
             >
               <GridContainer>
-                <DateNumber isCurrent={isCurrent}>{day}</DateNumber>
+                <DateNumber isCurent={isCurrent}>{day}</DateNumber>
                 {renderNotes(day) && (
                   <NoteContainer>{renderNotes(day)}</NoteContainer>
                 )}
