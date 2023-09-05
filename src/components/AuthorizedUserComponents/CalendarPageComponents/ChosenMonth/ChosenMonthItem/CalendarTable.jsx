@@ -32,13 +32,11 @@ const CalendarTable = props => {
   /* eslint-disable react-hooks/exhaustive-deps */
 
   const date = parse(selectedDateUnFormat, 'yyyy-MM-dd', Date.now());
-  const formattedYear = format(date, 'yyyy');
-  const formattedMonth = format(date, 'MM');
+  const formattedMonth = format(date, 'yyyy-MM');
   const { tasks } = useSelector(tasksSelector);
   useEffect(() => {
     dispatch(
       getTasksByMonthThunk({
-        year: formattedYear,
         month: formattedMonth,
       })
     );

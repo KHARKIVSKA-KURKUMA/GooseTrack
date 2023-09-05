@@ -29,9 +29,8 @@ const CalendarToolbar = () => {
   const normalizedDate = currentDate || selectedDate;
 
   const date = parse(normalizedDate, 'yyyy-MM-dd', Date.now());
-  const formattedYear = format(date, 'yyyy');
-  const formattedMonth = format(date, 'MM');
-  const formattedDay = format(date, 'dd');
+  const formattedMonth = format(date, 'yyyy-MM');
+  const formattedDay = format(date, 'yyyy-MM-dd');
 
   const { isChanged } = useSelector(tasksSelector);
 
@@ -41,15 +40,12 @@ const CalendarToolbar = () => {
     if (type === 'month') {
       dispatch(
         getTasksByMonthThunk({
-          year: formattedYear,
           month: formattedMonth,
         })
       );
     } else {
       dispatch(
         getTasksByDayThunk({
-          year: formattedYear,
-          month: formattedMonth,
           day: formattedDay,
         })
       );

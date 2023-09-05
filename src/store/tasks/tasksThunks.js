@@ -16,9 +16,7 @@ export const getTasksByMonthThunk = createAsyncThunk(
   'tasks/getByMonth',
   async (res, { rejectWithValue }) => {
     try {
-      const { data } = await instance.get(
-        `api/tasks?year=${res.year}&month=${res.month}`
-      );
+      const { data } = await instance.get(`api/tasks?month=${res.month}`);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -29,9 +27,7 @@ export const getTasksByDayThunk = createAsyncThunk(
   'tasks/getByDay',
   async (res, { rejectWithValue }) => {
     try {
-      const { data } = await instance.get(
-        `api/tasks?year=${res.year}&month=${res.month}&day=${res.day}`
-      );
+      const { data } = await instance.get(`api/tasks?day=${res.day}`);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

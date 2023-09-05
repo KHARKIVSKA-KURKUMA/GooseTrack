@@ -12,15 +12,12 @@ const ChosenDay = () => {
   const { byDay } = useSelector(tasksSelector);
   const dispatch = useDispatch();
   const date = parse(currentDate, 'yyyy-MM-dd', Date.now());
-  const formattedYear = format(date, 'yyyy');
-  const formattedMonth = format(date, 'MM');
-  const formattedDay = format(date, 'dd');
+  const formattedDay = format(date, 'yyyy-MM-dd');
+
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     dispatch(
       getTasksByDayThunk({
-        year: formattedYear,
-        month: formattedMonth,
         day: formattedDay,
       })
     );
