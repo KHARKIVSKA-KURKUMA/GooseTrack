@@ -68,7 +68,7 @@ const PeriodPaginator = ({ type }) => {
   const handleChange = date => {
     const formattedNewDate = format(date, 'yyyy-MM-dd');
     dispatch(setDates(formattedNewDate));
-    navigate(`${type}/${formattedNewDate}`);
+    navigate(`day/${formattedNewDate}`);
   };
 
   return (

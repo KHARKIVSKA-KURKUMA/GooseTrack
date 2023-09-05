@@ -9,34 +9,21 @@ import {
   NoteContainer,
   NoteText,
 } from '../ChosenMonth.styled';
-import { selectedDateSelector, tasksSelector } from 'store/selectors';
+import { tasksSelector } from 'store/selectors';
 
-const getRandomColor = () => {
-  const r = Math.floor(Math.random() * 256);
-  const g = Math.floor(Math.random() * 256);
-  const b = Math.floor(Math.random() * 256);
-
-  const color = `rgb(${r},${g},${b})`;
-  return color;
+const getPriorityBackgroundColor = priority => {
+  if (priority === 'high') return '#FFD2DD';
+  if (priority === 'medium') return '#FCF0D4';
+  if (priority === 'low') return '#CEEEFD';
+};
+const getPriorityColor = priority => {
+  if (priority === 'high') return '#EA3D65';
+  if (priority === 'medium') return '#F3B249';
+  if (priority === 'low') return '#72C2F8';
 };
 
-const getDarkerColor = () => {
-  const bgColor = getRandomColor();
-  const r = parseInt(bgColor.slice(1, 3), 16);
-  const g = parseInt(bgColor.slice(3, 5), 16);
-  const b = parseInt(bgColor.slice(5, 7), 16);
-  const darkerR = Math.max(0, r - 20);
-  const darkerG = Math.max(0, g - 20);
-  const darkerB = Math.max(0, b - 20);
-  const darkerColor = `#${darkerR.toString(16)}${darkerG.toString(
-    16
-  )}${darkerB.toString(16)}`;
-
-  return darkerColor;
-};
-
-const CalendarTable = () => {
-  const selectedDateUnFormat = useSelector(selectedDateSelector);
+const CalendarTable = props => {
+  const selectedDateUnFormat = props.selectedDate;
   const selectedDate = new Date(selectedDateUnFormat);
 
   const { tasks } = useSelector(tasksSelector);
@@ -83,9 +70,6 @@ const CalendarTable = () => {
   };
 
   const renderNotes = day => {
-    const backgroundColor = getRandomColor();
-    const textColor = getDarkerColor(backgroundColor);
-
     const notesForDay = notes
       .filter(note => {
         return (
@@ -97,7 +81,10 @@ const CalendarTable = () => {
       .map((note, index) => (
         <NoteContainer
           key={index}
-          style={{ backgroundColor, color: textColor }}
+          style={{
+            backgroundColor: getPriorityBackgroundColor(note.priority),
+            color: getPriorityColor(note.priority),
+          }}
         >
           <NoteText>{note.title}</NoteText>
         </NoteContainer>

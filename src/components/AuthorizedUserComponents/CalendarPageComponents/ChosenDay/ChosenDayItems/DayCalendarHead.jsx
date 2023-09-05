@@ -4,18 +4,28 @@ import {
   CalendarRow,
   CalendarCell,
   DayName,
-  DateNumber
+  DateNumber,
 } from './DayCalendarHead.styled';
 
-const DayCalendarHead = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [daysOfWeek, setDaysOfWeek] = useState(['M', 'T', 'W', 'T', 'F', 'S', 'S']);
+const DayCalendarHead = props => {
+  const selectedDateUnFormat = props.selectedDate;
+  const selectedDate = new Date(selectedDateUnFormat);
+  const [daysOfWeek, setDaysOfWeek] = useState([
+    'M',
+    'T',
+    'W',
+    'T',
+    'F',
+    'S',
+    'S',
+  ]);
 
   useEffect(() => {
     const handleResize = () => {
-      const newDaysOfWeek = window.innerWidth >= 768
-        ? ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
-        : ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+      const newDaysOfWeek =
+        window.innerWidth >= 768
+          ? ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
+          : ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
       setDaysOfWeek(newDaysOfWeek);
     };
 
@@ -54,33 +64,6 @@ const DayCalendarHead = () => {
 
   return (
     <>
-      <div>
-        <span>{`${selectedDate.toLocaleString('default', {
-          month: 'long',
-        })} ${selectedDate.getFullYear()}`}</span>
-        <button
-          onClick={() =>
-            setSelectedDate(prevDate => {
-              const newDate = new Date(prevDate);
-              newDate.setDate(prevDate.getDate() - 1);
-              return newDate;
-            })
-          }
-        >
-          ❮
-        </button>
-        <button
-          onClick={() =>
-            setSelectedDate(prevDate => {
-              const newDate = new Date(prevDate);
-              newDate.setDate(prevDate.getDate() + 1);
-              return newDate;
-            })
-          }
-        >
-          ❯
-        </button>
-      </div>
       <CalendarTableWrapper>{generateCalendar()}</CalendarTableWrapper>
     </>
   );

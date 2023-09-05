@@ -1,12 +1,14 @@
 import { CalendarTable, MonthCalendarHead } from './ChosenMonthItem';
 import { CalendarWrapper } from './ChosenMonth.styled';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 
-const ChosenMonth = ({selectedDate}) => {
+const ChosenMonth = () => {
+  const { currentDate } = useParams();
   return (
     <CalendarWrapper>
       <MonthCalendarHead />
-      <CalendarTable selectedDate={ selectedDate } />
+      <CalendarTable selectedDate={currentDate} />
     </CalendarWrapper>
   );
 };
@@ -16,4 +18,3 @@ ChosenMonth.protoType = {
 };
 
 export default ChosenMonth;
-

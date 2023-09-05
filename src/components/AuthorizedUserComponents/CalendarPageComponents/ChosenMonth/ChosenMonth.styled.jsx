@@ -102,7 +102,8 @@ const DateNumber = styled.div`
   top: 4px;
   right: 4px;
 
-  color: ${props => (props.isCurrent ? 'var(--primary-background-color)' : 'inherit')};
+  color: ${props =>
+    props.isCurrent ? 'var(--primary-background-color)' : 'inherit'};
   background-color: ${props => (props.isCurrent ? '#007bff' : 'inherit')};
   border-radius: ${props => (props.isCurrent ? '8px' : 'inherit')};
 
@@ -145,6 +146,8 @@ const NoteText = styled.span`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-weight: 700;
+  font-size: 14px;
 `;
 
 export {
