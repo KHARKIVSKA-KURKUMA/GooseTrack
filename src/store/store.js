@@ -13,7 +13,10 @@ import { userReducer } from './user/userSlice';
 import { persistedAuthReducer } from './auth/authSlice';
 import { tasksReducer } from './tasks/tasksSlice';
 import { feedbackReducer } from './feedback/feedbackSlice';
-import { themeReducer } from '../components/AuthorizedUserComponents/Header/HeaderItems/Theme/themeSlice';
+import {
+  // persistedThemeReducer,
+  themeReducer,
+} from '../components/AuthorizedUserComponents/Header/HeaderItems/Theme/themeSlice';
 import { dateReducer } from './date/dateSlice';
 
 const reducer = {
@@ -21,6 +24,7 @@ const reducer = {
   auth: persistedAuthReducer,
   tasks: tasksReducer,
   user: userReducer,
+  // theme: persistedThemeReducer,
   theme: themeReducer,
   date: dateReducer,
 };

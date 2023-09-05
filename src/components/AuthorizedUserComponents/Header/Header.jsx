@@ -27,6 +27,8 @@ const Header = ({ toggleTheme, showBurgerMenu, handleBurgerToggleClick }) => {
   const { name, avatarURL } = user;
 
   const theme = useSelector(state => state.theme);
+  // const theme = useSelector(selectTheme);
+
   const lightThemeText = lightTheme.text;
   const darkThemeText = darkTheme.text;
 

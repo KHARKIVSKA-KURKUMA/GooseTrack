@@ -35,7 +35,9 @@ const Moon = styled(RiMoonLine)`
 `;
 
 const ThemeToggler = () => {
-  const theme = useSelector(state => state.theme); 
+  const theme = useSelector(state => state.theme);
+  // const theme = useSelector(selectTheme);
+
   const dispatch = useDispatch();
 
   const handleThemeToggle = () => {
