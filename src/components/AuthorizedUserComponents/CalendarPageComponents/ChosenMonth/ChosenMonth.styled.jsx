@@ -73,7 +73,7 @@ const CalendarCell = styled.td`
   vertical-align: middle;
   border: 1px solid rgb(220, 227, 229, 50%);
   position: relative;
-
+  background-color: ${props => props.backgroundColor};
   @media screen and (min-width: 768px) {
     width: 100.5px;
   }

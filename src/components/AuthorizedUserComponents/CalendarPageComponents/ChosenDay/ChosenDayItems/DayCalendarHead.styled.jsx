@@ -17,7 +17,7 @@ const CalendarTableWrapper = styled.div`
   border-spacing: 0;
   border: 1px solid rgb(220, 227, 229, 50%);
   border-radius: 8px;
-  background-color: var(--primary-background-color);
+  background: ${props => props.backgroundColor};
 
   @media screen and (min-width: 768px) {
     width: 704px;
@@ -45,6 +45,7 @@ const CalendarCell = styled.div`
 const DayName = styled.div`
   font-size: 16px;
   font-weight: 600;
+  color: ${props => props.titleDay};
 `;
 
 const DateNumber = styled.div`

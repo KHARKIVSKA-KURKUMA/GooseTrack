@@ -23,6 +23,7 @@ const getPriorityColor = priority => {
 };
 
 const CalendarTable = props => {
+  const theme = useSelector(state => state.theme);
   const selectedDateUnFormat = props.selectedDate;
   const selectedDate = new Date(selectedDateUnFormat);
 
@@ -105,7 +106,7 @@ const CalendarTable = props => {
 
     const calendar = [];
     let day = 1;
-
+    const backgroundColor = theme === 'light' ? '#fff' : '#21222C';
     for (let i = 0; i < weeks; i++) {
       const week = [];
 
@@ -120,7 +121,11 @@ const CalendarTable = props => {
           );
 
           week.push(
-            <CalendarCell key={j} className={isCurrent ? 'current-day' : ''}>
+            <CalendarCell
+              style={{ backgroundColor }}
+              key={j}
+              className={isCurrent ? 'current-day' : ''}
+            >
               <GridContainer>
                 <DateNumber isCurrent={isCurrent}>{day}</DateNumber>
                 {renderNotes(day) && (
@@ -138,13 +143,15 @@ const CalendarTable = props => {
 
     return calendar;
   };
-
+  const backgroundColor = theme === 'light' ? '#fff' : '#21222C';
   return (
     <CalendarTableWrapper
       onClick={e => console.log(e.currentTarget)}
       style={{ borderCollapse: 'collapse' }}
     >
-      <CalendarNumberWrapper>{generateCalendar()}</CalendarNumberWrapper>
+      <CalendarNumberWrapper style={{ backgroundColor }}>
+        {generateCalendar()}
+      </CalendarNumberWrapper>
     </CalendarTableWrapper>
   );
 };

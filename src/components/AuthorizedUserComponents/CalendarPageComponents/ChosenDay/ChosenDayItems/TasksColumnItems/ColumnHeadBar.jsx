@@ -13,13 +13,15 @@ import {
 } from './ColumnHeadBarStyle';
 
 const ColumnHeadBar = ({ title }) => {
+  const theme = useSelector(state => state.theme);
+   const stroke = theme === 'light' ? '#21222C' : '#fff';
   const { tasks } = useSelector(tasksSelector);
   const isEmpty = tasks.length === 0;
 
   return (
     <HeadBarContainer isEmpty={isEmpty}>
       <HeadBarTitle>{title}</HeadBarTitle>
-      <HeadBarAddBtn />
+      <HeadBarAddBtn stroke={stroke} />
     </HeadBarContainer>
   );
 };

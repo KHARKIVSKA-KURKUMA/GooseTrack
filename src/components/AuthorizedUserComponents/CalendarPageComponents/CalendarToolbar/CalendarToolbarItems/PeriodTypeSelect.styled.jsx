@@ -60,13 +60,13 @@ export const Button = styled.div`
   padding: 8px 0;
 
   color: var(--title-color);
-  background: #e3f3ff;
+  background: ${props => props.backgroundColor};
 
   text-align: center;
 
   &.active {
     color: var(--title-color);
-    background: #cae8ff;
+    background: ${props => props.active};
   }
 
   &.month {

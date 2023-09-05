@@ -6,6 +6,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { editTask, addTask } from 'store/tasks/tasksThunks';
+import { useSelector } from 'react-redux';
 
 import {
   EditWrapper,
@@ -27,6 +28,9 @@ import {
 } from './TaskForm.styled';
 
 const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
+   const theme = useSelector(state => state.theme); 
+  const color = theme === 'light' ? 'rgba(52, 52, 52, 0.80)' : 'rgba(250, 250, 250, 0.30)';
+  const textArea = theme === 'light' ? 'rgba(52, 52, 52, 0.80)' : '#fff';
   const dispatch = useDispatch();
 
   /// Validate Feedback form with YUP ///
@@ -108,7 +112,7 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <TitleWrapper>
-        <NameLabel>Title</NameLabel>
+        <NameLabel color={color}>Title</NameLabel>
         <Textarea
           type="text"
           name="title"
@@ -118,6 +122,7 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
           onBlur={formik.handleBlur}
           placeholder="Enter text"
           hasError={!!formik.errors.title && !!formik.touched.title}
+          textArea={textArea}
         ></Textarea>
       </TitleWrapper>
       {formik.errors.title && formik.touched.title && (
@@ -126,7 +131,7 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
 
       <TimeBox>
         <TimeWrapper>
-          <NameLabel>Start</NameLabel>
+          <NameLabel  color={color} >Start</NameLabel>
           <TimeInput
             type="time"
             name="start"
@@ -134,10 +139,11 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             hasError={!!formik.errors.start && !!formik.touched.start}
+            color={color}
           />
         </TimeWrapper>
         <TimeWrapper>
-          <NameLabel>End</NameLabel>
+          <NameLabel  color={color}>End</NameLabel>
           <TimeInput
             type="time"
             name="end"
@@ -145,6 +151,7 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             hasError={!!formik.errors.end && !!formik.touched.end}
+            color={color}
           />
         </TimeWrapper>
       </TimeBox>

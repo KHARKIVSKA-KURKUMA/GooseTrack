@@ -21,7 +21,7 @@ const HeadBarAddBtn = styled(Plus)`
   width: 22px;
   height: 22px;
   cursor: pointer;
-  stroke: #111111;
+  stroke: ${props => props.color};
   transition: stroke 250ms linear;
   &:hover {
     stroke: #3e85f3;

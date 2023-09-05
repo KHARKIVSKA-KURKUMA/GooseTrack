@@ -1,7 +1,9 @@
 import { ModalWindow } from './Modal.styled';
-
+import { useSelector } from 'react-redux';
 const Modal = ({ children }) => {
-  return <ModalWindow>{children}</ModalWindow>;
+  const theme = useSelector(state => state.theme); 
+  const backgroundColor = theme === 'light' ? '#fff' : '#171820';
+  return <ModalWindow backgroundColor={ backgroundColor }>{children}</ModalWindow>;
 };
 
 export default Modal;

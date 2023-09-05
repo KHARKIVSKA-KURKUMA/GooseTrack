@@ -14,7 +14,7 @@ const TaskItem = styled.li`
   border-radius: 8px;
   border: 1px solid rgba(220, 227, 229, 0.8);
 
-  background-color: #ffffff;
+  background-color: ${props => props.backgroundColor};
 
   @media screen and (min-width: 768px) {
     flex: 0 0 344px;

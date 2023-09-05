@@ -222,6 +222,7 @@ const SwitcherPart = styled.button`
   color: ${props => (props.active ? 'initial' : '#DCE3E5')};
   cursor: pointer;
   position: relative;
+  border:none;
 
   &:hover {
   }

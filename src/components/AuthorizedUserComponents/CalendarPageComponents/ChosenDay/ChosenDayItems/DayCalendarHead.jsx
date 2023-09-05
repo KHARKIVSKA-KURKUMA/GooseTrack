@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
   CalendarTableWrapper,
   CalendarRow,
@@ -8,6 +9,9 @@ import {
 } from './DayCalendarHead.styled';
 
 const DayCalendarHead = props => {
+  const theme = useSelector(state => state.theme); 
+  const backgroundColor = theme === 'light' ? '#fff' : '#21222C';
+   const titleDay = theme === 'light' ? '#343434' : '#FAFAFA4D'
   const selectedDateUnFormat = props.selectedDate;
   const selectedDate = new Date(selectedDateUnFormat);
   const [daysOfWeek, setDaysOfWeek] = useState([
@@ -52,7 +56,7 @@ const DayCalendarHead = props => {
       calendar.push(
         <CalendarRow key={i}>
           <CalendarCell className={isCurrent ? 'current-day' : ''}>
-            <DayName>{daysOfWeek[i]}</DayName>
+            <DayName titleDay={titleDay}>{daysOfWeek[i]}</DayName>
             <DateNumber isCurrent={isCurrent}>{day.getDate()}</DateNumber>
           </CalendarCell>
         </CalendarRow>
@@ -64,7 +68,7 @@ const DayCalendarHead = props => {
 
   return (
     <>
-      <CalendarTableWrapper>{generateCalendar()}</CalendarTableWrapper>
+      <CalendarTableWrapper backgroundColor={ backgroundColor }>{generateCalendar()}</CalendarTableWrapper>
     </>
   );
 };

@@ -9,6 +9,7 @@ export const lightTheme = {
   backgroundPages:'#fff',
   headerBackground: '#F7F6F9',
   svgColor: 'rgba(52, 52, 52, 0.5)',
+  titleDay: '#343434',
 };
 
 export const darkTheme = {
@@ -20,5 +21,7 @@ export const darkTheme = {
   backgroundPages:'#21222C',
   headerBackground: '#171820',
   svgColor: '#fff',
+   titleDay: '#FAFAFA4D',
 };
 
+/*background-color: ${({ theme }) => theme.titleDay};*/
