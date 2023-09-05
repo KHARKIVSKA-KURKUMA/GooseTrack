@@ -549,5 +549,11 @@ export const CorrectTag = styled.div`
   line-height: 1.17;
 `;
 
+export const LoaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
 
 

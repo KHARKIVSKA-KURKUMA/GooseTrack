@@ -19,14 +19,18 @@ import {
   Box,
   AccountForm,
   Name,
+  LoaderContainer,
   Label,
   DatePickerStyled,
   PopperDateStyles,
+
 } from './UserForm.styled';
 import getCurrentDate from 'helpers/currentDay';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
+
+ import Loader from '../../../Loader/Loader';
 
 const currentDate = getCurrentDate();
 
@@ -37,9 +41,29 @@ const UserForm = () => {
   const isFulfilled = useSelector(state => state.user.isFulfilled);
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
-  useEffect(() => {
-    dispatch(fetchCurrentUser());
-  }, [dispatch]);
+
+ const [isLoading, setIsLoading] = useState(true);
+
+
+ useEffect(() => {
+   
+   dispatch(fetchCurrentUser())
+     .then(() => {
+       setIsLoading(false);
+     })
+     .catch(error => {
+       console.error('Помилка завантаження даних:', error);
+     });
+ }, [dispatch]);
+
+ if (isLoading) {
+   
+   return (
+     <LoaderContainer>
+       <Loader />
+     </LoaderContainer>
+   );
+ }
 
   const handleImageChange = async e => {
     const selectedFile = e.target.files[0];
