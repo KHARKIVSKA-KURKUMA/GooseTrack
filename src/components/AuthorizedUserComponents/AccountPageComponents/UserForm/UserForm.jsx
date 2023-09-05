@@ -20,8 +20,15 @@ import {
   AccountForm,
   Name,
   LoaderContainer,
+  Label,
+  DatePickerStyled,
+  PopperDateStyles,
+
 } from './UserForm.styled';
 import getCurrentDate from 'helpers/currentDay';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 
  import Loader from '../../../Loader/Loader';
 
@@ -29,6 +36,8 @@ const currentDate = getCurrentDate();
 
 const UserForm = () => {
   const [imagePreview, setImagePreview] = useState(null);
+  const [imageUpload, setImageUpload]= useState(null)
+  const [isFormChanged, setIsFormChanged] = useState(false);
   const isFulfilled = useSelector(state => state.user.isFulfilled);
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
@@ -62,11 +71,9 @@ const UserForm = () => {
       return;
     }
     const imageUrl = URL.createObjectURL(selectedFile);
-    const formData = new FormData();
-    formData.append('avatar', selectedFile);
-    await dispatch(updateUser(formData));
     setImagePreview(imageUrl);
-    await dispatch(fetchCurrentUser());
+    setImageUpload(selectedFile)
+    setIsFormChanged(true);
   };
 
   const { name, birthday, email, phone, skype, avatarURL } = userInfo;
@@ -79,19 +86,24 @@ const UserForm = () => {
     }
     if (values.skype) {
       formData.append('skype', values.skype);
+    } if(values.birthday){
+      formData.append('birthday', dayjs(values.birthday).format('YYYY/MM/DD'));  
     }
-    formData.append('birthday', values.birthday);
+   if(imageUpload){
+    formData.append('avatar', imageUpload);
+   }
+   
     try {
       await dispatch(updateUser(formData));
-      await dispatch(updateUser(values));
+      // await dispatch(updateUser(values));
       await dispatch(fetchCurrentUser());
+      setIsFormChanged(false);
       toast.success('Profile data changed successfully');
     } catch {
       toast.error('Something went wrong... Try again!');
     }
   };
   if (isFulfilled) {
-    console.log('name :>> ', name);
     return (
       <Formik
         initialValues={{
@@ -105,7 +117,7 @@ const UserForm = () => {
         validationSchema={userSchema}
         onSubmit={handleSubmit}
       >
-        {({ values, dirty, touched, errors }) => (
+        {({ values,setFieldValue, dirty, touched, errors }) => (
           <AccountForm>
             <Box
               position="relative"
@@ -144,15 +156,32 @@ const UserForm = () => {
                   errors={errors.name}
                   values={values.name}
                 />
-                <UserFild
-                  title="Birthday"
-                  type="text"
-                  name="birthday"
-                  placeholder={currentDate}
-                  touched={touched.birthday}
-                  errors={errors.birthday}
-                  values={values.birthday}
-                />
+                <Label >
+                    Birthday
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DatePickerStyled 
+                        name="birthday"
+                        type="date"
+                        slotProps={{
+                          popper: {
+                            sx: PopperDateStyles,
+                          },
+                          textField: {
+                            placeholder: birthday ||currentDate
+                          },
+                        }}
+                        views={['year', 'month', 'day']}
+                        format="YYYY/MM/DD"
+                        closeOnSelect={true}
+                        disableFuture={true}
+                        onChange={date => {
+                         
+                          setFieldValue('birthday', date);
+                          setIsFormChanged(true);
+                        }}
+                      />
+                    </LocalizationProvider>
+                  </Label>
 
                 <UserFild
                   title="Email"
@@ -185,7 +214,7 @@ const UserForm = () => {
                 />
               </Wrapper>
             </Wrap>
-            <Button type="submit" disabled={!dirty}>
+            <Button type="submit" disabled={!dirty && !isFormChanged}>
               Save changes
             </Button>
           </AccountForm>
@@ -196,5 +225,3 @@ const UserForm = () => {
 };
 
 export default UserForm;
-
-// isSubmitting || !isFormChanged

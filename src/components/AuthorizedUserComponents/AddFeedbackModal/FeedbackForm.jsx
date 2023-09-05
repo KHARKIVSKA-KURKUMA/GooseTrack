@@ -9,8 +9,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteReview,
   addReview,
