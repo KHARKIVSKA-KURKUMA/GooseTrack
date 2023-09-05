@@ -1,13 +1,16 @@
-// import { ColumnContainer } from './TaskColumn.styled';
 import { TaskItem } from './TasksColumnStyle';
 import { AddTaskBtn, ColumnHeadBar, ColumnTasksList } from './TasksColumnItems';
 
-const TasksColumn = ({ tasks, title }) => {
+const TasksColumn = ({ tasks, title, selectedDate }) => {
   return (
     <TaskItem>
-      <ColumnHeadBar title={title} />
-      <ColumnTasksList tasks={tasks} title={title} />
-      <AddTaskBtn />
+      <ColumnHeadBar selectedDate={selectedDate} title={title} />
+      <ColumnTasksList
+        selectedDate={selectedDate}
+        tasks={tasks}
+        title={title}
+      />
+      <AddTaskBtn selectedDate={selectedDate} title={title} />
     </TaskItem>
   );
 };

@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { PeriodPaginator, PeriodTypeSelect } from './CalendarToolbarItems';
 import { ToolbarWrapper } from './CalendarToolbar.styled';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { format, parse } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectedDateSelector } from 'store/selectors';
-import { getTasksByMonthThunk } from 'store/tasks/tasksThunks';
+import { selectedDateSelector, tasksSelector } from 'store/selectors';
+import {
+  getTasksByDayThunk,
+  getTasksByMonthThunk,
+} from 'store/tasks/tasksThunks';
 
 const CalendarToolbar = () => {
+  const { currentDate } = useParams();
+
   const [type, setType] = useState('month');
   const dispatch = useDispatch();
   const location = useLocation();
@@ -20,28 +25,42 @@ const CalendarToolbar = () => {
     setType('month');
   }, [pathname]);
 
-  const normalizedDate = useSelector(selectedDateSelector);
+  const selectedDate = useSelector(selectedDateSelector);
+  const normalizedDate = currentDate || selectedDate;
 
   const date = parse(normalizedDate, 'yyyy-MM-dd', Date.now());
   const formattedYear = format(date, 'yyyy');
   const formattedMonth = format(date, 'MM');
+  const formattedDay = format(date, 'dd');
+
+  const { isChanged } = useSelector(tasksSelector);
 
   /* eslint-disable react-hooks/exhaustive-deps */
 
   useEffect(() => {
-    dispatch(
-      getTasksByMonthThunk({
-        year: formattedYear,
-        month: formattedMonth,
-      })
-    );
-  }, [dispatch, normalizedDate]);
+    if (type === 'month') {
+      dispatch(
+        getTasksByMonthThunk({
+          year: formattedYear,
+          month: formattedMonth,
+        })
+      );
+    } else {
+      dispatch(
+        getTasksByDayThunk({
+          year: formattedYear,
+          month: formattedMonth,
+          day: formattedDay,
+        })
+      );
+    }
+  }, [dispatch, isChanged, normalizedDate]);
 
   return (
     <div>
       <ToolbarWrapper>
         <PeriodPaginator type={type} />
-        <PeriodTypeSelect today={date} onChangeType={setType} />
+        <PeriodTypeSelect today={currentDate} onChangeType={setType} />
       </ToolbarWrapper>
     </div>
   );

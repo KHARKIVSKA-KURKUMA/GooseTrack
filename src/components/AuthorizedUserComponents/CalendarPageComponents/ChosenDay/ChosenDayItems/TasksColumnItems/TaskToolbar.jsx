@@ -22,9 +22,9 @@ import {
   StyledArrow,
   TaskToolbarContainer,
 } from './TaskToolbarStyle';
+import { setIsChanged } from 'store/tasks/tasksSlice';
 
 const TaskToolbar = ({ task }) => {
-  console.log('task :>> ', task);
   const [anchorEl, setAnchorEl] = useState(null);
   //  const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -51,7 +51,7 @@ const TaskToolbar = ({ task }) => {
 
   const dispatch = useDispatch();
   /* -------------------------------------------------------------------------- */
-  const groups = ['to-do', 'in progress', 'done'];
+  const groups = ['to-do', 'in-progress', 'done'];
   const currentGroup = 'to-do';
 
   const open = Boolean(anchorEl);
@@ -66,12 +66,14 @@ const TaskToolbar = ({ task }) => {
 
   const handleDeleteTask = () => {
     console.log('click delete');
-    const response = dispatch(deleteTask(task.id));
-    if (response.status >= 200 && response.status < 300) {
-      toast.success('Task deleted successfully');
-    } else {
-      toast.error('Oops, something went wrong...');
-    }
+    dispatch(deleteTask(task.id));
+    dispatch(setIsChanged('true'));
+    // console.log('response.status :>> ', response);
+    // if (response.status >= 200 && response.status < 300) {
+    //   toast.success('Task deleted successfully');
+    // } else {
+    //   toast.error('Oops, something went wrong...');
+    // }
   };
 
   return (

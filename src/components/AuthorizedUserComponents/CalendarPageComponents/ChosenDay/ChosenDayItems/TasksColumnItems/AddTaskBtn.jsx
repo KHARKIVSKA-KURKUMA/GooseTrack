@@ -5,9 +5,10 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
 import { AddTaskButton } from './AddTaskBtnStyle';
 
-const AddTaskBtn = () => {
+const AddTaskBtn = ({ selectedDate, title }) => {
   // const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [showModal, setShowModal] = useState(false);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   /// Toggle Modal Function ///
@@ -36,8 +37,8 @@ const AddTaskBtn = () => {
       {isModalOpen && (
         <TaskModal
           toggleModal={toggleModal}
-          date={'2023-09-04'}
-          category={'done'}
+          date={selectedDate}
+          category={title}
         />
       )}
     </>

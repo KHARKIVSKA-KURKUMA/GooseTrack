@@ -4,7 +4,6 @@ import { Item, List, StyledNavLink } from './PeriodTypeSelect.styled';
 
 const PeriodTypeSelect = ({ onChangeType }) => {
   const currentDate = useSelector(state => state.date.currentDate);
-  console.log('currentDate :>> ', currentDate);
 
   return (
     <List>

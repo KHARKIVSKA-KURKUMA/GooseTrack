@@ -5,12 +5,14 @@ import Overlay from 'components/GeneralComponents/Overlay/Overlay';
 import { CloseModalButton } from './TaskModal.styled';
 
 import { TaskForm, Modal } from './TaskModalItems';
+
 // import { TaskForm, Modal, TaskFormForEdit} from './TaskModalItems';
 
 const taskModalRoot = document.querySelector('#task-modal-root');
 
 const TaskModal = ({ toggleModal, taskToEdit, date, category }) => {
   /// Close modal by pressing Escape ///
+
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {

@@ -13,7 +13,6 @@ import { userReducer } from './user/userSlice';
 import { persistedAuthReducer } from './auth/authSlice';
 import { tasksReducer } from './tasks/tasksSlice';
 import { feedbackReducer } from './feedback/feedbackSlice';
-import { statisticsReducer } from './statistics/statisticsSlice';
 import { themeReducer } from '../components/AuthorizedUserComponents/Header/HeaderItems/Theme/themeSlice';
 import { dateReducer } from './date/dateSlice';
 
@@ -22,7 +21,6 @@ const reducer = {
   auth: persistedAuthReducer,
   tasks: tasksReducer,
   user: userReducer,
-  statistics: statisticsReducer,
   theme: themeReducer,
   date: dateReducer,
 };

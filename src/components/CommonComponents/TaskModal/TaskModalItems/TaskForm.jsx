@@ -25,6 +25,7 @@ import {
   TimeInput,
   ErrorsMessage,
 } from './TaskForm.styled';
+import { setIsChanged } from 'store/tasks/tasksSlice';
 
 const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
     date: yup.date().required(),
     category: yup
       .string()
-      .oneOf(['to-do', 'in progress', 'done'], 'Invalid priority value')
+      .oneOf(['to-do', 'in-progress', 'done'], 'Invalid priority value')
       .required('Select a category'),
   });
 
@@ -79,11 +80,13 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
     },
     validationSchema: taskFormValidationSchema,
 
-    onSubmit:(values, action) => {
+    onSubmit: (values, action) => {
       console.log(values);
       if (taskToEdit && taskToEdit.length > 0) {
         dispatch(editTask(values));
-        toast.success('Task updated successfully')
+        dispatch(setIsChanged('true'));
+        toast.success('Task updated successfully');
+
         // if (response.status >= 200 && response.status < 300) {
         //   toast.success('Task updated successfully');
         // } else {
@@ -91,6 +94,7 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
         // }
       } else {
         dispatch(addTask(values));
+        dispatch(setIsChanged('123'));
         toast.success('Task created successfully');
         // if (response.status >= 200 && response.status < 300) {
         //   toast.success('Task created successfully');
@@ -103,7 +107,6 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
       toggleModal();
     },
   });
-
 
   return (
     <form onSubmit={formik.handleSubmit}>

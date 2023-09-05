@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   CalendarTableWrapper,
   CalendarNumberWrapper,
@@ -10,6 +10,9 @@ import {
   NoteText,
 } from '../ChosenMonth.styled';
 import { tasksSelector } from 'store/selectors';
+import { useEffect } from 'react';
+import { getTasksByMonthThunk } from 'store/tasks/tasksThunks';
+import { format, parse } from 'date-fns';
 
 const getPriorityBackgroundColor = priority => {
   if (priority === 'high') return '#FFD2DD';
@@ -25,8 +28,21 @@ const getPriorityColor = priority => {
 const CalendarTable = props => {
   const selectedDateUnFormat = props.selectedDate;
   const selectedDate = new Date(selectedDateUnFormat);
+  const dispatch = useDispatch();
+  /* eslint-disable react-hooks/exhaustive-deps */
 
+  const date = parse(selectedDateUnFormat, 'yyyy-MM-dd', Date.now());
+  const formattedYear = format(date, 'yyyy');
+  const formattedMonth = format(date, 'MM');
   const { tasks } = useSelector(tasksSelector);
+  useEffect(() => {
+    dispatch(
+      getTasksByMonthThunk({
+        year: formattedYear,
+        month: formattedMonth,
+      })
+    );
+  }, [dispatch]);
   /* -------------------------------------------------------------------------- */
   const notesArr = tasks.map(task => {
     const data = task.data;
