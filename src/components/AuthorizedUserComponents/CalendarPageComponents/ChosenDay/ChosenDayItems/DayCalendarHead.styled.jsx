@@ -6,6 +6,7 @@ const CalendarTableWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 25px;
+  margin-top: 24px;
   margin-bottom: 14px;
   margin-left: auto;
   margin-right: auto;
@@ -25,6 +26,8 @@ const CalendarTableWrapper = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
+    margin-top: 32px;
+
     width: 1087px;
     gap: 125px;
   }

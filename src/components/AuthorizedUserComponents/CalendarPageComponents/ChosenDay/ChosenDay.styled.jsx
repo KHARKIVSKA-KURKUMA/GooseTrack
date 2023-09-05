@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  /* position: absolute;
+  position: absolute;
   top: 10;
   left: 0;
-  right: 0; */
-  /* margin: 0 auto; */
-  /* transform: translateY(120px); */
+  right: 0;
+  margin: 0 auto;
+  transform: translateY(120px);
 
-  /* @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     transform: translateY(132px);
     left: 32px;
     margin: 0;
@@ -16,7 +16,7 @@ const Container = styled.div`
   @media screen and (min-width: 1440px) {
     right: 32px;
     left: auto;
-  } */
+  }
 `;
 
 export { Container };

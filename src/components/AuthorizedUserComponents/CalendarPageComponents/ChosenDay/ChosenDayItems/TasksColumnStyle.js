@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 const TaskItem = styled.li`
   flex: 0 0 335px;
-  margin-left: 20px;
+  &:first-child {
+    margin-left: 20px;
+  }
   &:last-child {
     margin-right: 20px;
   }
@@ -17,17 +19,23 @@ const TaskItem = styled.li`
   @media screen and (min-width: 768px) {
     flex: 0 0 344px;
     &:first-child {
-      margin-left: 32px;
+      margin-left: 18px;
     }
     &:last-child {
-      margin-right: 32px;
+      margin-right: 18px;
     }
   }
 
   @media screen and (min-width: 1440px) {
     flex: 0 0 344px;
-    &:not(:last-child) {
-      /* margin-right: 27px; */
+    margin-left: 0px;
+
+    &:first-child {
+      margin-left: 0px;
+    }
+
+    &:last-child {
+      margin-right: 0px;
     }
   }
   /* overflow: hidden; */
