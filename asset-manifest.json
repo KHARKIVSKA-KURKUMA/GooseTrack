@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/GooseTrack/static/css/main.3d0847ee.css",
-    "main.js": "/GooseTrack/static/js/main.7a6363bc.js",
+    "main.js": "/GooseTrack/static/js/main.14ce9d19.js",
     "static/media/feature-calendar3x.png": "/GooseTrack/static/media/feature-calendar3x.d307bf27b215d9b1d70e.png",
     "static/media/feature-calendar2x.png": "/GooseTrack/static/media/feature-calendar2x.271b4ebdb082126ddab5.png",
     "static/media/feature-sidebar3x.png": "/GooseTrack/static/media/feature-sidebar3x.48ad406aea3d5d1a4725.png",
@@ -32,10 +32,10 @@
     "static/media/close.svg": "/GooseTrack/static/media/close.2fc579d8fb808014964ce85b8689713c.svg",
     "static/media/rightArrow.svg": "/GooseTrack/static/media/rightArrow.75d3f1a7c9d40920cac36be608c4ef43.svg",
     "main.3d0847ee.css.map": "/GooseTrack/static/css/main.3d0847ee.css.map",
-    "main.7a6363bc.js.map": "/GooseTrack/static/js/main.7a6363bc.js.map"
+    "main.14ce9d19.js.map": "/GooseTrack/static/js/main.14ce9d19.js.map"
   },
   "entrypoints": [
     "static/css/main.3d0847ee.css",
-    "static/js/main.7a6363bc.js"
+    "static/js/main.14ce9d19.js"
   ]
 }
