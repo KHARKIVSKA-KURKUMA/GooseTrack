@@ -20,6 +20,7 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowWrapper,
+  LoaderContainer,
 } from './ReviewsSlider.styled';
 
 import Loader from '../../../Loader/Loader';
@@ -142,7 +143,9 @@ const ReviewsSlider = () => {
           </ArrowWrapper>
         </>
       ) : (
-        <Loader />
+        <LoaderContainer>
+          <Loader />
+        </LoaderContainer>
       )}
     </Container>
   );

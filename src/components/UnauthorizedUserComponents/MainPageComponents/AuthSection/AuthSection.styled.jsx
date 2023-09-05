@@ -28,6 +28,9 @@ const HeroTitle = styled.h1`
   text-shadow: #00000009;
 
   @media (min-width: 768px) {
+    margin-bottom: 40px;
+    font-size: 120px;
+    line-height: 1.25;
   }
 `;
 
@@ -49,6 +52,8 @@ const HeroTitleSpan = styled.span`
   margin-right: 4px;
 
   @media (min-width: 768px) {
+    font-size: 120px;
+    line-height: 1.25;
   }
 `;
 
@@ -58,10 +63,11 @@ const AuthBlock = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 30px;
 
   @media (min-width: 768px) {
-    
+    flex-direction: row;
+    gap: 10px;
   }
 `;
 
@@ -92,6 +98,10 @@ const LoginLink = styled(NavLink)`
   &:focus {
     transform: scale(1.1);
   }
+
+  @media (min-width: 768px) {
+    padding: 14px 22px;
+  }
 `;
 
 const SignupLink = styled(NavLink)`
@@ -117,6 +127,10 @@ const SignupLink = styled(NavLink)`
   &:hover,
   &:focus {
     transform: scale(1.1);
+  }
+
+  @media (min-width: 768px) {
+       padding: 14px 22px;
   }
 `;
 
