@@ -12,7 +12,6 @@ import { useState, useEffect } from 'react';
 import { deleteTask } from 'store/tasks/tasksThunks';
 import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 
 import {
   IconBtnArrow,
