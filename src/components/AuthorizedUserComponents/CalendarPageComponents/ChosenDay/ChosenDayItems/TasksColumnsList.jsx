@@ -1,5 +1,6 @@
-import { TaskColumnList } from './TaskColumn.styled';
+// import { TaskColumnList } from './TaskColumn.styled';
 import TasksColumn from './TasksColumn';
+import { TaskColumnList } from './TasksColumnsListStyle';
 
 const TasksColumnsList = ({ tasks, titles }) => {
   return (

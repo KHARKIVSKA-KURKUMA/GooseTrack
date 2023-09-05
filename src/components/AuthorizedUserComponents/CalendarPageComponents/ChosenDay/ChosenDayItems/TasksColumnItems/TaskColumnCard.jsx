@@ -1,12 +1,20 @@
-import TaskToolbar from './TaskToolbar';
 import {
-  Priority,
   Avatar,
-  Description,
   BottomContainer,
   CardContainer,
+  Description,
+  Priority,
   TaskMeta,
-} from './TaskColumnItems.styled';
+} from './TaskColumnCardStyle';
+import TaskToolbar from './TaskToolbar';
+// import {
+//   Priority,
+//   Avatar,
+//   Description,
+//   BottomContainer,
+//   CardContainer,
+//   TaskMeta,
+// } from './TaskColumnItems.styled';
 
 const TaskColumnCard = (data, title) => {
   const { description, avatarUrl, priority } = data;
