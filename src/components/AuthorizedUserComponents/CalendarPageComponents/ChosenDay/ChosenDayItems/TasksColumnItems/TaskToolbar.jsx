@@ -1,18 +1,27 @@
-import { ReactComponent as Arrow } from '../../../../../../img/taskToolbarArrow.svg';
-import { ReactComponent as Trash } from '../../../../../../img/taskToolbarTrash.svg';
-import { ReactComponent as Pen } from '../../../../../../img/taskToolbarPen.svg';
-import {
-  TaskToolbarContainer,
-  TaskToolbarBtn,
-  StyledArrow,
-  MenuStyled,
-} from './TaskColumnItems.styled';
+// import { ReactComponent as Arrow } from '../../../../../../img/taskToolbarArrow.svg';
+// import { ReactComponent as Trash } from '../../../../../../img/taskToolbarTrash.svg';
+// import { ReactComponent as Pen } from '../../../../../../img/taskToolbarPen.svg';
+// import {
+//   TaskToolbarContainer,
+//   TaskToolbarBtn,
+//   StyledArrow,
+//   MenuStyled,
+// } from './TaskColumnItems.styled';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
 import { useState, useEffect } from 'react';
 import { deleteTask } from 'store/tasks/tasksThunks';
 import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+
+import {
+  IconBtnArrow,
+  IconBtnPencil,
+  IconBtnTrash,
+  MenuStyled,
+  StyledArrow,
+  TaskToolbarContainer,
+} from './TaskToolbarStyle';
 
 const TaskToolbar = ({ task }) => {
   console.log('task :>> ', task);
@@ -67,9 +76,11 @@ const TaskToolbar = ({ task }) => {
 
   return (
     <TaskToolbarContainer>
-      <TaskToolbarBtn onClick={handleClick}>
+      {/* <TaskToolbarBtn onClick={handleClick}>
         <Arrow />
-      </TaskToolbarBtn>
+      </TaskToolbarBtn> */}
+      <IconBtnArrow onClick={handleClick}></IconBtnArrow>
+
       <MenuStyled
         id="basic-menu"
         anchorEl={anchorEl}
@@ -86,12 +97,19 @@ const TaskToolbar = ({ task }) => {
           </MenuItem>
         ))}
       </MenuStyled>
-      <TaskToolbarBtn onClick={toggleModal}>
+
+      {/* <TaskToolbarBtn onClick={toggleModal}>
         <Pen />
-      </TaskToolbarBtn>
-      <TaskToolbarBtn onClick={handleDeleteTask}>
+      </TaskToolbarBtn> */}
+
+      <IconBtnPencil onClick={toggleModal}></IconBtnPencil>
+
+      {/* <TaskToolbarBtn onClick={handleDeleteTask}>
         <Trash />
-      </TaskToolbarBtn>
+      </TaskToolbarBtn> */}
+
+      <IconBtnTrash onClick={handleDeleteTask}></IconBtnTrash>
+
       {isModalOpen && (
         <TaskModal
           toggleModal={toggleModal}

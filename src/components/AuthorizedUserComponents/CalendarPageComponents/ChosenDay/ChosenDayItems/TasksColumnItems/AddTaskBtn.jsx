@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { AddTaskButton } from './TaskColumnItems.styled';
+// import { AddTaskButton } from './TaskColumnItems.styled';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
+import { AddTaskButton } from './AddTaskBtnStyle';
 
 const AddTaskBtn = () => {
   // const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -32,7 +33,13 @@ const AddTaskBtn = () => {
         <AiOutlinePlus size="24px" />
         Add task
       </AddTaskButton>
-      {isModalOpen && <TaskModal toggleModal={toggleModal} date={'2023-09-04'} category={'done'} />}
+      {isModalOpen && (
+        <TaskModal
+          toggleModal={toggleModal}
+          date={'2023-09-04'}
+          category={'done'}
+        />
+      )}
     </>
   );
 };

@@ -6,6 +6,11 @@ const CalendarTableWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 25px;
+  margin-top: 24px;
+  margin-bottom: 14px;
+  margin-left: auto;
+  margin-right: auto;
+
   width: 335px;
   height: 74px;
   border-collapse: collapse;
@@ -17,9 +22,12 @@ const CalendarTableWrapper = styled.div`
   @media screen and (min-width: 768px) {
     width: 704px;
     gap: 65px;
+    margin-bottom: 16px;
   }
 
   @media screen and (min-width: 1440px) {
+    margin-top: 32px;
+
     width: 1087px;
     gap: 125px;
   }
@@ -59,10 +67,4 @@ const DateNumber = styled.div`
   }
 `;
 
-export {
-    CalendarTableWrapper,
-    CalendarRow,
-    CalendarCell,
-    DayName,
-    DateNumber
-};
+export { CalendarTableWrapper, CalendarRow, CalendarCell, DayName, DateNumber };

@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   position: absolute;
-  top: 0;
+  top: 10;
   left: 0;
   right: 0;
   margin: 0 auto;
   transform: translateY(120px);
+
   @media screen and (min-width: 768px) {
     transform: translateY(132px);
     left: 32px;

@@ -11,6 +11,8 @@ const ChosenDay = () => {
   const tasksForCurrentDay = tasks.filter(task => {
     return task.data.some(dataItem => dataItem.date === currentDate);
   });
+  console.log('tasksForCurrentDay', tasksForCurrentDay);
+
   const titleArr = ['to-do', 'in-progress', 'done'];
 
   return (
