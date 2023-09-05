@@ -17,6 +17,8 @@ const ColumnTasksList = ({ tasks, title, selectedDate }) => {
               date={task.date}
               category={task.category}
               priority={task.priority}
+              start={task.start}
+              end={task.end}
             />
           ))
         )}
