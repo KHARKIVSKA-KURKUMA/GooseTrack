@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
 const TaskItem = styled.li`
-  width: 344px;
-  flex: 0 0 100%;
+  flex: 0 0 335px;
+  margin-left: 20px;
+  &:last-child {
+    margin-right: 20px;
+  }
+
   padding-right: 18px;
   padding-left: 18px;
   border-radius: 8px;
@@ -10,23 +14,20 @@ const TaskItem = styled.li`
 
   background-color: #ffffff;
 
-  flex-direction: column;
-  &:not(:last-child) {
-    margin-right: 20px;
-  }
-
-  max-height: 568px;
   @media screen and (min-width: 768px) {
     flex: 0 0 344px;
-    &:not(:last-child) {
-      margin-right: 16px;
+    &:first-child {
+      margin-left: 32px;
+    }
+    &:last-child {
+      margin-right: 32px;
     }
   }
 
   @media screen and (min-width: 1440px) {
     flex: 0 0 344px;
     &:not(:last-child) {
-      margin-right: 27px;
+      /* margin-right: 27px; */
     }
   }
   /* overflow: hidden; */
