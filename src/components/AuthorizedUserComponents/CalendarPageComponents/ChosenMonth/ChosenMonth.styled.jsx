@@ -79,6 +79,7 @@ const CalendarCell = styled(Link)`
   border: 1px solid rgb(220, 227, 229, 50%);
   position: relative;
   color: inherit;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
   @media screen and (min-width: 768px) {
     min-width: 100.5px;
@@ -86,6 +87,11 @@ const CalendarCell = styled(Link)`
 
   @media screen and (min-width: 1440px) {
     min-width: 155px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   }
 `;
 
