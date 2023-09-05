@@ -26,14 +26,15 @@ const TaskModal = ({ toggleModal, taskToEdit, date, category }) => {
   }, [toggleModal]);
 
   /// Close modal by click on overlay ///
-  const handleOverlay = e => {
-    if (e.currentTarget === e.target) {
-      toggleModal();
-    }
-  };
+  // const handleOverlay = e => {
+  //   if (e.currentTarget === e.target) {
+  //     toggleModal();
+  //   }
+  // };
+  // onClick={handleOverlay}
 
   return createPortal(
-    <Overlay onClick={handleOverlay}>
+    <Overlay >
       <Modal>
         <CloseModalButton type="button" onClick={toggleModal}>
           <GrClose size={20} />

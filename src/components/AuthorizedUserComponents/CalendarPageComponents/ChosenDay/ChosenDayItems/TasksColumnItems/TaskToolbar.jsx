@@ -8,6 +8,10 @@
 //   MenuStyled,
 // } from './TaskColumnItems.styled';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 import { useState, useEffect } from 'react';
 import { deleteTask } from 'store/tasks/tasksThunks';
 import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
@@ -64,6 +68,17 @@ const TaskToolbar = ({ task }) => {
 
   const availableGroups = groups.filter(group => group !== currentGroup);
 
+  /* -------------------------------Delete Task--------------------------------------- */
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpenModal(true);
+  };
+
+  const handleClickClose = () => {
+    setOpenModal(false);
+  };
+  
   const handleDeleteTask = () => {
     console.log('click delete');
     dispatch(deleteTask(task.id));
@@ -110,8 +125,21 @@ const TaskToolbar = ({ task }) => {
         <Trash />
       </TaskToolbarBtn> */}
 
-      <IconBtnTrash onClick={handleDeleteTask}></IconBtnTrash>
-
+      <IconBtnTrash onClick={handleClickOpen}></IconBtnTrash>
+<Dialog
+        open={openModal}
+        onClose={handleClickClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{'Delete task?'}</DialogTitle>
+        <DialogActions>
+          <Button onClick={handleDeleteTask}>Yes</Button>
+          <Button onClick={handleClickClose} autoFocus>
+            No
+          </Button>
+        </DialogActions>
+      </Dialog>
       {isModalOpen && (
         <TaskModal
           toggleModal={toggleModal}

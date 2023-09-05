@@ -37,9 +37,9 @@ const ColumnHeadBar = ({ title, selectedDate }) => {
   }, [showModal]);
 
   return (
-    <HeadBarContainer onClick={toggleModal} isEmpty={isEmpty}>
+    <HeadBarContainer isEmpty={isEmpty}>
       <HeadBarTitle>{title}</HeadBarTitle>
-      <HeadBarAddBtn />
+      <HeadBarAddBtn onClick={toggleModal}/>
       {isModalOpen && (
         <TaskModal
           toggleModal={toggleModal}
