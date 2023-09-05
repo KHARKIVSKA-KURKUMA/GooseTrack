@@ -30,16 +30,14 @@ const ChosenDay = () => {
   const titleArr = ['to-do', 'in-progress', 'done'];
 
   return (
-    <>
-      <Container>
-        <DayCalendarHead selectedDate={currentDate} />
-        <TasksColumnsList
-          selectedDate={currentDate}
-          tasks={tasksForCurrentDay}
-          titles={titleArr}
-        />
-      </Container>
-    </>
+    <Container>
+      <DayCalendarHead selectedDate={currentDate} />
+      <TasksColumnsList
+        selectedDate={currentDate}
+        tasks={tasksForCurrentDay}
+        titles={titleArr}
+      />
+    </Container>
   );
 };
 
