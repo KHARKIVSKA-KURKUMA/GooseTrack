@@ -22,6 +22,8 @@ import {
   ArrowWrapper,
 } from './ReviewsSlider.styled';
 
+import Loader from '../../../Loader/Loader';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { feedbackIsLoadingSelector, feedbackSelector } from 'store/selectors';
 import { useEffect } from 'react';
@@ -140,7 +142,7 @@ const ReviewsSlider = () => {
           </ArrowWrapper>
         </>
       ) : (
-        <div>Loading reviews...</div>
+        <Loader />
       )}
     </Container>
   );
