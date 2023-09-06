@@ -9,6 +9,7 @@ const PeriodTypeSelect = ({ onChangeType }) => {
   const backgroundColor = theme === 'light' ? '#E3F3FF' : '#21222C';
   
   
+  
   return (
     <List>
       <Item>

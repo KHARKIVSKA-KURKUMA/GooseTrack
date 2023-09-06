@@ -86,8 +86,8 @@ const CircleIcon = styled.div`
 `;
 
 const IconButton = styled.div`
-border:none`;
-
+border:none
+`;
 
 export {
   StarWrapper,

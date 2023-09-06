@@ -98,12 +98,21 @@ const ArrowLeft = styled.div`
   padding-right: 10px;
   padding-top: 30px;
   padding-bottom: 30px;
+  cursor: pointer;
+  
+
+  &:hover,
+  &:focus {
+    
+  }
 `;
 
 const ArrowRight = styled.div`
   padding-left: 10px;
   padding-top: 30px;
   padding-bottom: 30px;
+  cursor: pointer;
+  
 `;
 
 const LoaderContainer = styled.div`
