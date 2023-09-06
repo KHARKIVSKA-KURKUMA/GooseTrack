@@ -12,7 +12,7 @@ export const SidebarContainer = styled.div`
   left: 0;
   padding: 24px 20px;
   position: fixed;
-  z-index: 9999;
+  z-index: 9;
   @media (min-width: 768px) {
     padding: 24px 32px;
     width: 289px;

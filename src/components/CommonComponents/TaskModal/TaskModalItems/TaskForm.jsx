@@ -73,22 +73,28 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
       .required('Select a category'),
   });
 
+  const isEditForm =
+    taskToEdit !== undefined &&
+    taskToEdit &&
+    Object.keys(taskToEdit).length > 0;
+
   const formik = useFormik({
     initialValues: {
-      title: '',
-      start: '09:00',
-      end: '09:30',
-      priority: 'low',
-      date: date,
-      category: category,
+      title: isEditForm ? taskToEdit.description : '',
+      start: isEditForm ? taskToEdit.start : '09:00',
+      end: isEditForm ? taskToEdit.end : '09:30',
+      priority: isEditForm ? taskToEdit.priority : 'low',
+      date: isEditForm ? taskToEdit.date : date,
+      category: isEditForm ? taskToEdit.category : category,
     },
     validationSchema: taskFormValidationSchema,
 
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       console.log(values);
-      if (taskToEdit && taskToEdit.length > 0) {
-        dispatch(editTask(values));
-        dispatch(setIsChanged('true'));
+      if (isEditForm) {
+       await dispatch(
+          editTask({ ...values, id: taskToEdit.id })
+        );
         toast.success('Task updated successfully');
 
         // if (response.status >= 200 && response.status < 300) {
@@ -97,18 +103,17 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
         //   toast.error('Oops, something went wrong...');
         // }
       } else {
-        dispatch(addTask(values));
-        dispatch(setIsChanged('123'));
-        toast.success('Task created successfully');
+  await dispatch(addTask(values));
+toast.success('Task created successfully');
         // if (response.status >= 200 && response.status < 300) {
         //   toast.success('Task created successfully');
         // } else {
         //   toast.error('Oops, something went wrong...');
         // }
-        console.log(values);
       }
       action.resetForm();
       toggleModal();
+      dispatch(setIsChanged('true'));
     },
   });
 
@@ -208,12 +213,8 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
           backgroundColor="#3E85F3"
         >
           <EditWrapper>
-            {taskToEdit && taskToEdit.length > 0 ? (
-              <BiPencil size={20} />
-            ) : (
-              <AiOutlinePlus size={22} />
-            )}
-            <Span>{taskToEdit && taskToEdit.length > 0 ? 'Edit' : 'Add'}</Span>
+            {isEditForm ? <BiPencil size={20} /> : <AiOutlinePlus size={22} />}
+            <Span>{isEditForm ? 'Edit' : 'Add'}</Span>
           </EditWrapper>
         </ModalButton>
         <ModalButton type="button" onClick={toggleModal}>
