@@ -6,9 +6,10 @@ import { useSelector } from 'react-redux';
 import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
 import { AddTaskButton } from './AddTaskBtnStyle';
 
-const AddTaskBtn = () => {
+const AddTaskBtn = ({ selectedDate, title }) => {
   // const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [showModal, setShowModal] = useState(false);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const theme = useSelector(state => state.theme); 
   const backgroundColor = theme === 'light' ? '#E3F3FF' : '#3E85F3';
@@ -40,8 +41,8 @@ const AddTaskBtn = () => {
       {isModalOpen && (
         <TaskModal
           toggleModal={toggleModal}
-          date={'2023-09-04'}
-          category={'done'}
+          date={selectedDate}
+          category={title}
         />
       )}
     </>

@@ -27,12 +27,12 @@ const PeriodPaginator = ({ type }) => {
   const normalizedDate = useSelector(selectedDateSelector);
 
   useEffect(() => {
-    if (params.currentDay) {
-      if (normalizedDate !== params.currentDay) {
-        dispatch(setDates(params.currentDay));
+    if (params.currentDate) {
+      if (normalizedDate !== params.currentDate) {
+        dispatch(setDates(params.currentDate));
       }
     }
-  }, [dispatch, normalizedDate, params.currentDay]);
+  }, [dispatch, normalizedDate, params.currentDate]);
 
   const date = parse(normalizedDate, 'yyyy-MM-dd', Date.now());
   const selectedDay = date;

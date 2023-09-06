@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   CalendarTableWrapper,
   CalendarNumberWrapper,
@@ -10,6 +10,9 @@ import {
   NoteText,
 } from '../ChosenMonth.styled';
 import { tasksSelector } from 'store/selectors';
+import { useEffect } from 'react';
+import { getTasksByMonthThunk } from 'store/tasks/tasksThunks';
+import { format, parse } from 'date-fns';
 
 const getPriorityBackgroundColor = priority => {
   if (priority === 'high') return '#FFD2DD';
@@ -26,8 +29,19 @@ const CalendarTable = props => {
   const theme = useSelector(state => state.theme);
   const selectedDateUnFormat = props.selectedDate;
   const selectedDate = new Date(selectedDateUnFormat);
+  const dispatch = useDispatch();
+  /* eslint-disable react-hooks/exhaustive-deps */
 
+  const date = parse(selectedDateUnFormat, 'yyyy-MM-dd', Date.now());
+  const formattedMonth = format(date, 'yyyy-MM');
   const { tasks } = useSelector(tasksSelector);
+  useEffect(() => {
+    dispatch(
+      getTasksByMonthThunk({
+        month: formattedMonth,
+      })
+    );
+  }, [dispatch]);
   /* -------------------------------------------------------------------------- */
   const notesArr = tasks.map(task => {
     const data = task.data;
@@ -122,12 +136,18 @@ const CalendarTable = props => {
 
           week.push(
             <CalendarCell
+
               style={{ backgroundColor }}
               key={j}
               className={isCurrent ? 'current-day' : ''}
+              to={`/calendar/day/${selectedDate.getFullYear()}-${
+                selectedDate.getMonth() < 9
+                  ? '0' + (selectedDate.getMonth() + 1)
+                  : selectedDate.getMonth() + 1
+              }-${day < 10 ? '0' + day : day}`}
             >
               <GridContainer>
-                <DateNumber isCurrent={isCurrent}>{day}</DateNumber>
+                <DateNumber isCurent={isCurrent}>{day}</DateNumber>
                 {renderNotes(day) && (
                   <NoteContainer>{renderNotes(day)}</NoteContainer>
                 )}
@@ -145,6 +165,7 @@ const CalendarTable = props => {
   };
   const backgroundColor = theme === 'light' ? '#fff' : '#21222C';
   return (
+
     <CalendarTableWrapper
       onClick={e => console.log(e.currentTarget)}
       style={{ borderCollapse: 'collapse' }}
@@ -152,6 +173,9 @@ const CalendarTable = props => {
       <CalendarNumberWrapper style={{ backgroundColor }}>
         {generateCalendar()}
       </CalendarNumberWrapper>
+
+    <CalendarTableWrapper  style={{ borderCollapse: 'collapse' }} onClick={e => console.log(e.currentTarget)}>
+      <CalendarNumberWrapper  style={{ backgroundColor }}>{generateCalendar()}</CalendarNumberWrapper>
     </CalendarTableWrapper>
   );
 };

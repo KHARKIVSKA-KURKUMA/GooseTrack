@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { initialState } from './initialState';
 import {
-  getUserTasksThunk,
+  getTasksByDayThunk,
   addTask,
   deleteTask,
   editTask,
@@ -12,23 +12,35 @@ import {
   handlePending,
   handleRejected,
 } from './handleFunction';
+import { toast } from 'react-toastify';
 
 const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
+  reducers: {
+    setIsChanged: (state, { payload }) => {
+      state.isChanged = payload;
+    },
+  },
   extraReducers: builder => {
     builder
-      .addCase(getUserTasksThunk.fulfilled, (state, { payload }) => {
-        state.tasks = payload;
+      .addCase(getTasksByDayThunk.fulfilled, (state, { payload }) => {
+        state.byDay = payload;
       })
       .addCase(getTasksByMonthThunk.fulfilled, (state, { payload }) => {
         state.tasks = payload;
       })
       .addCase(addTask.fulfilled, (state, { payload }) => {
-        state.tasks.push(payload);
+        const res = { data: [payload.data] };
+        state.byDay.push(payload);
+        state.tasks.push(res);
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
-        state.tasks.filter(task => task._id !== payload._id);
+        state.tasks.filter(task => task._id !== payload.deletedTask._id);
+        toast.success('Task deleted successfully');
+      })
+      .addCase(deleteTask.rejected, (state, { payload }) => {
+        toast.error('Oops, something went wrong...');
       })
       .addCase(editTask.fulfilled, (state, { payload }) => {
         state.tasks = state.tasks.map(task => {
@@ -40,7 +52,7 @@ const tasksSlice = createSlice({
       })
       .addMatcher(
         isAnyOf(
-          getUserTasksThunk.pending,
+          getTasksByDayThunk.pending,
           addTask.pending,
           deleteTask.pending,
           editTask.pending,
@@ -50,7 +62,7 @@ const tasksSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          getUserTasksThunk.fulfilled,
+          getTasksByDayThunk.fulfilled,
           addTask.fulfilled,
           deleteTask.fulfilled,
           editTask.fulfilled,
@@ -60,7 +72,7 @@ const tasksSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          getUserTasksThunk.rejected,
+          getTasksByDayThunk.rejected,
           addTask.rejected,
           deleteTask.rejected,
           editTask.rejected,
@@ -70,5 +82,6 @@ const tasksSlice = createSlice({
       );
   },
 });
+export const { setIsChanged } = tasksSlice.actions;
 
 export const tasksReducer = tasksSlice.reducer;

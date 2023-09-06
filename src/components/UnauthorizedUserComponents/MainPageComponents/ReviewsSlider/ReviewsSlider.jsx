@@ -20,7 +20,10 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowWrapper,
+  LoaderContainer,
 } from './ReviewsSlider.styled';
+
+import Loader from '../../../Loader/Loader';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { feedbackIsLoadingSelector, feedbackSelector } from 'store/selectors';
@@ -140,7 +143,9 @@ const ReviewsSlider = () => {
           </ArrowWrapper>
         </>
       ) : (
-        <div>Loading reviews...</div>
+        <LoaderContainer>
+          <Loader />
+        </LoaderContainer>
       )}
     </Container>
   );

@@ -2,14 +2,13 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   position: absolute;
-  top: 10;
+  top: 0;
   left: 0;
   right: 0;
-  margin: 0 auto;
-  transform: translateY(120px);
+  transform: translateY(226px);
 
   @media screen and (min-width: 768px) {
-    transform: translateY(132px);
+    transform: translateY(130px);
     left: 32px;
     margin: 0;
   }
@@ -19,4 +18,12 @@ const Container = styled.div`
   }
 `;
 
-export { Container };
+
+const LoaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+export { Container, LoaderContainer };

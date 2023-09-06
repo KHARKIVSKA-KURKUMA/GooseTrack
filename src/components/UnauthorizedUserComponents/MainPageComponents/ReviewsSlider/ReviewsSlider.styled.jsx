@@ -106,6 +106,14 @@ const ArrowRight = styled.div`
   padding-bottom: 30px;
 `;
 
+const LoaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+
 export {
   Container,
   Title,
@@ -118,4 +126,5 @@ export {
   ArrowLeft,
   ArrowRight,
   ArrowWrapper,
+  LoaderContainer,
 };
