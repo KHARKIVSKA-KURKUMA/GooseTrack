@@ -7,6 +7,7 @@ const ModalWindow = styled.div`
   padding: 20px;
   background-color: #ffffff;
   position:relative;
+  border-radius:8px;
 
   @media (min-width: 768px) {
     width: 468px;

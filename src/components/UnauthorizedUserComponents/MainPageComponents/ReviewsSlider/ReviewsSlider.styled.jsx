@@ -100,10 +100,8 @@ const ArrowLeft = styled.div`
   padding-bottom: 30px;
   cursor: pointer;
   
-
-  &:hover,
-  &:focus {
-    
+ &:active {
+    transform: scale(-1.5, 1);
   }
 `;
 
@@ -112,7 +110,9 @@ const ArrowRight = styled.div`
   padding-top: 30px;
   padding-bottom: 30px;
   cursor: pointer;
-  
+   &:active {
+    transform: scale(1.5, 1);
+  }
 `;
 
 const LoaderContainer = styled.div`
