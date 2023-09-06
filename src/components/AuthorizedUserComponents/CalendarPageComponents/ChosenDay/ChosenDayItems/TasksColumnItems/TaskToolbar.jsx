@@ -56,7 +56,7 @@ const TaskToolbar = ({ task }) => {
   const dispatch = useDispatch();
   /* -------------------------------------------------------------------------- */
   const groups = ['to-do', 'in-progress', 'done'];
-  const currentGroup = 'to-do';
+  const currentGroup = task.category;
 
   const open = Boolean(anchorEl);
   const handleClick = event => {
@@ -78,7 +78,7 @@ const TaskToolbar = ({ task }) => {
   const handleClickClose = () => {
     setOpenModal(false);
   };
-  
+
   const handleDeleteTask = () => {
     console.log('click delete');
     dispatch(deleteTask(task.id));
@@ -126,7 +126,7 @@ const TaskToolbar = ({ task }) => {
       </TaskToolbarBtn> */}
 
       <IconBtnTrash onClick={handleClickOpen}></IconBtnTrash>
-<Dialog
+      <Dialog
         open={openModal}
         onClose={handleClickClose}
         aria-labelledby="alert-dialog-title"
