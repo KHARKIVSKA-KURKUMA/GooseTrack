@@ -136,7 +136,6 @@ const CalendarTable = props => {
 
           week.push(
             <CalendarCell
-
               style={{ backgroundColor }}
               key={j}
               className={isCurrent ? 'current-day' : ''}
@@ -165,17 +164,13 @@ const CalendarTable = props => {
   };
   const backgroundColor = theme === 'light' ? '#fff' : '#21222C';
   return (
-
     <CalendarTableWrapper
-      onClick={e => console.log(e.currentTarget)}
       style={{ borderCollapse: 'collapse' }}
+      onClick={e => console.log(e.currentTarget)}
     >
       <CalendarNumberWrapper style={{ backgroundColor }}>
         {generateCalendar()}
       </CalendarNumberWrapper>
-
-    <CalendarTableWrapper  style={{ borderCollapse: 'collapse' }} onClick={e => console.log(e.currentTarget)}>
-      <CalendarNumberWrapper  style={{ backgroundColor }}>{generateCalendar()}</CalendarNumberWrapper>
     </CalendarTableWrapper>
   );
 };
