@@ -4,9 +4,7 @@ import { createPortal } from 'react-dom';
 import Overlay from 'components/GeneralComponents/Overlay/Overlay';
 import { CloseModalButton } from './TaskModal.styled';
 
-import { TaskForm, Modal } from './TaskModalItems';
-
-// import { TaskForm, Modal, TaskFormForEdit} from './TaskModalItems';
+import { TaskForm, Modal} from './TaskModalItems';
 
 const taskModalRoot = document.querySelector('#task-modal-root');
 
