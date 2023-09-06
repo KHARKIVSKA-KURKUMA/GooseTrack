@@ -39,11 +39,11 @@ instance.interceptors.response.use(
   
         return instance(error.config);
       } catch (error) {
-        if (error.response.data.message === 'Token does not valid') {
+        // if (error.response.data.message === 'Token does not valid') {
 
-          setToken();
-          localStorage.setItem('refreshToken', '');
-        }
+        //   setToken();
+        //   localStorage.setItem('refreshToken', '');
+        // }
         console.log('catch error refresh>>>>>>>', error);
         return Promise.reject(error);
       }
