@@ -13,6 +13,15 @@ const Button = styled.button`
   font-weight: 600;
   color: #ffffff;
   background-color: #3e85f3;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    background-color: var(--hover-color);
+  }
+
   @media (min-width: 768px) {
     padding-top: 12px;
     padding-bottom: 12px;
