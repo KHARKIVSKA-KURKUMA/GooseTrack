@@ -15,6 +15,8 @@ import { selectedDateSelector } from 'store/selectors';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const PeriodPaginator = ({ type }) => {
+  const theme = useSelector(state => state.theme);
+   const backgroundColor = theme === 'light' ? '#fff' : '#21222C';
   const [activeSwitcher, setActiveSwitcher] = useState(0);
   const params = useParams();
 
@@ -81,7 +83,7 @@ const PeriodPaginator = ({ type }) => {
           dateFormat={type === 'month' ? 'MMMM yyyy' : 'd MMM yyyy'}
         />
         <SwitcherContainer>
-          <SwitcherPart
+          <SwitcherPart style={{ backgroundColor }}
             active={activeSwitcher === 0}
             type="button"
             name="prev"
@@ -89,7 +91,7 @@ const PeriodPaginator = ({ type }) => {
           >
             ❮
           </SwitcherPart>
-          <SwitcherPart
+          <SwitcherPart style={{ backgroundColor }}
             active={activeSwitcher === 1}
             type="button"
             name="next"

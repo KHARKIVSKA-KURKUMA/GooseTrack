@@ -11,12 +11,12 @@ const NameLabel = styled.label`
   font-size: 12px;
   font-weight: 500;
   line-height: 1.17;
-  color: rgba(52, 52, 52, 0.8);
+  color: ${props => props.color};
 `;
 
 const Textarea = styled.textarea`
   resize: none;
-  background-color: #f6f6f6;
+  background-color: #212121;
   padding-top: 12px;
   padding-bottom: 12px;
   padding-left: 14px;
@@ -24,7 +24,7 @@ const Textarea = styled.textarea`
   border: ${props => (props.hasError ? '1px solid #EA3D65' : 'none')};
   border-radius: 8px;
   width: 100%;
-  color: #343434;
+  color: ${props => props.textArea};
   font-family: Inter;
   font-size: 14px;
   line-height: 1.29;

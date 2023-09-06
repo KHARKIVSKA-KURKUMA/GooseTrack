@@ -26,6 +26,7 @@ const getPriorityColor = priority => {
 };
 
 const CalendarTable = props => {
+  const theme = useSelector(state => state.theme);
   const selectedDateUnFormat = props.selectedDate;
   const selectedDate = new Date(selectedDateUnFormat);
   const dispatch = useDispatch();
@@ -119,7 +120,7 @@ const CalendarTable = props => {
 
     const calendar = [];
     let day = 1;
-
+    const backgroundColor = theme === 'light' ? '#fff' : '#21222C';
     for (let i = 0; i < weeks; i++) {
       const week = [];
 
@@ -135,6 +136,8 @@ const CalendarTable = props => {
 
           week.push(
             <CalendarCell
+
+              style={{ backgroundColor }}
               key={j}
               className={isCurrent ? 'current-day' : ''}
               to={`/calendar/day/${selectedDate.getFullYear()}-${
@@ -160,10 +163,19 @@ const CalendarTable = props => {
 
     return calendar;
   };
-
+  const backgroundColor = theme === 'light' ? '#fff' : '#21222C';
   return (
-    <CalendarTableWrapper onClick={e => console.log(e.currentTarget)}>
-      <CalendarNumberWrapper>{generateCalendar()}</CalendarNumberWrapper>
+
+    <CalendarTableWrapper
+      onClick={e => console.log(e.currentTarget)}
+      style={{ borderCollapse: 'collapse' }}
+    >
+      <CalendarNumberWrapper style={{ backgroundColor }}>
+        {generateCalendar()}
+      </CalendarNumberWrapper>
+
+    <CalendarTableWrapper  style={{ borderCollapse: 'collapse' }} onClick={e => console.log(e.currentTarget)}>
+      <CalendarNumberWrapper  style={{ backgroundColor }}>{generateCalendar()}</CalendarNumberWrapper>
     </CalendarTableWrapper>
   );
 };

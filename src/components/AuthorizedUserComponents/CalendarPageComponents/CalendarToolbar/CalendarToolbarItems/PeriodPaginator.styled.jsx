@@ -394,8 +394,10 @@ const SwitcherPart = styled.button`
   color: ${props => (props.active ? 'initial' : '#DCE3E5')};
   cursor: pointer;
   position: relative;
-  border: 0;
-  background-color: transparent;
+  border:none;
+//   border: 0;
+//   background-color: transparent;
+
 
   &:hover {
     color: var(--title-color);

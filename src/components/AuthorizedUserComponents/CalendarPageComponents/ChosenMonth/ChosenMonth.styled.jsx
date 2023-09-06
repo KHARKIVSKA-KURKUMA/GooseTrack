@@ -78,6 +78,7 @@ const CalendarCell = styled(Link)`
   vertical-align: middle;
   border: 1px solid rgb(220, 227, 229, 50%);
   position: relative;
+  background-color: ${props => props.backgroundColor};
   color: inherit;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 

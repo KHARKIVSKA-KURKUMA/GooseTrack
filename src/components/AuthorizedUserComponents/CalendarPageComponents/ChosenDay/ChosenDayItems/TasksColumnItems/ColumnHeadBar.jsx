@@ -14,11 +14,15 @@ import {
 import { useEffect, useState } from 'react';
 import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
 
+
 const ColumnHeadBar = ({ title, selectedDate }) => {
+
   const { tasks } = useSelector(tasksSelector);
   const isEmpty = tasks.length === 0;
   const [showModal, setShowModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+    const theme = useSelector(state => state.theme);
+   const stroke = theme === 'light' ? '#21222C' : '#fff';
 
   /// Toggle Modal Function ///
   const toggleModal = () => {
@@ -39,7 +43,7 @@ const ColumnHeadBar = ({ title, selectedDate }) => {
   return (
     <HeadBarContainer isEmpty={isEmpty}>
       <HeadBarTitle>{title}</HeadBarTitle>
-      <HeadBarAddBtn onClick={toggleModal}/>
+      <HeadBarAddBtn stroke={stroke} onClick={toggleModal}/>
       {isModalOpen && (
         <TaskModal
           toggleModal={toggleModal}
@@ -47,6 +51,7 @@ const ColumnHeadBar = ({ title, selectedDate }) => {
           category={title}
         />
       )}
+
     </HeadBarContainer>
   );
 };
