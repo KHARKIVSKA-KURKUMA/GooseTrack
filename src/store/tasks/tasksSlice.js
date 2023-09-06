@@ -43,12 +43,15 @@ const tasksSlice = createSlice({
         toast.error('Oops, something went wrong...');
       })
       .addCase(editTask.fulfilled, (state, { payload }) => {
-        state.tasks = state.tasks.map(task => {
-          if (task._id === payload._id) {
-            return payload;
-          }
-          return task;
-        });
+        // state.tasks = state.tasks.map(task => {
+        //   if (task._id === payload._id) {
+        //     return payload;
+        //   }
+        //   return task;
+        // });
+        const res = { data: [payload.data] };
+        state.byDay.push(payload);
+        state.tasks.push(res);
       })
       .addMatcher(
         isAnyOf(

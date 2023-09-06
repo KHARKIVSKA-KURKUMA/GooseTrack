@@ -29,8 +29,9 @@ import {
 import { setIsChanged } from 'store/tasks/tasksSlice';
 
 const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
-   const theme = useSelector(state => state.theme); 
-  const color = theme === 'light' ? 'rgba(52, 52, 52, 0.80)' : 'rgba(250, 250, 250, 0.30)';
+  const theme = useSelector(state => state.theme);
+  const color =
+    theme === 'light' ? 'rgba(52, 52, 52, 0.80)' : 'rgba(250, 250, 250, 0.30)';
   const textArea = theme === 'light' ? 'rgba(52, 52, 52, 0.80)' : '#fff';
   const dispatch = useDispatch();
 
@@ -92,9 +93,8 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
     onSubmit: async (values, action) => {
       console.log(values);
       if (isEditForm) {
-       await dispatch(
-          editTask({ ...values, id: taskToEdit.id })
-        );
+        await dispatch(editTask({ ...values, id: taskToEdit.id }));
+        dispatch(setIsChanged('4754867465347568'));
         toast.success('Task updated successfully');
 
         // if (response.status >= 200 && response.status < 300) {
@@ -103,8 +103,8 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
         //   toast.error('Oops, something went wrong...');
         // }
       } else {
-  await dispatch(addTask(values));
-toast.success('Task created successfully');
+        await dispatch(addTask(values));
+        toast.success('Task created successfully');
         // if (response.status >= 200 && response.status < 300) {
         //   toast.success('Task created successfully');
         // } else {
@@ -139,7 +139,7 @@ toast.success('Task created successfully');
 
       <TimeBox>
         <TimeWrapper>
-          <NameLabel  color={color} >Start</NameLabel>
+          <NameLabel color={color}>Start</NameLabel>
           <TimeInput
             type="time"
             name="start"
@@ -151,7 +151,7 @@ toast.success('Task created successfully');
           />
         </TimeWrapper>
         <TimeWrapper>
-          <NameLabel  color={color}>End</NameLabel>
+          <NameLabel color={color}>End</NameLabel>
           <TimeInput
             type="time"
             name="end"
