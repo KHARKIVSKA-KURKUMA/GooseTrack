@@ -27,6 +27,13 @@ const PeriodPaginator = () => {
   const formattedDay = format(date, 'yyyy-MM-dd');
   const formattedMonth = format(date, 'yyyy-MM');
   const selectedDay = date;
+
+  /* eslint-disable react-hooks/exhaustive-deps */
+  useEffect(() => {
+    dispatch(getTasksByMonthThunk({ month: formattedMonth }));
+    dispatch(getTasksByDayThunk({ day: formattedDay }));
+  }, [dispatch]);
+
   useEffect(() => {
     if (!isSameMonth) {
       dispatch(getTasksByMonthThunk({ month: formattedMonth }));

@@ -120,20 +120,6 @@ import { tasksSelector } from 'store/selectors';
 //     return result;
 //   }, []);
 
-const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
-  return (
-    <text
-      x={x + width / 2}
-      y={y}
-      fill="#343434"
-      fontWeight="500"
-      textAnchor="middle"
-      dy={-5}
-      style={{ fontSize: window.innerWidth >= 768 ? 16 : 12 }}
-    >{`${value}%`}</text>
-  );
-};
-
 const StatisticsChart = () => {
   const [chartWidth, setChartWidth] = useState(0);
   const { tasks } = useSelector(tasksSelector);
@@ -161,6 +147,20 @@ const StatisticsChart = () => {
       ByMonth: ByMonth.donePercentage,
     },
   ];
+  const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
+    console.log('value :>> ', value);
+    return (
+      <text
+        x={x + width / 2}
+        y={y}
+        fill="#343434"
+        fontWeight="500"
+        textAnchor="middle"
+        dy={-5}
+        style={{ fontSize: window.innerWidth >= 768 ? 16 : 12 }}
+      >{`${value}%`}</text>
+    );
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -182,6 +182,7 @@ const StatisticsChart = () => {
     };
     window.addEventListener('resize', handleResize);
     handleResize();
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
