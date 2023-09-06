@@ -29,6 +29,11 @@ const HeroTitle = styled.h1`
 
   @media (min-width: 768px) {
     margin-bottom: 40px;
+    font-size: 100px;
+    line-height: 1.25;
+  }
+
+  @media (min-width: 1440px) {
     font-size: 120px;
     line-height: 1.25;
   }
@@ -52,6 +57,11 @@ const HeroTitleSpan = styled.span`
   margin-right: 4px;
 
   @media (min-width: 768px) {
+    font-size: 100px;
+    line-height: 1.25;
+  }
+
+  @media (min-width: 1440px) {
     font-size: 120px;
     line-height: 1.25;
   }
