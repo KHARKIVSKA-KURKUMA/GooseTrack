@@ -1,5 +1,5 @@
 import TaskToolbar from './TaskToolbar';
-
+import { useSelector } from 'react-redux';
 import {
   Avatar,
   BottomContainer,
@@ -18,9 +18,12 @@ import {
 // } from './TaskColumnItems.styled';
 
 const TaskColumnCard = (data, title) => {
+  const theme = useSelector(state => state.theme);
+  const backgroundColor = theme === 'light' ? '#F7F6F9' : '#21222C';
+  const textTask = theme === 'light' ? '#111' : '#FFF';
   const { description, avatarUrl, priority } = data;
   return (
-    <CardContainer>
+    <CardContainer  backgroundColor={ backgroundColor } textTask={textTask}>
       <Description>{description}</Description>
       <BottomContainer>
         <TaskMeta>

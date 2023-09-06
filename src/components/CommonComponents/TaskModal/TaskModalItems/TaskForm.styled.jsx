@@ -16,22 +16,28 @@ const NameLabel = styled.label`
 
 const Textarea = styled.textarea`
   resize: none;
-  background-color: #212121;
+  background-color: ${props => props.backgroundColor};
   padding-top: 12px;
   padding-bottom: 12px;
   padding-left: 14px;
   padding-right: 14px;
-  border: ${props => (props.hasError ? '1px solid #EA3D65' : 'none')};
+  border: ${props =>
+    props.hasError
+      ? '1px solid #EA3D65'
+      : props.borderColor
+      ? `1px solid ${props.borderColor}`
+      : 'none'};
+
   border-radius: 8px;
   width: 100%;
-  color: ${props => props.textArea};
+  color: ${props => props.colorTextArea};
   font-family: Inter;
   font-size: 14px;
   line-height: 1.29;
   font-weight: 600;
 
   ::placeholder {
-    color: #343434;
+    color: ${props => props.colorText};
     font-size: 14px;
     line-height: 1.29;
     font-weight: 600;
@@ -124,7 +130,7 @@ const CheckBoxLabel = styled.label`
   font-size: 12px;
   font-weight: 600;
   line-height: 1.17;
-  color: rgba(52, 52, 52);
+  color: ${props => props.colorText};
   display: flex;
   align-items: center;
 
@@ -180,11 +186,12 @@ const LowInput = styled.input`
 `;
 
 const ErrorsMessage = styled.p`
-  margin-bottom:5px;
+  margin-bottom: 5px;
   color: #ea3d65;
   font-size: 12px;
   line-height: 1.29;
-  font-weight: 500;`;
+  font-weight: 500;
+`;
 
 export {
   EditWrapper,
@@ -203,5 +210,5 @@ export {
   TimeWrapper,
   TimeBox,
   TimeInput,
-  ErrorsMessage
+  ErrorsMessage,
 };
