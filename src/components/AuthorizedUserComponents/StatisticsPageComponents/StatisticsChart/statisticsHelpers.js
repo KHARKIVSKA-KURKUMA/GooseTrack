@@ -14,7 +14,7 @@ export const calculateTaskStatusCount = tasks => {
   /* ----------------------------------- DAY ---------------------------------- */
   /* -------------------------------------------------------------------------- */
   taskStatusCountDay.todo =
-    tasks.find(task => task.category === 'todo')?.amount || 0;
+    tasks.find(task => task.category === 'to-do')?.amount || 0;
   taskStatusCountDay.inprogress =
     tasks.find(task => task.category === 'in-progress')?.amount || 0;
   taskStatusCountDay.done =
@@ -24,7 +24,7 @@ export const calculateTaskStatusCount = tasks => {
   /* ---------------------------------- MONTH --------------------------------- */
   /* -------------------------------------------------------------------------- */
   taskStatusCountMonth.todo =
-    tasks.find(task => task.category === 'todo')?.amount || 0;
+    tasks.find(task => task.category === 'to-do')?.amount || 0;
   taskStatusCountMonth.inprogress =
     tasks.find(task => task.category === 'in-progress')?.amount || 0;
   taskStatusCountMonth.done =

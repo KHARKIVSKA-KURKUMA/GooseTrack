@@ -5,117 +5,120 @@ import {
   calculatePercentages,
   calculateTaskStatusCount,
 } from './statisticsHelpers';
+import { useSelector } from 'react-redux';
+import { tasksSelector } from 'store/selectors';
 
-const tasks = [
-  {
-    category: 'todo',
-    amount: 1,
-    data: [
-      {
-        _id: '64eb8bf4ec3cfd1d22c535f6',
-        title: 'My task 1',
-        start: '09:05',
-        end: '09:15',
-        priority: 'medium',
-        date: '2023-09-01',
-        category: 'to-do',
-        owner: '64eb8bf4ec3cfd1d22c59fb1',
-        createdAt: '2023-08-27T17:46:28.321Z',
-        updatedAt: '2023-08-30T16:07:28.466Z',
-      },
-    ],
-  },
-  {
-    category: 'in-progress',
-    amount: 2,
-    data: [
-      {
-        _id: '64eb8bf4ec3cfd1d22c535f6',
-        title: 'My task 1',
-        start: '09:05',
-        end: '09:15',
-        priority: 'medium',
-        date: '2023-09-01',
-        category: 'in-progress',
-        owner: '64eb8bf4ec3cfd1d22c59fb1',
-        createdAt: '2023-08-27T17:46:28.321Z',
-        updatedAt: '2023-08-30T16:07:28.466Z',
-      },
-      {
-        _id: '64eb8bf4ec3cfd1d22c535f6',
-        title: 'My task 2',
-        start: '09:05',
-        end: '09:15',
-        priority: 'medium',
-        date: '2023-09-02',
-        category: 'in-progress',
-        owner: '64eb8bf4ec3cfd1d22c59fb1',
-        createdAt: '2023-08-27T17:46:28.321Z',
-        updatedAt: '2023-08-30T16:07:28.466Z',
-      },
-    ],
-  },
-  {
-    category: 'done',
-    amount: 3,
-    data: [
-      {
-        _id: '64eb8bf4ec3cfd1d22c535f6',
-        title: 'My task 1',
-        start: '09:05',
-        end: '09:15',
-        priority: 'medium',
-        date: '2023-09-01',
-        category: 'done',
-        owner: '64eb8bf4ec3cfd1d22c59fb1',
-        createdAt: '2023-08-27T17:46:28.321Z',
-        updatedAt: '2023-08-30T16:07:28.466Z',
-      },
-      {
-        _id: '64eb8bf4ec3cfd1d22c535f6',
-        title: 'My task 1',
-        start: '09:05',
-        end: '09:15',
-        priority: 'medium',
-        date: '2023-09-02',
-        category: 'done',
-        owner: '64eb8bf4ec3cfd1d22c59fb1',
-        createdAt: '2023-08-27T17:46:28.321Z',
-        updatedAt: '2023-08-30T16:07:28.466Z',
-      },
-      {
-        _id: '64eb8bf4ec3cfd1d22c535f6',
-        title: 'My task 1',
-        start: '09:05',
-        end: '09:15',
-        priority: 'medium',
-        date: '2023-09-03',
-        category: 'done',
-        owner: '64eb8bf4ec3cfd1d22c59fb1',
-        createdAt: '2023-08-27T17:46:28.321Z',
-        updatedAt: '2023-08-30T16:07:28.466Z',
-      },
-    ],
-  },
-];
+// const tasks = [
+//   {
+//     category: 'todo',
+//     amount: 1,
+//     data: [
+//       {
+//         _id: '64eb8bf4ec3cfd1d22c535f6',
+//         title: 'My task 1',
+//         start: '09:05',
+//         end: '09:15',
+//         priority: 'medium',
+//         date: '2023-09-01',
+//         category: 'to-do',
+//         owner: '64eb8bf4ec3cfd1d22c59fb1',
+//         createdAt: '2023-08-27T17:46:28.321Z',
+//         updatedAt: '2023-08-30T16:07:28.466Z',
+//       },
+//     ],
+//   },
+//   {
+//     category: 'in-progress',
+//     amount: 2,
+//     data: [
+//       {
+//         _id: '64eb8bf4ec3cfd1d22c535f6',
+//         title: 'My task 1',
+//         start: '09:05',
+//         end: '09:15',
+//         priority: 'medium',
+//         date: '2023-09-01',
+//         category: 'in-progress',
+//         owner: '64eb8bf4ec3cfd1d22c59fb1',
+//         createdAt: '2023-08-27T17:46:28.321Z',
+//         updatedAt: '2023-08-30T16:07:28.466Z',
+//       },
+//       {
+//         _id: '64eb8bf4ec3cfd1d22c535f6',
+//         title: 'My task 2',
+//         start: '09:05',
+//         end: '09:15',
+//         priority: 'medium',
+//         date: '2023-09-02',
+//         category: 'in-progress',
+//         owner: '64eb8bf4ec3cfd1d22c59fb1',
+//         createdAt: '2023-08-27T17:46:28.321Z',
+//         updatedAt: '2023-08-30T16:07:28.466Z',
+//       },
+//     ],
+//   },
+//   {
+//     category: 'done',
+//     amount: 3,
+//     data: [
+//       {
+//         _id: '64eb8bf4ec3cfd1d22c535f6',
+//         title: 'My task 1',
+//         start: '09:05',
+//         end: '09:15',
+//         priority: 'medium',
+//         date: '2023-09-01',
+//         category: 'done',
+//         owner: '64eb8bf4ec3cfd1d22c59fb1',
+//         createdAt: '2023-08-27T17:46:28.321Z',
+//         updatedAt: '2023-08-30T16:07:28.466Z',
+//       },
+//       {
+//         _id: '64eb8bf4ec3cfd1d22c535f6',
+//         title: 'My task 1',
+//         start: '09:05',
+//         end: '09:15',
+//         priority: 'medium',
+//         date: '2023-09-02',
+//         category: 'done',
+//         owner: '64eb8bf4ec3cfd1d22c59fb1',
+//         createdAt: '2023-08-27T17:46:28.321Z',
+//         updatedAt: '2023-08-30T16:07:28.466Z',
+//       },
+//       {
+//         _id: '64eb8bf4ec3cfd1d22c535f6',
+//         title: 'My task 1',
+//         start: '09:05',
+//         end: '09:15',
+//         priority: 'medium',
+//         date: '2023-09-03',
+//         category: 'done',
+//         owner: '64eb8bf4ec3cfd1d22c59fb1',
+//         createdAt: '2023-08-27T17:46:28.321Z',
+//         updatedAt: '2023-08-30T16:07:28.466Z',
+//       },
+//     ],
+//   },
+// ];
 
-const targetDate = '2023-09-02'; // Эту дату надо брать текущую или из запроса юзера!!!!! Это пока только для примера!!!
+//const targetDate = '2023-09-02'; // Эту дату надо брать текущую или из запроса юзера!!!!! Это пока только для примера!!!
 
-const tasksByDay = tasks.reduce((result, category) => {
-  const filteredCategoryTasks = category.data.filter(
-    task => task.date === targetDate
-  );
+// const tasksByDay = targetDate =>
+//   tasks.reduce((result, category) => {
+//     const filteredCategoryTasks = category.data.filter(
+//       task => task.date === targetDate
+//     );
 
-  if (filteredCategoryTasks.length > 0) {
-    result.push({
-      category: category.category,
-      amount: tasks.length,
-      tasks: filteredCategoryTasks,
-    });
-  }
+//     if (filteredCategoryTasks.length > 0) {
+//       result.push({
+//         category: category.category,
+//         amount: tasks.length,
+//         tasks: filteredCategoryTasks,
+//       });
+//     }
 
-  return result;
-}, []);
+//     return result;
+//   }, []);
 
 const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
   return (
@@ -133,9 +136,11 @@ const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
 
 const StatisticsChart = () => {
   const [chartWidth, setChartWidth] = useState(0);
+  const { tasks } = useSelector(tasksSelector);
+  const { byDay } = useSelector(tasksSelector);
   const [chartHeight, setChartHeight] = useState(0);
   const [chartBarSize, setChartBarSize] = useState(0);
-  const [taskStatusCountDay] = calculateTaskStatusCount(tasksByDay);
+  const [taskStatusCountDay] = calculateTaskStatusCount(byDay);
   const [taskStatusCountMonth] = calculateTaskStatusCount(tasks);
   const ByDay = calculatePercentages(taskStatusCountDay);
   const ByMonth = calculatePercentages(taskStatusCountMonth);
@@ -175,7 +180,6 @@ const StatisticsChart = () => {
       setChartHeight(newHeight);
       setChartBarSize(newBarSize);
     };
-
     window.addEventListener('resize', handleResize);
     handleResize();
     return () => {
