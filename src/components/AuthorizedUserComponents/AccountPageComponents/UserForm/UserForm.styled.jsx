@@ -19,7 +19,7 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
   box-sizing: border-box;
   width: 100%;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter';
   font-size: 14px;
   line-height: 1.3;
   /* outline: none; */
@@ -47,7 +47,7 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
     height: 42px;
     border-radius: 8px;
     border-radius: 8px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter';
   }
 
   &.MuiFormControl-root {
@@ -57,7 +57,6 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
   & div input::placeholder {
     font-size: 14px;
     color: #111111;
-    font-weight: 600;
     opacity: 1;
     outline: none;
     @media (min-width: 768px) {
@@ -65,9 +64,9 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
     }
   }
 
-  @media (min-width: 375px) {
+  /* @media (min-width: 375px) {
     width: 299px;
-  }
+  } */
 
   @media (min-width: 768px) {
     width: 354px;
@@ -495,13 +494,11 @@ export const Input = styled(Field)`
   border-radius: 8px;
   border-width: 1px;
   padding: 0 14px;
-  /* border-color: tomato; */
   background-color: transparent;
   border: 1px solid rgba(17, 17, 17, 0.15);
-  /* transition:; */
-  font-family: 'InterSemiBolt';
+  font-family: 'Inter';
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   line-height: calc((18 / 14) * 100%);
   &:hover{
     border: 1px solid #111;
@@ -519,16 +516,23 @@ export const Input = styled(Field)`
 `;
 
 export const AccountForm = styled(Form)`
-  padding: 40px 18px;
   margin: 32px;
-  margin-left: 320px;
-  /* transition:; */
+  padding-left: 165px;
+  padding-right: 165px;
+  padding-top: 60px;
+  padding-left: 60px;
   background-color: #FFFFFF;
   border-radius: 16px;
   height: 100%;
 
   @media (min-width: 960px) {
-    padding: 60px 18px;
+    padding-left: 175px;
+    padding-right: 175px;
+    
+  }
+   @media (min-width: 320px) {
+    padding: 18px 18px;
+    
   }
 `;
 
@@ -543,7 +547,7 @@ export const IconStatusWrap = styled.div`
 export const CorrectTag = styled.div`
   color: #3cbc81;
   margin-top: 8px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter';
   font-weight: 400;
   font-size: 12px;
   line-height: 1.17;
