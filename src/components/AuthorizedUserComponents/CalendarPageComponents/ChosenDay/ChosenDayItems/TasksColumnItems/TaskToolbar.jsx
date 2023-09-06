@@ -28,7 +28,6 @@ import {
 import { setIsChanged } from 'store/tasks/tasksSlice';
 
 const TaskToolbar = ({ task }) => {
-  console.log('task :>> ', task);
   const [anchorEl, setAnchorEl] = useState(null);
   //  const [isModalOpen, setIsModalOpen] = useState(false);
 
