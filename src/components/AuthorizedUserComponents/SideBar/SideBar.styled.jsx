@@ -144,6 +144,14 @@ export const LogoutBtn = styled.button`
   border-radius: 15px;
   position: absolute;
   bottom: 24px;
+ cursor: pointer;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    background-color: var(--hover-color);
+  }
+
   @media (min-width: 768px) {
   }
 `;
