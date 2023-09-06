@@ -37,7 +37,8 @@ instance.interceptors.response.use(
           setToken(data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
   
-        return instance(error.config);
+        // return instance(error.config);
+        return Promise.reject(error);
       } catch (error) {
         // if (error.response.data.message === 'Token does not valid') {
 
