@@ -29,12 +29,22 @@ instance.interceptors.response.use(
      
       const refreshToken = localStorage.getItem('refreshToken');
       try {
+        // if (error.response.data.message === 'Token does not valid') {
+        //   setToken();
+        //   localStorage.setItem('refreshToken', '')
+        // }
         const { data } = await instance.post('/auth/refresh', { refreshToken });
-        setToken(data.accessToken);
+          setToken(data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
   
         return instance(error.config);
       } catch (error) {
+        if (error.response.data.message === 'Token does not valid') {
+
+          setToken();
+          localStorage.setItem('refreshToken', '');
+        }
+        console.log('catch error refresh>>>>>>>', error);
         return Promise.reject(error);
       }
     }
