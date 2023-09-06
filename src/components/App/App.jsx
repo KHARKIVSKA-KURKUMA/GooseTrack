@@ -9,7 +9,7 @@ import PageNotFound from 'components/PageNotFound/PageNotFound';
 import ChosenMonth from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenMonth/ChosenMonth';
 import ChosenDay from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenDay/ChosenDay';
 import Loader from 'components/Loader/Loader';
-
+import { LoaderContainer } from 'components/AuthorizedUserComponents/AccountPageComponents/UserForm/UserForm.styled';
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const MainPage = lazy(() => import('pages/MainPage/MainPage'));
@@ -24,7 +24,13 @@ export const App = () => {
     <>
       <GlobalStyle />
       <ToastContainer autoClose={1000} theme="colored" />
-      <Suspense fallback={<Loader />}>
+      <Suspense
+        fallback={
+          <LoaderContainer>
+            <Loader />
+          </LoaderContainer>
+        }
+      >
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route
