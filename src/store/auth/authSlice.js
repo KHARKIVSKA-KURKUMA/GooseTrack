@@ -35,6 +35,11 @@ const authSlice = createSlice({
         state.token = null;
         state.isLogin = false;
       })
+      .addCase(logout.rejected, state => {
+        state.user = {};
+        state.token = null;
+        state.isLogin = false;
+      })
       .addCase(current.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.token = payload.token;
