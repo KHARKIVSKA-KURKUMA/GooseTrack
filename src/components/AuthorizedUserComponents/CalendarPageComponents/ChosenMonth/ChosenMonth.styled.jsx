@@ -92,7 +92,7 @@ const CalendarCell = styled(Link)`
 
   &:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 7px rgba(62, 133, 243, 1);
   }
 `;
 
@@ -129,11 +129,10 @@ const DateNumber = styled.div`
 `;
 
 const NoteContainer = styled.div`
-  margin-top: 14px;
-  padding: 3px;
+  max-width: 34px;
+  margin: 20px 0 0 3px;
   border-radius: 8px;
   font-size: 10px;
-  max-width: 44px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -141,19 +140,26 @@ const NoteContainer = styled.div`
   justify-content: center;
   align-items: center;
 
+  @media screen and (min-width: 375px) {
+    max-width: 44px;
+  }
+
   @media screen and (min-width: 768px) {
     max-width: 94px;
+    margin-top: 27px;
     padding: 5px 12px 5px 5px;
     font-size: 14px;
   }
 
   @media screen and (min-width: 1440px) {
     max-width: 139px;
+    width: 100%;
     padding: 5px 15px 5px 5px;
   }
 `;
 
 const NoteText = styled.span`
+  padding: 3px;
   display: inline-block;
   max-width: 100%;
   overflow: hidden;
