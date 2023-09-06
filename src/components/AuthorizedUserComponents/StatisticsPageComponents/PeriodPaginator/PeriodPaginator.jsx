@@ -8,6 +8,8 @@ import {
   ButtonsContainer,
   SwitcherContainer,
   SwitcherPart,
+  List,
+  ListItem,
 } from './PeriodPaginator.styled';
 import { selectedDateSelector } from 'store/selectors';
 import { setDates } from 'store/date/dateSlice';
@@ -100,6 +102,10 @@ const PeriodPaginator = () => {
           </SwitcherPart>
         </SwitcherContainer>
       </ButtonsContainer>
+      <List>
+        <ListItem>By Day</ListItem>
+        <ListItem>By Month</ListItem>
+      </List>
     </PeriodPaginatorContainer>
   );
 };
