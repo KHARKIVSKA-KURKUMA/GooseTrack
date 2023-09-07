@@ -20,16 +20,19 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
   width: 100%;
   font-weight: 600;
   font-family: 'Inter';
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.3;
   outline: none;
   border-radius: 8px;
+  padding: 0px 14px;
+  border-width: 1px;
   &:hover &:focus {
     border: 1px solid #111;
   }
 
   & .MuiInputBase-input {
-    padding: 0px 0px 0px 14px;
+    padding: 0px 14px;
+    border-width: 1px;
     font-size: 14px;
     line-height: 1.29;
     height: 18px;
@@ -37,9 +40,15 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
     color: ${props => props.color};
   }
   .MuiOutlinedInput-root {
+    /* outline: none; */
     border: 1px solid ${props => props.borderColorInput};
+    padding: 0px 14px;
+    border-width: 1px;
+
     .MuiOutlinedInput-notchedOutline {
       border: 1px solid rgba(17, 17, 17, 0.15);
+      padding: 0px 14px;
+      border-width: 1px;
     }
   }
 
@@ -48,10 +57,13 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
     border-radius: 8px;
     border-radius: 8px;
     font-family: 'Inter';
+    padding: 0px 14px;
+    border-width: 1px;
   }
 
   &.MuiFormControl-root {
     background-color: inherit;
+    height: 42px;
   }
 
   & div input::placeholder {
@@ -63,6 +75,10 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
       font-size: 16px;
     }
   }
+
+  /* @media (min-width: 375px) {
+    width: 299px;
+  } */
 
   @media (min-width: 768px) {
     width: 354px;
@@ -82,6 +98,7 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
     }
   }
   & .MuiButtonBase-root {
+    // margin-left: 18px;
     padding: 4px;
     stroke: #ffffff;
     margin: 0px 12px;
@@ -347,6 +364,7 @@ export const Button = styled.button`
   box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
 
   color: #ffffff;
+  /* transition: ;*/
   border: none;
   cursor: pointer;
   &:hover,
@@ -364,28 +382,31 @@ export const Button = styled.button`
 
 export const Title = styled.h2`
   margin: 0;
-  margin-top: 8px;
+  margin-top: 0;
   text-align: center;
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 12px;
   line-height: calc((18 / 14) * 100%);
+  /* transition: ; */
   color: ${props => props.colorTitleUser};
 
   @media (min-width: 768px) {
-    font-size: 18px;
+    font-size: 14px;
     line-height: calc((18 / 18) * 100%);
   }
 `;
 export const Name = styled.h2`
   margin: 0;
-  margin-top: 20px;
+  padding-top: 59px;
   text-align: center;
   font-weight: 700;
   font-size: 18px;
   line-height: calc((18 / 14) * 100%);
+  /* transition: ; */
   color: ${props => props.colorTitleUserName};
 
   @media (min-width: 768px) {
+    padding-top: 20px;
     font-size: 18px;
     line-height: calc((18 / 18) * 100%);
   }
@@ -407,7 +428,7 @@ export const AddIcon = styled(Icon)`
   width: 100%;
   height: 100%;
   display: block;
-
+  /* transition:; */
   fill: #3e85f3;
   &:hover,
   &:focus {
@@ -444,6 +465,9 @@ export const CorrectIcon = styled(IconCorrect)`
 `;
 
 export const WrapImg = styled.div`
+  position: absolute;
+  left: calc(50% - 36px);
+  top: -36px;
   width: 72px;
   height: 72px;
   margin: 0 auto;
@@ -452,23 +476,30 @@ export const WrapImg = styled.div`
   overflow: hidden;
 
   @media (min-width: 768px) {
+    position: static;
     width: 124px;
     height: 124px;
   }
 `;
 
 export const Sticker = styled.label`
+  position: absolute;
+  left: 10px;
+  top: 25px;
   display: block;
   width: 14px;
   height: 14px;
   border-radius: 50%;
   background-color: #e0e0e0;
   cursor: pointer;
-  position: absolute;
+  /* position: absolute;
   top: 85%;
-  right: 20%;
+  right: 20%; */
 
   @media (min-width: 768px) {
+    top: 102px;
+    left: 80px;
+
     width: 24px;
     height: 24px;
   }
@@ -502,31 +533,34 @@ export const Input = styled(Field)`
 `;
 
 export const AccountForm = styled(Form)`
-  min-width: 335px;
-  max-height: 653px;
-  border-radius: 16px;
+  /* margin: 32px; */
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 40px;
+  margin-top: 54px;
+  padding-right: 18px;
+  padding-left: 18px;
   padding-bottom: 40px;
+
   background-color: ${props => props.background};
+  border-radius: 16px;
+  height: 100%;
 
-  @media screen and (max-width: 767px) {
-    max-height: 854px;
+  @media (min-width: 768px) {
     padding-top: 40px;
-    padding-bottom: 40px;
+    padding-left: 175px;
+    padding-right: 175px;
+    margin-left: 32px;
+    margin-right: 32px;
   }
-  @media screen and (min-width: 768px) {
-    min-width: 704px;
-    max-height: 854px;
-    margin: 50px 20px 40px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    min-width: 1087px;
-    max-height: 752px;
-    margin: 16px 32px 32px 323px;
+  @media (min-width: 1440px) {
+    /* padding: 18px 18px; */
     padding-top: 60px;
     padding-bottom: 60px;
+    padding-left: 164px;
+    padding-right: 164px;
+    margin-right: 32px;
+    margin-left: 332px;
   }
 `;
 
