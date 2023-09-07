@@ -10,7 +10,7 @@ const StatisticsContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     min-width: 704px;
-    height: 854px;
+    min-height: 854px;
     margin: 50px 20px 40px;
     padding: 132px 32px 0px;
   }
