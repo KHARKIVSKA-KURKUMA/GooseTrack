@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { BiPencil } from 'react-icons/bi';
+import { RiDeleteBinLine } from 'react-icons/ri';
 
 const StarWrapper = styled.div`
   margin-bottom: 20px;
@@ -73,7 +75,7 @@ const IconWrapper = styled.div`
 
 const TitleWrapper = styled.div`
   display: flex;
-   align-items: flex-end;
+  align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 8px;
 `;
@@ -88,11 +90,48 @@ const CircleIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+    /* background-color: var(--hover-color); */
+    transform: scale(1.1);
+  }
 `;
 
 const IconButton = styled.div`
-border:none
+  border: none;
 `;
+
+const StyledBiPencil = styled(BiPencil)`
+  color: #3e85f3;
+  cursor: pointer;
+
+  &:hover {
+    /* background-color: var(--hover-color); */
+    transform: scale(1.1);
+    
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+`;
+
+const StyledRiDeleteBinLine = styled(RiDeleteBinLine)`
+  color: #ea3d65;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+`;
+
+
 
 export {
   StarWrapper,
@@ -104,5 +143,7 @@ export {
   IconWrapper,
   CircleIcon,
   TitleWrapper,
-  IconButton, 
+  IconButton,
+  StyledBiPencil,
+  StyledRiDeleteBinLine,
 };
