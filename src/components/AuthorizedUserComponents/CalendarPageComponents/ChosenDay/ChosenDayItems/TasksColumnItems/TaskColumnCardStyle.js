@@ -5,8 +5,9 @@ const CardContainer = styled.li`
   width: 100%;
   padding: 14px;
   border: 1px solid rgba(220, 227, 229, 0.8);
-  background-color: #f7f6f9;
+  background-color: ${props => props.backgroundColor};
   margin-bottom: 18px;
+
 
   @media screen and (min-width: 768px) {
     /* width: 301px; */
@@ -14,7 +15,7 @@ const CardContainer = styled.li`
 `;
 
 const Description = styled.p`
-  color: #111111;
+  color:${props => props.textTask};
   font-family: 'Inter';
   font-weight: 500;
   line-height: 1.28;

@@ -15,7 +15,7 @@ import Button from '@mui/material/Button';
 import { useState, useEffect } from 'react';
 import { deleteTask, editTask } from 'store/tasks/tasksThunks';
 import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   IconBtnArrow,
@@ -28,6 +28,8 @@ import {
 import { setIsChanged } from 'store/tasks/tasksSlice';
 
 const TaskToolbar = ({ task }) => {
+  const theme = useSelector(state => state.theme);
+  const strokeToolBar = theme === 'light' ? '#111111' : '#FFFFFF';
   const [anchorEl, setAnchorEl] = useState(null);
 
   /* -------------------------------------------------------------------------- */
@@ -107,7 +109,8 @@ const TaskToolbar = ({ task }) => {
 
   return (
     <TaskToolbarContainer>
-      <IconBtnArrow onClick={handleClick}></IconBtnArrow>
+      <IconBtnArrow onClick={handleClick} strokeToolBar={strokeToolBar}></IconBtnArrow>
+
 
       <MenuStyled
         id="basic-menu"
@@ -134,8 +137,10 @@ const TaskToolbar = ({ task }) => {
           {availableGroups[1]} <StyledArrow />
         </MenuItem>
       </MenuStyled>
-      <IconBtnPencil onClick={toggleModal}></IconBtnPencil>
-      <IconBtnTrash onClick={handleClickOpen}></IconBtnTrash>
+
+      <IconBtnPencil onClick={toggleModal} strokeToolBar={strokeToolBar}></IconBtnPencil>
+      <IconBtnTrash onClick={handleClickOpen} strokeToolBar={strokeToolBar}></IconBtnTrash>
+
       <Dialog
         open={openModal}
         onClose={handleClickClose}

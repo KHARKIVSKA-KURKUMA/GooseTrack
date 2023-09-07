@@ -32,6 +32,7 @@ import {
 } from './FeedbackForm.styled';
 
 const FeedbackForm = ({ toggleModal }) => {
+  const theme = useSelector(state => state.theme);
   const data = useSelector(feedbackSelector);
   const reviews = data.feedback || [];
 
@@ -39,6 +40,13 @@ const FeedbackForm = ({ toggleModal }) => {
 
   const [isEditing, setIsEditing] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const color =
+    theme === 'light' ? 'rgba(52, 52, 52, 0.80)' : 'rgba(250, 250, 250, 0.30)';
+  const colorText = theme === 'light' ? '#343434 ' : '#FFFFFF';
+  const colorTextArea = theme === 'light' ? '#343434 ' : '#FFFFFF';
+  const backgroundColor = theme === 'light' ? '#F6F6F6 ' : '#171820';
+  const borderColor = theme === 'light' ? 'rgba(255, 255, 255, 0.15) ' : 'none';
 
   /// Validate Feedback form with YUP ///
   const feedbackValidationSchema = yup.object().shape({
@@ -109,7 +117,7 @@ const FeedbackForm = ({ toggleModal }) => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <StarWrapper>
-        <NameLabel>Rating</NameLabel>
+        <NameLabel color={color}>Rating</NameLabel>
         {[...Array(5)].map((star, i) => {
           const ratingValue = i + 1;
 
@@ -125,7 +133,11 @@ const FeedbackForm = ({ toggleModal }) => {
               <FaStar
                 size={24}
                 color={
-                  ratingValue <= formik.values.rating ? '#FFAC33' : '#CEC9C1'
+                  ratingValue <= formik.values.rating
+                    ? '#FFAC33'
+                    : theme === 'light'
+                    ? '#CEC9C1'
+                    : '#353647'
                 }
                 style={{ marginRight: '2px' }}
               />
@@ -138,7 +150,7 @@ const FeedbackForm = ({ toggleModal }) => {
       </StarWrapper>
       <FeedbackWrapper>
         <TitleWrapper>
-          <NameLabel>Review</NameLabel>
+          <NameLabel color={color}>Review</NameLabel>
           {reviews && reviews.length > 0 && (
             <IconWrapper>
               <IconButton type="button" onClick={() => setIsEditing(true)}>
@@ -164,6 +176,10 @@ const FeedbackForm = ({ toggleModal }) => {
           onBlur={formik.handleBlur}
           placeholder="Enter text"
           hasError={!!formik.errors.text && !!formik.touched.text}
+          colorText={colorText}
+          colorTextArea={colorTextArea}
+          backgroundColor={backgroundColor}
+          borderColor={borderColor}
         />
         {formik.errors.text && formik.touched.text && (
           <ErrorsMessage>{formik.errors.text}</ErrorsMessage>

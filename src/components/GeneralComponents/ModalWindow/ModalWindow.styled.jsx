@@ -5,7 +5,7 @@ const ModalWindow = styled.div`
   max-height: calc(100vh - 48px);
   width: 295px;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: ${props => props.backgroundColor};
   position:relative;
 
   @media (min-width: 768px) {
