@@ -407,7 +407,7 @@ export const Title = styled.h2`
 `;
 export const Name = styled.h2`
   margin: 0;
-  margin-top: 20px;
+  padding-top: 59px;
   text-align: center;
   font-weight: 700;
   font-size: 18px;
@@ -476,7 +476,9 @@ export const CorrectIcon = styled(IconCorrect)`
 `;
 
 export const WrapImg = styled.div`
-
+  position: absolute;
+  left: calc(50% - 36px);
+  top: -36px;
   width: 72px;
   height: 72px;
   margin: 0 auto;
@@ -485,6 +487,7 @@ export const WrapImg = styled.div`
   overflow: hidden;
 
   @media (min-width: 768px) {
+    position: static;
     width: 124px;
     height: 124px;
   }
@@ -493,18 +496,24 @@ export const WrapImg = styled.div`
 
 
 export const Sticker = styled.label`
+ position: absolute;
+  left: 10px;
+  top: 25px;
   display: block;
   width: 14px;
   height: 14px;
   border-radius: 50%;
   background-color: #e0e0e0;
   cursor: pointer;
-  position: absolute;
+  /* position: absolute;
   top: 85%;
-  right: 20%;
+  right: 20%; */
 
 
   @media (min-width: 768px) {
+    top: 102px;
+    left: 80px;
+    
     width: 24px;
     height: 24px;
   }
