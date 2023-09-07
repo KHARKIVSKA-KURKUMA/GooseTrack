@@ -66,7 +66,7 @@ export const Button = styled.div`
 
   &.active {
     color: var(--title-color);
-    background: ${props => props.active};
+    background: ${props => props.activeBackground};
   }
 
   &.month {
