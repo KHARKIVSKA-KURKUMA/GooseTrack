@@ -10,8 +10,7 @@ import ChosenMonth from 'components/AuthorizedUserComponents/CalendarPageCompone
 import ChosenDay from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenDay/ChosenDay';
 import Loader from 'components/Loader/Loader';
 import { LoaderContainer } from 'components/AuthorizedUserComponents/AccountPageComponents/UserForm/UserForm.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectorToken } from 'store/auth/authSelectors';
+import { useDispatch } from 'react-redux';
 import { fetchCurrentUser } from 'store/user/operations';
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -23,16 +22,11 @@ const StatisticsPage = lazy(() =>
 );
 
 export const App = () => {
-
-  const { accessToken } = useSelector(selectorToken);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCurrentUser())
-
-  }, [dispatch, accessToken])
-  
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
 
   return (
     <>
