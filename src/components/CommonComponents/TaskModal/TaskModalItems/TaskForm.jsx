@@ -4,7 +4,6 @@ import React from 'react';
 import { BiPencil } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 import { editTask, addTask } from 'store/tasks/tasksThunks';
 import { useSelector } from 'react-redux';
 
@@ -90,26 +89,12 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
     },
     validationSchema: taskFormValidationSchema,
 
-    onSubmit: async (values, action) => {
-      console.log(values);
+    onSubmit: (values, action) => {
       if (isEditForm) {
-        await dispatch(editTask({ ...values, id: taskToEdit.id }));
+        dispatch(editTask({ ...values, id: taskToEdit.id }));
         dispatch(setIsChanged('4754867465347568'));
-        toast.success('Task updated successfully');
-
-        // if (response.status >= 200 && response.status < 300) {
-        //   toast.success('Task updated successfully');
-        // } else {
-        //   toast.error('Oops, something went wrong...');
-        // }
       } else {
-        await dispatch(addTask(values));
-        toast.success('Task created successfully');
-        // if (response.status >= 200 && response.status < 300) {
-        //   toast.success('Task created successfully');
-        // } else {
-        //   toast.error('Oops, something went wrong...');
-        // }
+        dispatch(addTask(values));
       }
       action.resetForm();
       toggleModal();

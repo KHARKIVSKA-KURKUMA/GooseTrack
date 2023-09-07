@@ -4,11 +4,12 @@ import { createPortal } from 'react-dom';
 import Overlay from 'components/GeneralComponents/Overlay/Overlay';
 import { CloseModalButton } from './TaskModal.styled';
 
-import { TaskForm, Modal} from './TaskModalItems';
+import { TaskForm, Modal } from './TaskModalItems';
 
 const taskModalRoot = document.querySelector('#task-modal-root');
 
 const TaskModal = ({ toggleModal, taskToEdit, date, category }) => {
+
   /// Close modal by pressing Escape ///
 
   useEffect(() => {
@@ -24,15 +25,14 @@ const TaskModal = ({ toggleModal, taskToEdit, date, category }) => {
   }, [toggleModal]);
 
   /// Close modal by click on overlay ///
-  // const handleOverlay = e => {
-  //   if (e.currentTarget === e.target) {
-  //     toggleModal();
-  //   }
-  // };
-  // onClick={handleOverlay}
+  const handleOverlay = e => {
+    if (e.currentTarget === e.target) {
+      toggleModal();
+    }
+  };
 
   return createPortal(
-    <Overlay >
+    <Overlay  onClick={handleOverlay}>
       <Modal>
         <CloseModalButton type="button" onClick={toggleModal}>
           <GrClose size={20} />

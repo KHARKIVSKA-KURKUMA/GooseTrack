@@ -18,6 +18,7 @@ import {
   themeReducer,
 } from '../components/AuthorizedUserComponents/Header/HeaderItems/Theme/themeSlice';
 import { dateReducer } from './date/dateSlice';
+import { Notification } from 'helpers/toastNotification';
 
 const reducer = {
   feedback: feedbackReducer,
@@ -36,7 +37,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(Notification),
   ],
 });
 

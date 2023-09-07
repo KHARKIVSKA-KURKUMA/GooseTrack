@@ -87,12 +87,6 @@ const TaskToolbar = ({ task }) => {
   const handleDeleteTask = () => {
     dispatch(deleteTask(task.id));
     dispatch(setIsChanged('true'));
-    // console.log('response.status :>> ', response);
-    // if (response.status >= 200 && response.status < 300) {
-    //   toast.success('Task deleted successfully');
-    // } else {
-    //   toast.error('Oops, something went wrong...');
-    // }
   };
 
   return (

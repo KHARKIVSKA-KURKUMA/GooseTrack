@@ -12,7 +12,6 @@ import {
   handlePending,
   handleRejected,
 } from './handleFunction';
-import { toast } from 'react-toastify';
 
 const tasksSlice = createSlice({
   name: 'tasks',
@@ -37,18 +36,10 @@ const tasksSlice = createSlice({
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
         state.tasks.filter(task => task._id !== payload.deletedTask._id);
-        toast.success('Task deleted successfully');
       })
       .addCase(deleteTask.rejected, (state, { payload }) => {
-        toast.error('Oops, something went wrong...');
       })
       .addCase(editTask.fulfilled, (state, { payload }) => {
-        // state.tasks = state.tasks.map(task => {
-        //   if (task._id === payload._id) {
-        //     return payload;
-        //   }
-        //   return task;
-        // });
         const res = { data: [payload.data] };
         state.byDay.push(payload);
         state.tasks.push(res);
