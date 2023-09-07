@@ -58,7 +58,6 @@ const TaskToolbar = ({ task }) => {
   };
 
   const availableGroups = groups.filter(group => group !== currentGroup);
-  console.log('availableGroups :>> ', availableGroups);
   const availableGroupsTitle = availableGroups.map(title =>
     getColumnTitle(title)
   );
