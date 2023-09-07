@@ -19,10 +19,10 @@ const TaskItem = styled.li`
   @media screen and (min-width: 768px) {
     flex: 0 0 344px;
     &:first-child {
-      margin-left: 18px;
+      margin-left: 32px;
     }
     &:last-child {
-      margin-right: 18px;
+      margin-right: 32px;
     }
   }
 
