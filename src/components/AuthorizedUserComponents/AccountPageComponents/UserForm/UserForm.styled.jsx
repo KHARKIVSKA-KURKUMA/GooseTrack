@@ -391,17 +391,17 @@ box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
 
 export const Title = styled.h2`
   margin: 0;
-  margin-top: 8px;
+  margin-top: 0;
   text-align: center;
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 12px;
   line-height: calc((18 / 14) * 100%);
   /* transition: ; */
   color: ${props=>props.colorTitleUser};
 
 
   @media (min-width: 768px) {
-    font-size: 18px;
+    font-size: 14px;
     line-height: calc((18 / 18) * 100%);
   }
 `;
@@ -417,6 +417,7 @@ export const Name = styled.h2`
   
 
   @media (min-width: 768px) {
+    padding-top: 20px;
     font-size: 18px;
     line-height: calc((18 / 18) * 100%);
   }
