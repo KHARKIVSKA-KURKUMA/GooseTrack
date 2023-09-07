@@ -48,7 +48,7 @@ const UserForm = () => {
   const colorTitle = theme === 'light' ? '#111' : 'rgba(250, 250, 250, 0.30)';
   const colorInput = theme === 'light' ? '#111111' : '#FFFFFF';
   const borderColorInput =
-    theme === 'light' ? 'rgba(17, 17, 17, 0.15)' : 'rgba(255, 255, 255, 0.15)';
+    theme === 'light' ? 'inherit' : 'rgba(255, 255, 255, 0.15)';
 
   useEffect(() => {
     dispatch(fetchCurrentUser())

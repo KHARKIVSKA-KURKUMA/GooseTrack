@@ -20,17 +20,20 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
   width: 100%;
   font-weight: 600;
   font-family: 'Inter';
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.3;
   outline: none;
   border-radius: 8px;
+  padding: 0px 14px;
+  border-width: 1px;
   &:hover 
   &:focus {
     border: 1px solid #111;
   }
 
   & .MuiInputBase-input {
-    padding: 0px 0px 0px 14px;
+    padding: 0px 14px;
+  border-width: 1px;
     font-size: 14px;
     line-height: 1.29;
     height: 18px;
@@ -41,9 +44,13 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
   .MuiOutlinedInput-root {
     /* outline: none; */
     border: 1px solid ${props=>props.borderColorInput};
+    padding: 0px 14px;
+  border-width: 1px;
 
     .MuiOutlinedInput-notchedOutline {
       border: 1px solid rgba(17, 17, 17, 0.15);
+      padding: 0px 14px;
+  border-width: 1px;
     }
   }
 
@@ -52,10 +59,13 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
     border-radius: 8px;
     border-radius: 8px;
     font-family: 'Inter';
+    padding: 0px 14px;
+  border-width: 1px;
   }
 
   &.MuiFormControl-root {
     background-color: inherit;
+    height:42px;
   }
 
   & div input::placeholder {
