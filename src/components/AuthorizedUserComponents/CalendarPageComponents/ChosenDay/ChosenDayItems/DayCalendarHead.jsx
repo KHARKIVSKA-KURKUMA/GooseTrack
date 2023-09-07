@@ -9,9 +9,9 @@ import {
 } from './DayCalendarHead.styled';
 
 const DayCalendarHead = props => {
-  const theme = useSelector(state => state.theme); 
+  const theme = useSelector(state => state.theme);
   const backgroundColor = theme === 'light' ? '#fff' : '#21222C';
-   const titleDay = theme === 'light' ? '#343434' : '#FAFAFA4D'
+  const titleDay = theme === 'light' ? '#343434' : '#FAFAFA4D';
   const selectedDateUnFormat = props.selectedDate;
   const selectedDate = new Date(selectedDateUnFormat);
   const [daysOfWeek, setDaysOfWeek] = useState([
@@ -68,7 +68,9 @@ const DayCalendarHead = props => {
 
   return (
     <>
-      <CalendarTableWrapper backgroundColor={ backgroundColor }>{generateCalendar()}</CalendarTableWrapper>
+      <CalendarTableWrapper backgroundColor={backgroundColor}>
+        {generateCalendar()}
+      </CalendarTableWrapper>
     </>
   );
 };

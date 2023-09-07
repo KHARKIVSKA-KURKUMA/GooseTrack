@@ -4,12 +4,11 @@ import { createPortal } from 'react-dom';
 import Overlay from 'components/GeneralComponents/Overlay/Overlay';
 import Modal from 'components/GeneralComponents/ModalWindow/ModalWindow';
 import FeedbackForm from './FeedbackForm';
-import {CloseModalButton} from './AddFeedbackModal.styled';
+import { CloseModalButton } from './AddFeedbackModal.styled';
 
-const feedbackModalRoot = document.querySelector('#feedback-modal-root')
+const feedbackModalRoot = document.querySelector('#feedback-modal-root');
 
 const AddFeedbackModal = ({ toggleModal }) => {
-  
   /// Close modal by pressing Escape ///
   useEffect(() => {
     const handleKeyDown = e => {
@@ -23,8 +22,8 @@ const AddFeedbackModal = ({ toggleModal }) => {
     };
   }, [toggleModal]);
 
-/// Close modal by click on overlay ///
-const handleOverlay = e => {
+  /// Close modal by click on overlay ///
+  const handleOverlay = e => {
     if (e.currentTarget === e.target) {
       toggleModal();
     }

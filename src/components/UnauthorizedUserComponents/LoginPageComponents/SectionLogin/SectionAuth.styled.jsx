@@ -8,9 +8,8 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  /* padding:40px; */
-  @media (max-width:375px) {
-	padding: 10px;
+  @media (max-width: 375px) {
+    padding: 10px;
   }
 `;
 

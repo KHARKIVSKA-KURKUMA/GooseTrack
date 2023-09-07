@@ -1,4 +1,4 @@
-import {  Formik } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
 import { FcHome } from 'react-icons/fc';
 
@@ -11,25 +11,17 @@ import {
   StyledTextBtn,
 } from './LoginForm.styled';
 import { NavLink } from 'react-router-dom';
-/* eslint-disable */
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectorError,
-} from 'store/auth/authSelectors';
+import { selectorError } from 'store/auth/authSelectors';
 import { login } from 'store/auth/authOperations';
-import { useState } from 'react';
 import { AuthField } from '../AuthField/AuthField';
-
 
 const initialValues = {
   email: '',
   password: '',
 };
 
-// const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
-
 const LoginForm = () => {
-  
   const errorMsg = useSelector(selectorError);
   const dispatch = useDispatch();
 

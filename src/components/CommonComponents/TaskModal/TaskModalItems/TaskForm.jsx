@@ -28,10 +28,10 @@ import {
 import { setIsChanged } from 'store/tasks/tasksSlice';
 
 const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
-
-   const theme = useSelector(state => state.theme); 
-  const color = theme === 'light' ? 'rgba(52, 52, 52, 0.80)' : 'rgba(250, 250, 250, 0.30)';
-  const colorText = theme === 'light' ? '#343434 ' : '#FFFFFF'; 
+  const theme = useSelector(state => state.theme);
+  const color =
+    theme === 'light' ? 'rgba(52, 52, 52, 0.80)' : 'rgba(250, 250, 250, 0.30)';
+  const colorText = theme === 'light' ? '#343434 ' : '#FFFFFF';
   const colorTextArea = theme === 'light' ? '#343434 ' : '#FFFFFF';
   const backgroundColor = theme === 'light' ? '#F6F6F6 ' : '#171820';
   const borderColor = theme === 'light' ? 'rgba(255, 255, 255, 0.15) ' : 'none';

@@ -20,7 +20,7 @@ const ChosenDay = () => {
   useEffect(() => {
     dispatch(getTasksByDayThunk({ day: formattedDay }))
       .then(() => {
-        setIsLoading(false); 
+        setIsLoading(false);
       })
       .catch(error => {
         console.error('Помилка завантаження даних:', error);
@@ -28,7 +28,6 @@ const ChosenDay = () => {
   }, [dispatch, formattedDay]);
 
   const tasksForCurrentDay = byDay;
-  console.log('tasksForCurrentDay', tasksForCurrentDay);
   const titleArr = ['to-do', 'in-progress', 'done'];
 
   if (isLoading) {

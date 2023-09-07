@@ -28,7 +28,6 @@ import allInDesktop1x from '../../../../img/desktop/feature-all-in1x.png';
 import allInDesktop2x from '../../../../img/desktop/feature-all-in2x.png';
 import allInDesktop3x from '../../../../img/desktop/feature-all-in3x.png';
 
-
 import {
   Container,
   DescriptionList,
@@ -42,7 +41,6 @@ import {
   Content,
   Image,
   ImageLeft,
-
 } from './Description.styled';
 
 const Description = () => {

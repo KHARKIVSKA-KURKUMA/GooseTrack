@@ -117,7 +117,7 @@ const ModalButton = styled.button`
   &:hover,
   &:focus {
     transform: scale(1.1);
-      }
+  }
 
   @media (min-width: 768px) {
     padding-top: 15px;

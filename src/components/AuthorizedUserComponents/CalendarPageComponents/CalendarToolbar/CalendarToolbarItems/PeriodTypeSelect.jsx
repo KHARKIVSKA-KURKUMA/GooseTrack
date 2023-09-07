@@ -11,7 +11,6 @@ const PeriodTypeSelect = ({ onChangeType }) => {
   const backgroundColor = isLightTheme ? '#E3F3FF' : '#21222C';
   const activeBackground = isLightTheme ? '#CAE8FF' : '#3E85F3';
 
-
   return (
     <List>
       <Item>
@@ -22,7 +21,6 @@ const PeriodTypeSelect = ({ onChangeType }) => {
             color: isLightTheme ? 'var(--title-color)' : 'white',
           }}
           className={`month`}
-
           to={`/calendar/month/${currentDate}`}
           onClick={() => {
             setActivePage('month');
@@ -34,14 +32,12 @@ const PeriodTypeSelect = ({ onChangeType }) => {
       </Item>
       <Item>
         <StyledNavLink
-
           style={{
             backgroundColor:
               activePage === 'day' ? activeBackground : backgroundColor,
             color: isLightTheme ? 'var(--title-color)' : 'white',
           }}
           className={`day`}
-
           to={`/calendar/day/${currentDate}`}
           onClick={() => {
             setActivePage('day');

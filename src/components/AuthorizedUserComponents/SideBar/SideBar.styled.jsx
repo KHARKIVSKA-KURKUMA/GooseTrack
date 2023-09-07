@@ -25,7 +25,7 @@ export const SidebarContainer = styled.div`
 export const CloseIcon = styled(Close)`
   width: 24px;
   height: 24px;
-  cursor:pointer;
+  cursor: pointer;
   @media (min-width: 768px) {
     width: 34px;
     height: 34px;
@@ -38,7 +38,7 @@ export const CloseButtonContainer = styled.div`
   z-index: 9999;
   top: 28px;
   svg path {
-    stroke: ${({ theme }) => theme.text};    
+    stroke: ${({ theme }) => theme.text};
   }
   @media (min-width: 768px) {
     padding: 0;
@@ -146,7 +146,7 @@ export const LogoutBtn = styled.button`
   border-radius: 15px;
   position: absolute;
   bottom: 24px;
- cursor: pointer;
+  cursor: pointer;
 
   &:hover,
   &:focus {
@@ -206,7 +206,7 @@ export const StyledText = styled.span`
   font-style: italic;
   font-weight: 700;
   line-height: 24px;
-   margin-right: 2px;
+  margin-right: 2px;
   margin-left: -1px;
   @media (min-width: 1440px) {
     font-size: 24px;

@@ -10,7 +10,7 @@ const Loader = () => {
         wrapperStyle={{}}
         wrapperClass="progress-bar-wrapper"
         borderColor=" #ea3d65"
-        barColor= "#72c2f8"
+        barColor="#72c2f8"
       />
     </>
   );

@@ -18,14 +18,14 @@ export const UserFild = ({
   placeholder = null,
   values,
 }) => {
-
-  const theme = useSelector(state=>state.theme)
+  const theme = useSelector(state => state.theme);
   const colorTitle = theme === 'light' ? '#111' : 'rgba(250, 250, 250, 0.30)';
   const colorInput = theme === 'light' ? '#111111' : '#FFFFFF';
-  const borderColorInput = theme === 'light' ? 'rgba(17, 17, 17, 0.15)' : 'rgba(255, 255, 255, 0.15)';
+  const borderColorInput =
+    theme === 'light' ? 'rgba(17, 17, 17, 0.15)' : 'rgba(255, 255, 255, 0.15)';
   return (
     <Label
-    colorTitle={colorTitle}
+      colorTitle={colorTitle}
       style={{
         color:
           (touched && errors && '#E74A3B') || (touched && !errors && '#3CBC81'),
@@ -36,8 +36,8 @@ export const UserFild = ({
       {title}{' '}
       <IconStatusWrap>
         <Input
-        border={borderColorInput}
-        color={colorInput}
+          border={borderColorInput}
+          color={colorInput}
           type={type}
           name={name}
           placeholder={placeholder}
@@ -53,7 +53,9 @@ export const UserFild = ({
         {touched && errors && <ErrorIcon />}
         {touched && !errors && <CorrectIcon />}
       </IconStatusWrap>
-      {touched && !errors && values.length>0 && <CorrectTag>This is an CORRECT {name}</CorrectTag>}
+      {touched && !errors && values.length > 0 && (
+        <CorrectTag>This is an CORRECT {name}</CorrectTag>
+      )}
       <MessageError name={name} component="p" />
     </Label>
   );

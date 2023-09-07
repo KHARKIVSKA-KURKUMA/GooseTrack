@@ -63,8 +63,6 @@ const TaskToolbar = ({ task }) => {
   );
 
   const handleMoveTask = availableGroup => {
-    console.log(availableGroup);
-
     dispatch(
       editTask({
         id: task.id,

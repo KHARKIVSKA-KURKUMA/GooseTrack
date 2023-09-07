@@ -108,7 +108,6 @@ const StyledBiPencil = styled(BiPencil)`
   &:hover {
     /* background-color: var(--hover-color); */
     transform: scale(1.1);
-    
   }
 
   &:focus {
@@ -130,8 +129,6 @@ const StyledRiDeleteBinLine = styled(RiDeleteBinLine)`
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   }
 `;
-
-
 
 export {
   StarWrapper,

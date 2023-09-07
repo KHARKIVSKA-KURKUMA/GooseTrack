@@ -56,7 +56,6 @@ export const editReview = createAsyncThunk(
   'feedback/editReview',
   async ({ rating, text, _id }, thunkAPI) => {
     try {
-
       console.log(rating, text, _id);
       const { data } = await instance.patch(`/api/reviews/${_id}`, {
         rating,

@@ -37,8 +37,7 @@ const tasksSlice = createSlice({
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
         state.tasks.filter(task => task._id !== payload.deletedTask._id);
       })
-      .addCase(deleteTask.rejected, (state, { payload }) => {
-      })
+      .addCase(deleteTask.rejected, (state, { payload }) => {})
       .addCase(editTask.fulfilled, (state, { payload }) => {
         const res = { data: [payload.data] };
         state.byDay.push(payload);

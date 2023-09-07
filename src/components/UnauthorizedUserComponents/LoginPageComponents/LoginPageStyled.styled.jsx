@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  /* min-height: 100vh; */
   background: var(--auth-background-color);
   display: flex;
   flex-direction: column;
@@ -19,10 +18,6 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  /* display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: flex-start; */
 `;
 
 export { Container, Section };

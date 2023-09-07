@@ -1,4 +1,3 @@
-// import { TaskColumnList } from './TaskColumn.styled';
 import TasksColumn from './TasksColumn';
 import { TaskColumnList } from './TasksColumnsListStyle';
 

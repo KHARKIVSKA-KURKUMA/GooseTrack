@@ -2,7 +2,6 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { FaStar } from 'react-icons/fa';
 
-
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -137,16 +136,12 @@ const FeedbackForm = ({ toggleModal }) => {
             <IconWrapper>
               <IconButton type="button" onClick={() => setIsEditing(true)}>
                 <CircleIcon backgroundColor="#E3F3FF">
-                  <StyledBiPencil
-                    size={20}
-                   
-                     
-                                  />
+                  <StyledBiPencil size={20} />
                 </CircleIcon>
               </IconButton>
               <IconButton type="button" onClick={handleClickOpen}>
                 <CircleIcon backgroundColor="rgba(234, 61, 101, 0.2)">
-                  <StyledRiDeleteBinLine size={20}  />
+                  <StyledRiDeleteBinLine size={20} />
                 </CircleIcon>
               </IconButton>
             </IconWrapper>

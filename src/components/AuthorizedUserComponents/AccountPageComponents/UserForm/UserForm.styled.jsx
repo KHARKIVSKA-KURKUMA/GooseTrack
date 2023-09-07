@@ -1,4 +1,4 @@
-import { Field, Form, ErrorMessage} from 'formik';
+import { Field, Form, ErrorMessage } from 'formik';
 import styled from 'styled-components';
 import { ReactComponent as Icon } from 'img/add.svg';
 import { ReactComponent as IconError } from 'img/ic_baseline-error-outline.svg';
@@ -24,8 +24,7 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
   line-height: 1.3;
   outline: none;
   border-radius: 8px;
-  &:hover 
-  &:focus {
+  &:hover &:focus {
     border: 1px solid #111;
   }
 
@@ -35,13 +34,10 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
     line-height: 1.29;
     height: 18px;
     font-weight: 600;
-    color: ${props=>props.color};
-   
+    color: ${props => props.color};
   }
   .MuiOutlinedInput-root {
-    /* outline: none; */
-    border: 1px solid ${props=>props.borderColorInput};
-
+    border: 1px solid ${props => props.borderColorInput};
     .MuiOutlinedInput-notchedOutline {
       border: 1px solid rgba(17, 17, 17, 0.15);
     }
@@ -60,7 +56,7 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
 
   & div input::placeholder {
     font-size: 14px;
-    color: ${props=>props.color};
+    color: ${props => props.color};
     opacity: 1;
     outline: none;
     @media (min-width: 768px) {
@@ -68,15 +64,10 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
     }
   }
 
-  /* @media (min-width: 375px) {
-    width: 299px;
-  } */
-
   @media (min-width: 768px) {
     width: 354px;
     font-size: 16px;
     line-height: 1.12;
-
 
     && .MuiInputBase-root {
       height: 46px;
@@ -91,7 +82,6 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
     }
   }
   & .MuiButtonBase-root {
-    // margin-left: 18px;
     padding: 4px;
     stroke: #ffffff;
     margin: 0px 12px;
@@ -289,8 +279,6 @@ export const Box = styled.div(
   grid
 );
 
-
-
 export const MessageError = styled(ErrorMessage)`
   display: block;
   color: red;
@@ -306,7 +294,7 @@ export const Label = styled.label`
   font-weight: 400;
   font-size: 14px;
   line-height: calc((14 / 12) * 100%);
-  color: ${props=>props.colorTitle};
+  color: ${props => props.colorTitle};
 
   @media (min-width: 768px) {
     width: 354px;
@@ -314,7 +302,6 @@ export const Label = styled.label`
     line-height: calc((18 / 14) * 100%);
   }
 `;
-
 
 export const Wrapper = styled.div`
   display: flex;
@@ -356,28 +343,24 @@ export const Button = styled.button`
   font-weight: 600;
   font-size: 14px;
   line-height: calc((18 / 14) * 100%);
-  background: #3E85F3;
+  background: #3e85f3;
   box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
 
-  color: #FFFFFF;
-  /* transition: ;*/
+  color: #ffffff;
   border: none;
   cursor: pointer;
   &:hover,
   &:focus {
-    background: #2B78EF;
-box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
-
-  };
-  &:disabled{
-    background-color: #CAE8FF;
+    background: #2b78ef;
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  }
+  &:disabled {
+    background-color: #cae8ff;
   }
   @media (min-width: 960px) {
     margin-top: 88px;
   }
 `;
-
-
 
 export const Title = styled.h2`
   margin: 0;
@@ -386,9 +369,7 @@ export const Title = styled.h2`
   font-weight: 500;
   font-size: 14px;
   line-height: calc((18 / 14) * 100%);
-  /* transition: ; */
-  color: ${props=>props.colorTitleUser};
-
+  color: ${props => props.colorTitleUser};
 
   @media (min-width: 768px) {
     font-size: 18px;
@@ -402,16 +383,13 @@ export const Name = styled.h2`
   font-weight: 700;
   font-size: 18px;
   line-height: calc((18 / 14) * 100%);
-  /* transition: ; */
-  color: ${props=>props.colorTitleUserName};
-  
+  color: ${props => props.colorTitleUserName};
 
   @media (min-width: 768px) {
     font-size: 18px;
     line-height: calc((18 / 18) * 100%);
   }
 `;
-
 
 export const Img = styled.img`
   display: block;
@@ -429,8 +407,8 @@ export const AddIcon = styled(Icon)`
   width: 100%;
   height: 100%;
   display: block;
-  /* transition:; */
-  fill: #3E85F3;
+
+  fill: #3e85f3;
   &:hover,
   &:focus {
     fill: #3e9ff3;
@@ -469,7 +447,7 @@ export const WrapImg = styled.div`
   width: 72px;
   height: 72px;
   margin: 0 auto;
-  border: 2px solid  #3E85F3;
+  border: 2px solid #3e85f3;
   border-radius: 124px;
   overflow: hidden;
 
@@ -478,8 +456,6 @@ export const WrapImg = styled.div`
     height: 124px;
   }
 `;
-
-
 
 export const Sticker = styled.label`
   display: block;
@@ -492,7 +468,6 @@ export const Sticker = styled.label`
   top: 85%;
   right: 20%;
 
-
   @media (min-width: 768px) {
     width: 24px;
     height: 24px;
@@ -501,24 +476,23 @@ export const Sticker = styled.label`
 
 export const Input = styled(Field)`
   height: 42px;
-  width:100%;
-  color: ${props=>props.color};
+  width: 100%;
+  color: ${props => props.color};
   border-radius: 8px;
   border-width: 1px;
   padding: 0 14px;
   background-color: transparent;
-  border: 1px solid ${props=>props.border};
+  border: 1px solid ${props => props.border};
   font-family: 'Inter';
   font-weight: 600;
   font-size: 16px;
   line-height: calc((18 / 14) * 100%);
-  &:hover{
+  &:hover {
     border: 1px solid #111;
-  };
+  }
 
   &::placeholder {
-    color: ${props=>props.color};
-
+    color: ${props => props.color};
   }
 
   @media (min-width: 768px) {
@@ -528,24 +502,31 @@ export const Input = styled(Field)`
 `;
 
 export const AccountForm = styled(Form)`
-  margin: 32px;
-  padding-left: 165px;
-  padding-right: 165px;
-  padding-top: 60px;
-  padding-left: 60px;
-
-  background-color: ${props=> props.background};
+  min-width: 335px;
+  max-height: 653px;
   border-radius: 16px;
-  height: 100%;
+  padding-bottom: 40px;
+  background-color: ${props => props.background};
 
-  @media (min-width: 960px) {
-    padding-left: 175px;
-    padding-right: 175px;
-    
+  @media screen and (max-width: 767px) {
+    max-height: 854px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
-   @media (min-width: 320px) {
-    padding: 18px 18px;
-    
+  @media screen and (min-width: 768px) {
+    min-width: 704px;
+    max-height: 854px;
+    margin: 50px 20px 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    min-width: 1087px;
+    max-height: 752px;
+    margin: 16px 32px 32px 323px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 `;
 
@@ -572,5 +553,3 @@ export const LoaderContainer = styled.div`
   align-items: center;
   height: 100vh;
 `;
-
-

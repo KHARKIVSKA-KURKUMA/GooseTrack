@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-
-
 const Container = styled.div`
   margin: 0 auto;
-  
-  `;
+`;
 
 const StyledHero = styled.header`
   position: relative;
@@ -66,7 +63,6 @@ const HeroTitleSpan = styled.span`
     line-height: 1.25;
   }
 `;
-
 
 const AuthBlock = styled.div`
   display: flex;
@@ -140,7 +136,7 @@ const SignupLink = styled(NavLink)`
   }
 
   @media (min-width: 768px) {
-       padding: 14px 22px;
+    padding: 14px 22px;
   }
 `;
 
@@ -151,6 +147,6 @@ export {
   StyledImg,
   HeroTitleSpan,
   AuthBlock,
-LoginLink,
-  SignupLink
+  LoginLink,
+  SignupLink,
 };

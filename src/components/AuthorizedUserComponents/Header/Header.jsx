@@ -19,10 +19,12 @@ const Header = ({ toggleTheme, showBurgerMenu, handleBurgerToggleClick }) => {
   } else if (location.pathname === '/statistics') {
     pageTitle = 'Statistics';
   }
+  const refreshToken = localStorage.getItem('refreshToken');
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCurrentUser());
-  }, [dispatch]);
+  }, [dispatch, refreshToken]);
+
   const user = useSelector(selectUser);
   const { name, avatarURL } = user;
 

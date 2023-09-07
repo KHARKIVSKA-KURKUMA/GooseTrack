@@ -49,7 +49,7 @@ const UserForm = () => {
   const colorInput = theme === 'light' ? '#111111' : '#FFFFFF';
   const borderColorInput =
     theme === 'light' ? 'rgba(17, 17, 17, 0.15)' : 'rgba(255, 255, 255, 0.15)';
-
+  const refreshToken = localStorage.getItem('refreshToken');
   useEffect(() => {
     dispatch(fetchCurrentUser())
       .then(() => {
@@ -58,7 +58,7 @@ const UserForm = () => {
       .catch(error => {
         console.error('Помилка завантаження даних:', error);
       });
-  }, [dispatch]);
+  }, [dispatch, refreshToken]);
 
   if (isLoading) {
     return (
@@ -99,7 +99,6 @@ const UserForm = () => {
 
     try {
       await dispatch(updateUser(formData));
-      // await dispatch(updateUser(values));
       await dispatch(fetchCurrentUser());
       setIsFormChanged(false);
       toast.success('Profile data changed successfully');
@@ -117,7 +116,6 @@ const UserForm = () => {
           phone: phone || '',
           skype: skype || '',
           avatarURL: avatarURL || '',
-          // backgroundUserForm:backgroundUserForm,
         }}
         validationSchema={userSchema}
         onSubmit={handleSubmit}

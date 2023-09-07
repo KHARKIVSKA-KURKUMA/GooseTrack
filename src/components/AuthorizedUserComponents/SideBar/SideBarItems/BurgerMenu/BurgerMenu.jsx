@@ -2,7 +2,7 @@ import React from 'react';
 import {
   BurgerMenuContainer,
   BurgerMenuItem,
-} from '../BurgerMenu/BurgerMenu.styled'; 
+} from '../BurgerMenu/BurgerMenu.styled';
 
 const BurgerMenu = () => {
   return (

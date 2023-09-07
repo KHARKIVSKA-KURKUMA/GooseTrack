@@ -164,10 +164,7 @@ const CalendarTable = props => {
   };
   const backgroundColor = theme === 'light' ? '#fff' : '#21222C';
   return (
-    <CalendarTableWrapper
-      style={{ borderCollapse: 'collapse' }}
-      onClick={e => console.log(e.currentTarget)}
-    >
+    <CalendarTableWrapper style={{ borderCollapse: 'collapse' }}>
       <CalendarNumberWrapper style={{ backgroundColor }}>
         {generateCalendar()}
       </CalendarNumberWrapper>

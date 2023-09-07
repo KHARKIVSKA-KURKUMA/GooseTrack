@@ -1,7 +1,4 @@
 import axios from 'axios';
-
-// const {REACT_APP_API_URL} = process.env;
-
 const REACT_APP_API_URL = 'https://goosetrack-tj84.onrender.com';
 
 const instance = axios.create({
@@ -11,13 +8,11 @@ const instance = axios.create({
 const setToken = token => {
   if (token) {
     instance.defaults.headers.common.authorization = `Bearer ${token}`;
-    console.log(instance.defaults.headers.common);
     return (instance.defaults.headers.common.authorization = `Bearer ${token}`);
   }
   instance.defaults.headers.common.authorization = '';
   localStorage.setItem('refreshToken', '');
 };
-
 
 instance.interceptors.response.use(
   response => response,
@@ -26,26 +21,14 @@ instance.interceptors.response.use(
       error.response.status === 401 &&
       error.response.data.message === 'Not authorized'
     ) {
-     
       const refreshToken = localStorage.getItem('refreshToken');
+
       try {
-        // if (error.response.data.message === 'Token does not valid') {
-        //   setToken();
-        //   localStorage.setItem('refreshToken', '')
-        // }
         const { data } = await instance.post('/auth/refresh', { refreshToken });
-          setToken(data.accessToken);
+        setToken(data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
-  
-        // return instance(error.config);
         return Promise.reject(error);
       } catch (error) {
-        // if (error.response.data.message === 'Token does not valid') {
-
-        //   setToken();
-        //   localStorage.setItem('refreshToken', '');
-        // }
-        console.log('catch error refresh>>>>>>>', error);
         return Promise.reject(error);
       }
     }
@@ -82,7 +65,5 @@ export const getCurrent = async token => {
     throw error;
   }
 };
-
-
 
 export default instance;

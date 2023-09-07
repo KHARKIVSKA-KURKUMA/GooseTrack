@@ -70,7 +70,7 @@ const UserAvatar = styled.img`
 
 const UserName = styled.p`
   margin: 0;
-  margin-bottom:13px;
+  margin-bottom: 13px;
   font-size: 18px;
   font-weight: bold;
   color: #343434;
@@ -99,8 +99,8 @@ const ArrowLeft = styled.div`
   padding-top: 30px;
   padding-bottom: 30px;
   cursor: pointer;
-  
- &:active {
+
+  &:active {
     transform: scale(-1.5, 1);
   }
 `;
@@ -110,7 +110,7 @@ const ArrowRight = styled.div`
   padding-top: 30px;
   padding-bottom: 30px;
   cursor: pointer;
-   &:active {
+  &:active {
     transform: scale(1.5, 1);
   }
 `;
@@ -121,7 +121,6 @@ const LoaderContainer = styled.div`
   align-items: center;
   height: 100vh;
 `;
-
 
 export {
   Container,

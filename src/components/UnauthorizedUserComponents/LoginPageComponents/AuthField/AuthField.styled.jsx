@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import {  ErrorMessage} from 'formik';
+import { ErrorMessage } from 'formik';
 
 import { ReactComponent as IconError } from 'img/ic_baseline-error-outline.svg';
 import { ReactComponent as IconCorrect } from 'img/Done.svg';
-
 
 export const IconStatusWrap = styled.div`
   position: relative;
@@ -38,14 +37,14 @@ export const CorrectTag = styled.div`
   font-weight: 400;
   font-size: 12px;
   line-height: 1.17;
-  position:absolute;
+  position: absolute;
   bottom: -15px;
 `;
 
 export const MessageError = styled(ErrorMessage)`
   display: block;
   color: red;
-  position:absolute;
+  position: absolute;
   bottom: -15px;
 `;
 
@@ -56,7 +55,7 @@ export const StyledVisibleButton = styled.button`
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
- 
+
   padding: 0;
   border: none;
   font-size: 18px;
@@ -67,8 +66,6 @@ export const StyledVisibleButton = styled.button`
 
   &:hover,
   &:focus {
-
     color: var(--title-color);
   }
-
-`
+`;

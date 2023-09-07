@@ -10,8 +10,8 @@ import ChosenMonth from 'components/AuthorizedUserComponents/CalendarPageCompone
 import ChosenDay from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenDay/ChosenDay';
 import Loader from 'components/Loader/Loader';
 import { LoaderContainer } from 'components/AuthorizedUserComponents/AccountPageComponents/UserForm/UserForm.styled';
-import { useDispatch } from 'react-redux';
 import { fetchCurrentUser } from 'store/user/operations';
+import { useDispatch } from 'react-redux';
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const MainPage = lazy(() => import('pages/MainPage/MainPage'));
@@ -22,12 +22,11 @@ const StatisticsPage = lazy(() =>
 );
 
 export const App = () => {
+  const refreshToken = localStorage.getItem('refreshToken');
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchCurrentUser());
-  }, [dispatch]);
-
+  }, [dispatch, refreshToken]);
   return (
     <>
       <GlobalStyle />

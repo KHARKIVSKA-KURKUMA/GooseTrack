@@ -9,7 +9,6 @@ import { TaskForm, Modal } from './TaskModalItems';
 const taskModalRoot = document.querySelector('#task-modal-root');
 
 const TaskModal = ({ toggleModal, taskToEdit, date, category }) => {
-
   /// Close modal by pressing Escape ///
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const TaskModal = ({ toggleModal, taskToEdit, date, category }) => {
   };
 
   return createPortal(
-    <Overlay  onClick={handleOverlay}>
+    <Overlay onClick={handleOverlay}>
       <Modal>
         <CloseModalButton type="button" onClick={toggleModal}>
           <GrClose size={20} />

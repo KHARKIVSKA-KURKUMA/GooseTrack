@@ -20,13 +20,13 @@ const NumberFirst = styled.span`
   font-weight: 700;
   color: var(--title-color);
   position: relative;
-   left: 30px;
+  left: 30px;
   top: -10px;
 
   @media screen and (min-width: 768px) {
     font-size: 200px;
-      left: 70px;
-  top: -20px;
+    left: 70px;
+    top: -20px;
   }
 `;
 
@@ -35,13 +35,13 @@ const NumberSecond = styled.span`
   font-weight: 700;
   color: var(--title-color);
   position: relative;
-   left: -30px;
+  left: -30px;
   top: -10px;
 
   @media screen and (min-width: 768px) {
     font-size: 200px;
     left: -70px;
-  top: -20px;
+    top: -20px;
   }
 `;
 
@@ -102,4 +102,13 @@ const Picture = styled.picture`
   }
 `;
 
-export { Container, LogoContainer, NumberFirst, NumberSecond, Text, ButtonContainer, Button, Picture };
+export {
+  Container,
+  LogoContainer,
+  NumberFirst,
+  NumberSecond,
+  Text,
+  ButtonContainer,
+  Button,
+  Picture,
+};

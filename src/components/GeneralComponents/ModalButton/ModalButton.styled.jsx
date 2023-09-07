@@ -25,7 +25,7 @@ const Button = styled.button`
     font-size: 14px;
     line-height: 1.29;
   }
- &:hover,
+  &:hover,
   &:focus {
     transform: scale(1.05);
   }

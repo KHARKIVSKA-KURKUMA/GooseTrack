@@ -1,4 +1,4 @@
-import { VscEye , VscEyeClosed } from "react-icons/vsc";
+import { VscEye, VscEyeClosed } from 'react-icons/vsc';
 
 import {
   MessageError,
@@ -9,7 +9,7 @@ import {
   StyledVisibleButton,
 } from 'components/UnauthorizedUserComponents/LoginPageComponents/AuthField/AuthField.styled';
 import { StyledField, StyledLabel } from '../LoginForm/LoginForm.styled';
-import { useState } from "react";
+import { useState } from 'react';
 
 export const AuthField = ({
   touched,
@@ -19,9 +19,9 @@ export const AuthField = ({
   name,
   placeholder = null,
 }) => {
-  const [isVisiblePassword, setIsVisiblePassword] = useState(false)
+  const [isVisiblePassword, setIsVisiblePassword] = useState(false);
   const pass = type === 'password' ? type : null;
-  const eyeVisible = isVisiblePassword ? <VscEyeClosed/> : <VscEye/>
+  const eyeVisible = isVisiblePassword ? <VscEyeClosed /> : <VscEye />;
 
   const togglePasswordVisible = () => setIsVisiblePassword(prev => !prev);
 
@@ -49,17 +49,18 @@ export const AuthField = ({
               (touched && !errors && '#3CBC81'),
           }}
         />
-      
-        {
-          pass ? pass && <StyledVisibleButton type="button" onClick={togglePasswordVisible}>
-            {eyeVisible}
-          </StyledVisibleButton> :
-          touched && errors && <ErrorIcon />
-        }
-        {
-          pass ? null :
-        touched && !errors && <CorrectIcon />
-        }
+
+        {pass
+          ? pass && (
+              <StyledVisibleButton
+                type="button"
+                onClick={togglePasswordVisible}
+              >
+                {eyeVisible}
+              </StyledVisibleButton>
+            )
+          : touched && errors && <ErrorIcon />}
+        {pass ? null : touched && !errors && <CorrectIcon />}
       </IconStatusWrap>
       {touched && !errors && <CorrectTag>This is an CORRECT {name}</CorrectTag>}
       <MessageError name={name} component="p" />

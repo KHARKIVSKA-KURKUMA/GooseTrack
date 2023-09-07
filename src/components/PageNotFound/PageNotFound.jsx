@@ -1,4 +1,13 @@
-import { Container, LogoContainer, NumberFirst, NumberSecond, Text, ButtonContainer, Button, Picture } from './PageNotFound.styled'
+import {
+  Container,
+  LogoContainer,
+  NumberFirst,
+  NumberSecond,
+  Text,
+  ButtonContainer,
+  Button,
+  Picture,
+} from './PageNotFound.styled';
 
 import logoMobile from '../../img/mobile/gooseError1x.png';
 import logoMobile2x from '../../img/mobile/gooseError2x.png';
@@ -12,7 +21,7 @@ import logo2x from '../../img/desktop/gooseError2x.png';
 
 const PageNotFound = () => {
   return (
-      <Container>
+    <Container>
       <LogoContainer>
         <NumberFirst>4</NumberFirst>
         <Picture>
