@@ -38,7 +38,6 @@ const StatisticsChart = () => {
   ];
 
   const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
-    console.log('value :>> ', value);
     return (
       <text
         x={x + width / 2}
