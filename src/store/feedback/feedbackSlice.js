@@ -20,19 +20,13 @@ const feedbackSlice = createSlice({
     builder
       .addCase(getAllFeedbacks.fulfilled, (state, { payload }) => {
         state.feedback = payload;
-        // console.log('payload :>> ', payload);
-        // console.log(state.feedback);
       })
       .addCase(getByOwner.fulfilled, (state, { payload }) => {
         state.feedback = payload;
-        console.log('payload By User :>> ', payload);
-        console.log(state.feedback);
       })
       .addCase(addReview.fulfilled, (state, { payload }) => {
         state.feedback.push(payload);
         state.feedback = payload;
-        console.log('payload :>> ', payload);
-        console.log(state.feedback);
       })
       .addCase(editReview.fulfilled, (state, { payload }) => {
         state.feedback = state.feedback.map(item => {
@@ -41,8 +35,6 @@ const feedbackSlice = createSlice({
           }
           return item;
         });
-        console.log('edit feedback :>> ', payload);
-        console.log(state.feedback);
       })
       .addCase(deleteReview.fulfilled, (state, { payload }) => {
         state.feedback.filter(item => item._id !== payload._id);
