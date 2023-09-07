@@ -1,8 +1,8 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { FaStar } from 'react-icons/fa';
-import { BiPencil } from 'react-icons/bi';
-import { RiDeleteBinLine } from 'react-icons/ri';
+
+
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -28,6 +28,8 @@ import {
   CircleIcon,
   TitleWrapper,
   IconButton,
+  StyledBiPencil,
+  StyledRiDeleteBinLine,
 } from './FeedbackForm.styled';
 
 const FeedbackForm = ({ toggleModal }) => {
@@ -135,12 +137,16 @@ const FeedbackForm = ({ toggleModal }) => {
             <IconWrapper>
               <IconButton type="button" onClick={() => setIsEditing(true)}>
                 <CircleIcon backgroundColor="#E3F3FF">
-                  <BiPencil size={20} color={'#3E85F3'} />
+                  <StyledBiPencil
+                    size={20}
+                   
+                     
+                                  />
                 </CircleIcon>
               </IconButton>
               <IconButton type="button" onClick={handleClickOpen}>
                 <CircleIcon backgroundColor="rgba(234, 61, 101, 0.2)">
-                  <RiDeleteBinLine size={20} color={'#EA3D65'} />
+                  <StyledRiDeleteBinLine size={20}  />
                 </CircleIcon>
               </IconButton>
             </IconWrapper>
@@ -161,7 +167,6 @@ const FeedbackForm = ({ toggleModal }) => {
           colorTextArea={colorTextArea}
           backgroundColor={backgroundColor}
           borderColor={borderColor}
-
         />
         {formik.errors.text && formik.touched.text && (
           <ErrorsMessage>{formik.errors.text}</ErrorsMessage>
