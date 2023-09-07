@@ -8,9 +8,11 @@ import { fetchCurrentUser } from 'store/user/operations';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { darkTheme, lightTheme } from './HeaderItems/Theme/theme';
+import { selectorToken } from 'store/auth/authSelectors';
 
 const Header = ({ toggleTheme, showBurgerMenu, handleBurgerToggleClick }) => {
   const location = useLocation();
+  const {accessToken} = useSelector(selectorToken);
   let pageTitle = 'User Profile';
   if (location.pathname.includes('calendar')) {
     pageTitle = 'Calendar';
@@ -22,7 +24,7 @@ const Header = ({ toggleTheme, showBurgerMenu, handleBurgerToggleClick }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCurrentUser());
-  }, [dispatch]);
+  }, [dispatch, accessToken]);
   const user = useSelector(selectUser);
   const { name, avatarURL } = user;
 

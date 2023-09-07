@@ -4,12 +4,15 @@ import Layout from 'components/UnauthorizedUserComponents/Layout/Layout';
 import Restricted from 'components/Routes/Restricted';
 import Private from 'components/Routes/Private';
 import { GlobalStyle } from './GlobalStyles';
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import PageNotFound from 'components/PageNotFound/PageNotFound';
 import ChosenMonth from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenMonth/ChosenMonth';
 import ChosenDay from 'components/AuthorizedUserComponents/CalendarPageComponents/ChosenDay/ChosenDay';
 import Loader from 'components/Loader/Loader';
 import { LoaderContainer } from 'components/AuthorizedUserComponents/AccountPageComponents/UserForm/UserForm.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectorToken } from 'store/auth/authSelectors';
+import { fetchCurrentUser } from 'store/user/operations';
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const MainPage = lazy(() => import('pages/MainPage/MainPage'));
@@ -20,6 +23,17 @@ const StatisticsPage = lazy(() =>
 );
 
 export const App = () => {
+
+  const { accessToken } = useSelector(selectorToken);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser())
+
+  }, [dispatch, accessToken])
+  
+
   return (
     <>
       <GlobalStyle />
