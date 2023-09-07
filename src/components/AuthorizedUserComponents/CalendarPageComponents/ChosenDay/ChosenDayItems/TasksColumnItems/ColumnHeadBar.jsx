@@ -1,9 +1,3 @@
-// import { AiOutlinePlusCircle } from 'react-icons/ai';
-// import {
-//   HeadBarAddBtn,
-//   HeadBarTitle,
-//   HeadBarContainer,
-// } from './TaskColumnItems.styled';
 import { useSelector } from 'react-redux';
 import { tasksSelector } from 'store/selectors';
 import {
@@ -13,16 +7,15 @@ import {
 } from './ColumnHeadBarStyle';
 import { useEffect, useState } from 'react';
 import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
-
+import { getColumnTitle } from 'helpers/getColumnTitle';
 
 const ColumnHeadBar = ({ title, selectedDate }) => {
-
   const { tasks } = useSelector(tasksSelector);
   const isEmpty = tasks.length === 0;
   const [showModal, setShowModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-    const theme = useSelector(state => state.theme);
-   const stroke = theme === 'light' ? '#21222C' : '#fff';
+  const theme = useSelector(state => state.theme);
+  const stroke = theme === 'light' ? '#21222C' : '#fff';
 
   /// Toggle Modal Function ///
   const toggleModal = () => {
@@ -42,8 +35,8 @@ const ColumnHeadBar = ({ title, selectedDate }) => {
 
   return (
     <HeadBarContainer isEmpty={isEmpty}>
-      <HeadBarTitle>{title}</HeadBarTitle>
-      <HeadBarAddBtn stroke={stroke} onClick={toggleModal}/>
+      <HeadBarTitle>{getColumnTitle(title)}</HeadBarTitle>
+      <HeadBarAddBtn stroke={stroke} onClick={toggleModal} />
       {isModalOpen && (
         <TaskModal
           toggleModal={toggleModal}
@@ -51,7 +44,6 @@ const ColumnHeadBar = ({ title, selectedDate }) => {
           category={title}
         />
       )}
-
     </HeadBarContainer>
   );
 };

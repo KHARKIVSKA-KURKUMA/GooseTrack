@@ -8,14 +8,6 @@ import {
   Priority,
   TaskMeta,
 } from './TaskColumnCardStyle';
-// import {
-//   Priority,
-//   Avatar,
-//   Description,
-//   BottomContainer,
-//   CardContainer,
-//   TaskMeta,
-// } from './TaskColumnItems.styled';
 
 const TaskColumnCard = (data, title) => {
   const theme = useSelector(state => state.theme);
@@ -23,7 +15,7 @@ const TaskColumnCard = (data, title) => {
   const textTask = theme === 'light' ? '#111' : '#FFF';
   const { description, avatarUrl, priority } = data;
   return (
-    <CardContainer  backgroundColor={ backgroundColor } textTask={textTask}>
+    <CardContainer backgroundColor={backgroundColor} textTask={textTask}>
       <Description>{description}</Description>
       <BottomContainer>
         <TaskMeta>
@@ -34,7 +26,6 @@ const TaskColumnCard = (data, title) => {
         </TaskMeta>
         <TaskToolbar task={data} title={title} />
       </BottomContainer>
-      {/* <TaskModal /> */}
     </CardContainer>
   );
 };

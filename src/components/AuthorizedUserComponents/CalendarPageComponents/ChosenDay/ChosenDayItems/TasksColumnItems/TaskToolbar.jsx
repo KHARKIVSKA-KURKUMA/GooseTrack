@@ -17,10 +17,11 @@ import {
   TaskToolbarContainer,
 } from './TaskToolbarStyle';
 import { setIsChanged } from 'store/tasks/tasksSlice';
+import { getColumnTitle } from 'helpers/getColumnTitle';
 
 const TaskToolbar = ({ task }) => {
   const theme = useSelector(state => state.theme);
-  const strokeToolBar = theme === 'light' ? '#111111' : '#FFFFFF';
+  const stroketoolbar = theme === 'light' ? '#111111' : '#FFFFFF';
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   /* -----------------------------Modal Window Logic--------------------------------------------- */
@@ -57,6 +58,10 @@ const TaskToolbar = ({ task }) => {
   };
 
   const availableGroups = groups.filter(group => group !== currentGroup);
+  console.log('availableGroups :>> ', availableGroups);
+  const availableGroupsTitle = availableGroups.map(title =>
+    getColumnTitle(title)
+  );
 
   const handleMoveTask = availableGroup => {
     console.log(availableGroup);
@@ -93,8 +98,10 @@ const TaskToolbar = ({ task }) => {
 
   return (
     <TaskToolbarContainer>
-      <IconBtnArrow onClick={handleClick} strokeToolBar={strokeToolBar}></IconBtnArrow>
-
+      <IconBtnArrow
+        onClick={handleClick}
+        stroketoolbar={stroketoolbar}
+      ></IconBtnArrow>
 
       <MenuStyled
         id="basic-menu"
@@ -111,19 +118,25 @@ const TaskToolbar = ({ task }) => {
           key={availableGroups[0]}
           onClick={() => handleMoveTask(availableGroups[0])}
         >
-          {availableGroups[0]} <StyledArrow />
+          {availableGroupsTitle[0]} <StyledArrow />
         </MenuItem>
         <MenuItem
           id={'moveItem'}
-          key={availableGroups[1]}
+          key={availableGroupsTitle[1]}
           onClick={() => handleMoveTask(availableGroups[1])}
         >
-          {availableGroups[1]} <StyledArrow />
+          {availableGroupsTitle[1]} <StyledArrow />
         </MenuItem>
       </MenuStyled>
 
-      <IconBtnPencil onClick={toggleModal} strokeToolBar={strokeToolBar}></IconBtnPencil>
-      <IconBtnTrash onClick={handleClickOpen} strokeToolBar={strokeToolBar}></IconBtnTrash>
+      <IconBtnPencil
+        onClick={toggleModal}
+        stroketoolbar={stroketoolbar}
+      ></IconBtnPencil>
+      <IconBtnTrash
+        onClick={handleClickOpen}
+        stroketoolbar={stroketoolbar}
+      ></IconBtnTrash>
 
       <Dialog
         open={openModal}

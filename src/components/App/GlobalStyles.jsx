@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 /* ---------------------------------- fonts --------------------------------- */
- @font-face {
+ /* @font-face {
   font-family: 'Inter';
   src: url('./fonts/Inter-Regular.ttf') format('truetype');
   font-weight: 400;
@@ -43,7 +43,7 @@ export const GlobalStyle = createGlobalStyle`
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 /* ---------------------------------- reset --------------------------------- */
   body {
@@ -89,6 +89,3 @@ img {
 
   
 `;
-
-
-
