@@ -9,7 +9,6 @@ const Container = styled.div`
 
   @media screen and (min-width: 768px) {
     transform: translateY(130px);
-    /* left: 0px; */
     margin: 0;
   }
   @media screen and (min-width: 1440px) {
