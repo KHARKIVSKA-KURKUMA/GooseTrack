@@ -10,6 +10,7 @@ import {
   ButtonsContainer,
   SwitcherContainer,
   SwitcherPart,
+  SwitcherPartRight,
 } from './PeriodPaginator.styled';
 import { selectedDateSelector } from 'store/selectors';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -91,14 +92,14 @@ const PeriodPaginator = ({ type }) => {
           >
             ❮
           </SwitcherPart>
-          <SwitcherPart style={{ backgroundColor }}
+          <SwitcherPartRight style={{ backgroundColor }}
             active={activeSwitcher === 1}
             type="button"
             name="next"
             onClick={onChangeDate}
           >
             ❯
-          </SwitcherPart>
+          </SwitcherPartRight>
         </SwitcherContainer>
       </ButtonsContainer>
     </PeriodPaginatorContainer>

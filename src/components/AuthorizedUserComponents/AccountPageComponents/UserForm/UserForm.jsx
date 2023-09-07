@@ -43,6 +43,13 @@ const UserForm = () => {
   const userInfo = useSelector(selectUser);
 
  const [isLoading, setIsLoading] = useState(true);
+ const theme = useSelector(state=>state.theme)
+ const backgroundUserForm = theme === 'light' ? '#FFF' : '#21222C';
+ const colorTitleUserName = theme === 'light' ? '#343434' : '#FFF';
+ const colorTitleUser = theme === 'light' ? '#343434' : 'rgba(250, 250, 250, 0.30)';
+ const colorTitle = theme === 'light' ? '#111' : 'rgba(250, 250, 250, 0.30)';
+ const colorInput = theme === 'light' ? '#111111' : '#FFFFFF';
+const borderColorInput = theme === 'light' ? 'rgba(17, 17, 17, 0.15)' : 'rgba(255, 255, 255, 0.15)';
 
 
  useEffect(() => {
@@ -113,12 +120,13 @@ const UserForm = () => {
           phone: phone || '',
           skype: skype || '',
           avatarURL: avatarURL || '',
+          // backgroundUserForm:backgroundUserForm,
         }}
         validationSchema={userSchema}
         onSubmit={handleSubmit}
       >
         {({ values,setFieldValue, dirty, touched, errors }) => (
-          <AccountForm>
+          <AccountForm background={backgroundUserForm}>
             <Box
               position="relative"
               display="block"
@@ -144,8 +152,8 @@ const UserForm = () => {
                 <AddIcon />
               </Sticker>
             </Box>
-            <Name>{name}</Name>
-            <Title>User</Title>
+            <Name colorTitleUser={colorTitleUserName}>{name}</Name>
+            <Title colorTitleUser={colorTitleUser}>User</Title>
             <Wrap>
               <Wrapper>
                 <UserFild
@@ -156,10 +164,12 @@ const UserForm = () => {
                   errors={errors.name}
                   values={values.name}
                 />
-                <Label >
+                <Label colorTitle={colorTitle}>
                     Birthday
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DatePickerStyled 
+                      color={colorInput}
+                        borderColorInput={borderColorInput}
                         name="birthday"
                         type="date"
                         slotProps={{

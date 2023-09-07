@@ -29,10 +29,14 @@ import {
 import { setIsChanged } from 'store/tasks/tasksSlice';
 
 const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
-  const theme = useSelector(state => state.theme);
-  const color =
-    theme === 'light' ? 'rgba(52, 52, 52, 0.80)' : 'rgba(250, 250, 250, 0.30)';
-  const textArea = theme === 'light' ? 'rgba(52, 52, 52, 0.80)' : '#fff';
+
+   const theme = useSelector(state => state.theme); 
+  const color = theme === 'light' ? 'rgba(52, 52, 52, 0.80)' : 'rgba(250, 250, 250, 0.30)';
+  const colorText = theme === 'light' ? '#343434 ' : '#FFFFFF'; 
+  const colorTextArea = theme === 'light' ? '#343434 ' : '#FFFFFF';
+  const backgroundColor = theme === 'light' ? '#F6F6F6 ' : '#171820';
+  const borderColor = theme === 'light' ? 'rgba(255, 255, 255, 0.15) ' : 'none';
+
   const dispatch = useDispatch();
 
   /// Validate Feedback form with YUP ///
@@ -130,7 +134,10 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
           onBlur={formik.handleBlur}
           placeholder="Enter text"
           hasError={!!formik.errors.title && !!formik.touched.title}
-          textArea={textArea}
+          backgroundColor={backgroundColor}
+          colorText={colorText}
+          colorTextArea={colorTextArea}
+          borderColor={borderColor}
         ></Textarea>
       </TitleWrapper>
       {formik.errors.title && formik.touched.title && (
@@ -171,7 +178,7 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
       )}
 
       <CheckBoxWrapper>
-        <CheckBoxLabel>
+        <CheckBoxLabel colorText={colorText}>
           <LowInput
             type="radio"
             name="priority"
@@ -181,7 +188,7 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
           />
           <span>Low</span>
         </CheckBoxLabel>
-        <CheckBoxLabel>
+        <CheckBoxLabel colorText={colorText}>
           <MediumInput
             type="radio"
             name="priority"
@@ -191,7 +198,7 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
           />
           <span>Medium</span>
         </CheckBoxLabel>
-        <CheckBoxLabel>
+        <CheckBoxLabel colorText={colorText}>
           <HighInput
             type="radio"
             name="priority"

@@ -15,7 +15,7 @@ const NameLabel = styled.label`
   font-size: 12px;
   font-weight: 500;
   line-height: 1.17;
-  color: rgba(52, 52, 52, 0.8);
+  color: ${props => props.color};
 `;
 
 const InputStars = styled.input`
@@ -32,22 +32,27 @@ const FeedbackWrapper = styled.div`
 
 const InputFeedback = styled.textarea`
   resize: none;
-  background-color: #f6f6f6;
+  background-color: ${props => props.backgroundColor};
   padding-top: 12px;
   padding-bottom: 12px;
   padding-left: 14px;
   padding-right: 14px;
-  border: ${props => (props.hasError ? '1px solid #EA3D65' : 'none')};
+  border: ${props =>
+    props.hasError
+      ? '1px solid #EA3D65'
+      : props.borderColor
+      ? `1px solid ${props.borderColor}`
+      : 'none'};
   border-radius: 8px;
   width: 100%;
-  color: #343434;
+  color: ${props => props.colorTextArea};
   font-family: Inter;
   font-size: 14px;
   line-height: 1.29;
   font-weight: 600;
 
   ::placeholder {
-    color: #343434;
+    color: color: ${props => props.colorText};
     font-size: 14px;
     line-height: 1.29;
     font-weight: 600;

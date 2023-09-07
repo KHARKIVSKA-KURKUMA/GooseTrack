@@ -22,7 +22,7 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
   font-family: 'Inter';
   font-size: 14px;
   line-height: 1.3;
-  /* outline: none; */
+  outline: none;
   border-radius: 8px;
   &:hover 
   &:focus {
@@ -35,9 +35,13 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
     line-height: 1.29;
     height: 18px;
     font-weight: 600;
-    color: #111111;
+    color: ${props=>props.color};
+   
   }
   .MuiOutlinedInput-root {
+    /* outline: none; */
+    border: 1px solid ${props=>props.borderColorInput};
+
     .MuiOutlinedInput-notchedOutline {
       border: 1px solid rgba(17, 17, 17, 0.15);
     }
@@ -56,7 +60,7 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
 
   & div input::placeholder {
     font-size: 14px;
-    color: #111111;
+    color: ${props=>props.color};
     opacity: 1;
     outline: none;
     @media (min-width: 768px) {
@@ -85,6 +89,12 @@ export const DatePickerStyled = styled(DatePickerCalendar)`
       height: 20px;
       font-weight: 600;
     }
+  }
+  & .MuiButtonBase-root {
+    // margin-left: 18px;
+    padding: 4px;
+    stroke: #ffffff;
+    margin: 0px 12px;
   }
 `;
 
@@ -296,7 +306,7 @@ export const Label = styled.label`
   font-weight: 400;
   font-size: 14px;
   line-height: calc((14 / 12) * 100%);
-  color: #111111;
+  color: ${props=>props.colorTitle};
 
   @media (min-width: 768px) {
     width: 354px;
@@ -377,7 +387,7 @@ export const Title = styled.h2`
   font-size: 14px;
   line-height: calc((18 / 14) * 100%);
   /* transition: ; */
-  color: #343434;
+  color: ${props=>props.colorTitleUser};
 
 
   @media (min-width: 768px) {
@@ -393,7 +403,8 @@ export const Name = styled.h2`
   font-size: 18px;
   line-height: calc((18 / 14) * 100%);
   /* transition: ; */
-  color: #343434;
+  color: ${props=>props.colorTitleUserName};
+  
 
   @media (min-width: 768px) {
     font-size: 18px;
@@ -458,8 +469,8 @@ export const WrapImg = styled.div`
   width: 72px;
   height: 72px;
   margin: 0 auto;
-  border: 1px solid  #3E85F3;
-  border-radius: 50%;
+  border: 2px solid  #3E85F3;
+  border-radius: 124px;
   overflow: hidden;
 
   @media (min-width: 768px) {
@@ -491,11 +502,12 @@ export const Sticker = styled.label`
 export const Input = styled(Field)`
   height: 42px;
   width:100%;
+  color: ${props=>props.color};
   border-radius: 8px;
   border-width: 1px;
   padding: 0 14px;
   background-color: transparent;
-  border: 1px solid rgba(17, 17, 17, 0.15);
+  border: 1px solid ${props=>props.border};
   font-family: 'Inter';
   font-weight: 600;
   font-size: 16px;
@@ -505,7 +517,7 @@ export const Input = styled(Field)`
   };
 
   &::placeholder {
-    color: rgba(17, 17, 17, 0.15);
+    color: ${props=>props.color};
 
   }
 
@@ -521,7 +533,8 @@ export const AccountForm = styled(Form)`
   padding-right: 165px;
   padding-top: 60px;
   padding-left: 60px;
-  background-color: #FFFFFF;
+
+  background-color: ${props=> props.background};
   border-radius: 16px;
   height: 100%;
 
