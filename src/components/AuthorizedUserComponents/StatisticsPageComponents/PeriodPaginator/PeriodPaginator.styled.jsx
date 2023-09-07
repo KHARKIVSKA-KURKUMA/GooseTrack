@@ -44,20 +44,21 @@ const PeriodPaginatorContainer = styled.div`
     }
   }
 
-  .react-datepicker__day-name,
+  /* .react-datepicker__day-name,
   .react-datepicker__day,
   .react-datepicker__time-name {
     color: var(--primary-background-color);
     font-family: 'Inter';
     width: 1.7rem;
     line-height: 1.2rem;
-    font-size: 18 px;
+    font-size: 18px;
     margin: 10px 10px;
-  }
+  } */
 
   .react-datepicker__wrapper {
     position: relative;
   }
+
   .react-datepicker {
     position: absolute;
     left: 50%;
@@ -81,15 +82,25 @@ const PeriodPaginatorContainer = styled.div`
     position: relative;
     background-color: var(--title-color);
   }
+
   .react-datepicker__day-names {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1px 19px;
+    font-size: 14px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    margin-top: 12px;
+    margin-bottom: 8px;
+    font-family: 'Inter';
     text-transform: uppercase;
-    text-align: center;
   }
+
+  .react-datepicker__day-name {
+    color: white;
+    font-weight: 600;
+    margin: 8px;
+  }
+
   .react-datepicker__header:not(.react-datepicker__header--has-time-select) {
     border-bottom: 0px;
     padding: 0;
@@ -109,17 +120,7 @@ const PeriodPaginatorContainer = styled.div`
     text-align: center;
     color: var(--primary-background-color);
   }
-  .react-datepicker__day-name {
-    margin: 0;
-    padding: 12px 19px;
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 18px;
-    text-align: center;
-    color: var(--primary-background-color);
-  }
+
   .react-datepicker__navigation {
     margin-top: 15px;
     color: var(--primary-background-color);
@@ -215,9 +216,6 @@ const PeriodPaginatorContainer = styled.div`
 
   /* ____  */
 `;
-
-
-
 
 const ButtonsContainer = styled.div`
   display: flex;
@@ -336,4 +334,12 @@ const ListItem = styled.li`
   }
 `;
 
-export { PeriodPaginatorContainer, ButtonsContainer, CalendarButton, SwitcherContainer, SwitcherPart, List, ListItem };
+export {
+  PeriodPaginatorContainer,
+  ButtonsContainer,
+  CalendarButton,
+  SwitcherContainer,
+  SwitcherPart,
+  List,
+  ListItem,
+};
