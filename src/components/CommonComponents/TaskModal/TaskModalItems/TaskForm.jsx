@@ -65,7 +65,7 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
     date: yup.date().required(),
     category: yup
       .string()
-      .oneOf(['to-do', 'in-progress', 'done'], 'Invalid priority value')
+      .oneOf(['To do', 'In progress', 'Done'], 'Invalid priority value')
       .required('Select a category'),
   });
 
@@ -92,20 +92,9 @@ const TaskForm = ({ toggleModal, category, taskToEdit, date }) => {
           editTask({ ...values, id: taskToEdit.id })
         );
         toast.success('Task updated successfully');
-
-        // if (response.status >= 200 && response.status < 300) {
-        //   toast.success('Task updated successfully');
-        // } else {
-        //   toast.error('Oops, something went wrong...');
-        // }
       } else {
   await dispatch(addTask(values));
 toast.success('Task created successfully');
-        // if (response.status >= 200 && response.status < 300) {
-        //   toast.success('Task created successfully');
-        // } else {
-        //   toast.error('Oops, something went wrong...');
-        // }
       }
       action.resetForm();
       toggleModal();
