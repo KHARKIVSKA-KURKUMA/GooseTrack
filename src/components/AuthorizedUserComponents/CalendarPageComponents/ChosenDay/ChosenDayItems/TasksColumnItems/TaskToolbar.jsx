@@ -1,12 +1,3 @@
-// import { ReactComponent as Arrow } from '../../../../../../img/taskToolbarArrow.svg';
-// import { ReactComponent as Trash } from '../../../../../../img/taskToolbarTrash.svg';
-// import { ReactComponent as Pen } from '../../../../../../img/taskToolbarPen.svg';
-// import {
-//   TaskToolbarContainer,
-//   TaskToolbarBtn,
-//   StyledArrow,
-//   MenuStyled,
-// } from './TaskColumnItems.styled';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -31,8 +22,8 @@ const TaskToolbar = ({ task }) => {
   const theme = useSelector(state => state.theme);
   const strokeToolBar = theme === 'light' ? '#111111' : '#FFFFFF';
   const [anchorEl, setAnchorEl] = useState(null);
-
-  /* -------------------------------------------------------------------------- */
+  const dispatch = useDispatch();
+  /* -----------------------------Modal Window Logic--------------------------------------------- */
 
   const [showModal, setShowModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,7 +44,6 @@ const TaskToolbar = ({ task }) => {
     }
   }, [showModal]);
 
-  const dispatch = useDispatch();
   /* ---------------------------------Move Task------------------------------------------- */
   const groups = ['to-do', 'in-progress', 'done'];
   const currentGroup = task.category;

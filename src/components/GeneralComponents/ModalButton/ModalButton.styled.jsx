@@ -13,6 +13,7 @@ const Button = styled.button`
   font-weight: 600;
   font-size: 12px;
   line-height: 1.17;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   color: ${props => props.textColor || '#343434'};
   background-color: ${props => props.backgroundColor || '#E5EDFA'};
   :not(:last-child) {
@@ -23,6 +24,10 @@ const Button = styled.button`
     padding-bottom: 15px;
     font-size: 14px;
     line-height: 1.29;
+  }
+ &:hover,
+  &:focus {
+    transform: scale(1.05);
   }
 `;
 

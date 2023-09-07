@@ -26,9 +26,6 @@ const AddTaskButton = styled.button`
     background-color: ${props => (props.disabled ? '#cccccc' : '#2b78ef')};
     color: ${props => (props.disabled ? '#111111' : '#ffffff')};
   }
-  @media screen and (min-width: 768px) {
-    /* margin-top: 32px; */
-  }
 `;
 
 export { AddTaskButton };

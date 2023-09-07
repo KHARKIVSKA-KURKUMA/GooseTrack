@@ -97,7 +97,6 @@ const FeedbackForm = ({ toggleModal }) => {
           //   toast.error('Oops, something went wrong...');
           // }
         } else {
-          console.log('added review');
           await dispatch(addReview(values));
           toast.success('Review created successfully');
           // if (response.status >= 200 && response.status < 300) {
@@ -129,6 +128,7 @@ const FeedbackForm = ({ toggleModal }) => {
                 value={ratingValue}
                 onClick={() => formik.setFieldValue('rating', ratingValue)}
                 onChange={formik.handleChange}
+                disabled={!isEditing && reviews.length > 0}
               />
               <FaStar
                 size={24}
@@ -176,10 +176,12 @@ const FeedbackForm = ({ toggleModal }) => {
           onBlur={formik.handleBlur}
           placeholder="Enter text"
           hasError={!!formik.errors.text && !!formik.touched.text}
+          disabled={!isEditing && reviews.length > 0}
           colorText={colorText}
           colorTextArea={colorTextArea}
           backgroundColor={backgroundColor}
           borderColor={borderColor}
+
         />
         {formik.errors.text && formik.touched.text && (
           <ErrorsMessage>{formik.errors.text}</ErrorsMessage>
