@@ -23,56 +23,50 @@ import {
   Label,
   DatePickerStyled,
   PopperDateStyles,
-
 } from './UserForm.styled';
 import getCurrentDate from 'helpers/currentDay';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
-
- import Loader from '../../../Loader/Loader';
-import { selectorToken } from 'store/auth/authSelectors';
-
+import Loader from '../../../Loader/Loader';
 const currentDate = getCurrentDate();
 
 const UserForm = () => {
   const [imagePreview, setImagePreview] = useState(null);
-  const [imageUpload, setImageUpload]= useState(null)
+  const [imageUpload, setImageUpload] = useState(null);
   const [isFormChanged, setIsFormChanged] = useState(false);
   const isFulfilled = useSelector(state => state.user.isFulfilled);
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
-  const {accessToken} = useSelector(selectorToken);
 
- const [isLoading, setIsLoading] = useState(true);
- const theme = useSelector(state=>state.theme)
- const backgroundUserForm = theme === 'light' ? '#FFF' : '#21222C';
- const colorTitleUserName = theme === 'light' ? '#343434' : '#FFF';
- const colorTitleUser = theme === 'light' ? '#343434' : 'rgba(250, 250, 250, 0.30)';
- const colorTitle = theme === 'light' ? '#111' : 'rgba(250, 250, 250, 0.30)';
- const colorInput = theme === 'light' ? '#111111' : '#FFFFFF';
-const borderColorInput = theme === 'light' ? 'rgba(17, 17, 17, 0.15)' : 'rgba(255, 255, 255, 0.15)';
+  const [isLoading, setIsLoading] = useState(true);
+  const theme = useSelector(state => state.theme);
+  const backgroundUserForm = theme === 'light' ? '#FFF' : '#21222C';
+  const colorTitleUserName = theme === 'light' ? '#343434' : '#FFF';
+  const colorTitleUser =
+    theme === 'light' ? '#343434' : 'rgba(250, 250, 250, 0.30)';
+  const colorTitle = theme === 'light' ? '#111' : 'rgba(250, 250, 250, 0.30)';
+  const colorInput = theme === 'light' ? '#111111' : '#FFFFFF';
+  const borderColorInput =
+    theme === 'light' ? 'rgba(17, 17, 17, 0.15)' : 'rgba(255, 255, 255, 0.15)';
 
+  useEffect(() => {
+    dispatch(fetchCurrentUser())
+      .then(() => {
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error('Помилка завантаження даних:', error);
+      });
+  }, [dispatch]);
 
- useEffect(() => {
-   
-   dispatch(fetchCurrentUser())
-     .then(() => {
-       setIsLoading(false);
-     })
-     .catch(error => {
-       console.error('Помилка завантаження даних:', error);
-     });
- }, [dispatch, accessToken]);
-
- if (isLoading) {
-   
-   return (
-     <LoaderContainer>
-       <Loader />
-     </LoaderContainer>
-   );
- }
+  if (isLoading) {
+    return (
+      <LoaderContainer>
+        <Loader />
+      </LoaderContainer>
+    );
+  }
 
   const handleImageChange = async e => {
     const selectedFile = e.target.files[0];
@@ -81,7 +75,7 @@ const borderColorInput = theme === 'light' ? 'rgba(17, 17, 17, 0.15)' : 'rgba(25
     }
     const imageUrl = URL.createObjectURL(selectedFile);
     setImagePreview(imageUrl);
-    setImageUpload(selectedFile)
+    setImageUpload(selectedFile);
     setIsFormChanged(true);
   };
 
@@ -95,13 +89,14 @@ const borderColorInput = theme === 'light' ? 'rgba(17, 17, 17, 0.15)' : 'rgba(25
     }
     if (values.skype) {
       formData.append('skype', values.skype);
-    } if(values.birthday){
-      formData.append('birthday', dayjs(values.birthday).format('YYYY/MM/DD'));  
     }
-   if(imageUpload){
-    formData.append('avatar', imageUpload);
-   }
-   
+    if (values.birthday) {
+      formData.append('birthday', dayjs(values.birthday).format('YYYY/MM/DD'));
+    }
+    if (imageUpload) {
+      formData.append('avatar', imageUpload);
+    }
+
     try {
       await dispatch(updateUser(formData));
       // await dispatch(updateUser(values));
@@ -127,7 +122,7 @@ const borderColorInput = theme === 'light' ? 'rgba(17, 17, 17, 0.15)' : 'rgba(25
         validationSchema={userSchema}
         onSubmit={handleSubmit}
       >
-        {({ values,setFieldValue, dirty, touched, errors }) => (
+        {({ values, setFieldValue, dirty, touched, errors }) => (
           <AccountForm background={backgroundUserForm}>
             <Box
               position="relative"
@@ -167,33 +162,32 @@ const borderColorInput = theme === 'light' ? 'rgba(17, 17, 17, 0.15)' : 'rgba(25
                   values={values.name}
                 />
                 <Label colorTitle={colorTitle}>
-                    Birthday
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DatePickerStyled 
+                  Birthday
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePickerStyled
                       color={colorInput}
-                        borderColorInput={borderColorInput}
-                        name="birthday"
-                        type="date"
-                        slotProps={{
-                          popper: {
-                            sx: PopperDateStyles,
-                          },
-                          textField: {
-                            placeholder: birthday ||currentDate
-                          },
-                        }}
-                        views={['year', 'month', 'day']}
-                        format="YYYY/MM/DD"
-                        closeOnSelect={true}
-                        disableFuture={true}
-                        onChange={date => {
-                         
-                          setFieldValue('birthday', date);
-                          setIsFormChanged(true);
-                        }}
-                      />
-                    </LocalizationProvider>
-                  </Label>
+                      borderColorInput={borderColorInput}
+                      name="birthday"
+                      type="date"
+                      slotProps={{
+                        popper: {
+                          sx: PopperDateStyles,
+                        },
+                        textField: {
+                          placeholder: birthday || currentDate,
+                        },
+                      }}
+                      views={['year', 'month', 'day']}
+                      format="YYYY/MM/DD"
+                      closeOnSelect={true}
+                      disableFuture={true}
+                      onChange={date => {
+                        setFieldValue('birthday', date);
+                        setIsFormChanged(true);
+                      }}
+                    />
+                  </LocalizationProvider>
+                </Label>
 
                 <UserFild
                   title="Email"
