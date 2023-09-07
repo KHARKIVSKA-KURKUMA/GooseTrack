@@ -476,6 +476,7 @@ export const CorrectIcon = styled(IconCorrect)`
 `;
 
 export const WrapImg = styled.div`
+
   width: 72px;
   height: 72px;
   margin: 0 auto;
@@ -538,23 +539,37 @@ export const Input = styled(Field)`
 `;
 
 export const AccountForm = styled(Form)`
-  margin: 32px;
-  padding-left: 165px;
-  padding-right: 165px;
-  padding-top: 60px;
-  padding-left: 60px;
+  /* margin: 32px; */
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 40px;
+  margin-top:54px;
+  padding-right: 18px;
+  padding-left: 18px;
+  padding-bottom: 40px;
 
   background-color: ${props=> props.background};
   border-radius: 16px;
   height: 100%;
 
-  @media (min-width: 960px) {
+  @media (min-width: 768px) {
+    padding-top: 40px;
     padding-left: 175px;
     padding-right: 175px;
+    margin-left: 32px;
+    margin-right: 32px;
+ 
     
   }
-   @media (min-width: 320px) {
-    padding: 18px 18px;
+   @media (min-width: 1440px) {
+    /* padding: 18px 18px; */
+     padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 164px;
+  padding-right: 164px;
+  margin-right: 32px;
+  margin-left: 332px;
+
     
   }
 `;
