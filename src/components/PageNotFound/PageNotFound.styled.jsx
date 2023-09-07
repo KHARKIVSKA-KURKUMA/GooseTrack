@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -61,10 +62,21 @@ const Text = styled.span`
   }
 `;
 
-const Button = styled.button`
+const ButtonContainer = styled.div`
   margin-top: 25px;
-  width: 153px;
-  height: 46px;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-top: 45px;
+  }
+`;
+
+const Button = styled(Link)`
+  padding: 20px 45px;
   border: 0;
   border-radius: 16px;
   color: #fff;
@@ -80,8 +92,6 @@ const Button = styled.button`
   }
 
   @media screen and (min-width: 768px) {
-    width: 211px;
-    height: 56px;
     font-size: 18px;
   }
 `;
@@ -92,4 +102,4 @@ const Picture = styled.picture`
   }
 `;
 
-export { Container, LogoContainer, NumberFirst, NumberSecond, Text, Button, Picture };
+export { Container, LogoContainer, NumberFirst, NumberSecond, Text, ButtonContainer, Button, Picture };

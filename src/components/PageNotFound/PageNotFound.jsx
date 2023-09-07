@@ -1,4 +1,4 @@
-import { Container, LogoContainer, NumberFirst, NumberSecond, Text, Button, Picture } from './PageNotFound.styled'
+import { Container, LogoContainer, NumberFirst, NumberSecond, Text, ButtonContainer, Button, Picture } from './PageNotFound.styled'
 
 import logoMobile from '../../img/mobile/gooseError1x.png';
 import logoMobile2x from '../../img/mobile/gooseError2x.png';
@@ -36,7 +36,9 @@ const PageNotFound = () => {
         We’re sorry, the page you requested could not be found. Please go back
         to the homepage.
       </Text>
-      <Button>Back to home</Button>
+      <ButtonContainer>
+        <Button to={`/calendar`}>Back to home</Button>
+      </ButtonContainer>
     </Container>
   );
 };
