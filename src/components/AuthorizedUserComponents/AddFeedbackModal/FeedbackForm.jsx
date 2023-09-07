@@ -1,9 +1,8 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { FaStar } from 'react-icons/fa';
-import { BiPencil } from 'react-icons/bi';
-import { RiDeleteBinLine } from 'react-icons/ri';
-import { toast } from 'react-toastify';
+
+
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -29,6 +28,8 @@ import {
   CircleIcon,
   TitleWrapper,
   IconButton,
+  StyledBiPencil,
+  StyledRiDeleteBinLine,
 } from './FeedbackForm.styled';
 
 const FeedbackForm = ({ toggleModal }) => {
@@ -75,7 +76,6 @@ const FeedbackForm = ({ toggleModal }) => {
 
   const handleCloseYes = actions => {
     dispatch(deleteReview({ _id: reviews[0]._id }));
-    toast.info('Review deleted');
     setOpen(false);
     toggleModal();
   };
@@ -85,31 +85,13 @@ const FeedbackForm = ({ toggleModal }) => {
     initialValues,
     validationSchema: feedbackValidationSchema,
 
-    onSubmit: async values => {
-      try {
-        if (isEditing && reviews.length > 0) {
-          await dispatch(editReview({ ...values, _id: reviews[0]._id }));
-          toast.success('Review updated successfully');
-          // if (response.status >= 200 && response.status < 300) {
-          //   toast.success('Review updated successfully');
-          // }
-          // else {
-          //   toast.error('Oops, something went wrong...');
-          // }
-        } else {
-          await dispatch(addReview(values));
-          toast.success('Review created successfully');
-          // if (response.status >= 200 && response.status < 300) {
-          //   toast.success('Review created successfully');
-          // }
-          // else {
-          //   toast.error('Oops, something went wrong...');
-          // }
-        }
-        toggleModal();
-      } catch (error) {
-        toast.error('Oops, something went wrong...');
+    onSubmit: values => {
+      if (isEditing && reviews.length > 0) {
+        dispatch(editReview({ ...values, _id: reviews[0]._id }));
+      } else {
+        dispatch(addReview(values));
       }
+      toggleModal();
     },
   });
 
@@ -155,12 +137,16 @@ const FeedbackForm = ({ toggleModal }) => {
             <IconWrapper>
               <IconButton type="button" onClick={() => setIsEditing(true)}>
                 <CircleIcon backgroundColor="#E3F3FF">
-                  <BiPencil size={20} color={'#3E85F3'} />
+                  <StyledBiPencil
+                    size={20}
+                   
+                     
+                                  />
                 </CircleIcon>
               </IconButton>
               <IconButton type="button" onClick={handleClickOpen}>
                 <CircleIcon backgroundColor="rgba(234, 61, 101, 0.2)">
-                  <RiDeleteBinLine size={20} color={'#EA3D65'} />
+                  <StyledRiDeleteBinLine size={20}  />
                 </CircleIcon>
               </IconButton>
             </IconWrapper>
@@ -181,7 +167,6 @@ const FeedbackForm = ({ toggleModal }) => {
           colorTextArea={colorTextArea}
           backgroundColor={backgroundColor}
           borderColor={borderColor}
-
         />
         {formik.errors.text && formik.touched.text && (
           <ErrorsMessage>{formik.errors.text}</ErrorsMessage>

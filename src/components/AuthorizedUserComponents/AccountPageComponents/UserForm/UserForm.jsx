@@ -31,6 +31,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 
  import Loader from '../../../Loader/Loader';
+import { selectorToken } from 'store/auth/authSelectors';
 
 const currentDate = getCurrentDate();
 
@@ -41,6 +42,7 @@ const UserForm = () => {
   const isFulfilled = useSelector(state => state.user.isFulfilled);
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
+  const {accessToken} = useSelector(selectorToken);
 
  const [isLoading, setIsLoading] = useState(true);
  const theme = useSelector(state=>state.theme)
@@ -61,7 +63,7 @@ const borderColorInput = theme === 'light' ? 'rgba(17, 17, 17, 0.15)' : 'rgba(25
      .catch(error => {
        console.error('Помилка завантаження даних:', error);
      });
- }, [dispatch]);
+ }, [dispatch, accessToken]);
 
  if (isLoading) {
    

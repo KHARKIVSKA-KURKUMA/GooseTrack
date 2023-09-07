@@ -3,16 +3,16 @@ import styled from 'styled-components';
 const CalendarTableWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 25px;
   margin-top: 24px;
   margin-bottom: 14px;
   margin-left: auto;
   margin-right: auto;
-
-  width: 335px;
+  min-width: 335px;
+  width: 100%;
   height: 74px;
+  padding: 0 15px;
   border-collapse: collapse;
   border-spacing: 0;
   border: 1px solid rgb(220, 227, 229, 50%);
@@ -20,16 +20,17 @@ const CalendarTableWrapper = styled.div`
   background: ${props => props.backgroundColor};
 
   @media screen and (min-width: 768px) {
-    width: 704px;
-    gap: 65px;
+    min-width: 704px;
+    width: 100%;
     margin-bottom: 16px;
+    padding: 0 35px;
   }
 
   @media screen and (min-width: 1440px) {
     margin-top: 32px;
-
-    width: 1087px;
-    gap: 125px;
+    min-width: 1087px;
+    width: 100%;
+    padding: 0 60px;
   }
 `;
 

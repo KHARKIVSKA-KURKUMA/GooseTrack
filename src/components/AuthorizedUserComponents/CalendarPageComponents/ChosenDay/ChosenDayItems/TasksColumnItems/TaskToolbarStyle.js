@@ -36,7 +36,7 @@ const IconBtnArrow = styled(Arrow)`
   cursor: pointer;
   width: 16px;
   height: 16px;
-  stroke: ${props => props.strokeToolBar};
+  stroke: ${props => props.stroketoolbar};
   transition: stroke 250ms linear;
   margin-right: 10px;
   &:hover {
@@ -48,7 +48,7 @@ const IconBtnPencil = styled(Pencil)`
   cursor: pointer;
   width: 16px;
   height: 16px;
-  stroke: ${props => props.strokeToolBar};
+  stroke: ${props => props.stroketoolbar};
   transition: stroke 250ms linear;
   margin-right: 10px;
   &:hover {
@@ -60,7 +60,7 @@ const IconBtnTrash = styled(Trash)`
   cursor: pointer;
   width: 16px;
   height: 16px;
-  stroke: ${props => props.strokeToolBar};
+  stroke: ${props => props.stroketoolbar};
   transition: stroke 250ms linear;
   &:hover {
     stroke: #2b78ef;

@@ -146,7 +146,7 @@ const CalendarTable = props => {
               }-${day < 10 ? '0' + day : day}`}
             >
               <GridContainer>
-                <DateNumber isCurent={isCurrent}>{day}</DateNumber>
+                <DateNumber isCurrent={isCurrent}>{day}</DateNumber>
                 {renderNotes(day) && (
                   <NoteContainer>{renderNotes(day)}</NoteContainer>
                 )}
