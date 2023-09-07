@@ -13,7 +13,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import { useState, useEffect } from 'react';
-import { deleteTask } from 'store/tasks/tasksThunks';
+import { deleteTask, editTask } from 'store/tasks/tasksThunks';
 import TaskModal from 'components/CommonComponents/TaskModal/TaskModal';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -31,7 +31,6 @@ const TaskToolbar = ({ task }) => {
   const theme = useSelector(state => state.theme);
   const strokeToolBar = theme === 'light' ? '#111111' : '#FFFFFF';
   const [anchorEl, setAnchorEl] = useState(null);
-  //  const [isModalOpen, setIsModalOpen] = useState(false);
 
   /* -------------------------------------------------------------------------- */
 
@@ -55,7 +54,7 @@ const TaskToolbar = ({ task }) => {
   }, [showModal]);
 
   const dispatch = useDispatch();
-  /* -------------------------------------------------------------------------- */
+  /* ---------------------------------Move Task------------------------------------------- */
   const groups = ['to-do', 'in-progress', 'done'];
   const currentGroup = task.category;
 
@@ -69,6 +68,23 @@ const TaskToolbar = ({ task }) => {
 
   const availableGroups = groups.filter(group => group !== currentGroup);
 
+  const handleMoveTask = availableGroup => {
+    console.log(availableGroup);
+
+    dispatch(
+      editTask({
+        id: task.id,
+        title: task.description,
+        start: task.start,
+        end: task.end,
+        priority: task.priority,
+        date: task.date,
+        category: availableGroup,
+      })
+    );
+    dispatch(setIsChanged('true'));
+    handleClose();
+  };
   /* -------------------------------Delete Task--------------------------------------- */
   const [openModal, setOpenModal] = useState(false);
 
@@ -81,7 +97,6 @@ const TaskToolbar = ({ task }) => {
   };
 
   const handleDeleteTask = () => {
-    console.log('click delete');
     dispatch(deleteTask(task.id));
     dispatch(setIsChanged('true'));
     // console.log('response.status :>> ', response);
@@ -94,10 +109,8 @@ const TaskToolbar = ({ task }) => {
 
   return (
     <TaskToolbarContainer>
-      {/* <TaskToolbarBtn onClick={handleClick}>
-        <Arrow />
-      </TaskToolbarBtn> */}
       <IconBtnArrow onClick={handleClick} strokeToolBar={strokeToolBar}></IconBtnArrow>
+
 
       <MenuStyled
         id="basic-menu"
@@ -109,24 +122,25 @@ const TaskToolbar = ({ task }) => {
           id: 'moveList',
         }}
       >
-        {availableGroups.map(group => (
-          <MenuItem id={'moveItem'} key={group} onClick={handleClose}>
-            {group} <StyledArrow />
-          </MenuItem>
-        ))}
+        <MenuItem
+          id={'moveItem'}
+          key={availableGroups[0]}
+          onClick={() => handleMoveTask(availableGroups[0])}
+        >
+          {availableGroups[0]} <StyledArrow />
+        </MenuItem>
+        <MenuItem
+          id={'moveItem'}
+          key={availableGroups[1]}
+          onClick={() => handleMoveTask(availableGroups[1])}
+        >
+          {availableGroups[1]} <StyledArrow />
+        </MenuItem>
       </MenuStyled>
 
-      {/* <TaskToolbarBtn onClick={toggleModal}>
-        <Pen />
-      </TaskToolbarBtn> */}
-
       <IconBtnPencil onClick={toggleModal} strokeToolBar={strokeToolBar}></IconBtnPencil>
-
-      {/* <TaskToolbarBtn onClick={handleDeleteTask}>
-        <Trash />
-      </TaskToolbarBtn> */}
-
       <IconBtnTrash onClick={handleClickOpen} strokeToolBar={strokeToolBar}></IconBtnTrash>
+
       <Dialog
         open={openModal}
         onClose={handleClickClose}

@@ -6,6 +6,13 @@ const CloseModalButton = styled.button`
   top: 15px;
   border: none;
   background-color: transparent;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
 `;
 
 export { CloseModalButton };

@@ -3,16 +3,17 @@ import { NavLink } from 'react-router-dom';
 import { ReactComponent as Close } from '../../../../src/img/close.svg';
 
 export const SidebarContainer = styled.div`
-  display: ${({ showBurgerMenu }) => (showBurgerMenu ? 'flex' : 'none')};
+  display: 'flex';
   flex-direction: column;
   width: 225px;
   background: ${({ theme }) => theme.sidebarBackground};
   height: 100vh;
   top: 0;
-  left: 0;
+  left: ${({ showBurgerMenu }) => (showBurgerMenu ? '0' : '-100%')};
   padding: 24px 20px;
   position: fixed;
   z-index: 9;
+  transition: left 0.3s ease-in-out 0s;
   @media (min-width: 768px) {
     padding: 24px 32px;
     width: 289px;
@@ -24,6 +25,7 @@ export const SidebarContainer = styled.div`
 export const CloseIcon = styled(Close)`
   width: 24px;
   height: 24px;
+  cursor:pointer;
   @media (min-width: 768px) {
     width: 34px;
     height: 34px;
@@ -144,6 +146,14 @@ export const LogoutBtn = styled.button`
   border-radius: 15px;
   position: absolute;
   bottom: 24px;
+ cursor: pointer;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    background-color: var(--hover-color);
+  }
+
   @media (min-width: 768px) {
   }
 `;

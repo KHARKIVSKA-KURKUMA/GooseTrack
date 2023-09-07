@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 
 const PeriodPaginatorContainer = styled.div`
-  /* .react-datepicker {
-    background-color: var(--title-color);
-    font-family: 'Inter';
-    padding: 15px, 18px;
-    border-radius: 16px;
-  } */
-
   .react-datepicker__input-container {
     padding: 8px, 12px, 8px, 12px;
   }
@@ -49,109 +42,6 @@ const PeriodPaginatorContainer = styled.div`
     margin: 10px 10px;
   }
 
-  /* .react-datepicker__header {
-    background-color: var(--title-color);
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-    border-bottom: 1px solid #ffffff33;
-  } */
-
-  /* .react-datepicker__year-read-view--down-arrow,
-  .react-datepicker__month-read-view--down-arrow,
-  .react-datepicker__month-year-read-view--down-arrow,
-  .react-datepicker__navigation-icon::before {
-    border-color: #ffffff;
-    border-style: solid;
-    border-width: 3px 3px 0 0;
-    content: '';
-    display: block;
-    height: 9px;
-    position: absolute;
-    top: 6px;
-    width: 9px;
-  }
-
-  .react-datepicker-popper[data-placement^='top']
-    .react-datepicker__triangle::before,
-  .react-datepicker-popper[data-placement^='bottom']
-    .react-datepicker__triangle::before,
-  .react-datepicker-popper[data-placement^='top']
-    .react-datepicker__triangle::after,
-  .react-datepicker-popper[data-placement^='bottom']
-    .react-datepicker__triangle::after {
-    border: 0;
-  }
-
-  .react-datepicker-popper[data-placement^='top']
-    .react-datepicker__triangle::before,
-  .react-datepicker-popper[data-placement^='bottom']
-    .react-datepicker__triangle::before {
-    border-bottom-color: transparent;
-    border: 0;
-    background-color: transparent;
-  }
-
-  .react-datepicker__current-month,
-  .react-datepicker-time__header,
-  .react-datepicker-year-header {
-    margin-top: 0;
-    margin-bottom: 18px;
-    color: var(--primary-background-color);
-    font-weight: 600;
-    font-family: Inter;
-    font-size: 16px;
-  }
-
-  .react-datepicker__day-name,
-  .react-datepicker__day,
-  .react-datepicker__time-name {
-    color: var(--primary-background-color);
-    font-family: 'Inter';
-    width: 1.7rem;
-    line-height: 1.2rem;
-    font-size: 18 px;
-    margin: 10px 10px;
-  }
-  .react-datepicker__day:hover,
-  .react-datepicker__month-text:hover,
-  .react-datepicker__quarter-text:hover,
-  .react-datepicker__year-text:hover {
-    border-radius: 24px;
-    width: 24px;
-    height: 24px;
-    background-color: var(--low-background-color);
-    color: var(--primary-background-color);
-    text-align: center;
-  } */
-
-  /* .react-datepicker__day--highlighted,
-  .react-datepicker__month-text--highlighted,
-  .react-datepicker__quarter-text--highlighted,
-  .react-datepicker__year-text--highlighted {
-    border-radius: 0;
-    background-color: white;
-    color: var(--title-color);
-  } */
-
-  /* .react-datepicker__day--selected,
-  .react-datepicker__day--in-selecting-range,
-  .react-datepicker__day--in-range,
-  .react-datepicker__month-text--selected,
-  .react-datepicker__month-text--in-selecting-range,
-  .react-datepicker__month-text--in-range,
-  .react-datepicker__quarter-text--selected,
-  .react-datepicker__quarter-text--in-selecting-range,
-  .react-datepicker__quarter-text--in-range,
-  .react-datepicker__year-text--selected,
-  .react-datepicker__year-text--in-selecting-range,
-  .react-datepicker__year-text--in-range {
-    border-radius: 24px;
-    width: 24px;
-    height: 24px;
-    background-color: #fff;
-    color: var(--title-color);
-  } */
-
   .react-datepicker__wrapper {
     position: relative;
   }
@@ -169,11 +59,11 @@ const PeriodPaginatorContainer = styled.div`
     background-color: var(--title-color);
     font-family: Inter;
     border-radius: 16px;
+    border: 0px;
   }
   .react-datepicker__month-container {
     float: inherit;
     box-sizing: border-box;
-    
   }
   .react-datepicker__header {
     position: relative;
@@ -242,7 +132,6 @@ const PeriodPaginatorContainer = styled.div`
   .react-datepicker__month-year-read-view--down-arrow,
   .react-datepicker__navigation-icon::before {
     border-color: var(--primary-background-color);
-    
   }
 
   .react-datepicker__week {
@@ -312,6 +201,8 @@ const PeriodPaginatorContainer = styled.div`
     visibility: hidden;
   }
 
+ 
+
   /* ____  */
 
   @media screen and (min-width: 768px) {
@@ -366,7 +257,6 @@ const SwitcherContainer = styled.div`
   display: flex;
   width: 72px;
   height: 34px;
-  padding: 5px;
   border: 1px solid rgb(220, 227, 229, 50%);
   border-radius: 8px;
   position: relative;
@@ -391,13 +281,34 @@ const SwitcherPart = styled.button`
   flex: 1;
   text-align: center;
   transition: transform 0.3s, color 0.3s;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
   color: ${props => (props.active ? 'initial' : '#DCE3E5')};
   cursor: pointer;
   position: relative;
-  border:none;
-//   border: 0;
-//   background-color: transparent;
+  border: none;
+  padding: 0;
 
+  &:hover {
+    color: var(--title-color);
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-top: 2px;
+  }
+`;
+
+const SwitcherPartRight = styled.button`
+  flex: 1;
+  text-align: center;
+  transition: transform 0.3s, color 0.3s;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  color: ${props => (props.active ? 'initial' : '#DCE3E5')};
+  cursor: pointer;
+  position: relative;
+  border: none;
+  padding: 0;
 
   &:hover {
     color: var(--title-color);
@@ -414,4 +325,5 @@ export {
   CalendarButton,
   SwitcherContainer,
   SwitcherPart,
+  SwitcherPartRight,
 };
