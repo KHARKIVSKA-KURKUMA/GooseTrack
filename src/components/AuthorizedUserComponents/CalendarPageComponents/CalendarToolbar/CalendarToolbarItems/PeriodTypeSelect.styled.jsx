@@ -53,7 +53,7 @@ export const Button = styled.div`
   text-align: center;
   &.active {
     color: var(--title-color);
-    background: ${props => props.active};
+    background: ${props => props.activeBackground};
   }
   &.month {
     border-radius: 8px 0 0 8px;
