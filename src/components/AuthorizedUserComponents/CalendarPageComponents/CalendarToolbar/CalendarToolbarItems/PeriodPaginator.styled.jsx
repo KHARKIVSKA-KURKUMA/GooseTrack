@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 
 const PeriodPaginatorContainer = styled.div`
-  /* .react-datepicker {
-    background-color: var(--title-color);
-    font-family: 'Inter';
-    padding: 15px, 18px;
-    border-radius: 16px;
-  } */
-
   .react-datepicker__input-container {
     padding: 8px, 12px, 8px, 12px;
   }
@@ -49,8 +42,6 @@ const PeriodPaginatorContainer = styled.div`
     margin: 10px 10px;
   }
 
-  
-
   .react-datepicker__wrapper {
     position: relative;
   }
@@ -68,11 +59,11 @@ const PeriodPaginatorContainer = styled.div`
     background-color: var(--title-color);
     font-family: Inter;
     border-radius: 16px;
+    border: 0px;
   }
   .react-datepicker__month-container {
     float: inherit;
     box-sizing: border-box;
-    
   }
   .react-datepicker__header {
     position: relative;
@@ -141,7 +132,6 @@ const PeriodPaginatorContainer = styled.div`
   .react-datepicker__month-year-read-view--down-arrow,
   .react-datepicker__navigation-icon::before {
     border-color: var(--primary-background-color);
-    
   }
 
   .react-datepicker__week {
@@ -211,6 +201,8 @@ const PeriodPaginatorContainer = styled.div`
     visibility: hidden;
   }
 
+ 
+
   /* ____  */
 
   @media screen and (min-width: 768px) {
@@ -265,7 +257,6 @@ const SwitcherContainer = styled.div`
   display: flex;
   width: 72px;
   height: 34px;
-  padding: 5px;
   border: 1px solid rgb(220, 227, 229, 50%);
   border-radius: 8px;
   position: relative;
@@ -290,13 +281,34 @@ const SwitcherPart = styled.button`
   flex: 1;
   text-align: center;
   transition: transform 0.3s, color 0.3s;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
   color: ${props => (props.active ? 'initial' : '#DCE3E5')};
   cursor: pointer;
   position: relative;
-  border:none;
-//   border: 0;
-//   background-color: transparent;
+  border: none;
+  padding: 0;
 
+  &:hover {
+    color: var(--title-color);
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-top: 2px;
+  }
+`;
+
+const SwitcherPartRight = styled.button`
+  flex: 1;
+  text-align: center;
+  transition: transform 0.3s, color 0.3s;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  color: ${props => (props.active ? 'initial' : '#DCE3E5')};
+  cursor: pointer;
+  position: relative;
+  border: none;
+  padding: 0;
 
   &:hover {
     color: var(--title-color);
@@ -313,4 +325,5 @@ export {
   CalendarButton,
   SwitcherContainer,
   SwitcherPart,
+  SwitcherPartRight,
 };
